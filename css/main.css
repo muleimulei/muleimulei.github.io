@@ -1598,6 +1598,11 @@ pre .javascript .function {
   margin-top: 0;
 }
 .site-author-image {
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -o-border-radius: 50%;
+  -ms-border-radius: 50%;
   display: block;
   margin: 0 auto;
   padding: 2px;
@@ -1685,7 +1690,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #5cffec;
+  background: #886aa8;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2853,14 +2858,6 @@ pre .javascript .function {
   .post-body {
     text-align: justify;
   }
-}
-.site-author-image {
-  border-radius: 50%;
-}
-.post:hover {
-  box-shadow: 0 0 4px #808080;
-  border-radius: 10px;
-  transition: all 0.3s ease;
 }
 .site-author-image:hover {
   cursor: pointer;
