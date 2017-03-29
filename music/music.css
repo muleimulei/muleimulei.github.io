@@ -14,7 +14,7 @@
         position: relative;
     }
     .pic{
-        width: 15%;
+        width: 12%;
         height: 80px;
         float: left;
         position: relative;
@@ -39,7 +39,7 @@
     }
     .ctrl-box{
         float: right;
-        width: 85%;
+        width: 88%;
         height: 80px;
         overflow:hidden;
         position: relative;
@@ -68,7 +68,7 @@
         top: 0;
         height: 2px;
         background: #cdcdcd;
-        width: 90%;
+        width: 94%;
         top: 30px;
         margin-left: 4px;
     }
@@ -173,7 +173,7 @@
     @media screen and (max-width: 450px){
         .ctrl-box .menu {
             position: absolute;
-            width: 45%;
+            width: 50%;
             left: 30px;
             top: 35px;
         }
@@ -185,7 +185,7 @@
             height: 20px;
             position: absolute;
             bottom: 2px;
-            right: 5px;
+            right: 2px;
             line-height: 20px;
             font-size: 18px;
             opacity: .7;
@@ -194,11 +194,11 @@
             width: 85%;
         }
         .pic{
-            width: 20%;
+            width: 23%;
             height: 80px;
         }
         .ctrl-box{
             height: 80px;
-            width: 80%;
+            width: 77%;
         }
     }

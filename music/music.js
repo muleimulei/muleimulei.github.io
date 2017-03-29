@@ -12,14 +12,9 @@
 	var canvas = $('#mycanvas');
 	var list,index;//存放音乐，序号
 
-	open.addEventListener('click',function(){
+	$(open).on('click touchend',function(){
 		$(ul).slideToggle();
-		// if(canvas.is(':hidden')){
-		// 	canvas.css('display','block');
-		// }else{
-		// 	canvas.css('display','none')
-		// }
-	},false);
+	});
 
 	/*基础请求*/
 	var xmlhttp = null;
@@ -43,13 +38,11 @@
 	function preList(list){
 		list.forEach(function(item){
 			var html = template.replace("{{post}}",item.picUrl).replace("{{singer}}",item.singer).replace("{{title}}",item.name).replace("{{musicUrl}}",item.src);
-			var li = document.createElement('li');
-			li.innerHTML = html;
-			ul.appendChild(li);
+			$(html).appendTo($(ul));
 		});
-		ul.addEventListener('click',function(e){
-			console.log('%o',e.target);
-		},false);
+		$(ul).on('click','li',function(e){
+			console.log('%o',this);
+		});
 
 	}
 
