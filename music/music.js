@@ -1,5 +1,6 @@
 // console.log($)
 (function(){
+	console.log($)
 	var template = `<li data-img="{{post}}" data-src="{{musicUrl}}">
                 <i class="fa fa-music" aria-hidden="true"></i>
                 <!-- <i class="fa fa-spinner "></i> -->
@@ -8,14 +9,16 @@
             	</li>`;
 	var open = document.querySelector("#box .ctrl-box .switch");
 	var ul = document.querySelector('#box .music-list ul');
+	var canvas = $('#mycanvas');
 	var list,index;//存放音乐，序号
 
 	open.addEventListener('click',function(){
-		if(ul.style.height=='0px'){
-			ul.style.height='180px';
-		}else{
-			ul.style.height='0px';
-		}
+		$(ul).slideToggle();
+		// if(canvas.is(':hidden')){
+		// 	canvas.css('display','block');
+		// }else{
+		// 	canvas.css('display','none')
+		// }
 	},false);
 
 	/*基础请求*/
