@@ -12,8 +12,8 @@
         border-radius: 5px;
         -webkit-font-smoothing: antialiased;
         position: relative;
-        border-top-left-radius: 30px;
-        border-top-right-radius: 30px;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
 
     }
     .pic{
@@ -33,7 +33,7 @@
         width: 100%;
         height: 100%;
         background-size: 100% 100%;
-        border-top-left-radius: 30px;
+        border-top-left-radius: 10px;
     }
     .pic > .cover{
         position: absolute;
@@ -114,7 +114,7 @@
         opacity: 1;
         cursor: pointer;
     }
-    .menu i{
+    .menu > i.fa{
         display: inline-block;
         width: calc(100%/5);
         height: 30px;
@@ -171,13 +171,14 @@
     }
 
     #mycanvas{
-        height: 250px;
+        height: 350px;
         width: 100%;
         position: absolute;
         top: 80px;
         display: none;
         border-bottom-left-radius: 50px;
         border-bottom-right-radius: 50px;
+        /*box-shadow: 0 0 1px gray;*/
     }
     @media screen and (max-width: 450px){
         .ctrl-box .menu {

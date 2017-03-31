@@ -112,6 +112,9 @@
 				left: p+'px'
 			});
 		});
+		$(audio).on('ended',function(){
+			next.trigger('click');
+		});
 	}	
 	
 	play.on('click',function(){
@@ -163,14 +166,13 @@
 
 	// });
 	bar.on('mouseup',function(e){
-
 		var d = e.offsetX;
 		console.log(d);
 		var p = d*audio.duration/width;
-			progress.width(d);
-			thumb.css({
-				left: d+'px'
-			});
+		progress.width(d);
+		thumb.css({
+			left: d+'px'
+		});
 		audio.currentTime = Math.floor(p);
 	});
 	//---------初始化结束-----------
@@ -231,13 +233,13 @@ var particles = [];
 	}
 	function loop(x,y){
 		context.clearRect(0,0,canvas.width(),canvas.height());
-		context.fillStyle = line;
-	    context.fillRect(0,0,canvas.width(),canvas.height());
+		// context.fillStyle = line;
+	    // context.fillRect(0,0,canvas.width(),canvas.height());
 	    //随机产生一个粒子
 	    var particle = new Particle(x,y);
 	    particle.xVel = Math.random()*4-2;//给粒子一个水平位置变化量
 	    particles.push(particle);//加入数组中
-	    if(particles.length > 2000){
+	    if(particles.length > 4000){
 	        particles.shift();
 	    }
 	    for(var i=0;i<particles.length;i++){
