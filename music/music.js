@@ -12,8 +12,6 @@
 	var ulheight = $('.music-list ul').height();
 	var canvas = $('#mycanvas');
 	var context = canvas.get(0).getContext('2d');
-	// var a = $('#box .pic a.fancybox');
-	// console.log(a);
 	//----------------
 	var pic = $('.pic img');
 	var title = $('.ctrl-box .title span');
@@ -100,8 +98,8 @@
 		first.find('i.fa').get(0).className = 'fa fa-cog fa-spin';
 		if(audio){
 			audio.src = first.data('src');
-			audio.play();
 		}
+		audio.play();
 		$(audio).on('canplay',function(){
 			play.get(0).className = 'fa fa-pause';
 		});
@@ -158,13 +156,6 @@
 		playmusic(list[index]);
 		checkpos();
 	});
-
-	// bar.on('mousedown',function(e){
-	// 	start = e.offsetX;
-	// });
-	// bar.on('mousemove',function(){
-
-	// });
 	bar.on('mouseup',function(e){
 		var d = e.offsetX;
 		console.log(d);
@@ -199,12 +190,6 @@ var particles = [];
 
 	var canvas = $('#mycanvas');
 	var context = canvas.get(0).getContext('2d');
-	var line = context.createLinearGradient(0,0,0,canvas.height());
-	line.addColorStop(0,'rgb(196, 31, 194)');
-	line.addColorStop(.3,'rgb(39, 176, 173)');
-	line.addColorStop(.6,'rgb(76, 59, 132)');
-	line.addColorStop(.9,'gray');
-	
 	//粒子类
 	function Particle(x,y){
 	    this.x = x;
@@ -232,7 +217,7 @@ var particles = [];
 	    };
 	}
 	function loop(x,y){
-		context.clearRect(0,0,canvas.width(),canvas.height());
+		context.clearRect(0,0,canvas.width()+200,canvas.height());
 		// context.fillStyle = line;
 	    // context.fillRect(0,0,canvas.width(),canvas.height());
 	    //随机产生一个粒子
