@@ -94,8 +94,6 @@
 
 
 
-  
-
 
   <link rel="alternate" href="/atom.xml" title="风的影子" type="application/atom+xml" />
 
@@ -109,16 +107,61 @@
 
 
 
-<meta name="description" content="个人学习总结">
+<meta name="description" content="picture transition
+
+
+	.content-wrap{
+		padding: 0;
+	}
+	.posts-expand{
+		padding-top:0;
+	}
+	.wrapper{
+		width: 100%;
+		overflow: hidden;
+		margin-top: 0px;
+		max-width: 1080px: 
+	}
+	.wrapper ul{">
 <meta property="og:type" content="website">
-<meta property="og:title" content="'image'">
-<meta property="og:url" content="https://muleimulei.github.io/image/index.html">
+<meta property="og:title" content="风的影子">
+<meta property="og:url" content="https://muleimulei.github.io/images/index.html">
 <meta property="og:site_name" content="风的影子">
-<meta property="og:description" content="个人学习总结">
-<meta property="og:updated_time" content="2017-04-01T15:45:56.008Z">
+<meta property="og:description" content="picture transition
+
+
+	.content-wrap{
+		padding: 0;
+	}
+	.posts-expand{
+		padding-top:0;
+	}
+	.wrapper{
+		width: 100%;
+		overflow: hidden;
+		margin-top: 0px;
+		max-width: 1080px: 
+	}
+	.wrapper ul{">
+<meta property="og:updated_time" content="2017-04-02T06:05:27.547Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="'image'">
-<meta name="twitter:description" content="个人学习总结">
+<meta name="twitter:title" content="风的影子">
+<meta name="twitter:description" content="picture transition
+
+
+	.content-wrap{
+		padding: 0;
+	}
+	.posts-expand{
+		padding-top:0;
+	}
+	.wrapper{
+		width: 100%;
+		overflow: hidden;
+		margin-top: 0px;
+		max-width: 1080px: 
+	}
+	.wrapper ul{">
 
 
 
@@ -146,7 +189,7 @@
 
 
 
-  <link rel="canonical" href="https://muleimulei.github.io/image/"/>
+  <link rel="canonical" href="https://muleimulei.github.io/images/"/>
 
 
 
@@ -156,7 +199,7 @@
   
 
   
-    'image' | 风的影子
+     | 风的影子
   
 </title>
 </head>
@@ -270,7 +313,7 @@
       
         
         <li class="menu-item menu-item-image">
-          <a href="/image" rel="section">
+          <a href="/images" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-image"></i> <br />
             
@@ -344,7 +387,7 @@
   <div id="posts" class="posts-expand">
   <header class="post-header">
 
-	<h1 class="post-title" itemprop="name headline">'image'</h1>
+	<h1 class="post-title" itemprop="name headline"></h1>
 
 
 
@@ -352,7 +395,128 @@
 
     
     
-      
+      <!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>picture transition</title>
+</head>
+<style>
+	.content-wrap{
+		padding: 0;
+	}
+	.posts-expand{
+		padding-top:0;
+	}
+	.wrapper{
+		width: 100%;
+		overflow: hidden;
+		margin-top: 0px;
+		max-width: 1080px: 
+	}
+	.wrapper ul{
+		list-style: none;
+		display: table;
+		table-layout: fixed;
+		margin: 0;
+		padding: 0;
+		width: 100%;
+	}
+	.wrapper ul li{
+		height: 250px;
+
+		display: table-cell;
+		vertical-align: bottom;
+		position: relative;
+		height: 250px;
+		transition: all 0.5s ease;
+		width: 20%;
+		cursor: pointer;
+
+		transform-origin: center center;
+		transform: scale(0, 0);
+		animation: big 1s ease forwards;
+	}
+	@keyframes big{
+		100%{
+			transform: scale(1,1);
+		}
+	}
+
+	.wrapper ul li div{
+		height: 100%;
+		overflow: hidden;
+		position: relative;
+	}
+
+	.wrapper ul li div img{
+		height: 100%;
+		width: 100%;
+	}
+	
+
+	.wrapper ul:hover li {
+		width: 10%;
+	}
+	.wrapper ul:hover li:hover  {
+		width: 60%;
+	}
+	.wrapper a{
+		display: inline-block;
+		width: 100%;
+		height: 100%;
+	}
+	@media screen and (max-width: 600px){
+		body{
+			margin: 0;
+		}
+		.wrapper{
+			height: auto;
+		}
+		.wrapper ul li, .wrapper ul li:hover, .wrapper ul:hover li, .wrapper ul:hover li:hover{
+			position: relative;
+			display: table;
+			table-layout: fixed;
+			width: 100%;
+			-webkit-transition: none;
+			transition: none;
+		}
+}
+</style>
+<body>
+	<div class="wrapper">
+		
+	</div>
+</body>
+
+<script type="text/javascript">
+	(function(){
+		var wrapper = document.querySelector('.wrapper');
+		var total = 17;
+		var index = 0;
+		var linenum = 6;
+		function addPictures(){
+			var ul = document.createElement('ul');
+			wrapper.appendChild(ul);
+			for(var i = 0;i<linenum;i++){
+				var li = document.createElement('li');
+				ul.appendChild(li);
+				var div = document.createElement('div');
+				li.appendChild(div);
+				var img = document.createElement('img');
+				img.setAttribute('src','./pictures/'+(++index)+'.jpg');
+				div.appendChild(img);
+			}
+		}
+		
+		var line = Math.ceil(total/linenum);
+		for(var i=0;i<line;i++){
+			addPictures();
+		}
+	})()
+</script>
+
+</html>
     
   </div>
 
