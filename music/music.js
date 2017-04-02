@@ -162,11 +162,9 @@
 	});
 	$('#main').one('touchstart',function(){
 		audio.play();
-		// alert(1234);
 	});
-	// console.log($('#main'));
 	//---------初始化结束-----------
-	window.audio = audio;
+	// window.audio = audio;
 
 	function playmusic(li){
 		list[index].find('i.fa').get(0).className = 'fa fa-cog fa-spin';

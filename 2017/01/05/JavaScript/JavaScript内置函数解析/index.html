@@ -113,7 +113,7 @@
 <meta property="og:url" content="https://muleimulei.github.io/2017/01/05/JavaScript/JavaScript内置函数解析/index.html">
 <meta property="og:site_name" content="风的影子">
 <meta property="og:description" content="这篇文章将介绍几个关于JavaScript内置函数的简单算法">
-<meta property="og:updated_time" content="2017-03-24T12:00:04.586Z">
+<meta property="og:updated_time" content="2017-04-02T15:20:30.182Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript内置函数">
 <meta name="twitter:description" content="这篇文章将介绍几个关于JavaScript内置函数的简单算法">
@@ -442,7 +442,9 @@
       
 
       
-        <h2 id="这篇文章将介绍几个关于JavaScript内置函数的简单算法"><a href="#这篇文章将介绍几个关于JavaScript内置函数的简单算法" class="headerlink" title="这篇文章将介绍几个关于JavaScript内置函数的简单算法"></a>这篇文章将介绍几个关于JavaScript内置函数的简单算法</h2><a id="more"></a>
+        <blockquote class="blockquote-center"><p>这篇文章将介绍几个关于JavaScript内置函数的简单算法</p>
+</blockquote>
+<a id="more"></a>
 <h2 id="一、将字符串重复一定次数"><a href="#一、将字符串重复一定次数" class="headerlink" title="一、将字符串重复一定次数"></a>一、将字符串重复一定次数</h2><h3 id="1-使用while循环"><a href="#1-使用while循环" class="headerlink" title="1. 使用while循环"></a>1. 使用while循环</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">repeat</span>(<span class="params">num,str</span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> repeatStr = <span class="string">''</span>;</div><div class="line">    <span class="keyword">while</span>(num--)&#123;</div><div class="line">        repeatStr+=str;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> repeatStr;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h3 id="2-使用递归"><a href="#2-使用递归" class="headerlink" title="2. 使用递归"></a>2. 使用递归</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">repeatStringNumTimes</span>(<span class="params">str,times</span>)</span>&#123;</div><div class="line">    <span class="keyword">if</span>(times&lt;<span class="number">0</span>)&#123;</div><div class="line">        <span class="keyword">return</span> <span class="string">''</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span>(times===<span class="number">1</span>)&#123;</div><div class="line">        <span class="keyword">return</span> str;</div><div class="line">    &#125;<span class="keyword">else</span>&#123;</div><div class="line">        <span class="keyword">return</span> str + repeatStringNumTimes(str,times<span class="number">-1</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h3 id="3-使用es6的repeat"><a href="#3-使用es6的repeat" class="headerlink" title="3. 使用es6的repeat"></a>3. 使用es6的repeat</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">repeatStringNumTimes</span>(<span class="params">str,times</span>)</span>&#123;</div><div class="line">    <span class="keyword">return</span> times&lt;<span class="number">0</span>?<span class="string">''</span>:str.repeat(times);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
@@ -600,7 +602,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-count">4</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -611,7 +613,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-count">2</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -622,7 +624,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">5</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -734,7 +736,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#这篇文章将介绍几个关于JavaScript内置函数的简单算法"><span class="nav-number">1.</span> <span class="nav-text">这篇文章将介绍几个关于JavaScript内置函数的简单算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一、将字符串重复一定次数"><span class="nav-number">2.</span> <span class="nav-text">一、将字符串重复一定次数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-使用while循环"><span class="nav-number">2.1.</span> <span class="nav-text">1. 使用while循环</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-使用递归"><span class="nav-number">2.2.</span> <span class="nav-text">2. 使用递归</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-使用es6的repeat"><span class="nav-number">2.3.</span> <span class="nav-text">3. 使用es6的repeat</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、检查某一字符串是否已特定字符串结束"><span class="nav-number">3.</span> <span class="nav-text">二、检查某一字符串是否已特定字符串结束</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-利用substr函数"><span class="nav-number">3.1.</span> <span class="nav-text">1. 利用substr函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-使用内置函数"><span class="nav-number">3.2.</span> <span class="nav-text">2. 使用内置函数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、翻转字符串"><span class="nav-number">4.</span> <span class="nav-text">三、翻转字符串</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-使用split-reverse-join"><span class="nav-number">4.1.</span> <span class="nav-text">1. 使用split(),reverse(),join()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-使用for循环"><span class="nav-number">4.2.</span> <span class="nav-text">2.使用for循环</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-使用递归"><span class="nav-number">4.3.</span> <span class="nav-text">3. 使用递归</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、将一个句子的每个单词首字母大写，其余小写"><span class="nav-number">5.</span> <span class="nav-text">四、将一个句子的每个单词首字母大写，其余小写</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-使用for循环"><span class="nav-number">5.1.</span> <span class="nav-text">1. 使用for循环</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-使用map方法"><span class="nav-number">5.2.</span> <span class="nav-text">2. 使用map方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-使用replace方法"><span class="nav-number">5.3.</span> <span class="nav-text">2. 使用replace方法</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、将字符串重复一定次数"><span class="nav-number">1.</span> <span class="nav-text">一、将字符串重复一定次数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-使用while循环"><span class="nav-number">1.1.</span> <span class="nav-text">1. 使用while循环</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-使用递归"><span class="nav-number">1.2.</span> <span class="nav-text">2. 使用递归</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-使用es6的repeat"><span class="nav-number">1.3.</span> <span class="nav-text">3. 使用es6的repeat</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、检查某一字符串是否已特定字符串结束"><span class="nav-number">2.</span> <span class="nav-text">二、检查某一字符串是否已特定字符串结束</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-利用substr函数"><span class="nav-number">2.1.</span> <span class="nav-text">1. 利用substr函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-使用内置函数"><span class="nav-number">2.2.</span> <span class="nav-text">2. 使用内置函数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、翻转字符串"><span class="nav-number">3.</span> <span class="nav-text">三、翻转字符串</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-使用split-reverse-join"><span class="nav-number">3.1.</span> <span class="nav-text">1. 使用split(),reverse(),join()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-使用for循环"><span class="nav-number">3.2.</span> <span class="nav-text">2.使用for循环</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-使用递归"><span class="nav-number">3.3.</span> <span class="nav-text">3. 使用递归</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、将一个句子的每个单词首字母大写，其余小写"><span class="nav-number">4.</span> <span class="nav-text">四、将一个句子的每个单词首字母大写，其余小写</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-使用for循环"><span class="nav-number">4.1.</span> <span class="nav-text">1. 使用for循环</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-使用map方法"><span class="nav-number">4.2.</span> <span class="nav-text">2. 使用map方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-使用replace方法"><span class="nav-number">4.3.</span> <span class="nav-text">2. 使用replace方法</span></a></li></ol></li></ol></div>
             
 
           </div>
