@@ -1,52 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-
+  
+  <url>
+    <loc>https://muleimulei.github.io/images/index.html</loc>
     
+    <lastmod>2017-04-02T08:43:55.265Z</lastmod>
     
+  </url>
+  
+  <url>
+    <loc>https://muleimulei.github.io/music/index.html</loc>
     
+    <lastmod>2017-04-02T06:28:24.242Z</lastmod>
+    
+  </url>
+  
   <url>
     <loc>https://muleimulei.github.io/2017/01/05/JavaScript/JavaScript%E5%86%85%E7%BD%AE%E5%87%BD%E6%95%B0%E8%A7%A3%E6%9E%90/</loc>
-    <lastmod>2017-03-24T12:00:04.586Z</lastmod>
-    <data>
-        <display>
-        <title>JavaScript内置函数</title>
-        <pubTime>2017-01-04T16:00:00.000Z</pubTime>
-        
-        <tag>JavaScript </tag>
-         
-        <tag>function </tag>
-         
-         
-           
-             
-              <breadCrumb title="JavaScript" url="https://muleimulei.github.io/categories/JavaScript/"/>
-          
-        </display>
-    </data>
-    </url>
-
     
+    <lastmod>2017-03-24T12:00:04.586Z</lastmod>
+    
+  </url>
+  
   <url>
     <loc>https://muleimulei.github.io/2017/03/22/JavaScript/%E5%87%BD%E6%95%B0%E6%9F%AF%E9%87%8C%E5%8C%96/</loc>
+    
     <lastmod>2017-03-22T15:39:39.666Z</lastmod>
-    <data>
-        <display>
-        <title>JavaScript函数柯里化</title>
-        <pubTime>2017-03-21T16:34:44.227Z</pubTime>
-        
-        <tag>JavaScript </tag>
-         
-        <tag>函数柯里化 </tag>
-         
-         
-           
-             
-              <breadCrumb title="JavaScript" url="https://muleimulei.github.io/categories/JavaScript/"/>
-          
-        </display>
-    </data>
-    </url>
-
     
+  </url>
+  
+  <url>
+    <loc>https://muleimulei.github.io/tags/index.html</loc>
     
+    <lastmod>2017-03-21T15:32:47.568Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://muleimulei.github.io/categories/index.html</loc>
+    
+    <lastmod>2017-03-20T14:47:52.910Z</lastmod>
+    
+  </url>
+  
 </urlset>

@@ -67,8 +67,8 @@
 			}
 		});
 		$(ul).on('click','li',function(e){
-
 			audio.pause();
+			play.get(0).className = 'fa fa-spinner fa-spin';
 			var li = $(this);
 			list[index].removeClass('darken');
 			list[index].find('i.fa').get(0).className = 'fa fa-music';
@@ -100,15 +100,14 @@
 			audio.src = first.data('src');
 		}
 		audio.play();
-		$(audio).on('canplay',function(){
+		
+		$(audio).on('canplaythrough',function(){
 			play.get(0).className = 'fa fa-pause';
 		});
 		$(audio).on('timeupdate',function(){
-			var p = (audio.currentTime/width)*audio.duration;
+			var p = (audio.currentTime*width)/audio.duration;
 			progress.width(p);
-			thumb.css({
-				left: p+'px'
-			});
+			thumb.get(0).style.left = p+'px';
 		});
 		$(audio).on('ended',function(){
 			next.trigger('click');
@@ -156,16 +155,16 @@
 		playmusic(list[index]);
 		checkpos();
 	});
-	bar.on('mouseup',function(e){
+	bar.on('click',function(e){
 		var d = e.offsetX;
-		console.log(d);
 		var p = d*audio.duration/width;
-		progress.width(d);
-		thumb.css({
-			left: d+'px'
-		});
-		audio.currentTime = Math.floor(p);
+		audio.currentTime = Math.floor(p);		
 	});
+	$('#main').one('touchstart',function(){
+		audio.play();
+		// alert(1234);
+	});
+	// console.log($('#main'));
 	//---------初始化结束-----------
 	window.audio = audio;
 
@@ -205,7 +204,7 @@ var particles = [];
 	        context.fillStyle = "hsl("+this.counter+",100%,50%)";
 
 	        context.beginPath();
-	        context.arc(this.x,this.y,3,0,2*Math.PI,true);
+	        context.arc(this.x,this.y,10,0,2*Math.PI,true);
 	        context.fill();
 	    };
 	/*更新数组中粒子的位置和颜色*/
@@ -224,7 +223,7 @@ var particles = [];
 	    var particle = new Particle(x,y);
 	    particle.xVel = Math.random()*4-2;//给粒子一个水平位置变化量
 	    particles.push(particle);//加入数组中
-	    if(particles.length > 4000){
+	    if(particles.length > 100){
 	        particles.shift();
 	    }
 	    for(var i=0;i<particles.length;i++){
