@@ -1690,7 +1690,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #00ff42;
+  background: #7a66b1;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2867,4 +2867,13 @@ pre .javascript .function {
   -o-transform: rotate3d(0, 1, 0, 360deg);
   transform: rotate3d(0, 1, 0, 360deg);
   transition: all 1s ease;
+}
+.content-wrap {
+  background: rgba(255,255,255,0.5);
+}
+.sidebar-inner {
+  background: rgba(255,255,255,0.5) !important;
+}
+.header-inner {
+  background: rgba(255,255,255,0.5) !important;
 }
