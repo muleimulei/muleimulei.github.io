@@ -29,6 +29,16 @@
         	l.fillStyle = balls[t].color,
         	l.arc(balls[t].x,balls[t].y,balls[t].radius,0,Math.PI*2);
         	l.fill();
+
+            l.fillStyle = 'rgba(255,0,0,.3)';
+            l.lineWidth = '4px';
+            l.strokeStyle = "rgba(0,0,0,0.5)"
+            if(balls[t].link){
+                l.moveTo(balls[t].x,balls[t].y);
+                l.lineTo(balls[balls[t].link].x,balls[balls[t].link].y);
+            }
+            l.stroke();
+            l.fill();
         	l.closePath();
         	if(balls[t].x+balls[t].dx<0||balls[t].x+balls[t].dx>document.body.clientWidth){
         		balls[t].dx *= -1;
@@ -36,9 +46,29 @@
         	if(balls[t].y+balls[t].dy>document.body.clientHeight||balls[t].y<0){
         		balls[t].dy *= -1;
         	}
-
         	balls[t].x +=balls[t].dx;
         	balls[t].y +=balls[t].dy;
+            if(!balls[t].link){
+                balls[t].link = Math.floor(balls.length*Math.random());
+            }
+            balls[t].radius += (Math.random()<.5?.01:.02);
+
+            if(balls[t].radius>45){
+                var xx = balls[t].x;
+                var yy = balls[t].y;
+                balls.splice(t,1);
+                for(var f = 0;f<10;f++){
+                    balls.push({
+                        x: xx,
+                        y: yy,
+                        radius: Math.random()*2+3,
+                        dx: Math.random()<.5? 1.5:-1.5,
+                        dy: Math.random()<.5? 1.5:-1.5,
+                        link: balls.length===0|| Math.random()<.5? false : Math.floor(balls.length*Math.random()),
+                        color:`rgba(${Math.floor(Math.random()*155)},${Math.floor(Math.random()*155)},${Math.floor(Math.random()*155)},${Math.random()})`,
+                    });
+                }
+            }
         }
         var n, e, t, o, u, d, x = [w].concat(y);
         y.forEach(function(i) {
@@ -106,15 +136,21 @@
         i();
     }, 100);
 
+    setInterval(function(){
+        if(balls.length>50){
+            balls.splice(Math.floor(Math.random()*balls.length),1);
+        }
+    },2000);
+
     document.body.addEventListener('click',function(e){
     	balls.push({
     		x: e.clientX,
     		y: e.clientY,
     		radius: Math.random()*10+30,
-    		dx: Math.random()<.5? 2:-2,
-    		dy: Math.random()<.5? 2:-2,
+    		dx: Math.random()<.5? 1.5:-1.5,
+    		dy: Math.random()<.5? 1.5:-1.5,
+            link: balls.length===0|| Math.random()<.5? false : Math.floor(balls.length*Math.random()),
     		color:`rgba(${Math.floor(Math.random()*155)},${Math.floor(Math.random()*155)},${Math.floor(Math.random()*155)},${Math.random()})`,
     	});
-    	console.log(balls);
     },false);
 }();
