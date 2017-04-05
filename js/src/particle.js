@@ -24,7 +24,13 @@
     }
     function i() {
         l.clearRect(0, 0, c, a);
+        if(balls.length>20){
+            balls.splice(Math.floor(Math.random()*balls.length),5);
+        }
         for(var t = 0;t<balls.length;t++){
+            if(!balls[t].link&&Math.random()<.7){
+                balls[t].link = Math.floor(balls.length*Math.random());
+            }
         	l.beginPath();
         	l.fillStyle = balls[t].color,
         	l.arc(balls[t].x,balls[t].y,balls[t].radius,0,Math.PI*2);
@@ -33,7 +39,7 @@
             l.fillStyle = 'rgba(255,0,0,.3)';
             l.lineWidth = '4px';
             l.strokeStyle = "rgba(0,0,0,0.5)"
-            if(balls[t].link){
+            if(balls[t].link&&balls[balls[t].link]&&balls[balls[t].link]){
                 l.moveTo(balls[t].x,balls[t].y);
                 l.lineTo(balls[balls[t].link].x,balls[balls[t].link].y);
             }
@@ -48,16 +54,14 @@
         	}
         	balls[t].x +=balls[t].dx;
         	balls[t].y +=balls[t].dy;
-            if(!balls[t].link){
-                balls[t].link = Math.floor(balls.length*Math.random());
-            }
+            
             balls[t].radius += (Math.random()<.5?.01:.02);
 
             if(balls[t].radius>45){
                 var xx = balls[t].x;
                 var yy = balls[t].y;
                 balls.splice(t,1);
-                for(var f = 0;f<10;f++){
+                for(var f = 0;f<6;f++){
                     balls.push({
                         x: xx,
                         y: yy,
@@ -70,6 +74,7 @@
                 }
             }
         }
+
         var n, e, t, o, u, d, x = [w].concat(y);
         y.forEach(function(i) {
             for (i.x += i.xa,
@@ -135,22 +140,17 @@
     setTimeout(function() {
         i();
     }, 100);
-
-    setInterval(function(){
-        if(balls.length>50){
-            balls.splice(Math.floor(Math.random()*balls.length),1);
-        }
-    },2000);
-
     document.body.addEventListener('click',function(e){
+        if(document.body.clientWidth<400&&balls.length>20) return;
+        if(balls.length>40) return;
     	balls.push({
-    		x: e.clientX,
-    		y: e.clientY,
-    		radius: Math.random()*10+30,
-    		dx: Math.random()<.5? 1.5:-1.5,
-    		dy: Math.random()<.5? 1.5:-1.5,
+            x: e.clientX,
+            y: e.clientY,
+            radius: Math.random()*10+30,
+            dx: Math.random()<.5? 1.5:-1.5,
+            dy: Math.random()<.5? 1.5:-1.5,
             link: balls.length===0|| Math.random()<.5? false : Math.floor(balls.length*Math.random()),
-    		color:`rgba(${Math.floor(Math.random()*155)},${Math.floor(Math.random()*155)},${Math.floor(Math.random()*155)},${Math.random()})`,
-    	});
+            color:`rgba(${Math.floor(Math.random()*155)},${Math.floor(Math.random()*155)},${Math.floor(Math.random()*155)},${Math.random()})`,
+        });
     },false);
 }();
