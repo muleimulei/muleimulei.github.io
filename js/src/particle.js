@@ -24,7 +24,7 @@
     }
     function i() {
         l.clearRect(0, 0, c, a);
-        if(balls.length>20){
+        if(document.body.clientWidth<400&&balls.length>15){
             balls.splice(Math.floor(Math.random()*balls.length),5);
         }
         for(var t = 0;t<balls.length;t++){
@@ -141,7 +141,7 @@
         i();
     }, 100);
     document.body.addEventListener('click',function(e){
-        if(document.body.clientWidth<400&&balls.length>20) return;
+        if(document.body.clientWidth<400&&balls.length>5) return;
         if(balls.length>40) return;
     	balls.push({
             x: e.clientX,
