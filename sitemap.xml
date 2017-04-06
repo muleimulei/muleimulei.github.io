@@ -1,94 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-
+  
+  <url>
+    <loc>https://muleimulei.github.io/images/index.html</loc>
     
+    <lastmod>2017-04-04T23:35:54.328Z</lastmod>
     
+  </url>
+  
   <url>
     <loc>https://muleimulei.github.io/2017/04/02/OS/%E6%97%B6%E9%97%B4%E7%89%87%E8%BD%AE%E8%BD%AC%E4%B8%8E%E9%AB%98%E5%93%8D%E5%BA%94%E6%AF%94%E4%BC%98%E5%85%88%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95/</loc>
-    <lastmod>2017-04-04T15:55:11.252Z</lastmod>
-    <data>
-        <display>
-        <title>时间片轮转与高响应比优先算法</title>
-        <pubTime>2017-04-02T14:53:13.349Z</pubTime>
-        
-         
-           
-             
-              <breadCrumb title="操作系统" url="https://muleimulei.github.io/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
-          
-        </display>
-    </data>
-    </url>
-
     
+    <lastmod>2017-04-04T15:55:11.252Z</lastmod>
+    
+  </url>
+  
   <url>
     <loc>https://muleimulei.github.io/2017/04/02/JavaScript/jquery%E7%9A%84Deferred%E5%AF%B9%E8%B1%A1%E8%AF%A6%E8%A7%A3/</loc>
-    <lastmod>2017-04-02T15:22:10.799Z</lastmod>
-    <data>
-        <display>
-        <title>JQuery的Deferred对象详解</title>
-        <pubTime>2017-04-02T10:24:29.261Z</pubTime>
-        
-        <tag>JavaScript </tag>
-         
-        <tag>JQuery </tag>
-         
-        <tag>Deferred </tag>
-         
-         
-           
-             
-              <breadCrumb title="JavaScript" url="https://muleimulei.github.io/categories/JavaScript/"/>
-          
-        </display>
-    </data>
-    </url>
-
     
+    <lastmod>2017-04-02T15:22:10.799Z</lastmod>
+    
+  </url>
+  
   <url>
     <loc>https://muleimulei.github.io/2017/03/22/JavaScript/%E5%87%BD%E6%95%B0%E6%9F%AF%E9%87%8C%E5%8C%96/</loc>
-    <lastmod>2017-04-02T15:21:04.688Z</lastmod>
-    <data>
-        <display>
-        <title>JavaScript函数柯里化</title>
-        <pubTime>2017-03-21T16:34:44.227Z</pubTime>
-        
-        <tag>JavaScript </tag>
-         
-        <tag>函数柯里化 </tag>
-         
-         
-           
-             
-              <breadCrumb title="JavaScript" url="https://muleimulei.github.io/categories/JavaScript/"/>
-          
-        </display>
-    </data>
-    </url>
-
     
+    <lastmod>2017-04-02T15:21:04.688Z</lastmod>
+    
+  </url>
+  
   <url>
     <loc>https://muleimulei.github.io/2017/01/05/JavaScript/JavaScript%E5%86%85%E7%BD%AE%E5%87%BD%E6%95%B0%E8%A7%A3%E6%9E%90/</loc>
+    
     <lastmod>2017-04-02T15:20:30.182Z</lastmod>
-    <data>
-        <display>
-        <title>JavaScript内置函数</title>
-        <pubTime>2017-01-04T16:00:00.000Z</pubTime>
-        
-        <tag>JavaScript </tag>
-         
-        <tag>function </tag>
-         
-         
-           
-             
-              <breadCrumb title="JavaScript" url="https://muleimulei.github.io/categories/JavaScript/"/>
-          
-        </display>
-    </data>
-    </url>
-
     
+  </url>
+  
+  <url>
+    <loc>https://muleimulei.github.io/music/index.html</loc>
     
+    <lastmod>2017-04-02T06:28:24.242Z</lastmod>
     
+  </url>
+  
+  <url>
+    <loc>https://muleimulei.github.io/tags/index.html</loc>
+    
+    <lastmod>2017-03-21T15:32:47.568Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://muleimulei.github.io/categories/index.html</loc>
+    
+    <lastmod>2017-03-20T14:47:52.910Z</lastmod>
+    
+  </url>
+  
 </urlset>

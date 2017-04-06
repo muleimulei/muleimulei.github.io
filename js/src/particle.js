@@ -50,10 +50,10 @@
             l.stroke();
             l.fill();
         	l.closePath();
-        	if(balls[t].x+balls[t].dx<0||balls[t].x+balls[t].dx>document.body.clientWidth){
+        	if(balls[t].x+balls[t].dx-balls[t].radius<0||balls[t].x+balls[t].dx+balls[t].radius>document.body.clientWidth){
         		balls[t].dx *= -1;
         	}
-        	if(balls[t].y+balls[t].dy>document.body.clientHeight||balls[t].y<0){
+        	if(balls[t].y+balls[t].dy+balls[t].radius>document.body.clientHeight||balls[t].y-balls[t].radius<0){
         		balls[t].dy *= -1;
         	}
         	balls[t].x +=balls[t].dx;
@@ -155,7 +155,7 @@
     	balls.push({
             x: e.clientX,
             y: e.clientY,
-            radius: Math.random()*10+30,
+            radius: Math.random()*10+20,
             dx: Math.random()<.5? 1.5:-1.5,
             dy: Math.random()<.5? 1.5:-1.5,
             link: balls.length===0|| Math.random()<.5? false : Math.floor(balls.length*Math.random()),
