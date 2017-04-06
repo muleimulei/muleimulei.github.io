@@ -1,5 +1,6 @@
 !function() {
     var balls = [];
+    var time = 0;
     function n(n, e, t) {
         return n.getAttribute(e) || t
     }
@@ -26,6 +27,8 @@
         l.clearRect(0, 0, c, a);
         if(document.body.clientWidth<400&&balls.length>15){
             balls.splice(Math.floor(Math.random()*balls.length),5);
+        }else if(balls.length>30){
+            balls.splice(Math.floor(Math.random()*balls.length),10);
         }
         for(var t = 0;t<balls.length;t++){
             if(!balls[t].link&&Math.random()<.7){
@@ -36,8 +39,9 @@
         	l.arc(balls[t].x,balls[t].y,balls[t].radius,0,Math.PI*2);
         	l.fill();
 
-            l.fillStyle = 'rgba(255,0,0,.3)';
-            l.lineWidth = '4px';
+
+            l.fillStyle = `rgba(${Math.random()*255},${Math.random()*255},${Math.random()*255},${Math.random()+.001})`;
+            l.lineWidth = '7px';
             l.strokeStyle = "rgba(0,0,0,0.5)"
             if(balls[t].link&&balls[balls[t].link]&&balls[balls[t].link]){
                 l.moveTo(balls[t].x,balls[t].y);
@@ -54,20 +58,25 @@
         	}
         	balls[t].x +=balls[t].dx;
         	balls[t].y +=balls[t].dy;
+            if(Math.random()<.5&&time++>40){
+                time=0;
+                balls[t].color=`rgba(${Math.floor(Math.random()*155)},${Math.floor(Math.random()*155)},${Math.floor(Math.random()*155)},${Math.random()})`;
+            }        
             
             balls[t].radius += (Math.random()<.5?.01:.02);
-
             if(balls[t].radius>45){
                 var xx = balls[t].x;
                 var yy = balls[t].y;
+                var radius = balls[t].radius;
                 balls.splice(t,1);
-                for(var f = 0;f<6;f++){
+                for(var f = 0;f<5;f++){
+                    var n = 360*Math.random();
                     balls.push({
-                        x: xx,
-                        y: yy,
+                        x: Math.cos(2*Math.PI/360*n)*radius+xx,
+                        y: Math.sin(2*Math.PI/360*n)*radius+yy,
                         radius: Math.random()*2+3,
-                        dx: Math.random()<.5? 1.5:-1.5,
-                        dy: Math.random()<.5? 1.5:-1.5,
+                        dx: Math.random()<.5? Math.random()*1.5:(-1.5)*Math.random(),
+                        dy: Math.random()<.5? Math.random()*1.5:(-1.5)*Math.random(),
                         link: balls.length===0|| Math.random()<.5? false : Math.floor(balls.length*Math.random()),
                         color:`rgba(${Math.floor(Math.random()*155)},${Math.floor(Math.random()*155)},${Math.floor(Math.random()*155)},${Math.random()})`,
                     });
