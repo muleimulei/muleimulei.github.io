@@ -39,7 +39,6 @@
         	l.arc(balls[t].x,balls[t].y,balls[t].radius,0,Math.PI*2);
         	l.fill();
 
-
             l.fillStyle = `rgba(${Math.random()*255},${Math.random()*255},${Math.random()*255},${Math.random()+.001})`;
             l.lineWidth = '7px';
             l.strokeStyle = "rgba(0,0,0,0.5)"
