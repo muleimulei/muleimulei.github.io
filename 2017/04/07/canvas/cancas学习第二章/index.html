@@ -89,7 +89,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="程序员，web开发" />
+  <meta name="keywords" content="JavaScript," />
 
 
 
@@ -107,16 +107,16 @@
 
 
 
-<meta name="description" content="时间片轮转与高响应比优先算法">
+<meta name="description" content="canvas学习第一章">
 <meta property="og:type" content="article">
-<meta property="og:title" content="时间片轮转与高响应比优先算法">
-<meta property="og:url" content="https://muleimulei.github.io/2017/04/02/OS/时间片轮转与高响应比优先调度算法/index.html">
+<meta property="og:title" content="canvas学习第二章">
+<meta property="og:url" content="https://muleimulei.github.io/2017/04/07/canvas/cancas学习第二章/index.html">
 <meta property="og:site_name" content="风的影子">
-<meta property="og:description" content="时间片轮转与高响应比优先算法">
-<meta property="og:updated_time" content="2017-04-07T11:49:12.356Z">
+<meta property="og:description" content="canvas学习第一章">
+<meta property="og:updated_time" content="2017-04-07T16:33:04.373Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="时间片轮转与高响应比优先算法">
-<meta name="twitter:description" content="时间片轮转与高响应比优先算法">
+<meta name="twitter:title" content="canvas学习第二章">
+<meta name="twitter:description" content="canvas学习第一章">
 
 
 
@@ -144,13 +144,13 @@
 
 
 
-  <link rel="canonical" href="https://muleimulei.github.io/2017/04/02/OS/时间片轮转与高响应比优先调度算法/"/>
+  <link rel="canonical" href="https://muleimulei.github.io/2017/04/07/canvas/cancas学习第二章/"/>
 
 
 
 
 
-  <title> 时间片轮转与高响应比优先算法 | 风的影子 </title>
+  <title> canvas学习第二章 | 风的影子 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -333,7 +333,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://muleimulei.github.io/2017/04/02/OS/时间片轮转与高响应比优先调度算法/">
+    <link itemprop="mainEntityOfPage" href="https://muleimulei.github.io/2017/04/07/canvas/cancas学习第二章/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="穆蕾">
@@ -354,7 +354,7 @@
             
             
               
-                时间片轮转与高响应比优先算法
+                canvas学习第二章
               
             
           </h1>
@@ -369,8 +369,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-02T22:53:13+08:00">
-                2017-04-02
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-07T19:07:25+08:00">
+                2017-04-07
               </time>
             
 
@@ -392,8 +392,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/操作系统/" itemprop="url" rel="index">
-                    <span itemprop="name">操作系统</span>
+                  <a href="/categories/canvas/" itemprop="url" rel="index">
+                    <span itemprop="name">canvas</span>
                   </a>
                 </span>
 
@@ -432,37 +432,73 @@
       
 
       
-        <blockquote class="blockquote-center"><p>时间片轮转与高响应比优先算法</p>
+        <blockquote class="blockquote-center"><p>canvas学习第一章</p>
 </blockquote>
 <a id="more"></a>
-<h1 id="轮转调度算法"><a href="#轮转调度算法" class="headerlink" title="轮转调度算法"></a>轮转调度算法</h1><h4 id="轮转法的基本原理"><a href="#轮转法的基本原理" class="headerlink" title="轮转法的基本原理"></a>轮转法的基本原理</h4><hr>
+<h2 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h2><ul>
+<li>ctx.fillRect(x,y,width,height) 在位置(x,y)处以宽为width，高为height绘制一个矩形</li>
+<li>ctx.strokeRect(x,y,width,height) 在位置(x,y)处以宽为width，高为height绘制一个矩形边框，他需要strokeStyle,lineWidth,lineJoin和miterLimit设置<ul>
+<li>lineCap: 线段末端的形状<ul>
+<li>butt: 默认值，端点是垂直于线段边缘的平直边缘</li>
+<li>round: 端点是在线段边缘处以线宽为直径的半圆</li>
+<li>square: 端点是在选段边缘处以线宽为长，以一半线宽为宽的矩形</li>
+</ul>
+</li>
+<li>lineJoin: 定义两条线相交产生的拐角，可将其称为连接<ul>
+<li>miter: 默认值，在连接外边缘延长相接</li>
+<li>bevel: 连接处是一个对角线斜角</li>
+<li>round: 连接处是一个圆</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>ctx.clearRect(x,y,width,height) 在位置(x,y)处以宽为width和高为height清除指定区域并使其完全透明(使用透明黑作为颜色)</li>
+<li>当前路径和位图受canvas上下文控制，不属于保存的状态，保存当前状态到堆栈用：ctx.save()，调出最后存储的堆栈恢复画布用ctx.restore()</li>
+<li>高级路径画法<ol>
+<li>ctx.arc(x,y,radius,startAngle,endAngle,anticlockwise) antilockwise若为false，则顺时针画圆，若为true，则逆时针画圆</li>
+<li>ctx.bezierCurveTo(cp1x,cp1y,cp2x,cp2y,x,y) 三次贝塞尔曲线</li>
+<li>ctx.quadraticCurveTo(cpx,cpy,x,y) 二次贝塞尔曲线</li>
+</ol>
+</li>
+<li>canvas裁切区域<ul>
+<li>使用ctx.save(),ctx.restore(),ctx.rect(),ctx.clip()可以完成区域裁切</li>
+</ul>
+</li>
+<li>旋转变换<ul>
+<li>ctx.setTransform(1,0,0,1,0,0)和ctx.rotate() 变换在调用setTransform()或其他变换函数后立即应用到形状与路径上。</li>
+</ul>
+</li>
+<li>缩放变换<ul>
+<li>ctx.scale() 对图像进行缩放</li>
+</ul>
+</li>
+<li>填充渐变形状 ：水平渐变，垂直渐变，对角线渐变，径向渐变<ul>
+<li>水平渐变：var gr = ctx.createLinearGradient(0,0,100,0);</li>
+<li>垂直渐变：var gr = ctx.createLinearGradient(0,0,0,100);</li>
+<li>对角线渐变：var gr = ctx.createLinearGradient(0,0,100,100);</li>
+<li>径向渐变：var gr = ctx.createRadialGradient(50,50,50,50,100);</li>
+<li>给渐变添加断点：gr.addColorStop(.5,’rgb(0,255,0)’);</li>
+<li>用图案填充：<ul>
+<li>四种填充类型：repeat,repeat-x,repeat-y,no-repeat</li>
+<li>var fill = ctx.createPattern(‘fillImg’,’repeat’);</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>以下代码是关于划线：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">drawScreen</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="comment">//round end. bevel join, at top left of canvas</span></div><div class="line">        context.strokeStyle = <span class="string">"black"</span>; <span class="comment">//need list of available colors</span></div><div class="line">        context.lineWidth=<span class="number">10</span>;</div><div class="line">        context.lineJoin=<span class="string">'bevel'</span>;</div><div class="line">        context.lineCap=<span class="string">'round'</span>;</div><div class="line">        context.beginPath();</div><div class="line">        context.moveTo(<span class="number">0</span>, <span class="number">0</span>);</div><div class="line">        context.lineTo(<span class="number">25</span>, <span class="number">0</span>);</div><div class="line">        context.lineTo(<span class="number">25</span>,<span class="number">25</span>);</div><div class="line">        context.stroke();</div><div class="line">        context.closePath();</div><div class="line">        </div><div class="line">        <span class="comment">//round end, bevel join, not at top or left of canvas</span></div><div class="line">        context.beginPath();</div><div class="line">        context.moveTo(<span class="number">10</span>, <span class="number">50</span>);</div><div class="line">        context.lineTo(<span class="number">35</span>, <span class="number">50</span>);</div><div class="line">        context.lineTo(<span class="number">35</span>,<span class="number">75</span>);</div><div class="line">        context.stroke();</div><div class="line">        context.closePath();</div><div class="line">        </div><div class="line">        <span class="comment">//flat end, round join, not at top or left</span></div><div class="line">        context.lineJoin=<span class="string">'round'</span>;</div><div class="line">        context.lineCap=<span class="string">'butt'</span>;</div><div class="line">        context.beginPath();</div><div class="line">        context.moveTo(<span class="number">10</span>, <span class="number">100</span>);</div><div class="line">        context.lineTo(<span class="number">35</span>, <span class="number">100</span>);</div><div class="line">        context.lineTo(<span class="number">35</span>,<span class="number">125</span>);</div><div class="line">        context.stroke();</div><div class="line">        context.closePath();</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<p>以下代码关于区域的裁切：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">drawScreen</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="comment">//在屏幕上绘制一个黑色的方块</span></div><div class="line">    context.fillStyle = <span class="string">"black"</span>;</div><div class="line">    context.fillRect(<span class="number">10</span>, <span class="number">10</span>, <span class="number">200</span>, <span class="number">200</span>);</div><div class="line">    <span class="comment">//保存当前上下文</span></div><div class="line">    context.save();</div><div class="line">    context.beginPath();</div><div class="line">    <span class="comment">//裁切画布从(0,0)到(50,50)的正方形</span></div><div class="line">    context.rect(<span class="number">0</span>, <span class="number">0</span>, <span class="number">50</span>, <span class="number">50</span>);</div><div class="line">    context.clip();</div><div class="line">    <span class="comment">//绘制红色圆</span></div><div class="line">    context.beginPath();</div><div class="line">    context.strokeStyle = <span class="string">"red"</span>; <span class="comment">//need list of available colors</span></div><div class="line">    context.lineWidth=<span class="number">5</span>;</div><div class="line">    context.arc(<span class="number">100</span>, <span class="number">100</span>, <span class="number">100</span>, (<span class="built_in">Math</span>.PI/<span class="number">180</span>)*<span class="number">0</span>, (<span class="built_in">Math</span>.PI/<span class="number">180</span>)*<span class="number">360</span>, <span class="literal">false</span>); <span class="comment">// full circle</span></div><div class="line">    context.stroke();</div><div class="line">    context.closePath();</div><div class="line">    context.restore();</div><div class="line">    <span class="comment">//裁切整个画布</span></div><div class="line">    context.beginPath();</div><div class="line">    context.rect(<span class="number">0</span>, <span class="number">0</span>, <span class="number">500</span>, <span class="number">500</span>);</div><div class="line">    context.clip();</div><div class="line">    <span class="comment">//蓝色圆</span></div><div class="line">    context.beginPath();</div><div class="line">    context.strokeStyle = <span class="string">"blue"</span>;</div><div class="line">    context.lineWidth=<span class="number">5</span>;</div><div class="line">    context.arc(<span class="number">100</span>, <span class="number">100</span>, <span class="number">50</span>, (<span class="built_in">Math</span>.PI/<span class="number">180</span>)*<span class="number">0</span>, (<span class="built_in">Math</span>.PI/<span class="number">180</span>)*<span class="number">360</span>, <span class="literal">false</span>);</div><div class="line">    context.stroke();</div><div class="line">    context.closePath();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <blockquote>
-<p>在轮转(RR)法中，系统根据FCFS策略，将所有的就绪队列排成一个就绪队列，并可设置一定时间间隔（如30ms）产生一次终断，激活系统中的进程调度程序，完成一次调度，将CPU分配给队首进程，另其执行。当该进程的时间片耗尽或运行完毕时，系统再次将CPU分配给新的队首进程（或新到达的紧迫进程），由此，可保证就绪队列中的所有进程在一个确定的时间片内，都能获得一次CPU执行。</p>
+<p>也可将其它canvas方法配合裁切区域使用，最常见的是arc()函数</p>
 </blockquote>
-<h4 id="进程切换时机"><a href="#进程切换时机" class="headerlink" title="进程切换时机"></a>进程切换时机</h4><hr>
-<h6 id="在RR调度算法中，应在何事进行进程的切换，可分为两种情况："><a href="#在RR调度算法中，应在何事进行进程的切换，可分为两种情况：" class="headerlink" title="在RR调度算法中，应在何事进行进程的切换，可分为两种情况："></a>在RR调度算法中，应在何事进行进程的切换，可分为两种情况：</h6><ol>
-<li><p>若一个时间片尚未用完，正在运行的进程便已经完成，就立即激活调度程序，将他从就绪队列中删除，再调度就绪队列中队首的进程运行，并启动一个新的时间片。 </p>
-</li>
-<li><p>在一个时间片用完时，计时器中断处理程序被激活。如果进程尚未运行完毕，调度程序就把他送往就绪队列的尾部。</p>
-</li>
-</ol>
-<h4 id="时间片大小确定"><a href="#时间片大小确定" class="headerlink" title="时间片大小确定"></a>时间片大小确定</h4><hr>
-<p>如果选择的时间片小，将有利于短作业，因为它能在该时间片内完成。但时间片小，意味着会进行频繁的进程调度和进程上下文的切换，无疑会增加系统的开销。反之，若时间片选择得太长，且为使每个进程都能在一个时间片内完成。RR算法便会退化成FCFS算法，无法满足短作业和交互式用户的需求。<strong> 一个较为可取的时间片大小是略大于一次典型的交互所需要的时间，使大多数交互式进程能在一个时间片内完成</strong></p>
-<h1 id="高响应比优先调度算法"><a href="#高响应比优先调度算法" class="headerlink" title="高响应比优先调度算法"></a>高响应比优先调度算法</h1><p>高响应比优先调度算法为每一个作业引入一个动态优先级，即优先级是可以改变的，令他随等待时间延长而增加，这将使长作业的优先级在等待期间不断的增加，等到足够的时间后，必然会有机会获得处理机。该优先级变化规律为：</p>
-<center> <strong> 优先级 = (等待时间+要求服务时间)/要求服务时间 </strong> </center>
-
-<p>由于等待时间与服务时间之和就是系统对该作业的响应时间，故该优先级又相当于响应比R<sub>p</sub>。优先级又可表示为：</p>
-<center> <strong> 优先级 = (等待时间+要求服务时间)/要求服务时间 = 响应时间/要求服务时间 </strong> </center>
-
-<h6 id="由上式可以看出"><a href="#由上式可以看出" class="headerlink" title="由上式可以看出"></a>由上式可以看出</h6><ol>
-<li>如果作业的等待时间相同，则要求服务的时间愈短，其优先级愈高，因而类似于SJF算法，有利于短作业。</li>
-<li>当要求服务的的时间相同时，作业的优先级又取决于其等待时间，因而又类似于FCFS算法。</li>
-<li>对于长作业的优先级，可以随等待时间的增加而增大，当其等待时间足够长时，也可获得处理机。</li>
-<li>在每次进行调度前，都需要进行响应比的计算，显然会增加系统开销。</li>
-</ol>
-<p>两种算法代码实现如下：</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div></pre></td><td class="code"><pre><div class="line">//进程类</div><div class="line">function Process()&#123;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">Process.list = []; //进程列表</div><div class="line">Process.task_num = 5;//进程数</div><div class="line">Process.regetRatioAndGetProcess = function(list)&#123; //获得响应比</div><div class="line">    list.forEach(function(item)&#123;</div><div class="line">        item.ratio = ((Date.parse(new Date()) - item.arriveTime) / item.runTime) +1; //一个进程结束后，重新计算响应比</div><div class="line">    &#125;);</div><div class="line"></div><div class="line">    var maxRatio = 0,NO = -1;</div><div class="line">    list.forEach(function(item,index)&#123; //挑选出响应比最大的进程</div><div class="line">        if(item.ratio&gt;maxRatio)&#123;</div><div class="line">            maxRatio = item.ratio;</div><div class="line">            NO = index;</div><div class="line">        &#125;</div><div class="line">    &#125;);</div><div class="line">    return list.splice(NO,1)[0];</div><div class="line">&#125;</div><div class="line"></div><div class="line">//进程初始化</div><div class="line">Process.init = function()&#123;</div><div class="line">    Process.list.splice(0,Process.list.length);</div><div class="line">    for(var i = 0;i&lt;Process.task_num;i++)&#123;</div><div class="line">        Process.list.push(&#123;</div><div class="line">            id: i,//进程号</div><div class="line">            arriveTime: 0, //进程到达时间</div><div class="line">            ratio: 0, //响应比</div><div class="line">            runTime: (Math.floor(Math.random()*4)+2)*1000, //运行时间间隔为[2,6]s</div><div class="line">        &#125;);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">//-----------------------------------------------------------</div><div class="line">//高响应比优先调度算法</div><div class="line">var HRRN = &#123;</div><div class="line">    list:[], //记录进程响应时间</div><div class="line">    init_task: function(list,num)&#123;</div><div class="line">        list.forEach(function(item)&#123;</div><div class="line">            item.arriveTime = Date.parse(new Date()); //获得进程到达时间</div><div class="line">        &#125;);</div><div class="line">    &#125;,</div><div class="line">    //进程运行</div><div class="line">    run: function(list,num)&#123;</div><div class="line">        for(var i = 0;i&lt;num;i++)&#123;</div><div class="line">            var runItem = Process.regetRatioAndGetProcess(list); //得到响应比最大的进程</div><div class="line">            console.log(`第$&#123;runItem.id&#125;号进程开始运行：$&#123;new Date()&#125;`);</div><div class="line">            var t = Date.parse(new Date());</div><div class="line">            var exit = t + runItem.runTime;</div><div class="line">            while(true)&#123; //模拟进程运行</div><div class="line">                if(Date.parse(new Date()) &gt;=exit)&#123;</div><div class="line">                    break;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">            console.log(`第$&#123;runItem.id&#125;号进程结束运行：$&#123;new Date()&#125;`);</div><div class="line">            //记录进程的响应时间 ：现在时间-到达时间</div><div class="line">            HRRN.list.push(&#123;</div><div class="line">                id: runItem.id,</div><div class="line">                responseTime: Date.parse(new Date()) - runItem.arriveTime</div><div class="line">            &#125;);</div><div class="line">        &#125;</div><div class="line">    &#125;,</div><div class="line">    //打印进程响应时间，计算平均响应周期</div><div class="line">    show:function()&#123;</div><div class="line">        var total = 0;</div><div class="line">        HRRN.list.forEach(function(item)&#123;</div><div class="line">            console.log(`$&#123;item.id&#125;的响应时间为$&#123;Math.floor(item.responseTime)&#125;`);</div><div class="line">            total+=Math.floor(item.responseTime);</div><div class="line">        &#125;);</div><div class="line">        console.log(`平均周转周期为$&#123;Math.floor(total/HRRN.list.length)/1000&#125;s`);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line">Process.init();</div><div class="line">HRRN.init_task(Process.list,Process.task_num);</div><div class="line">HRRN.run(Process.list,Process.task_num);</div><div class="line">HRRN.show();</div><div class="line"></div><div class="line">//---------------------------------------------------------------</div><div class="line">//时间片轮转算法</div><div class="line">var RR = &#123;</div><div class="line">    circle_size:4000,//时间片大小</div><div class="line">    list:[], //记录进程执行时间</div><div class="line">    init_task:function(list)&#123; //初始化进程</div><div class="line">        list.forEach(function(item)&#123;</div><div class="line">            item.arriveTime = Date.parse(new Date());</div><div class="line">        &#125;);</div><div class="line">    &#125;,</div><div class="line">    run:function(list)&#123;</div><div class="line">        while(true)&#123;</div><div class="line">            if(list.length===0) break; //进程全部运行完成后，退出死循环</div><div class="line">            var item = list.splice(0,1)[0]; //选出队首进程</div><div class="line">            var runTime = item.runTime;</div><div class="line">            var id = item.id;</div><div class="line">            console.log(`第$&#123;id&#125;号进程开始运行 :$&#123;new Date()&#125;`);</div><div class="line">            if(runTime&lt;RR.circle_size)&#123; //如果能够在本时间片内运行完</div><div class="line">                var exit = Date.parse(new Date()) + runTime;</div><div class="line">                while((Date.parse(new Date()))&lt; exit);</div><div class="line">                console.log(`第$&#123;id&#125;号进程结束运行,运行时间为$&#123;runTime/1000&#125;s :$&#123;new Date()&#125;`);</div><div class="line">                RR.list.push(&#123;</div><div class="line">                    id: item.id,</div><div class="line">                    responseTime: Date.parse(new Date()) - item.arriveTime</div><div class="line">                &#125;);</div><div class="line">            &#125;else&#123; //计算下一次需要的运行时间</div><div class="line">                item.runTime -= RR.circle_size;</div><div class="line">                list.push(item);</div><div class="line">                var exit = Date.parse(new Date()) + RR.circle_size;</div><div class="line">                while((Date.parse(new Date()))&lt; exit);</div><div class="line">                console.log(`$&#123;new Date()&#125;:第$&#123;id&#125;号进程时间片用完，处于等待状态`);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;,</div><div class="line">    //打印每个进程的响应时间与平均周转周期</div><div class="line">    show:function()&#123;</div><div class="line">        var total = 0;</div><div class="line">        RR.list.forEach(function(item)&#123;</div><div class="line">            console.log(`$&#123;item.id&#125;的响应时间为$&#123;Math.floor(item.responseTime)&#125;`);</div><div class="line">            total+=Math.floor(item.responseTime);</div><div class="line">        &#125;);</div><div class="line">        console.log(`平均周转周期为$&#123;Math.floor(total/RR.list.length)/1000&#125;s`);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">Process.init();</div><div class="line">RR.init_task(Process.list);</div><div class="line">RR.run(Process.list);</div><div class="line">RR.show();</div></pre></td></tr></table></figure>
-
+<p>以下代码是关于旋转：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">drawScreen</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="comment">//绘制黑色正方形</span></div><div class="line">    ctx.fillStyle = <span class="string">'black'</span>;</div><div class="line">    ctx.fillRect(<span class="number">20</span>,<span class="number">20</span>,<span class="number">25</span>,<span class="number">25</span>);</div><div class="line">    <span class="comment">//绘制红色正方形</span></div><div class="line">    ctx.setTransform(<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>);</div><div class="line">    <span class="keyword">var</span> angle = <span class="number">45</span>*<span class="built_in">Math</span>.PI/<span class="number">180</span>,</div><div class="line">        x = <span class="number">100</span>,y=<span class="number">100</span>,width=<span class="number">50</span>,height=<span class="number">50</span>;</div><div class="line">    ctx.translate(x+<span class="number">.5</span>*width,y+<span class="number">.5</span>*height);</div><div class="line">    ctx.rotate(angle);</div><div class="line">    ctx.fillStyle = <span class="string">'red'</span>;</div><div class="line">    ctx.fillRect(<span class="number">-0.5</span>*width,<span class="number">-0.5</span>*height,width,height);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>缩放变换代码如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">drawScreen</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="comment">//绘制一个红色区域</span></div><div class="line">    ctx.setTransform(<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>);</div><div class="line">    <span class="keyword">var</span> angle = <span class="number">45</span>*<span class="built_in">Math</span>.PI/<span class="number">180</span>,</div><div class="line">        x = <span class="number">100</span>,y=<span class="number">100</span>,width=<span class="number">50</span>,height=<span class="number">50</span>;</div><div class="line">    ctx.translate(x+<span class="number">.5</span>*width,y+<span class="number">.5</span>*height);</div><div class="line">    ctx.scale(<span class="number">2</span>,<span class="number">2</span>);</div><div class="line">    ctx.fillStyle = <span class="string">'red'</span>;</div><div class="line">    ctx.fillRect(<span class="number">-0.5</span>*width,<span class="number">-0.5</span>*height,width,height);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>渐变代码如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//径向渐变</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">drawScreen</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> gr = ctx.createRadialGradient(<span class="number">100</span>,<span class="number">100</span>,<span class="number">50</span>,<span class="number">100</span>,<span class="number">100</span>,<span class="number">100</span>);</div><div class="line">    <span class="comment">//添加颜色断点</span></div><div class="line">    gr.addColorStop(<span class="number">0</span>,<span class="string">'rgb(255,0,0)'</span>);</div><div class="line">    gr.addColorStop(<span class="number">0.5</span>,<span class="string">'rgb(0,255,0)'</span>);</div><div class="line">    gr.addColorStop(<span class="number">1</span>,<span class="string">'rgb(0,0,255)'</span>);</div><div class="line">    <span class="comment">//使用fillStyle生成渐变</span></div><div class="line">    ctx.fillStyle = gr;</div><div class="line">    ctx.arc(<span class="number">100</span>,<span class="number">100</span>,<span class="number">100</span>,<span class="number">0</span>,<span class="number">2</span>*<span class="built_in">Math</span>.PI,<span class="literal">false</span>);</div><div class="line">    ctx.fill();</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//图案填充</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">drawScreen</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> img = <span class="keyword">new</span> Image();</div><div class="line">    img.src = <span class="string">'fill.gif'</span>;</div><div class="line">    img.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        <span class="keyword">var</span> gr = ctx.createPattern(img,<span class="string">'repeat'</span>);</div><div class="line">        ctx.fillStyle = gr;</div><div class="line">        ctx.fillRect(<span class="number">0</span>,<span class="number">0</span>,<span class="number">200</span>,<span class="number">200</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
       
     </div>
 
@@ -489,6 +525,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+        </div>
+      
 
       
         
@@ -498,8 +540,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/04/02/JavaScript/jquery的Deferred对象详解/" rel="next" title="JQuery的Deferred对象详解">
-                <i class="fa fa-chevron-left"></i> JQuery的Deferred对象详解
+              <a href="/2017/04/07/canvas/canvas学习第一章/" rel="next" title="canvas学习第一章">
+                <i class="fa fa-chevron-left"></i> canvas学习第一章
               </a>
             
           </div>
@@ -507,10 +549,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/04/07/JavaScript/JavaScript的Reduce方法如何工作/" rel="prev" title="JavaScript的reduce如何工作">
-                JavaScript的reduce如何工作 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -739,7 +777,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#轮转调度算法"><span class="nav-number">1.</span> <span class="nav-text">轮转调度算法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#轮转法的基本原理"><span class="nav-number">1.0.0.1.</span> <span class="nav-text">轮转法的基本原理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#进程切换时机"><span class="nav-number">1.0.0.2.</span> <span class="nav-text">进程切换时机</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#在RR调度算法中，应在何事进行进程的切换，可分为两种情况："><span class="nav-number">1.0.0.2.0.1.</span> <span class="nav-text">在RR调度算法中，应在何事进行进程的切换，可分为两种情况：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#时间片大小确定"><span class="nav-number">1.0.0.3.</span> <span class="nav-text">时间片大小确定</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#高响应比优先调度算法"><span class="nav-number">2.</span> <span class="nav-text">高响应比优先调度算法</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#由上式可以看出"><span class="nav-number">2.0.0.0.0.1.</span> <span class="nav-text">由上式可以看出</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#基础知识"><span class="nav-number">1.</span> <span class="nav-text">基础知识</span></a></li></ol></div>
             
 
           </div>
