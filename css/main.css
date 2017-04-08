@@ -1626,6 +1626,7 @@ div.site-author.motion-element > div {
   transform: rotate3d(0, 1, 0, 180deg) scale(0.5);
 }
 .topic {
+  text-align: center;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -1718,7 +1719,7 @@ div.site-author.motion-element > div {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #de37c6;
+  background: #4d17ff;
 }
 .links-of-blogroll {
   font-size: 13px;
