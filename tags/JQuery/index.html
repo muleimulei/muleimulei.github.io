@@ -116,7 +116,7 @@
 <meta name="description" content="个人学习总结">
 <meta property="og:type" content="website">
 <meta property="og:title" content="风的影子">
-<meta property="og:url" content="https://muleimulei.github.io/tags/jquery/index.html">
+<meta property="og:url" content="https://muleimulei.github.io/tags/JQuery/index.html">
 <meta property="og:site_name" content="风的影子">
 <meta property="og:description" content="个人学习总结">
 <meta name="twitter:card" content="summary">
@@ -149,13 +149,13 @@
 
 
 
-  <link rel="canonical" href="https://muleimulei.github.io/tags/jquery/"/>
+  <link rel="canonical" href="https://muleimulei.github.io/tags/JQuery/"/>
 
 
 
 
 
-  <title> 标签: jquery | 风的影子 </title>
+  <title> 标签: JQuery | 风的影子 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -331,7 +331,7 @@
   <div id="posts" class="posts-collapse">
     <div class="collection-title">
       <h2 >
-        jquery
+        JQuery
         <small>标签</small>
       </h2>
     </div>
@@ -344,37 +344,9 @@
 
       <h1 class="post-title">
         
-            <a class="post-title-link" href="/2017/04/08/jquery/jquery基本事件/" itemprop="url">
+            <a class="post-title-link" href="/2017/04/02/JavaScript/jquery的Deferred对象详解/" itemprop="url">
               
-                <span itemprop="name">jquery基本事件</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-04-08T19:11:06+08:00"
-              content="2017-04-08" >
-          04-08
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2017/04/08/jquery/jquery基本方法/" itemprop="url">
-              
-                <span itemprop="name">jquery基本方法</span>
+                <span itemprop="name">JQuery的Deferred对象详解</span>
               
             </a>
         
@@ -382,37 +354,9 @@
 
       <div class="post-meta">
         <time class="post-time" itemprop="dateCreated"
-              datetime="2017-04-08T18:23:12+08:00"
-              content="2017-04-08" >
-          04-08
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2017/04/08/jquery/jquery选择器/" itemprop="url">
-              
-                <span itemprop="name">jquery选择器</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-04-08T14:24:54+08:00"
-              content="2017-04-08" >
-          04-08
+              datetime="2017-04-02T18:24:29+08:00"
+              content="2017-04-02" >
+          04-02
         </time>
       </div>
 
@@ -882,6 +826,59 @@
         searchFunc(path, 'local-search-input', 'local-search-result');
       } else {
         proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+  
+
+
+  
+  <script type="text/javascript" src="/js/src/particle.js" count="50" zindex="-2" opacity="1" color="0,104,183"></script>
+  <!-- 小红心 -->
+<script type="text/javascript" src="/js/src/heart.js"></script>
+<script type = 'text/javascript' src='/js/src/topic.js'></script>
+</body>
+</html>
+ proceedsearch();
       };
     });
 
