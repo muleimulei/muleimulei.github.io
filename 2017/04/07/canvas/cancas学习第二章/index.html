@@ -56,8 +56,6 @@
   
 
   
-
-  
     
       
     
@@ -75,8 +73,16 @@
 
   
     
+      
     
-    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=微软雅黑:300,300italic,400,400italic,700,700italic|Courier New:300,300italic,400,400italic,700,700italic|LiSong Pro Light:300,300italic,400,400italic,700,700italic|华文琥珀:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
   
 
 
@@ -107,16 +113,16 @@
 
 
 
-<meta name="description" content="canvas学习第一章">
+<meta name="description" content="canvas学习第二章">
 <meta property="og:type" content="article">
 <meta property="og:title" content="canvas学习第二章">
 <meta property="og:url" content="https://muleimulei.github.io/2017/04/07/canvas/cancas学习第二章/index.html">
 <meta property="og:site_name" content="风的影子">
-<meta property="og:description" content="canvas学习第一章">
-<meta property="og:updated_time" content="2017-04-07T16:33:04.373Z">
+<meta property="og:description" content="canvas学习第二章">
+<meta property="og:updated_time" content="2017-04-08T04:32:41.712Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="canvas学习第二章">
-<meta name="twitter:description" content="canvas学习第一章">
+<meta name="twitter:description" content="canvas学习第二章">
 
 
 
@@ -125,7 +131,7 @@
   var CONFIG = {
     root: '/',
     scheme: 'Pisces',
-    sidebar: {"position":"left","display":"always","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
     fancybox: true,
     motion: true,
     duoshuo: {
@@ -432,7 +438,7 @@
       
 
       
-        <blockquote class="blockquote-center"><p>canvas学习第一章</p>
+        <blockquote class="blockquote-center"><p>canvas学习第二章</p>
 </blockquote>
 <a id="more"></a>
 <h2 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h2><ul>
@@ -485,8 +491,11 @@
 </li>
 </ul>
 </li>
+<li>创建阴影<ul>
+<li>shadowOffsetX和shadowOffsetY值可以是正也可以为负，负值将会在左侧和上方创建阴影，反之，将会在底部创建阴影。shadowBlur属性用来设置阴影模糊效果的程度。这三个参数不受当前canvas变换矩阵影响，shadowColor可以是任何HTML4颜色字符串。<br>以下代码是关于划线：</li>
 </ul>
-<p>以下代码是关于划线：</p>
+</li>
+</ul>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">drawScreen</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="comment">//round end. bevel join, at top left of canvas</span></div><div class="line">        context.strokeStyle = <span class="string">"black"</span>; <span class="comment">//need list of available colors</span></div><div class="line">        context.lineWidth=<span class="number">10</span>;</div><div class="line">        context.lineJoin=<span class="string">'bevel'</span>;</div><div class="line">        context.lineCap=<span class="string">'round'</span>;</div><div class="line">        context.beginPath();</div><div class="line">        context.moveTo(<span class="number">0</span>, <span class="number">0</span>);</div><div class="line">        context.lineTo(<span class="number">25</span>, <span class="number">0</span>);</div><div class="line">        context.lineTo(<span class="number">25</span>,<span class="number">25</span>);</div><div class="line">        context.stroke();</div><div class="line">        context.closePath();</div><div class="line">        </div><div class="line">        <span class="comment">//round end, bevel join, not at top or left of canvas</span></div><div class="line">        context.beginPath();</div><div class="line">        context.moveTo(<span class="number">10</span>, <span class="number">50</span>);</div><div class="line">        context.lineTo(<span class="number">35</span>, <span class="number">50</span>);</div><div class="line">        context.lineTo(<span class="number">35</span>,<span class="number">75</span>);</div><div class="line">        context.stroke();</div><div class="line">        context.closePath();</div><div class="line">        </div><div class="line">        <span class="comment">//flat end, round join, not at top or left</span></div><div class="line">        context.lineJoin=<span class="string">'round'</span>;</div><div class="line">        context.lineCap=<span class="string">'butt'</span>;</div><div class="line">        context.beginPath();</div><div class="line">        context.moveTo(<span class="number">10</span>, <span class="number">100</span>);</div><div class="line">        context.lineTo(<span class="number">35</span>, <span class="number">100</span>);</div><div class="line">        context.lineTo(<span class="number">35</span>,<span class="number">125</span>);</div><div class="line">        context.stroke();</div><div class="line">        context.closePath();</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
 <p>以下代码关于区域的裁切：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">drawScreen</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="comment">//在屏幕上绘制一个黑色的方块</span></div><div class="line">    context.fillStyle = <span class="string">"black"</span>;</div><div class="line">    context.fillRect(<span class="number">10</span>, <span class="number">10</span>, <span class="number">200</span>, <span class="number">200</span>);</div><div class="line">    <span class="comment">//保存当前上下文</span></div><div class="line">    context.save();</div><div class="line">    context.beginPath();</div><div class="line">    <span class="comment">//裁切画布从(0,0)到(50,50)的正方形</span></div><div class="line">    context.rect(<span class="number">0</span>, <span class="number">0</span>, <span class="number">50</span>, <span class="number">50</span>);</div><div class="line">    context.clip();</div><div class="line">    <span class="comment">//绘制红色圆</span></div><div class="line">    context.beginPath();</div><div class="line">    context.strokeStyle = <span class="string">"red"</span>; <span class="comment">//need list of available colors</span></div><div class="line">    context.lineWidth=<span class="number">5</span>;</div><div class="line">    context.arc(<span class="number">100</span>, <span class="number">100</span>, <span class="number">100</span>, (<span class="built_in">Math</span>.PI/<span class="number">180</span>)*<span class="number">0</span>, (<span class="built_in">Math</span>.PI/<span class="number">180</span>)*<span class="number">360</span>, <span class="literal">false</span>); <span class="comment">// full circle</span></div><div class="line">    context.stroke();</div><div class="line">    context.closePath();</div><div class="line">    context.restore();</div><div class="line">    <span class="comment">//裁切整个画布</span></div><div class="line">    context.beginPath();</div><div class="line">    context.rect(<span class="number">0</span>, <span class="number">0</span>, <span class="number">500</span>, <span class="number">500</span>);</div><div class="line">    context.clip();</div><div class="line">    <span class="comment">//蓝色圆</span></div><div class="line">    context.beginPath();</div><div class="line">    context.strokeStyle = <span class="string">"blue"</span>;</div><div class="line">    context.lineWidth=<span class="number">5</span>;</div><div class="line">    context.arc(<span class="number">100</span>, <span class="number">100</span>, <span class="number">50</span>, (<span class="built_in">Math</span>.PI/<span class="number">180</span>)*<span class="number">0</span>, (<span class="built_in">Math</span>.PI/<span class="number">180</span>)*<span class="number">360</span>, <span class="literal">false</span>);</div><div class="line">    context.stroke();</div><div class="line">    context.closePath();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
@@ -499,6 +508,8 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">drawScreen</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="comment">//绘制一个红色区域</span></div><div class="line">    ctx.setTransform(<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>);</div><div class="line">    <span class="keyword">var</span> angle = <span class="number">45</span>*<span class="built_in">Math</span>.PI/<span class="number">180</span>,</div><div class="line">        x = <span class="number">100</span>,y=<span class="number">100</span>,width=<span class="number">50</span>,height=<span class="number">50</span>;</div><div class="line">    ctx.translate(x+<span class="number">.5</span>*width,y+<span class="number">.5</span>*height);</div><div class="line">    ctx.scale(<span class="number">2</span>,<span class="number">2</span>);</div><div class="line">    ctx.fillStyle = <span class="string">'red'</span>;</div><div class="line">    ctx.fillRect(<span class="number">-0.5</span>*width,<span class="number">-0.5</span>*height,width,height);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>渐变代码如下：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//径向渐变</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">drawScreen</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> gr = ctx.createRadialGradient(<span class="number">100</span>,<span class="number">100</span>,<span class="number">50</span>,<span class="number">100</span>,<span class="number">100</span>,<span class="number">100</span>);</div><div class="line">    <span class="comment">//添加颜色断点</span></div><div class="line">    gr.addColorStop(<span class="number">0</span>,<span class="string">'rgb(255,0,0)'</span>);</div><div class="line">    gr.addColorStop(<span class="number">0.5</span>,<span class="string">'rgb(0,255,0)'</span>);</div><div class="line">    gr.addColorStop(<span class="number">1</span>,<span class="string">'rgb(0,0,255)'</span>);</div><div class="line">    <span class="comment">//使用fillStyle生成渐变</span></div><div class="line">    ctx.fillStyle = gr;</div><div class="line">    ctx.arc(<span class="number">100</span>,<span class="number">100</span>,<span class="number">100</span>,<span class="number">0</span>,<span class="number">2</span>*<span class="built_in">Math</span>.PI,<span class="literal">false</span>);</div><div class="line">    ctx.fill();</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//图案填充</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">drawScreen</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> img = <span class="keyword">new</span> Image();</div><div class="line">    img.src = <span class="string">'fill.gif'</span>;</div><div class="line">    img.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        <span class="keyword">var</span> gr = ctx.createPattern(img,<span class="string">'repeat'</span>);</div><div class="line">        ctx.fillStyle = gr;</div><div class="line">        ctx.fillRect(<span class="number">0</span>,<span class="number">0</span>,<span class="number">200</span>,<span class="number">200</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>阴影代码如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">drawScreen</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    context.fillStyle = <span class="string">'red'</span>; <span class="comment">//设置填充颜色</span></div><div class="line">    context.shadowOffsetX=<span class="number">4</span>;</div><div class="line">    context.shadowOffsetY=<span class="number">4</span>;</div><div class="line">    context.shadowColor=<span class="string">'black'</span>;</div><div class="line">    context.shadowBlur=<span class="number">4</span>; <span class="comment">//模糊度</span></div><div class="line">    context.fillRect(<span class="number">10</span>,<span class="number">10</span>,<span class="number">100</span>,<span class="number">100</span>);  </div><div class="line">    context.shadowOffsetX=<span class="number">-4</span>;</div><div class="line">    context.shadowOffsetY=<span class="number">-4</span>;</div><div class="line">    context.shadowColor=<span class="string">'black'</span>;</div><div class="line">    context.shadowBlur=<span class="number">4</span>;</div><div class="line">    context.fillRect(<span class="number">150</span>,<span class="number">10</span>,<span class="number">100</span>,<span class="number">100</span>);  </div><div class="line">    context.shadowOffsetX=<span class="number">10</span>;</div><div class="line">    context.shadowOffsetY=<span class="number">10</span>;</div><div class="line">    context.shadowColor=<span class="string">'rgb(100,100,100)'</span>;</div><div class="line">    context.shadowBlur=<span class="number">8</span>;</div><div class="line">    context.arc(<span class="number">200</span>, <span class="number">300</span>, <span class="number">100</span>, (<span class="built_in">Math</span>.PI/<span class="number">180</span>)*<span class="number">0</span>, (<span class="built_in">Math</span>.PI/<span class="number">180</span>)*<span class="number">360</span>, <span class="literal">false</span>);</div><div class="line">    context.fill();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
       
     </div>
 
@@ -549,6 +560,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/04/08/canvas/canvas学习第三章/" rel="prev" title="canvas学习第三章">
+                canvas学习第三章 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -630,9 +645,12 @@
 
       <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <div>
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.jpg"
                alt="穆蕾" />
+          <h4 class='topic'>念念不忘<br/>必有回响</h4>
+          </div>
           <p class="site-author-name" itemprop="name">穆蕾</p>
            
               <p class="site-description motion-element" itemprop="description">个人学习总结</p>
@@ -643,7 +661,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-count">11</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -654,7 +672,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">4</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -665,7 +683,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-count">7</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -1091,6 +1109,8 @@
 
 
   
+  
+
 
   
 
@@ -1103,5 +1123,6 @@
   <script type="text/javascript" src="/js/src/particle.js" count="50" zindex="-2" opacity="1" color="0,104,183"></script>
   <!-- 小红心 -->
 <script type="text/javascript" src="/js/src/heart.js"></script>
+<script type = 'text/javascript' src='/js/src/topic.js'></script>
 </body>
 </html>

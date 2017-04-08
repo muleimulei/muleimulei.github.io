@@ -185,7 +185,7 @@ th {
 }
 body {
   position: relative;
-  font-family: 'Monda', "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-family: '微软雅黑', "PingFang SC", "Microsoft YaHei", sans-serif;
   font-size: 14px;
   line-height: 2;
   color: #555;
@@ -216,7 +216,7 @@ h6 {
   padding: 0;
   font-weight: bold;
   line-height: 1.5;
-  font-family: 'Roboto Slab', 'Monda', "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-family: 'Courier New', '微软雅黑', "PingFang SC", "Microsoft YaHei", sans-serif;
 }
 h2,
 h3,
@@ -476,8 +476,8 @@ pre,
   margin: 20px 0;
   padding: 0;
   font-size: 13px;
-  color: #eaeaea;
-  background: #000;
+  color: #ccc;
+  background: #2d2d2d;
   line-height: 1.6;
 }
 pre,
@@ -494,7 +494,7 @@ code {
 }
 pre code {
   padding: 0;
-  color: #eaeaea;
+  color: #ccc;
   background: none;
   text-shadow: none;
 }
@@ -517,7 +517,7 @@ pre code {
 }
 .highlight figcaption {
   font-size: 1em;
-  color: #eaeaea;
+  color: #ccc;
   line-height: 1em;
   margin-bottom: 1em;
 }
@@ -531,22 +531,22 @@ pre code {
 }
 .highlight figcaption a {
   float: right;
-  color: #eaeaea;
+  color: #ccc;
 }
 .highlight figcaption a:hover {
-  border-bottom-color: #eaeaea;
+  border-bottom-color: #ccc;
 }
 .highlight .gutter pre {
   padding-left: 10px;
   padding-right: 10px;
-  color: #666;
+  color: #999;
   text-align: right;
-  background-color: #292929;
+  background-color: #1b1b1b;
 }
 .highlight .code pre {
   padding-left: 10px;
   padding-right: 10px;
-  background-color: #000;
+  background-color: #2d2d2d;
 }
 .highlight .line {
   height: 20px;
@@ -570,10 +570,10 @@ pre .addition {
   background: #800000;
 }
 pre .meta {
-  color: #c397d8;
+  color: #c9c;
 }
 pre .comment {
-  color: #969896;
+  color: #999;
 }
 pre .variable,
 pre .attribute,
@@ -587,7 +587,7 @@ pre .html .doctype,
 pre .css .id,
 pre .css .class,
 pre .css .pseudo {
-  color: #d54e53;
+  color: #f2777a;
 }
 pre .number,
 pre .preprocessor,
@@ -596,7 +596,7 @@ pre .literal,
 pre .params,
 pre .constant,
 pre .command {
-  color: #e78c45;
+  color: #f99157;
 }
 pre .ruby .class .title,
 pre .css .rules .attribute,
@@ -609,11 +609,11 @@ pre .xml .cdata,
 pre .special,
 pre .number,
 pre .formula {
-  color: #b9ca4a;
+  color: #9c9;
 }
 pre .title,
 pre .css .hexcolor {
-  color: #70c0b1;
+  color: #6cc;
 }
 pre .function,
 pre .python .decorator,
@@ -623,11 +623,11 @@ pre .ruby .title .keyword,
 pre .perl .sub,
 pre .javascript .title,
 pre .coffeescript .title {
-  color: #7aa6da;
+  color: #69c;
 }
 pre .keyword,
 pre .javascript .function {
-  color: #c397d8;
+  color: #c9c;
 }
 .full-image.full-image.full-image {
   border: none;
@@ -998,7 +998,7 @@ pre .javascript .function {
   line-height: 36px;
   font-size: 24px;
   font-weight: normal;
-  font-family: 'Lobster Two', 'Monda', "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-family: '华文琥珀', '微软雅黑', "PingFang SC", "Microsoft YaHei", sans-serif;
 }
 .site-subtitle {
   margin-top: 10px;
@@ -1087,7 +1087,7 @@ pre .javascript .function {
   opacity: 0;
 }
 .post-body {
-  font-family: 'Monda', "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-family: 'LiSong Pro Light', '微软雅黑', "PingFang SC", "Microsoft YaHei", sans-serif;
 }
 @media (max-width: 767px) {
   .post-body {
@@ -1352,7 +1352,7 @@ pre .javascript .function {
 .posts-expand .post-meta {
   margin: 3px 0 60px 0;
   color: #999;
-  font-family: 'Monda', "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-family: 'LiSong Pro Light', '微软雅黑', "PingFang SC", "Microsoft YaHei", sans-serif;
   font-size: 12px;
   text-align: center;
 }
@@ -1597,7 +1597,12 @@ pre .javascript .function {
 .sidebar-toggle-line:first-child {
   margin-top: 0;
 }
+div.site-author.motion-element > div {
+  position: relative;
+}
 .site-author-image {
+  position: relative;
+  z-index: 1;
   border-radius: 50%;
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
@@ -1609,6 +1614,30 @@ pre .javascript .function {
   max-width: 120px;
   height: auto;
   border: 1px solid #eee;
+  transform-origin: 0 50%;
+  transition: all 0.5s ease;
+  cursor: pointer;
+}
+.site-author-image:hover {
+  -webkit-transform: rotate3d(0, 1, 0, 180deg) scale(0.5);
+  -moz-transform: rotate3d(0, 1, 0, 180deg) scale(0.5);
+  -ms-transform: rotate3d(0, 1, 0, 180deg) scale(0.5);
+  -o-transform: rotate3d(0, 1, 0, 180deg) scale(0.5);
+  transform: rotate3d(0, 1, 0, 180deg) scale(0.5);
+}
+.topic {
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  z-index: 0;
+  width: 120px;
+  font-family: Courier New;
 }
 .site-author-name {
   margin: 0;
@@ -1690,7 +1719,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #9322c9;
+  background: #592152;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2858,15 +2887,6 @@ pre .javascript .function {
   .post-body {
     text-align: justify;
   }
-}
-.site-author-image:hover {
-  cursor: pointer;
-  -webkit-transform: rotate3d(0, 1, 0, 360deg);
-  -moz-transform: rotate3d(0, 1, 0, 360deg);
-  -ms-transform: rotate3d(0, 1, 0, 360deg);
-  -o-transform: rotate3d(0, 1, 0, 360deg);
-  transform: rotate3d(0, 1, 0, 360deg);
-  transition: all 1s ease;
 }
 .content-wrap {
   background: rgba(255,255,255,0.7);

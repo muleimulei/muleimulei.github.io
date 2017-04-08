@@ -1,0 +1,1099 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=微软雅黑:300,300italic,400,400italic,700,700italic|Courier New:300,300italic,400,400italic,700,700italic|LiSong Pro Light:300,300italic,400,400italic,700,700italic|华文琥珀:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="JavaScript," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="风的影子" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="canvas学习第三章">
+<meta property="og:type" content="article">
+<meta property="og:title" content="canvas学习第三章">
+<meta property="og:url" content="https://muleimulei.github.io/2017/04/08/canvas/canvas学习第三章/index.html">
+<meta property="og:site_name" content="风的影子">
+<meta property="og:description" content="canvas学习第三章">
+<meta property="og:updated_time" content="2017-04-08T06:23:39.873Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="canvas学习第三章">
+<meta name="twitter:description" content="canvas学习第三章">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://muleimulei.github.io/2017/04/08/canvas/canvas学习第三章/"/>
+
+
+
+
+
+  <title> canvas学习第三章 | 风的影子 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">风的影子</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">小站</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-music">
+          <a href="/music" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-music"></i> <br />
+            
+            音乐
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-image">
+          <a href="/images" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-image"></i> <br />
+            
+            美图
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://muleimulei.github.io/2017/04/08/canvas/canvas学习第三章/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="穆蕾">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="风的影子">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                canvas学习第三章
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-08T12:32:15+08:00">
+                2017-04-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/canvas/" itemprop="url" rel="index">
+                    <span itemprop="name">canvas</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote class="blockquote-center"><p>canvas学习第三章</p>
+</blockquote>
+<a id="more"></a>
+<h2 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h2><ul>
+<li>canvas文本API<ul>
+<li>ctx.fillText([text],[x],[y],[width])<ul>
+<li>text: 在画布上渲染的文本</li>
+<li>x: 文本在画布上的x坐标</li>
+<li>y: 文本在画布上的y坐标</li>
+<li>width： 在画布上渲染文本的最大宽度</li>
+</ul>
+</li>
+<li>ctx.font 设置所选用字体大小，榜重，样式，字体外观<ul>
+<li>font style 字体样式</li>
+<li>font weight 字体榜重</li>
+<li>font size 字体大小</li>
+<li>font face 字体外观</li>
+</ul>
+</li>
+<li>ctx.strokeText([text],[x],[y],[maxwidth])</li>
+<li>ctx.measureText([text]) 获得文字的宽</li>
+</ul>
+</li>
+<li>canvas图像API<ul>
+<li>ctx.drawIamge(image,dx,dy) <ul>
+<li>image 图像对象</li>
+<li>dx ，dy 定义画布上图像在左上角的位置</li>
+</ul>
+</li>
+<li>ctx.drawImage(image,dx,dy,dw,dh) <ul>
+<li>dw和dh代表在画布上绘制图像的矩形部分的宽和高</li>
+</ul>
+</li>
+<li>ctx.drawImage(image,sx,sy,sw,sh,dx,dy,dw,dh) <ul>
+<li>sx,sy代表在画布上开始复制源图像的“原位置”</li>
+<li>sw,sh代表从(sx,sy)出开始的矩形宽度与高度。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>综合代码如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div><div class="line">161</div><div class="line">162</div><div class="line">163</div><div class="line">164</div><div class="line">165</div><div class="line">166</div><div class="line">167</div><div class="line">168</div><div class="line">169</div><div class="line">170</div><div class="line">171</div><div class="line">172</div><div class="line">173</div><div class="line">174</div><div class="line">175</div><div class="line">176</div><div class="line">177</div><div class="line">178</div><div class="line">179</div><div class="line">180</div><div class="line">181</div><div class="line">182</div><div class="line">183</div><div class="line">184</div><div class="line">185</div><div class="line">186</div><div class="line">187</div><div class="line">188</div><div class="line">189</div><div class="line">190</div><div class="line">191</div><div class="line">192</div><div class="line">193</div><div class="line">194</div><div class="line">195</div><div class="line">196</div><div class="line">197</div><div class="line">198</div><div class="line">199</div><div class="line">200</div><div class="line">201</div><div class="line">202</div><div class="line">203</div><div class="line">204</div><div class="line">205</div><div class="line">206</div><div class="line">207</div><div class="line">208</div><div class="line">209</div><div class="line">210</div><div class="line">211</div><div class="line">212</div><div class="line">213</div><div class="line">214</div><div class="line">215</div><div class="line">216</div><div class="line">217</div><div class="line">218</div><div class="line">219</div><div class="line">220</div><div class="line">221</div><div class="line">222</div><div class="line">223</div><div class="line">224</div><div class="line">225</div><div class="line">226</div><div class="line">227</div><div class="line">228</div><div class="line">229</div><div class="line">230</div><div class="line">231</div><div class="line">232</div><div class="line">233</div><div class="line">234</div><div class="line">235</div><div class="line">236</div><div class="line">237</div><div class="line">238</div><div class="line">239</div><div class="line">240</div><div class="line">241</div><div class="line">242</div><div class="line">243</div><div class="line">244</div><div class="line">245</div><div class="line">246</div><div class="line">247</div><div class="line">248</div><div class="line">249</div><div class="line">250</div><div class="line">251</div><div class="line">252</div><div class="line">253</div><div class="line">254</div><div class="line">255</div><div class="line">256</div><div class="line">257</div><div class="line">258</div><div class="line">259</div><div class="line">260</div><div class="line">261</div><div class="line">262</div><div class="line">263</div><div class="line">264</div><div class="line">265</div><div class="line">266</div><div class="line">267</div><div class="line">268</div><div class="line">269</div><div class="line">270</div><div class="line">271</div><div class="line">272</div><div class="line">273</div><div class="line">274</div><div class="line">275</div><div class="line">276</div><div class="line">277</div><div class="line">278</div><div class="line">279</div><div class="line">280</div><div class="line">281</div><div class="line">282</div><div class="line">283</div><div class="line">284</div><div class="line">285</div><div class="line">286</div><div class="line">287</div><div class="line">288</div><div class="line">289</div><div class="line">290</div><div class="line">291</div><div class="line">292</div><div class="line">293</div><div class="line">294</div><div class="line">295</div><div class="line">296</div><div class="line">297</div><div class="line">298</div><div class="line">299</div><div class="line">300</div><div class="line">301</div><div class="line">302</div><div class="line">303</div><div class="line">304</div><div class="line">305</div><div class="line">306</div><div class="line">307</div><div class="line">308</div><div class="line">309</div><div class="line">310</div><div class="line">311</div><div class="line">312</div><div class="line">313</div><div class="line">314</div><div class="line">315</div><div class="line">316</div><div class="line">317</div><div class="line">318</div><div class="line">319</div><div class="line">320</div><div class="line">321</div><div class="line">322</div><div class="line">323</div><div class="line">324</div><div class="line">325</div><div class="line">326</div><div class="line">327</div><div class="line">328</div><div class="line">329</div><div class="line">330</div><div class="line">331</div><div class="line">332</div><div class="line">333</div><div class="line">334</div><div class="line">335</div><div class="line">336</div><div class="line">337</div><div class="line">338</div><div class="line">339</div><div class="line">340</div><div class="line">341</div><div class="line">342</div><div class="line">343</div><div class="line">344</div><div class="line">345</div><div class="line">346</div><div class="line">347</div><div class="line">348</div><div class="line">349</div><div class="line">350</div><div class="line">351</div><div class="line">352</div><div class="line">353</div><div class="line">354</div><div class="line">355</div><div class="line">356</div><div class="line">357</div><div class="line">358</div><div class="line">359</div><div class="line">360</div><div class="line">361</div><div class="line">362</div><div class="line">363</div><div class="line">364</div><div class="line">365</div><div class="line">366</div><div class="line">367</div><div class="line">368</div><div class="line">369</div><div class="line">370</div><div class="line">371</div><div class="line">372</div><div class="line">373</div><div class="line">374</div><div class="line">375</div><div class="line">376</div><div class="line">377</div><div class="line">378</div><div class="line">379</div><div class="line">380</div><div class="line">381</div><div class="line">382</div><div class="line">383</div><div class="line">384</div><div class="line">385</div><div class="line">386</div><div class="line">387</div><div class="line">388</div><div class="line">389</div><div class="line">390</div><div class="line">391</div><div class="line">392</div><div class="line">393</div><div class="line">394</div><div class="line">395</div><div class="line">396</div><div class="line">397</div><div class="line">398</div><div class="line">399</div><div class="line">400</div><div class="line">401</div><div class="line">402</div><div class="line">403</div><div class="line">404</div><div class="line">405</div><div class="line">406</div><div class="line">407</div><div class="line">408</div><div class="line">409</div><div class="line">410</div><div class="line">411</div><div class="line">412</div><div class="line">413</div><div class="line">414</div><div class="line">415</div><div class="line">416</div><div class="line">417</div><div class="line">418</div><div class="line">419</div><div class="line">420</div><div class="line">421</div><div class="line">422</div><div class="line">423</div><div class="line">424</div><div class="line">425</div><div class="line">426</div><div class="line">427</div><div class="line">428</div><div class="line">429</div><div class="line">430</div><div class="line">431</div><div class="line">432</div><div class="line">433</div><div class="line">434</div><div class="line">435</div><div class="line">436</div><div class="line">437</div><div class="line">438</div><div class="line">439</div><div class="line">440</div><div class="line">441</div><div class="line">442</div><div class="line">443</div></pre></td><td class="code"><pre><div class="line">&lt;!doctype html&gt;</div><div class="line">&lt;html lang="en"&gt;</div><div class="line">&lt;head&gt;</div><div class="line">&lt;meta charset="UTF-8"&gt;</div><div class="line">&lt;title&gt;CH3EX3: Text Arranger 3.0&lt;/title&gt;</div><div class="line">&lt;script src="modernizr-1.6.min.js"&gt;&lt;/script&gt;</div><div class="line">&lt;script type="text/javascript" src="jscolor/jscolor.js"&gt;&lt;/script&gt;</div><div class="line">&lt;script type="text/javascript"&gt;</div><div class="line"></div><div class="line">window.addEventListener("load", eventWindowLoaded, false);  </div><div class="line">function eventWindowLoaded() &#123;</div><div class="line">    canvasApp();</div><div class="line">&#125;</div><div class="line">function canvasSupport () &#123;</div><div class="line">    return Modernizr.canvas;</div><div class="line">&#125;</div><div class="line"></div><div class="line">function eventWindowLoaded() &#123;</div><div class="line">    var pattern = new Image();</div><div class="line">    pattern.src = "texture.jpg";</div><div class="line">    pattern.onload = eventAssetsLoaded;</div><div class="line">&#125;</div><div class="line"></div><div class="line">function eventAssetsLoaded() &#123;</div><div class="line">    canvasApp();</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line">function canvasApp() &#123;</div><div class="line">    var message = "your text"; //输入的文本</div><div class="line">    var fontSize = "50"; //字体大小</div><div class="line">    var fontFace = "serif"; //字体外观</div><div class="line">    var textFillColor ="#ff0000"; //填充字体颜色</div><div class="line">    var textAlpha =1; //透明度</div><div class="line">    var shadowX = 1; //阴影x轴偏移</div><div class="line">    var shadowY = 1; //阴影y轴偏移</div><div class="line">    var shadowBlur = 1; //模糊度</div><div class="line">    var shadowColor = "#707070"; //阴影颜色</div><div class="line">    var textBaseline = "middle"; //文字基线</div><div class="line">    var textAlign = "center"; //文字对齐方式</div><div class="line">    var fillOrStroke ="fill";</div><div class="line">    var fontWeight ="normal"; //字体榜重</div><div class="line">    var fontStyle = "normal";</div><div class="line">    var fillType = "colorFill";</div><div class="line">    var textFillColor2 ="#000000";</div><div class="line">    var pattern = new Image();</div><div class="line">    </div><div class="line">    if (!canvasSupport()) &#123;</div><div class="line">         return;</div><div class="line">    &#125;</div><div class="line">    var theCanvas = document.getElementById("canvasOne");</div><div class="line">    var context = theCanvas.getContext("2d"); </div><div class="line">        </div><div class="line">    var formElement = document.getElementById("textBox");</div><div class="line">    formElement.addEventListener("keyup", textBoxChanged, false);//监听文本框</div><div class="line">    </div><div class="line">    formElement = document.getElementById("fillOrStroke");</div><div class="line">    formElement.addEventListener("change", fillOrStrokeChanged, false); </div><div class="line">    </div><div class="line">    formElement = document.getElementById("textSize");</div><div class="line">    formElement.addEventListener("change", textSizeChanged, false); </div><div class="line">    </div><div class="line">    formElement = document.getElementById("textFillColor");</div><div class="line">    formElement.addEventListener("change", textFillColorChanged, false);    </div><div class="line">    </div><div class="line">    formElement = document.getElementById("textFont");</div><div class="line">    formElement.addEventListener("change", textFontChanged, false); </div><div class="line">    </div><div class="line">    formElement = document.getElementById("textBaseline");</div><div class="line">    formElement.addEventListener("change", textBaselineChanged, false); </div><div class="line">    </div><div class="line">    formElement = document.getElementById("textAlign");</div><div class="line">    formElement.addEventListener("change", textAlignChanged, false);    </div><div class="line">    </div><div class="line">    formElement = document.getElementById("fontWeight");</div><div class="line">    formElement.addEventListener("change", fontWeightChanged, false);   </div><div class="line">    </div><div class="line">    formElement = document.getElementById("fontStyle");</div><div class="line">    formElement.addEventListener("change", fontStyleChanged, false);    </div><div class="line">    </div><div class="line">    formElement = document.getElementById("shadowX");</div><div class="line">    formElement.addEventListener("change", shadowXChanged, false);  </div><div class="line">    </div><div class="line">    formElement = document.getElementById("shadowY");</div><div class="line">    formElement.addEventListener("change", shadowYChanged, false);  </div><div class="line">    </div><div class="line">    formElement = document.getElementById("shadowBlur");</div><div class="line">    formElement.addEventListener("change", shadowBlurChanged, false);   </div><div class="line">    </div><div class="line">    formElement = document.getElementById("shadowColor");</div><div class="line">    formElement.addEventListener("change", shadowColorChanged, false);  </div><div class="line">    </div><div class="line">    formElement = document.getElementById("textAlpha");</div><div class="line">    formElement.addEventListener("change", textAlphaChanged, false);    </div><div class="line">    </div><div class="line">    formElement = document.getElementById("textFillColor2");</div><div class="line">    formElement.addEventListener("change", textFillColor2Changed, false);   </div><div class="line">    </div><div class="line">    formElement = document.getElementById("fillType");</div><div class="line">    formElement.addEventListener("change", fillTypeChanged, false); </div><div class="line">    </div><div class="line">    formElement = document.getElementById("canvasWidth");</div><div class="line">    formElement.addEventListener("change", canvasWidthChanged, false);  </div><div class="line">    </div><div class="line">    formElement = document.getElementById("canvasHeight");</div><div class="line">    formElement.addEventListener("change", canvasHeightChanged, false);</div><div class="line">    </div><div class="line">    formElement = document.getElementById("canvasStyleWidth");</div><div class="line">    formElement.addEventListener("change", canvasStyleSizeChanged, false);  </div><div class="line">    </div><div class="line">    formElement = document.getElementById("canvasStyleHeight");</div><div class="line">    formElement.addEventListener("change", canvasStyleSizeChanged, false);</div><div class="line">    </div><div class="line">    formElement = document.getElementById("createImageData");</div><div class="line">    formElement.addEventListener("click", createImageDataPressed, false);       </div><div class="line">    </div><div class="line">    pattern.src = "texture.jpg";</div><div class="line">    </div><div class="line">    drawScreen();</div><div class="line">    </div><div class="line">    function drawScreen() &#123;</div><div class="line">        //Background</div><div class="line">        context.globalAlpha = 1; //全局透明度</div><div class="line">        context.shadowColor = "#707070"; //阴影颜色</div><div class="line">        context.shadowOffsetX = 0;</div><div class="line">        context.shadowOffsetY = 0;</div><div class="line">        context.shadowBlur = 0;</div><div class="line">        </div><div class="line">        context.fillStyle = "#ffffaa";</div><div class="line">        context.fillRect(0, 0, theCanvas.width, theCanvas.height);</div><div class="line">        //Box</div><div class="line">        context.strokeStyle = "#000000";</div><div class="line">        context.strokeRect(5,  5, theCanvas.width-10, theCanvas.height-10);</div><div class="line">        </div><div class="line">        //Text</div><div class="line">        context.textBaseline = textBaseline; //文字基线</div><div class="line">        context.textAlign = textAlign;</div><div class="line">        context.font = fontWeight + " " + fontStyle + " " + fontSize + "px " + fontFace;</div><div class="line">        </div><div class="line">        context.shadowColor =shadowColor;</div><div class="line">        context.shadowOffsetX = shadowX;</div><div class="line">        context.shadowOffsetY = shadowY;</div><div class="line">        context.shadowBlur = shadowBlur;</div><div class="line">        </div><div class="line">        context.globalAlpha = textAlpha;</div><div class="line">        </div><div class="line">        </div><div class="line">        var xPosition = (theCanvas.width/2);</div><div class="line">        var yPosition = (theCanvas.height/2);</div><div class="line">        </div><div class="line">        var metrics = context.measureText(message);</div><div class="line">        var textWidth = metrics.width;</div><div class="line">        </div><div class="line">        var tempColor;</div><div class="line">        if (fillType == "colorFill") &#123;</div><div class="line">            tempColor = textFillColor;</div><div class="line">        &#125; else if (fillType == "linearGradient") &#123;</div><div class="line">            var gradient = context.createLinearGradient(xPosition-textWidth/2, yPosition, textWidth, yPosition);</div><div class="line">            gradient.addColorStop(0,textFillColor);</div><div class="line">            gradient.addColorStop(.6,textFillColor2);</div><div class="line">            tempColor = gradient;</div><div class="line">        &#125; else if (fillType == "radialGradient") &#123;</div><div class="line">            var gradient = context.createRadialGradient(xPosition, yPosition, fontSize, xPosition+textWidth, yPosition, 1);</div><div class="line">            gradient.addColorStop(0,textFillColor);</div><div class="line">            gradient.addColorStop(.6,textFillColor2);</div><div class="line">            tempColor = gradient;</div><div class="line">        &#125; else if (fillType == "pattern") &#123;</div><div class="line">            var tempColor = context.createPattern(pattern,"repeat")</div><div class="line">        &#125; else &#123;</div><div class="line">            tempColor = textFillColor;</div><div class="line">        &#125;</div><div class="line">        switch(fillOrStroke) &#123;</div><div class="line">            case "fill":</div><div class="line">                context.fillStyle    = tempColor;</div><div class="line">                context.fillText  ( message,  xPosition ,yPosition);</div><div class="line">                break;</div><div class="line">            case "stroke":</div><div class="line">                context.strokeStyle = tempColor;</div><div class="line">                context.strokeText  ( message, xPosition,yPosition);</div><div class="line">                break;</div><div class="line">            case "both":</div><div class="line">                context.fillStyle    = tempColor;</div><div class="line">                context.fillText  ( message,  xPosition ,yPosition);</div><div class="line">                context.strokeStyle = "#000000";</div><div class="line">                context.strokeText  ( message, xPosition,yPosition);</div><div class="line">                break;      </div><div class="line">        &#125;               </div><div class="line">    &#125;</div><div class="line">    function textBoxChanged(e) &#123; //文本框字符改变时触发</div><div class="line">        var target =  e.target;</div><div class="line">        message = target.value;</div><div class="line">        drawScreen();</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    function textBaselineChanged(e) &#123; //文字基线改变时触发</div><div class="line">        var target =  e.target;</div><div class="line">        textBaseline =  target.value;</div><div class="line">        drawScreen();</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    function textAlignChanged(e) &#123; //文字水平对齐方式改变时触发</div><div class="line">        var target =  e.target;</div><div class="line">        textAlign =  target.value;</div><div class="line">        drawScreen();</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    function fillOrStrokeChanged(e) &#123;</div><div class="line">        var target =  e.target;</div><div class="line">        fillOrStroke =  target.value;</div><div class="line">        drawScreen();</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    function textSizeChanged(e) &#123;</div><div class="line">        var target =  e.target;</div><div class="line">        fontSize = target.value;</div><div class="line">        drawScreen();</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    function textFillColorChanged(e) &#123;</div><div class="line">        var target =  e.target;</div><div class="line">        textFillColor = "#" + target.value;</div><div class="line">        drawScreen();</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    function textFontChanged(e) &#123;</div><div class="line">        var target =  e.target;</div><div class="line">        fontFace =  target.value;</div><div class="line">        drawScreen();</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    function fontWeightChanged(e) &#123;</div><div class="line">        var target =  e.target;</div><div class="line">        fontWeight =  target.value;</div><div class="line">        drawScreen();</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    function fontStyleChanged(e) &#123;</div><div class="line">        var target =  e.target;</div><div class="line">        fontStyle =  target.value;</div><div class="line">        drawScreen();</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    function shadowXChanged(e) &#123;</div><div class="line">        var target =  e.target;</div><div class="line">        shadowX =  target.value;</div><div class="line">        drawScreen();</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    function shadowYChanged(e) &#123;</div><div class="line">        var target =  e.target;</div><div class="line">        shadowY =  target.value;</div><div class="line">        drawScreen();</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    function shadowBlurChanged(e) &#123;</div><div class="line">        var target =  e.target;</div><div class="line">        shadowBlur =  target.value;</div><div class="line">        drawScreen();</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    function shadowColorChanged(e) &#123;</div><div class="line">        var target =  e.target;</div><div class="line">        shadowColor =  target.value;</div><div class="line">        drawScreen();</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    function textAlphaChanged(e) &#123;</div><div class="line">        var target =  e.target;</div><div class="line">        textAlpha =  (target.value);</div><div class="line">        drawScreen();</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    function textFillColor2Changed(e) &#123;</div><div class="line">        var target =  e.target;</div><div class="line">        textFillColor2 = "#" + target.value;</div><div class="line">        drawScreen();</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    function fillTypeChanged(e) &#123;</div><div class="line">        var target =  e.target;</div><div class="line">        fillType =  target.value;</div><div class="line">        drawScreen();</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    function canvasWidthChanged(e) &#123;</div><div class="line">        var target =  e.target;</div><div class="line">        theCanvas.width =  target.value;</div><div class="line">        drawScreen();</div><div class="line">    &#125;</div><div class="line">    function canvasHeightChanged(e) &#123;</div><div class="line">        var target =  e.target;</div><div class="line">        theCanvas.height =  target.value;</div><div class="line">        drawScreen();</div><div class="line">    &#125;</div><div class="line">    function canvasStyleSizeChanged(e) &#123;</div><div class="line">        var styleWidth  = document.getElementById("canvasStyleWidth");</div><div class="line">        var styleHeight  = document.getElementById("canvasStyleHeight");</div><div class="line">        var styleValue = "width:" + styleWidth.value + "px; height:" + styleHeight.value +"px;";</div><div class="line">        theCanvas.setAttribute("style", styleValue );</div><div class="line">        drawScreen();</div><div class="line">    &#125;</div><div class="line">    function createImageDataPressed(e) &#123;</div><div class="line">        var imageDataDisplay = document.getElementById("imageDataDisplay");</div><div class="line">        imageDataDisplay.value = theCanvas.toDataURL();</div><div class="line">        window.open(imageDataDisplay.value,"canavsImage","left=0,top=0,width=" + theCanvas.width + ",height=" + theCanvas.height +",toolbar=0,resizable=0");</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">&lt;/script&gt; </div><div class="line">&lt;/head&gt;</div><div class="line">&lt;body&gt;</div><div class="line">&lt;div style="position: absolute; top: 50px; left: 50px;"&gt;</div><div class="line">&lt;canvas id="canvasOne" width="500" height="300"&gt;</div><div class="line"> Your browser does not support HTML 5 Canvas. </div><div class="line">&lt;/canvas&gt;</div><div class="line">&lt;form&gt;</div><div class="line">  Text: &lt;input id="textBox" placeholder="your text" /&gt;</div><div class="line">  &lt;br&gt; </div><div class="line">  Text Font: &lt;select id="textFont"&gt;</div><div class="line">  &lt;option value="serif"&gt;serif&lt;/option&gt;</div><div class="line">  &lt;option value="sans-serif"&gt;sans-serif&lt;/option&gt;</div><div class="line">  &lt;option value="cursive"&gt;cursive&lt;/option&gt;</div><div class="line">  &lt;option value="fantasy"&gt;fantasy&lt;/option&gt;</div><div class="line">  &lt;option value="monospace"&gt;monospace&lt;/option&gt;</div><div class="line">  &lt;/select&gt;</div><div class="line">  &lt;br&gt;</div><div class="line">  Font Weight:</div><div class="line"> &lt;select id="fontWeight"&gt;</div><div class="line"> &lt;option value="normal"&gt;normal&lt;/option&gt;</div><div class="line"> &lt;option value="bold"&gt;bold&lt;/option&gt;</div><div class="line"> &lt;option value="bolder"&gt;bolder&lt;/option&gt;</div><div class="line"> &lt;option value="lighter"&gt;lighter&lt;/option&gt;</div><div class="line"> &lt;/select&gt;</div><div class="line"> &lt;br&gt;</div><div class="line"> Font Style:</div><div class="line"> &lt;select id="fontStyle"&gt;</div><div class="line"> &lt;option value="normal"&gt;normal&lt;/option&gt;</div><div class="line"> &lt;option value="italic"&gt;italic&lt;/option&gt;</div><div class="line"> &lt;option value="oblique"&gt;oblique&lt;/option&gt;</div><div class="line"> &lt;/select&gt;</div><div class="line"> &lt;br&gt;  </div><div class="line">  Text Size: &lt;input type="range" id="textSize"</div><div class="line">       min="0"</div><div class="line">       max="200"</div><div class="line">       step="1"</div><div class="line">       value="50"/&gt; </div><div class="line">  &lt;br&gt;</div><div class="line">  </div><div class="line">  Fill Type : &lt;select id="fillType"&gt;</div><div class="line">  &lt;option value="colorFill"&gt;Color Fill&lt;/option&gt;</div><div class="line">  &lt;option value="linearGradient"&gt;Linear Gradient&lt;/option&gt;</div><div class="line">  &lt;option value="radialGradient"&gt;Radial Gradient&lt;/option&gt;</div><div class="line">  &lt;option value="pattern"&gt;pattern&lt;/option&gt;</div><div class="line">  &lt;/select&gt;</div><div class="line">  &lt;br&gt;</div><div class="line">  Text Color: &lt;input class="color" id="textFillColor" value="FF0000"/&gt; </div><div class="line">  &lt;br&gt;</div><div class="line">  Text Color 2: &lt;input class="color" id="textFillColor2" value ="000000"/&gt; </div><div class="line">  &lt;br&gt;</div><div class="line">  </div><div class="line">  Fill Or Stroke : &lt;select id="fillOrStroke"&gt;</div><div class="line">  &lt;option value="fill"&gt;fill&lt;/option&gt;</div><div class="line">  &lt;option value="stroke"&gt;stroke&lt;/option&gt;</div><div class="line">  &lt;option value="both"&gt;both&lt;/option&gt;</div><div class="line">  &lt;/select&gt;</div><div class="line">  &lt;br&gt;</div><div class="line">  Text Baseline &lt;select id="textBaseline"&gt;</div><div class="line">  &lt;option value="middle"&gt;middle&lt;/option&gt;</div><div class="line">  &lt;option value="top"&gt;top&lt;/option&gt;</div><div class="line">  &lt;option value="hanging"&gt;hanging&lt;/option&gt;</div><div class="line">  &lt;option value="alphabetic"&gt;alphabetic&lt;/option&gt;</div><div class="line">  &lt;option value="ideographic"&gt;ideographic&lt;/option&gt;</div><div class="line">  &lt;option value="bottom"&gt;bottom&lt;/option&gt;</div><div class="line">  &lt;/select&gt;</div><div class="line">  &lt;br&gt;</div><div class="line">  Text Align &lt;select id="textAlign"&gt;</div><div class="line">  &lt;option value="center"&gt;center&lt;/option&gt;</div><div class="line">  &lt;option value="start"&gt;start&lt;/option&gt;</div><div class="line">  &lt;option value="end"&gt;end&lt;/option&gt;</div><div class="line">  &lt;option value="left"&gt;left&lt;/option&gt;</div><div class="line">  &lt;option value="right"&gt;right&lt;/option&gt;</div><div class="line">  </div><div class="line">  &lt;/select&gt;</div><div class="line">  &lt;br&gt;</div><div class="line"> Alpha : &lt;input type="range" id="textAlpha"</div><div class="line">       min="0.0"</div><div class="line">       max="1.0"</div><div class="line">       step="0.01"</div><div class="line">       value="1.0"/&gt;</div><div class="line"> &lt;br&gt;      </div><div class="line"> Shadow X:&lt;input type="range" id="shadowX"</div><div class="line">       min="-100"</div><div class="line">       max="100"</div><div class="line">       step="1"</div><div class="line">       value="1"/&gt;</div><div class="line">&lt;br&gt;</div><div class="line">Shadow Y:&lt;input type="range" id="shadowY"</div><div class="line">       min="-100"</div><div class="line">       max="100"</div><div class="line">       step="1"</div><div class="line">       value="1"/&gt;</div><div class="line">  &lt;br&gt;</div><div class="line">Shadow Blur: &lt;input type="range" id="shadowBlur"</div><div class="line">       min="1"</div><div class="line">       max="100"</div><div class="line">       step="1"</div><div class="line">       value="1" /&gt; </div><div class="line">&lt;br&gt;</div><div class="line">Shadow Color: &lt;input class="color" id="shadowColor" value="707070"/&gt; </div><div class="line">  &lt;br&gt;</div><div class="line"> Canvas Width:  &lt;input type="range" id="canvasWidth"</div><div class="line">       min="0"</div><div class="line">       max="1000"</div><div class="line">       step="1"</div><div class="line">       value="500"/&gt;</div><div class="line"> &lt;br&gt;</div><div class="line">  Canvas Height:</div><div class="line">  &lt;input type="range" id="canvasHeight"</div><div class="line">       min="0"</div><div class="line">       max="1000"</div><div class="line">       step="1"</div><div class="line">       value="300"/&gt;</div><div class="line">  &lt;br&gt;</div><div class="line">  Canvas Style Width:  &lt;input type="range" id="canvasStyleWidth"</div><div class="line">       min="0"</div><div class="line">       max="1000"</div><div class="line">       step="1"</div><div class="line">       value="500"/&gt;</div><div class="line"> &lt;br&gt;</div><div class="line">  Canvas Style Height:</div><div class="line">  &lt;input type="range" id="canvasStyleHeight"</div><div class="line">       min="0"</div><div class="line">       max="1000"</div><div class="line">       step="1"</div><div class="line">       value="300"/&gt;</div><div class="line">  &lt;br&gt;</div><div class="line"> &lt;input type="button" id="createImageData" value="Create Image Data"&gt;</div><div class="line"> &lt;br&gt;</div><div class="line"> &lt;br&gt;</div><div class="line"> &lt;textarea id="imageDataDisplay" rows=10 cols=30&gt;&lt;/textarea&gt;</div><div class="line"> &lt;/form&gt;</div><div class="line">&lt;/div&gt;</div><div class="line">&lt;/body&gt;</div><div class="line">&lt;/html&gt;</div></pre></td></tr></table></figure>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/04/07/canvas/cancas学习第二章/" rel="next" title="canvas学习第二章">
+                <i class="fa fa-chevron-left"></i> canvas学习第二章
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/04/08/jquery/jquery选择器/" rel="prev" title="jquery选择器">
+                jquery选择器 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <div>
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="穆蕾" />
+          <h4 class='topic'>念念不忘<br/>必有回响</h4>
+          </div>
+          <p class="site-author-name" itemprop="name">穆蕾</p>
+           
+              <p class="site-description motion-element" itemprop="description">个人学习总结</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate" title="RSS订阅">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          <a title="收藏到书签，偶尔High一下^_^" rel="alternate" class="mw-harlem_shake_slow wobble shake" href='javascript:(
+    /*
+     * Copyright (C) 2015 Rocko (rocko.xyz) <rocko.zxp@gmail.com>
+     *
+     * Licensed under the Apache License, Version 2.0 (the "License");
+     * you may not use this file except in compliance with the License.
+
+     * Unless required by applicable law or agreed to in writing, software
+     * distributed under the License is distributed on an "AS IS" BASIS,
+     * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     * See the License for the specific language governing permissions and
+     * limitations under the License.
+     */
+    function go() {
+
+      var songs = [
+          "http://m2.music.126.net/3uHnH7uQAeFwUfuvEB9lrg==/3265549619475054.mp3", 
+          "http://m2.music.126.net/NnHwR2HV-1OoKZ6R5LVy4Q==/18502581673300023.mp3",
+          "http://m2.music.126.net/qv3RI4K7ABKJ0TyAdb3taw==/3250156397064860.mp3",    
+          "......"
+      ];
+
+      function S() {
+          var e = document.getElementById("audio_element_id");
+          if(e != null){
+              var index = parseInt(e.getAttribute("curSongIndex"));
+              if(index > songs.length - 2) {
+                  index = 0;
+              } else {
+                  index++;
+              }
+              e.setAttribute("curSongIndex", index);
+          }
+          e.src = i;
+          e.play()
+      }
+      function initAudioEle() {
+          var e = document.getElementById("audio_element_id");
+          if(e === null){
+            e = document.createElement("audio");
+            e.setAttribute("curSongIndex", 0);
+            e.id = "audio_element_id";
+            e.loop = false;
+            e.bgcolor = 0;
+            e.innerHTML = " <p>If you are reading this, it is because your browser does not support the audio element. We recommend that you get a new browser.</p> <p>";
+            document.body.appendChild(e);
+            e.addEventListener("ended", function() {
+              go();
+            }, true);
+          }        
+      }
+
+      initAudioEle();
+      var curSongIndex = parseInt(document.getElementById("audio_element_id").getAttribute("curSongIndex"));
+      var i = songs[curSongIndex];
+      S();
+    })()'>
+    
+    <i class="fa fa-music"></i> 听音乐</a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/muleimulei" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#基础知识"><span class="nav-number">1.</span> <span class="nav-text">基础知识</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2014 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">穆蕾</span>
+</div>
+
+
+<!--<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div> -->
+
+<!--<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>-->
+&nbsp;&nbsp;&nbsp;&nbsp;本页点击 <span id="busuanzi_value_page_pv"></span> 次
+&nbsp;&nbsp;|&nbsp;&nbsp;本站总点击 <span id="busuanzi_value_site_pv"></span> 次
+&nbsp;&nbsp;|&nbsp;&nbsp;您是第 <span id="busuanzi_value_site_uv"></span> 位访客
+
+&nbsp;&nbsp;|&nbsp;&nbsp;<span><a href="/sitemap.xml">Google网站地图</a></span>
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span>人</span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span>次</span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+  
+
+
+  
+
+  
+
+  
+
+
+  
+  <script type="text/javascript" src="/js/src/particle.js" count="50" zindex="-2" opacity="1" color="0,104,183"></script>
+  <!-- 小红心 -->
+<script type="text/javascript" src="/js/src/heart.js"></script>
+<script type = 'text/javascript' src='/js/src/topic.js'></script>
+</body>
+</html>
