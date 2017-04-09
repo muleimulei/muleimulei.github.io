@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Monster</title>
+</head>
+<style>
+	.container{
+		position: absolute;
+	    width: 300px;
+	    height: 300px;
+	    background: rgba(252, 253, 253,.5);
+	    margin: auto;
+	    left: 0;
+	    right: 0;
+	    top: 0;
+	    bottom: 0;
+	    border-radius: 50%;
+	    cursor: pointer;
+	}
+	.monster{
+		width: 300px;
+	    height: 300px;
+	    background: #f45b69;
+	    margin: 50px auto;
+	    border-radius: 50%;
+	    position: relative;
+	}
+	@media screen and (max-height: 400px){
+		.monster ,.container{
+			width: 200px;
+			height: 200px;
+			margin: 0 auto;
+		}
+	}
+
+	.monster::after{
+		content: '';
+	    width: 20px;
+	    height: 30px;
+	    background: inherit;
+	    position: absolute;
+	    left: 150px;
+	    border-top-right-radius: 100%;
+	}
+	
+
+	.monster::before{
+		content: '';
+	    width: 20px;
+	    height: 30px;
+	    background: inherit;
+	    position: absolute;
+	    left: 30px;
+	    border-top-left-radius: 100% ;
+	}
+	.hair{
+		position: absolute;
+	    width: 10px;
+	    height: 10px;
+	    background: #f45b69;
+	    left: 80px;
+	    top: -4px;
+	    transform: rotateZ(45deg);
+	}
+	.hair::after{
+		content: '';
+	    position: absolute;
+	    width: 10px;
+	    height: 10px;
+	    background: #f45b69;
+	    left: 5px;
+	    top: -9px;
+	    transform: rotateZ(-90deg);
+	}
+
+	.face{
+		position: absolute;
+		transition: all .5s ease;
+	}
+	.eyes{
+		position: absolute;
+	    width: 30px;
+	    height: 30px;
+	    border-radius: 50%;
+	    background: white;
+	    left: 45px;
+	    top: 50px;
+	}
+	.eyes::before{
+		content: '';
+		position: absolute;
+		width: 30px;
+		height: 30px;
+		background: #FFF;
+		border-radius: 50%;
+		border-radius: 50%;
+	    left: 75px;
+	}
+	.iris{
+		width: 20px;
+		height: 20px;
+		background: #59c3c3;
+		border-radius: 50%;
+		position: absolute;
+		left: 8px;
+	    top: 6px;
+	}
+
+	.iris::after{
+		content: '';
+		width: 20px;
+		height: 20px;
+		background: #59c3c3;
+		border-radius: 50%;
+		position: absolute;
+		left: 70px;
+	}
+	.mouth{
+		width: 60px;
+		height: 3px;
+		background: #603335;
+		position: absolute;
+	    left: 70px;
+	    top: 130px;
+	    border-radius: 100% 100% 0 0;
+	}
+	.teeth{
+		background: white;
+		width: 7px;
+		height: 10px;
+		position: absolute;
+		border-radius: 0 0 0 100%;
+	    left: 75px;
+	    top: 130px;
+	}
+	.teeth::before{
+		position: absolute;
+		content: '';
+		width: 7px;
+		height: 10px;
+		background: #fff;
+		border-radius: 0 0 100% 0;
+	    left: 42px;
+	}
+	.teeth::after{
+		content: '';
+	    width: 10px;
+	    height: 10px;
+	    background: #A2B7c0;
+	    border-radius: 50%;
+	    position: absolute;
+	    left: 8px;
+	    animation: drop 4s infinite ease-in-out;
+	}
+	.text{
+		height: 20px;
+		width: 130px;
+		position: absolute;
+		border-radius: 100%;
+		background: #bbd5e0;
+		left: 40px;
+	    top: 210px;
+	    box-shadow: 5px 2px 2px #A2B7c0;
+	}
+	.drool{
+		position: absolute;
+		width: 4px;
+		height: 25px;
+		background: #c5dfea;
+		border-radius: 100px;
+	    left: 85px;
+	    top: 130px;
+	    animation: dropin 4s  infinite ease;
+	}
+
+	@keyframes drop{
+		100%{
+			transform: translateY(70px);
+			opacity: 0.5;
+		}
+	}
+
+	@keyframes dropin{
+		100%{
+			transform-origin: center top;
+			transform: scaleY(1.5);
+		}
+	}
+</style>
+<body>
+	<div class="container">
+		<div class="monster">
+			<div class="hair"></div>
+			<div class="face">
+				<div class="eyes">
+					<div class="iris"></div>
+				</div>
+			</div>
+			<div class="mouth"></div>
+			<div class="teeth"></div>
+			<div class="drool"></div>
+			<div class="text"></div>
+		</div>
+	</div>
+</body>
+
+</html>

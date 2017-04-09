@@ -100,8 +100,6 @@
 
 
 
-  
-
 
   <link rel="alternate" href="/atom.xml" title="风的影子" type="application/atom+xml" />
 
@@ -115,16 +113,43 @@
 
 
 
-<meta name="description" content="个人学习总结">
+<meta name="description" content="div.wrapper{
+		display: flex;
+	    justify-content: space-around;
+		margin-bottom: 10px;
+		flex-wrap: wrap;
+	}
+	div.wrapper div.item{
+		width: 100px;
+		height: 100px;
+		background-color: rgba(14, 2">
 <meta property="og:type" content="website">
-<meta property="og:title" content="分类">
+<meta property="og:title" content="风的影子">
 <meta property="og:url" content="https://muleimulei.github.io/categories/index.html">
 <meta property="og:site_name" content="风的影子">
-<meta property="og:description" content="个人学习总结">
-<meta property="og:updated_time" content="2017-03-20T14:47:52.910Z">
+<meta property="og:description" content="div.wrapper{
+		display: flex;
+	    justify-content: space-around;
+		margin-bottom: 10px;
+		flex-wrap: wrap;
+	}
+	div.wrapper div.item{
+		width: 100px;
+		height: 100px;
+		background-color: rgba(14, 2">
+<meta property="og:updated_time" content="2017-04-09T16:06:45.320Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="分类">
-<meta name="twitter:description" content="个人学习总结">
+<meta name="twitter:title" content="风的影子">
+<meta name="twitter:description" content="div.wrapper{
+		display: flex;
+	    justify-content: space-around;
+		margin-bottom: 10px;
+		flex-wrap: wrap;
+	}
+	div.wrapper div.item{
+		width: 100px;
+		height: 100px;
+		background-color: rgba(14, 2">
 
 
 
@@ -162,7 +187,7 @@
   
 
   
-    分类 | 风的影子
+     | 风的影子
   
 </title>
 </head>
@@ -340,7 +365,7 @@
   <div id="posts" class="posts-expand">
   <header class="post-header">
 
-	<h1 class="post-title" itemprop="name headline">分类</h1>
+	<h1 class="post-title" itemprop="name headline"></h1>
 
 
 
@@ -348,14 +373,60 @@
 
     
     
-      <div class="category-all-page">
-        <div class="category-all-title">
-            目前共计 4 个分类
-        </div>
-        <div class="category-all">
-          <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a><span class="category-list-count">7</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/jquery/">jquery</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/canvas/">canvas</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/操作系统/">操作系统</a><span class="category-list-count">1</span></li></ul>
-        </div>
-      </div>
+      <!-- 
+<script type="text/javascript" src='/lib/jquery/index.js'></script>
+<script type="text/javascript">
+	console.log($)
+	var list = ['categories/JavaScript/jquery','categories/操作系统','categories/JavaScript','categories/canvas'];
+
+
+</script>
+ -->
+<style type="text/css">
+	div.wrapper{
+		display: flex;
+	    justify-content: space-around;
+		margin-bottom: 10px;
+		flex-wrap: wrap;
+	}
+	div.wrapper div.item{
+		width: 100px;
+		height: 100px;
+		background-color: rgba(14, 21, 46, 0.56);
+		border-radius: 50%;
+		position: relative;
+		margin: 1px;
+	}
+	h5  {
+		color: white;
+		margin: 0;
+		color: rgb(72, 35, 24);
+		position: absolute;
+		margin-top: 50%;
+		margin-left: 50%;
+		transform: translate(-50%,-50%);
+		border:0;
+		width: 100%;
+		text-align: center;
+		font-family: Courier New;
+		font-size: 18px;
+	}
+	h5 a{
+		border:0;
+		color: white;
+		font-weight: 500;
+	}
+</style>
+
+<div class="wrapper">
+	<div class="item"><h5><a href="/categories/JavaScript/jquery">jquery</a></h5></div>
+	<div class="item"><h5><a href="/categories/canvas">canvas</a></h5></div>
+	<div class="item"><h5><a href="/categories/操作系统/">操作系统</a></h5></div>
+	<div class="item"><h5><a href="/categories/JavaScript">JavaScript</a></h5></div>
+</div>
+
+<iframe src="/assets/monster.html" width="100%" height="300" frameborder="0" allowfullscreen></iframe>
+
     
   </div>
 
@@ -365,6 +436,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -413,10 +488,10 @@
             
             
             <div class="site-state-item site-state-categories">
-              <a href="/categories/index.html">
+              
                 <span class="site-state-item-count">4</span>
                 <span class="site-state-item-name">分类</span>
-              </a>
+              
             </div>
           
 
