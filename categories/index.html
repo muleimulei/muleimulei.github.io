@@ -100,6 +100,8 @@
 
 
 
+  
+
 
   <link rel="alternate" href="/atom.xml" title="风的影子" type="application/atom+xml" />
 
@@ -122,7 +124,7 @@
 	div.wrapper div.item{
 		width: 100px;
 		height: 100px;
-		background-color: rgba(14, 2">
+		background-color: rgba(14, 21">
 <meta property="og:type" content="website">
 <meta property="og:title" content="风的影子">
 <meta property="og:url" content="https://muleimulei.github.io/categories/index.html">
@@ -136,8 +138,8 @@
 	div.wrapper div.item{
 		width: 100px;
 		height: 100px;
-		background-color: rgba(14, 2">
-<meta property="og:updated_time" content="2017-04-09T16:06:45.320Z">
+		background-color: rgba(14, 21">
+<meta property="og:updated_time" content="2017-04-09T23:49:01.759Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="风的影子">
 <meta name="twitter:description" content="div.wrapper{
@@ -149,7 +151,7 @@
 	div.wrapper div.item{
 		width: 100px;
 		height: 100px;
-		background-color: rgba(14, 2">
+		background-color: rgba(14, 21">
 
 
 
@@ -373,16 +375,7 @@
 
     
     
-      <!-- 
-<script type="text/javascript" src='/lib/jquery/index.js'></script>
-<script type="text/javascript">
-	console.log($)
-	var list = ['categories/JavaScript/jquery','categories/操作系统','categories/JavaScript','categories/canvas'];
-
-
-</script>
- -->
-<style type="text/css">
+      <style type="text/css">
 	div.wrapper{
 		display: flex;
 	    justify-content: space-around;
@@ -396,6 +389,18 @@
 		border-radius: 50%;
 		position: relative;
 		margin: 1px;
+	}
+	div.item:nth-child(1){
+		animation: shave 1.6s ease-in .2;
+	}
+	div.item:nth-child(2){
+		animation: shave 1.6s ease-in .4;
+	}
+	div.item:nth-child(3){
+		animation: shave 1.6s ease-in .6;
+	}
+	div.item:nth-child(4){
+		animation: shave 1.6s ease-in .8;
 	}
 	h5  {
 		color: white;
@@ -415,6 +420,27 @@
 		border:0;
 		color: white;
 		font-weight: 500;
+	}
+
+	@keyframes shave{
+		0%{
+			transform: scale(0) rotateZ(360deg);
+		}
+		100%{
+			transform: scale(1) rotateZ(0);
+		}
+	}
+	@keyframes bigger{
+		0%{
+			transform: scale(0);
+		}
+		100%{
+			transform: scale(1);
+		}
+	}
+	iframe{
+		transform-origin: center center; 
+		animation: bigger 1s ease-in;
 	}
 </style>
 
