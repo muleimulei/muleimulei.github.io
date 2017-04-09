@@ -119,7 +119,7 @@
 <meta property="og:url" content="https://muleimulei.github.io/2017/04/08/jquery/jquery基本事件/index.html">
 <meta property="og:site_name" content="风的影子">
 <meta property="og:description" content="jquery基本事件">
-<meta property="og:updated_time" content="2017-04-09T07:39:11.053Z">
+<meta property="og:updated_time" content="2017-04-09T07:48:46.421Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="jquery基本事件">
 <meta name="twitter:description" content="jquery基本事件">
@@ -453,26 +453,79 @@
 </blockquote>
 <a id="more"></a>
 <h1 id="jquery基本事件"><a href="#jquery基本事件" class="headerlink" title="jquery基本事件"></a>jquery基本事件</h1><ol>
-<li>页面加载时触发ready()事件<blockquote>
-<p>ready()方法类似于onload()事件，但前者只要页面的dom结构加载后触发，而后者需要页面全部元素加载成功才触发，ready可以写多个，其按顺序执行。</p>
+<li><p>页面加载时触发ready()事件</p>
+<blockquote>
+<p>ready()方法类似于onload()事件，但前者只要页面的dom结构加载后触发，而后者需要页面全部元素加载成功才触发，ready可以写多个，其按顺序执行。<code>$(document).ready(function(){$(&#39;#tip&#39;).html(&#39;加载完毕&#39;);});</code>。</p>
 </blockquote>
 </li>
-</ol>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    $(<span class="string">'#tip'</span>).html(<span class="string">'加载完毕'</span>);    </div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<ol>
 <li><p>使用hover方法切换事件</p>
 <blockquote>
-<p>hover方法的功能是当鼠标移到所选元素上时，执行方法中的第一个函数，鼠标移出时，执行方法中的第二个函数，实现事件的切换效果。<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">3. 使用toggle()方法绑定多个函数</div><div class="line">&gt; toggle()方法可以在元素的click事件中绑定两个或两个以上的函数，同时，它还可以实现元素的隐藏与显示的切换，绑定多个函数的调用格式```$(selector).toggle(fun1,fun2,······funN)</div></pre></td></tr></table></figure></p>
+<p>hover方法的功能是当鼠标移到所选元素上时，执行方法中的第一个函数，鼠标移出时，执行方法中的第二个函数，实现事件的切换效果。<code>$(selector).hover(over,out)</code>。</p>
+</blockquote>
+</li>
+<li><p>使用toggle()方法绑定多个函数</p>
+<blockquote>
+<p>toggle()方法可以在元素的click事件中绑定两个或两个以上的函数，同时，它还可以实现元素的隐藏与显示的切换，绑定多个函数的调用格式<code>$(selector).toggle(fun1,fun2,······funN)</code>。</p>
 </blockquote>
 </li>
 <li><p>使用unbind()方法移除移除元素绑定事件</p>
 <blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">5. 使用one()方法绑定元素的一次性事件</div><div class="line">&gt; one()方法可以绑定元素任何有效的事件，但这种方法的绑定事件只会触发一次。```$(selector).one(event,[data],fun)```，参数event为事件名称,dada为触发事件时携带的数据，fun为触发该事件时执行的函数。</div><div class="line"></div><div class="line">6. 调用trigger方法手动触发指定事件。</div><div class="line">&gt; trigger方法可以直接手动触发元素指定的事件，这些事件可以是元素自带事件，也可以是自定义事件。总之，该事件必须能执行。</div><div class="line"></div><div class="line">7. 文本框的focus和blur事件</div><div class="line">&gt; focus事件在元素获取焦点时触发，如点击文本框时触发该事件；而blur事件则在元素失去焦点时触发。</div><div class="line"></div><div class="line">8. 下拉列表框的change事件</div><div class="line">&gt; 当一个元素的值发生变化时，将会触发change事件</div><div class="line"></div><div class="line">9. 调用live()方法绑定事件</div><div class="line">&gt; 与bind相同，live可以绑定元素的可执行事件，除此之外，live方法还可以绑定动态元素，即是使用代码添加的元素事件。</div><div class="line"></div><div class="line">10. 调用show()和hide()方法显示和隐藏元素</div><div class="line">&gt; ```$(selector).hide(speed,[callback])```和```$(selector).show(speed,[callback])```,参数speed设置隐藏或显示的速度值，可为&apos;slow&apos;,&apos;fast&apos;或毫秒数值。可选参数callback为隐藏或显示动作执行完成后调用的函数。</div><div class="line"></div><div class="line">11. 使用slideUp和slideDown方法的滑动效果</div><div class="line">&gt; 前者用于向上滑动元素，后者用于向下滑动元素，调用方法为```$(selector).slideUp(speed,[callback])```和```$(selector).slideDown(speed,[callback])```,其中speed为滑动时的速度，单位是毫秒，可选参数是滑动成功后的回调函数</div><div class="line"></div><div class="line">12. 使用slideToggle方法</div><div class="line">&gt; 该方法可以切换slideUp和slideDown，即调用该方法时，如果元素已向上滑动，则元素自动向下滑动，反之，向下滑动。```$(selector).slideToggle(speed,[callback])```。</div><div class="line"></div><div class="line">13. 使用fadeIn()和fadeOut()实现淡入与淡出</div><div class="line">&gt; ```$(selector).fadeIn(speed,[callback])```和```$(selector).fadeOut(speed,[callback])</div></pre></td></tr></table></figure>
+<p><code>$(selector).unbind(event,fun)</code>,其中参数event表示需要移除的事件名称，多个事件用空格隔开，fun参数为事件执行时调用的函数名称，如果没有规定参数，unbind()方法会删除指定元素的所有事件处理程序。</p>
+</blockquote>
+</li>
+<li><p>使用one()方法绑定元素的一次性事件</p>
+<blockquote>
+<p>one()方法可以绑定元素任何有效的事件，但这种方法的绑定事件只会触发一次。<code>$(selector).one(event,[data],fun)</code>，参数event为事件名称,dada为触发事件时携带的数据，fun为触发该事件时执行的函数。</p>
+</blockquote>
+</li>
+<li><p>调用trigger方法手动触发指定事件。</p>
+<blockquote>
+<p>trigger方法可以直接手动触发元素指定的事件，这些事件可以是元素自带事件，也可以是自定义事件。总之，该事件必须能执行。</p>
+</blockquote>
+</li>
+<li><p>文本框的focus和blur事件</p>
+<blockquote>
+<p>focus事件在元素获取焦点时触发，如点击文本框时触发该事件；而blur事件则在元素失去焦点时触发。</p>
+</blockquote>
+</li>
+<li><p>下拉列表框的change事件</p>
+<blockquote>
+<p>当一个元素的值发生变化时，将会触发change事件。</p>
+</blockquote>
+</li>
+<li><p>调用live()方法绑定事件</p>
+<blockquote>
+<p>与bind相同，live可以绑定元素的可执行事件，除此之外，live方法还可以绑定动态元素，即是使用代码添加的元素事件。</p>
+</blockquote>
+</li>
+<li><p>调用show()和hide()方法显示和隐藏元素</p>
+<blockquote>
+<p><code>$(selector).hide(speed,[callback])</code>和<code>$(selector).show(speed,[callback])</code>,参数speed设置隐藏或显示的速度值，可为’slow’,’fast’或毫秒数值。可选参数callback为隐藏或显示动作执行完成后调用的函数。</p>
+</blockquote>
+</li>
+<li><p>使用slideUp和slideDown方法的滑动效果</p>
+<blockquote>
+<p>前者用于向上滑动元素，后者用于向下滑动元素，调用方法为<code>$(selector).slideUp(speed,[callback])</code>和<code>$(selector).slideDown(speed,[callback])</code>,其中speed为滑动时的速度，单位是毫秒，可选参数是滑动成功后的回调函数。</p>
+</blockquote>
+</li>
+<li><p>使用slideToggle方法</p>
+<blockquote>
+<p>该方法可以切换slideUp和slideDown，即调用该方法时，如果元素已向上滑动，则元素自动向下滑动，反之，向下滑动。<code>$(selector).slideToggle(speed,[callback])</code>。</p>
+</blockquote>
+</li>
+<li><p>使用fadeIn()和fadeOut()实现淡入与淡出</p>
+<blockquote>
+<p><code>$(selector).fadeIn(speed,[callback])</code>和<code>$(selector).fadeOut(speed,[callback])</code>。</p>
 </blockquote>
 </li>
 <li><p>使用fadeTo()方法设置淡入淡出效果的不透明度</p>
 <blockquote>
-<p>调用fadeTo()方法，可以将所选元素的不透明度以淡入淡出的效果调整为指定的值。<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">15. 调用animate()方法制作简单的动画效果</div><div class="line">&gt; 格式为```$(selector).animate(&#123;params&#125;,speed,[callback])```。其中，params参数为制作动画效果的css属性名与值，speed参数为动画的效果速度，单位为毫秒，可选项callback参数为动画效果完成后执行的回调函数。</div><div class="line"></div><div class="line">```JavaScript</div><div class="line">$(&apos;img&apos;).animate(&#123;</div><div class="line">    left: &apos;+=90px&apos;    </div><div class="line">&#125;,3000,function()&#123;</div><div class="line">    $(this).animate(&#123;</div><div class="line">        width: &apos;+=30px&apos;,</div><div class="line">        height: &apos;+=30px&apos;    </div><div class="line">    &#125;,3000,function()&#123;</div><div class="line">        $(&apos;#tip&apos;).html(&apos;done!&apos;);    </div><div class="line">    &#125;);    </div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p>调用fadeTo()方法，可以将所选元素的不透明度以淡入淡出的效果调整为指定的值。<code>$(selector).fadeTo(speed,opacity,[callback])</code>，其中speed参数为效果的速度，opacity参数为指定的不透明度，取值为0~1，可选参数callback为效果完成后回调的函数。</p>
+</blockquote>
+</li>
+<li><p>调用animate()方法制作简单的动画效果</p>
+<blockquote>
+<p>格式为<code>$(selector).animate({params},speed,[callback])</code>。其中，params参数为制作动画效果的css属性名与值，speed参数为动画的效果速度，单位为毫秒，可选项callback参数为动画效果完成后执行的回调函数。<code>$(&#39;img&#39;).animate({left: &#39;+=90px&#39;,3000,function(){$(this).animate({width:&#39;+=30px&#39;,height:&#39;+=30px&#39;},3000,function(){$(&#39;#tip&#39;).html(&#39;done!&#39;);});});</code>。</p>
 </blockquote>
 </li>
 <li><p>调用stop方法停止当前动画效果</p>
