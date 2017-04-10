@@ -100,8 +100,6 @@
 
 
 
-  
-
 
   <link rel="alternate" href="/atom.xml" title="风的影子" type="application/atom+xml" />
 
@@ -139,7 +137,7 @@
 		width: 100px;
 		height: 100px;
 		background-color: rgba(14, 21">
-<meta property="og:updated_time" content="2017-04-09T23:49:01.759Z">
+<meta property="og:updated_time" content="2017-04-10T15:38:05.649Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="风的影子">
 <meta name="twitter:description" content="div.wrapper{
@@ -391,16 +389,16 @@
 		margin: 1px;
 	}
 	div.item:nth-child(1){
-		animation: shave 1.6s ease-in .2;
+		animation: shave 1.6s ease .2;
 	}
 	div.item:nth-child(2){
-		animation: shave 1.6s ease-in .4;
+		animation: shave 1.6s ease .4;
 	}
 	div.item:nth-child(3){
-		animation: shave 1.6s ease-in .6;
+		animation: shave 1.6s ease .6;
 	}
 	div.item:nth-child(4){
-		animation: shave 1.6s ease-in .8;
+		animation: shave 1.6s ease .8;
 	}
 	h5  {
 		color: white;
@@ -445,14 +443,26 @@
 </style>
 
 <div class="wrapper">
-	<div class="item"><h5><a href="/categories/JavaScript/jquery">jquery</a></h5></div>
-	<div class="item"><h5><a href="/categories/canvas">canvas</a></h5></div>
-	<div class="item"><h5><a href="/categories/操作系统/">操作系统</a></h5></div>
-	<div class="item"><h5><a href="/categories/JavaScript">JavaScript</a></h5></div>
 </div>
 
 <iframe src="/assets/monster.html" width="100%" height="300" frameborder="0" allowfullscreen></iframe>
 
+<script type="text/javascript">
+	var list = ['/categories/JavaScript/jquery','/categories/canvas','/categories/操作系统','/categories/JavaScript'];
+	var wrap = document.querySelector('.wrapper');
+	list.forEach(function(item){
+		var d = document.createElement('div');
+		d.className='item';
+		var h5 = document.createElement('h5');
+		d.appendChild(h5);
+		var s = document.createElement('a');
+		var r = item.split('/')
+		s.innerText = r[r.length-1];
+		s.setAttribute('href',item);
+		h5.appendChild(s);
+		wrap.appendChild(d);
+	});
+</script>
     
   </div>
 

@@ -12,6 +12,7 @@
 	var ulheight = $('.music-list ul').height();
 	var canvas = $('#mycanvas');
 	var context = canvas.get(0).getContext('2d');
+	var bw = document.body.clientWidth;
 	//----------------
 	var pic = $('.pic img');
 	var title = $('.ctrl-box .title span');
@@ -178,8 +179,9 @@
 	}
 
 	function checkpos(){
-		if(list[index].position().top>ulheight){
-			ul.scrollTop(list[index].position().top);
+		var l = list[index].position().top;
+		if(l>ulheight||l<0){
+			ul.scrollTop(l);
 		}
 	}
 //-----------粒子-----------------
@@ -191,7 +193,7 @@ var particles = [];
 	function Particle(x,y){
 	    this.x = x;
 	    this.y = y;
-	    this.step = -5;//加入垂直方向的增量,负值就向上运动
+	    this.step = -2;//加入垂直方向的增量,负值就向上运动
 	    this.xVel = 0;
 	    this.gravity = 0.1;//增加重力影响
 	    this.counter = 0;//影响颜色
@@ -200,7 +202,6 @@ var particles = [];
 	        //hsl(H,S,L)
 	        //H:0-360,S:饱和度0.0%-100.0%，L：亮度0.0%-100.0%
 	        context.fillStyle = "hsl("+this.counter+",100%,50%)";
-
 	        context.beginPath();
 	        context.arc(this.x,this.y,10,0,2*Math.PI,true);
 	        context.fill();
@@ -221,9 +222,16 @@ var particles = [];
 	    var particle = new Particle(x,y);
 	    particle.xVel = Math.random()*4-2;//给粒子一个水平位置变化量
 	    particles.push(particle);//加入数组中
-	    if(particles.length > 100){
-	        particles.shift();
+	    if(bw<400){
+	    	if(particles.length > 20){
+		        particles.shift();
+		    }
+	    }else{
+	    	if(particles.length > 100){
+		        particles.shift();
+		    }
 	    }
+	    
 	    for(var i=0;i<particles.length;i++){
 	        var particle = particles[i];
 	        //绘制数组中的每一个粒子
