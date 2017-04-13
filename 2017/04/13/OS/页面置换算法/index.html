@@ -95,7 +95,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="JavaScript," />
+  <meta name="keywords" content="程序员，web开发" />
 
 
 
@@ -113,16 +113,16 @@
 
 
 
-<meta name="description" content="canvas学习第二章">
+<meta name="description" content="页面置换算法的实现">
 <meta property="og:type" content="article">
-<meta property="og:title" content="canvas学习第二章">
-<meta property="og:url" content="https://muleimulei.github.io/2017/04/07/canvas/cancas学习第二章/index.html">
+<meta property="og:title" content="页面置换算法的实现">
+<meta property="og:url" content="https://muleimulei.github.io/2017/04/13/OS/页面置换算法/index.html">
 <meta property="og:site_name" content="风的影子">
-<meta property="og:description" content="canvas学习第二章">
-<meta property="og:updated_time" content="2017-04-08T04:32:41.712Z">
+<meta property="og:description" content="页面置换算法的实现">
+<meta property="og:updated_time" content="2017-04-13T16:02:37.387Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="canvas学习第二章">
-<meta name="twitter:description" content="canvas学习第二章">
+<meta name="twitter:title" content="页面置换算法的实现">
+<meta name="twitter:description" content="页面置换算法的实现">
 
 
 
@@ -150,13 +150,13 @@
 
 
 
-  <link rel="canonical" href="https://muleimulei.github.io/2017/04/07/canvas/cancas学习第二章/"/>
+  <link rel="canonical" href="https://muleimulei.github.io/2017/04/13/OS/页面置换算法/"/>
 
 
 
 
 
-  <title> canvas学习第二章 | 风的影子 </title>
+  <title> 页面置换算法的实现 | 风的影子 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -339,7 +339,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://muleimulei.github.io/2017/04/07/canvas/cancas学习第二章/">
+    <link itemprop="mainEntityOfPage" href="https://muleimulei.github.io/2017/04/13/OS/页面置换算法/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="穆蕾">
@@ -360,7 +360,7 @@
             
             
               
-                canvas学习第二章
+                页面置换算法的实现
               
             
           </h1>
@@ -375,8 +375,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-07T19:07:25+08:00">
-                2017-04-07
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-13T22:57:18+08:00">
+                2017-04-13
               </time>
             
 
@@ -398,8 +398,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/canvas/" itemprop="url" rel="index">
-                    <span itemprop="name">canvas</span>
+                  <a href="/categories/操作系统/" itemprop="url" rel="index">
+                    <span itemprop="name">操作系统</span>
                   </a>
                 </span>
 
@@ -438,78 +438,24 @@
       
 
       
-        <blockquote class="blockquote-center"><p>canvas学习第二章</p>
+        <blockquote class="blockquote-center"><p>页面置换算法的实现</p>
 </blockquote>
 <a id="more"></a>
-<h2 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h2><ul>
-<li>ctx.fillRect(x,y,width,height) 在位置(x,y)处以宽为width，高为height绘制一个矩形</li>
-<li>ctx.strokeRect(x,y,width,height) 在位置(x,y)处以宽为width，高为height绘制一个矩形边框，他需要strokeStyle,lineWidth,lineJoin和miterLimit设置<ul>
-<li>lineCap: 线段末端的形状<ul>
-<li>butt: 默认值，端点是垂直于线段边缘的平直边缘</li>
-<li>round: 端点是在线段边缘处以线宽为直径的半圆</li>
-<li>square: 端点是在选段边缘处以线宽为长，以一半线宽为宽的矩形</li>
-</ul>
-</li>
-<li>lineJoin: 定义两条线相交产生的拐角，可将其称为连接<ul>
-<li>miter: 默认值，在连接外边缘延长相接</li>
-<li>bevel: 连接处是一个对角线斜角</li>
-<li>round: 连接处是一个圆</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>ctx.clearRect(x,y,width,height) 在位置(x,y)处以宽为width和高为height清除指定区域并使其完全透明(使用透明黑作为颜色)</li>
-<li>当前路径和位图受canvas上下文控制，不属于保存的状态，保存当前状态到堆栈用：ctx.save()，调出最后存储的堆栈恢复画布用ctx.restore()</li>
-<li>高级路径画法<ol>
-<li>ctx.arc(x,y,radius,startAngle,endAngle,anticlockwise) antilockwise若为false，则顺时针画圆，若为true，则逆时针画圆</li>
-<li>ctx.bezierCurveTo(cp1x,cp1y,cp2x,cp2y,x,y) 三次贝塞尔曲线</li>
-<li>ctx.quadraticCurveTo(cpx,cpy,x,y) 二次贝塞尔曲线</li>
-</ol>
-</li>
-<li>canvas裁切区域<ul>
-<li>使用ctx.save(),ctx.restore(),ctx.rect(),ctx.clip()可以完成区域裁切</li>
-</ul>
-</li>
-<li>旋转变换<ul>
-<li>ctx.setTransform(1,0,0,1,0,0)和ctx.rotate() 变换在调用setTransform()或其他变换函数后立即应用到形状与路径上。</li>
-</ul>
-</li>
-<li>缩放变换<ul>
-<li>ctx.scale() 对图像进行缩放</li>
-</ul>
-</li>
-<li>填充渐变形状 ：水平渐变，垂直渐变，对角线渐变，径向渐变<ul>
-<li>水平渐变：var gr = ctx.createLinearGradient(0,0,100,0);</li>
-<li>垂直渐变：var gr = ctx.createLinearGradient(0,0,0,100);</li>
-<li>对角线渐变：var gr = ctx.createLinearGradient(0,0,100,100);</li>
-<li>径向渐变：var gr = ctx.createRadialGradient(50,50,50,50,100);</li>
-<li>给渐变添加断点：gr.addColorStop(.5,’rgb(0,255,0)’);</li>
-<li>用图案填充：<ul>
-<li>四种填充类型：repeat,repeat-x,repeat-y,no-repeat</li>
-<li>var fill = ctx.createPattern(‘fillImg’,’repeat’);</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>创建阴影<ul>
-<li>shadowOffsetX和shadowOffsetY值可以是正也可以为负，负值将会在左侧和上方创建阴影，反之，将会在底部创建阴影。shadowBlur属性用来设置阴影模糊效果的程度。这三个参数不受当前canvas变换矩阵影响，shadowColor可以是任何HTML4颜色字符串。<br>以下代码是关于划线：</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">drawScreen</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="comment">//round end. bevel join, at top left of canvas</span></div><div class="line">        context.strokeStyle = <span class="string">"black"</span>; <span class="comment">//need list of available colors</span></div><div class="line">        context.lineWidth=<span class="number">10</span>;</div><div class="line">        context.lineJoin=<span class="string">'bevel'</span>;</div><div class="line">        context.lineCap=<span class="string">'round'</span>;</div><div class="line">        context.beginPath();</div><div class="line">        context.moveTo(<span class="number">0</span>, <span class="number">0</span>);</div><div class="line">        context.lineTo(<span class="number">25</span>, <span class="number">0</span>);</div><div class="line">        context.lineTo(<span class="number">25</span>,<span class="number">25</span>);</div><div class="line">        context.stroke();</div><div class="line">        context.closePath();</div><div class="line">        </div><div class="line">        <span class="comment">//round end, bevel join, not at top or left of canvas</span></div><div class="line">        context.beginPath();</div><div class="line">        context.moveTo(<span class="number">10</span>, <span class="number">50</span>);</div><div class="line">        context.lineTo(<span class="number">35</span>, <span class="number">50</span>);</div><div class="line">        context.lineTo(<span class="number">35</span>,<span class="number">75</span>);</div><div class="line">        context.stroke();</div><div class="line">        context.closePath();</div><div class="line">        </div><div class="line">        <span class="comment">//flat end, round join, not at top or left</span></div><div class="line">        context.lineJoin=<span class="string">'round'</span>;</div><div class="line">        context.lineCap=<span class="string">'butt'</span>;</div><div class="line">        context.beginPath();</div><div class="line">        context.moveTo(<span class="number">10</span>, <span class="number">100</span>);</div><div class="line">        context.lineTo(<span class="number">35</span>, <span class="number">100</span>);</div><div class="line">        context.lineTo(<span class="number">35</span>,<span class="number">125</span>);</div><div class="line">        context.stroke();</div><div class="line">        context.closePath();</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
-<p>以下代码关于区域的裁切：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">drawScreen</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="comment">//在屏幕上绘制一个黑色的方块</span></div><div class="line">    context.fillStyle = <span class="string">"black"</span>;</div><div class="line">    context.fillRect(<span class="number">10</span>, <span class="number">10</span>, <span class="number">200</span>, <span class="number">200</span>);</div><div class="line">    <span class="comment">//保存当前上下文</span></div><div class="line">    context.save();</div><div class="line">    context.beginPath();</div><div class="line">    <span class="comment">//裁切画布从(0,0)到(50,50)的正方形</span></div><div class="line">    context.rect(<span class="number">0</span>, <span class="number">0</span>, <span class="number">50</span>, <span class="number">50</span>);</div><div class="line">    context.clip();</div><div class="line">    <span class="comment">//绘制红色圆</span></div><div class="line">    context.beginPath();</div><div class="line">    context.strokeStyle = <span class="string">"red"</span>; <span class="comment">//need list of available colors</span></div><div class="line">    context.lineWidth=<span class="number">5</span>;</div><div class="line">    context.arc(<span class="number">100</span>, <span class="number">100</span>, <span class="number">100</span>, (<span class="built_in">Math</span>.PI/<span class="number">180</span>)*<span class="number">0</span>, (<span class="built_in">Math</span>.PI/<span class="number">180</span>)*<span class="number">360</span>, <span class="literal">false</span>); <span class="comment">// full circle</span></div><div class="line">    context.stroke();</div><div class="line">    context.closePath();</div><div class="line">    context.restore();</div><div class="line">    <span class="comment">//裁切整个画布</span></div><div class="line">    context.beginPath();</div><div class="line">    context.rect(<span class="number">0</span>, <span class="number">0</span>, <span class="number">500</span>, <span class="number">500</span>);</div><div class="line">    context.clip();</div><div class="line">    <span class="comment">//蓝色圆</span></div><div class="line">    context.beginPath();</div><div class="line">    context.strokeStyle = <span class="string">"blue"</span>;</div><div class="line">    context.lineWidth=<span class="number">5</span>;</div><div class="line">    context.arc(<span class="number">100</span>, <span class="number">100</span>, <span class="number">50</span>, (<span class="built_in">Math</span>.PI/<span class="number">180</span>)*<span class="number">0</span>, (<span class="built_in">Math</span>.PI/<span class="number">180</span>)*<span class="number">360</span>, <span class="literal">false</span>);</div><div class="line">    context.stroke();</div><div class="line">    context.closePath();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="页面置换算法的实现"><a href="#页面置换算法的实现" class="headerlink" title="页面置换算法的实现"></a>页面置换算法的实现</h2><p>在进程运行过程中，若其所要访问的页面不在内存，而需把它们调入内存，但内存已无空闲空间时，但为了保证该进程能正常运行，系统必须从内存中调出一页程序或数据送到磁盘的对换区中。但应将哪个页面调出。需根据一定的算法来确定。通常，把选择换出页面的算法称为页面置换算法。</p>
 <blockquote>
-<p>也可将其它canvas方法配合裁切区域使用，最常见的是arc()函数</p>
+<p>一个好的页面置换算法应具有较低的页面置换频率。从理论上上讲，应将那些以后不再会访问的页面换出，或把那些在较长时间内不会再访问的页面换出。</p>
 </blockquote>
-<p>以下代码是关于旋转：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">drawScreen</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="comment">//绘制黑色正方形</span></div><div class="line">    ctx.fillStyle = <span class="string">'black'</span>;</div><div class="line">    ctx.fillRect(<span class="number">20</span>,<span class="number">20</span>,<span class="number">25</span>,<span class="number">25</span>);</div><div class="line">    <span class="comment">//绘制红色正方形</span></div><div class="line">    ctx.setTransform(<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>);</div><div class="line">    <span class="keyword">var</span> angle = <span class="number">45</span>*<span class="built_in">Math</span>.PI/<span class="number">180</span>,</div><div class="line">        x = <span class="number">100</span>,y=<span class="number">100</span>,width=<span class="number">50</span>,height=<span class="number">50</span>;</div><div class="line">    ctx.translate(x+<span class="number">.5</span>*width,y+<span class="number">.5</span>*height);</div><div class="line">    ctx.rotate(angle);</div><div class="line">    ctx.fillStyle = <span class="string">'red'</span>;</div><div class="line">    ctx.fillRect(<span class="number">-0.5</span>*width,<span class="number">-0.5</span>*height,width,height);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>缩放变换代码如下：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">drawScreen</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="comment">//绘制一个红色区域</span></div><div class="line">    ctx.setTransform(<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>);</div><div class="line">    <span class="keyword">var</span> angle = <span class="number">45</span>*<span class="built_in">Math</span>.PI/<span class="number">180</span>,</div><div class="line">        x = <span class="number">100</span>,y=<span class="number">100</span>,width=<span class="number">50</span>,height=<span class="number">50</span>;</div><div class="line">    ctx.translate(x+<span class="number">.5</span>*width,y+<span class="number">.5</span>*height);</div><div class="line">    ctx.scale(<span class="number">2</span>,<span class="number">2</span>);</div><div class="line">    ctx.fillStyle = <span class="string">'red'</span>;</div><div class="line">    ctx.fillRect(<span class="number">-0.5</span>*width,<span class="number">-0.5</span>*height,width,height);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>渐变代码如下：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//径向渐变</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">drawScreen</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> gr = ctx.createRadialGradient(<span class="number">100</span>,<span class="number">100</span>,<span class="number">50</span>,<span class="number">100</span>,<span class="number">100</span>,<span class="number">100</span>);</div><div class="line">    <span class="comment">//添加颜色断点</span></div><div class="line">    gr.addColorStop(<span class="number">0</span>,<span class="string">'rgb(255,0,0)'</span>);</div><div class="line">    gr.addColorStop(<span class="number">0.5</span>,<span class="string">'rgb(0,255,0)'</span>);</div><div class="line">    gr.addColorStop(<span class="number">1</span>,<span class="string">'rgb(0,0,255)'</span>);</div><div class="line">    <span class="comment">//使用fillStyle生成渐变</span></div><div class="line">    ctx.fillStyle = gr;</div><div class="line">    ctx.arc(<span class="number">100</span>,<span class="number">100</span>,<span class="number">100</span>,<span class="number">0</span>,<span class="number">2</span>*<span class="built_in">Math</span>.PI,<span class="literal">false</span>);</div><div class="line">    ctx.fill();</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//图案填充</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">drawScreen</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> img = <span class="keyword">new</span> Image();</div><div class="line">    img.src = <span class="string">'fill.gif'</span>;</div><div class="line">    img.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        <span class="keyword">var</span> gr = ctx.createPattern(img,<span class="string">'repeat'</span>);</div><div class="line">        ctx.fillStyle = gr;</div><div class="line">        ctx.fillRect(<span class="number">0</span>,<span class="number">0</span>,<span class="number">200</span>,<span class="number">200</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>阴影代码如下：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">drawScreen</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    context.fillStyle = <span class="string">'red'</span>; <span class="comment">//设置填充颜色</span></div><div class="line">    context.shadowOffsetX=<span class="number">4</span>;</div><div class="line">    context.shadowOffsetY=<span class="number">4</span>;</div><div class="line">    context.shadowColor=<span class="string">'black'</span>;</div><div class="line">    context.shadowBlur=<span class="number">4</span>; <span class="comment">//模糊度</span></div><div class="line">    context.fillRect(<span class="number">10</span>,<span class="number">10</span>,<span class="number">100</span>,<span class="number">100</span>);  </div><div class="line">    context.shadowOffsetX=<span class="number">-4</span>;</div><div class="line">    context.shadowOffsetY=<span class="number">-4</span>;</div><div class="line">    context.shadowColor=<span class="string">'black'</span>;</div><div class="line">    context.shadowBlur=<span class="number">4</span>;</div><div class="line">    context.fillRect(<span class="number">150</span>,<span class="number">10</span>,<span class="number">100</span>,<span class="number">100</span>);  </div><div class="line">    context.shadowOffsetX=<span class="number">10</span>;</div><div class="line">    context.shadowOffsetY=<span class="number">10</span>;</div><div class="line">    context.shadowColor=<span class="string">'rgb(100,100,100)'</span>;</div><div class="line">    context.shadowBlur=<span class="number">8</span>;</div><div class="line">    context.arc(<span class="number">200</span>, <span class="number">300</span>, <span class="number">100</span>, (<span class="built_in">Math</span>.PI/<span class="number">180</span>)*<span class="number">0</span>, (<span class="built_in">Math</span>.PI/<span class="number">180</span>)*<span class="number">360</span>, <span class="literal">false</span>);</div><div class="line">    context.fill();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="常用算法介绍"><a href="#常用算法介绍" class="headerlink" title="常用算法介绍"></a>常用算法介绍</h2><ol>
+<li>最佳置换算法<br> 最佳置换算法是由Belady与1966年提出的一种理论上的算法。其所选择的被淘汰页面将是以后永不使用的，或许是在最长时间内不再被访问的页面。采用最佳置换算法通常可保证获得最低的缺页率。但由于人们目前还无法预知，一个进程在内存的若干个页面中，哪一个页面是未来最长时间内不再被访问的。因而该算法是无法实现的。</li>
+<li>先进先出页面置换算法<br> FIFO算法是最早出现的置换算法。该算法总是淘汰最先进入内存的页面，即选择在内存中驻留时间最久的页面予以淘汰。该算法实现简单，只需把一个进程已调入内存的页面按先后次序连接成一个队列，并设置一个指针，称为替换指针，使它总是指向最老的页面。但该算法与进程实际运行的规律不相适应，因为在进程中，有些页面经常被访问，比如，含有全局变量，常用函数，例程等的页面，FIFO算法并不能保证这些页面不被淘汰。</li>
+<li>最近最久未使用算法<br> 最近最久未使用(LRU)的页面置换算法是根据页面调入内存后的使用情况作出决策的。由于无法预测各页面将来的使用情况，只能利用”最近的过去”作为”最近的将来”的近似，因此，LRU置换算法是选择最近最久未使用的页面予以淘汰。该算法赋予每个页面一个访问字段，用来记录一个页面自上次被访问以来所经历的时间t。当需淘汰一个页面时，选择现有页面中其t值最大的，即最近最久未使用的页面予以淘汰。</li>
+</ol>
+<h2 id="LRU置换算法的硬件支持"><a href="#LRU置换算法的硬件支持" class="headerlink" title="LRU置换算法的硬件支持"></a>LRU置换算法的硬件支持</h2><ol>
+<li>寄存器<br>为了记录某进程在内存中各页的使用情况，须为每个在内存中的页面配置一个移位寄存器，可表示为：R=R<sub>n-1</sub>R<sub>n-2</sub>R<sub>n-3</sub>·····R<sub>1</sub>R<sub>0</sub><br>当某进程访问某物理块时，要将相应寄存器的R<sub>n-1</sub>位置成1。此时，定时信号将每隔一定时间(列如 100ms)将寄存器右移一位。如果我们把n位寄存器的数看做一个整数，那么，具有最小数值的寄存器所对应的页面，就是最久未使用的页面。</li>
+<li>栈<br>可利用一个特殊的栈来保存当前使用的各个页面的页面号。每当进程访问页面时，便将该页面的页面号从栈中移除，将它压入栈顶。因此，栈顶始终是最新被访问的页面的编号，而栈底则是最近最久未使用页面的编号。</li>
+</ol>
+<p>FIFO与LRU使用栈数据结构代码效果如下(源码可按F12查看)：</p>
+<iframe src="/assets/操作系统.html" width="100%" height="700px" frameborder="0" allowfullscreen></iframe>
       
     </div>
 
@@ -536,12 +482,6 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
-          
-        </div>
-      
 
       
         
@@ -551,8 +491,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/04/07/canvas/canvas学习第一章/" rel="next" title="canvas学习第一章">
-                <i class="fa fa-chevron-left"></i> canvas学习第一章
+              <a href="/2017/04/08/jquery/jquery基本事件/" rel="next" title="jquery基本事件">
+                <i class="fa fa-chevron-left"></i> jquery基本事件
               </a>
             
           </div>
@@ -560,10 +500,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/04/08/canvas/canvas学习第三章/" rel="prev" title="canvas学习第三章">
-                canvas学习第三章 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -795,7 +731,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#基础知识"><span class="nav-number">1.</span> <span class="nav-text">基础知识</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#页面置换算法的实现"><span class="nav-number">1.</span> <span class="nav-text">页面置换算法的实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常用算法介绍"><span class="nav-number">2.</span> <span class="nav-text">常用算法介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LRU置换算法的硬件支持"><span class="nav-number">3.</span> <span class="nav-text">LRU置换算法的硬件支持</span></a></li></ol></div>
             
 
           </div>

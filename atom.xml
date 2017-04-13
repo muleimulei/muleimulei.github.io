@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://muleimulei.github.io/"/>
-  <updated>2017-04-09T07:48:46.421Z</updated>
+  <updated>2017-04-13T16:02:37.387Z</updated>
   <id>https://muleimulei.github.io/</id>
   
   <author>
@@ -14,6 +14,44 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>页面置换算法的实现</title>
+    <link href="https://muleimulei.github.io/2017/04/13/OS/%E9%A1%B5%E9%9D%A2%E7%BD%AE%E6%8D%A2%E7%AE%97%E6%B3%95/"/>
+    <id>https://muleimulei.github.io/2017/04/13/OS/页面置换算法/</id>
+    <published>2017-04-13T14:57:18.498Z</published>
+    <updated>2017-04-13T16:02:37.387Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote class="blockquote-center"><p>页面置换算法的实现</p>
+</blockquote>
+<a id="more"></a>
+<h2 id="页面置换算法的实现"><a href="#页面置换算法的实现" class="headerlink" title="页面置换算法的实现"></a>页面置换算法的实现</h2><p>在进程运行过程中，若其所要访问的页面不在内存，而需把它们调入内存，但内存已无空闲空间时，但为了保证该进程能正常运行，系统必须从内存中调出一页程序或数据送到磁盘的对换区中。但应将哪个页面调出。需根据一定的算法来确定。通常，把选择换出页面的算法称为页面置换算法。</p>
+<blockquote>
+<p>一个好的页面置换算法应具有较低的页面置换频率。从理论上上讲，应将那些以后不再会访问的页面换出，或把那些在较长时间内不会再访问的页面换出。</p>
+</blockquote>
+<h2 id="常用算法介绍"><a href="#常用算法介绍" class="headerlink" title="常用算法介绍"></a>常用算法介绍</h2><ol>
+<li>最佳置换算法<br> 最佳置换算法是由Belady与1966年提出的一种理论上的算法。其所选择的被淘汰页面将是以后永不使用的，或许是在最长时间内不再被访问的页面。采用最佳置换算法通常可保证获得最低的缺页率。但由于人们目前还无法预知，一个进程在内存的若干个页面中，哪一个页面是未来最长时间内不再被访问的。因而该算法是无法实现的。</li>
+<li>先进先出页面置换算法<br> FIFO算法是最早出现的置换算法。该算法总是淘汰最先进入内存的页面，即选择在内存中驻留时间最久的页面予以淘汰。该算法实现简单，只需把一个进程已调入内存的页面按先后次序连接成一个队列，并设置一个指针，称为替换指针，使它总是指向最老的页面。但该算法与进程实际运行的规律不相适应，因为在进程中，有些页面经常被访问，比如，含有全局变量，常用函数，例程等的页面，FIFO算法并不能保证这些页面不被淘汰。</li>
+<li>最近最久未使用算法<br> 最近最久未使用(LRU)的页面置换算法是根据页面调入内存后的使用情况作出决策的。由于无法预测各页面将来的使用情况，只能利用”最近的过去”作为”最近的将来”的近似，因此，LRU置换算法是选择最近最久未使用的页面予以淘汰。该算法赋予每个页面一个访问字段，用来记录一个页面自上次被访问以来所经历的时间t。当需淘汰一个页面时，选择现有页面中其t值最大的，即最近最久未使用的页面予以淘汰。</li>
+</ol>
+<h2 id="LRU置换算法的硬件支持"><a href="#LRU置换算法的硬件支持" class="headerlink" title="LRU置换算法的硬件支持"></a>LRU置换算法的硬件支持</h2><ol>
+<li>寄存器<br>为了记录某进程在内存中各页的使用情况，须为每个在内存中的页面配置一个移位寄存器，可表示为：R=R<sub>n-1</sub>R<sub>n-2</sub>R<sub>n-3</sub>·····R<sub>1</sub>R<sub>0</sub><br>当某进程访问某物理块时，要将相应寄存器的R<sub>n-1</sub>位置成1。此时，定时信号将每隔一定时间(列如 100ms)将寄存器右移一位。如果我们把n位寄存器的数看做一个整数，那么，具有最小数值的寄存器所对应的页面，就是最久未使用的页面。</li>
+<li>栈<br>可利用一个特殊的栈来保存当前使用的各个页面的页面号。每当进程访问页面时，便将该页面的页面号从栈中移除，将它压入栈顶。因此，栈顶始终是最新被访问的页面的编号，而栈底则是最近最久未使用页面的编号。</li>
+</ol>
+<p>FIFO与LRU使用栈数据结构代码效果如下(源码可按F12查看)：</p>
+<iframe src="/assets/操作系统.html" width="100%" height="700px" frameborder="0" allowfullscreen></iframe>]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote class=&quot;blockquote-center&quot;&gt;&lt;p&gt;页面置换算法的实现&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="操作系统" scheme="https://muleimulei.github.io/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>jquery基本事件</title>

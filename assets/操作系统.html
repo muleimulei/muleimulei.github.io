@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+        </title>
+        <meta charset="utf-8">
+        </meta>
+    </head>
+<style type="text/css">
+    div.page-num{
+		display: -webkit-box;
+		display: -ms-flexbox;
+		display: flex;
+		-ms-flex-pack: distribute;
+	    justify-content: space-around;
+		-ms-flex-wrap: wrap;
+		    flex-wrap: wrap;
+		margin-bottom:  3px;
+	}
+	div.page-num > div.item{
+		-webkit-transition: all 1s ease;
+		transition: all 1s ease;
+		width: 35px;
+		height: 35px;
+		border-radius: 50%;
+		-webkit-transform-origin: center center;
+		        transform-origin: center center;
+		position: relative;
+	}
+	div.page-num > div.item > span{
+		font-size: 19px;
+		font-weight:  300;
+		color: white;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		-webkit-transform: translate(-50%,-50%);
+		        transform: translate(-50%,-50%);
+	}
+	div.control >button{
+		font-family: 微软雅黑;
+		font-size: 18px;
+	    padding: 3px 5px;
+	    display: inline-block;
+		margin: 3px auto;
+		border:none;
+		background-color: #638614;
+		border-radius: 5px/3px;
+	}
+	@-webkit-keyframes big{
+		0%{
+			-webkit-transform: scale(0) translateX(-1500px);
+			        transform: scale(0) translateX(-1500px);
+		}
+		100%{
+			-webkit-transform: scale(1) translateX(0);
+			        transform: scale(1) translateX(0);
+		}
+	}
+	@keyframes big{
+		0%{
+			-webkit-transform: scale(0) translateX(-1500px);
+			        transform: scale(0) translateX(-1500px);
+		}
+		100%{
+			-webkit-transform: scale(1) translateX(0);
+			        transform: scale(1) translateX(0);
+		}
+	}
+	svg{
+		height: 300px;
+		width: 100%;
+		background: #f1d99c;
+	}
+	svg >g{
+		-webkit-animation: big 1.5s ease;
+		        animation: big 1.5s ease;
+		-webkit-transition: all 1s ease;
+		transition: all 1s ease;
+	}
+	svg > g > rect{
+		-webkit-transition: all 1s ease;
+		transition: all 1s ease;
+		width: 10%;
+		height: 75px;
+	}
+	svg > g > text{
+		-webkit-transition: all 1s ease;
+		transition: all 1s ease;
+		font-size: 40px;
+		color: white;
+		font-weight: 400;
+	}
+</style>
+    <body>
+        <div class="page-num">
+        </div>
+        <div class="control" style="text-align: center;">
+            <button>
+                下一步
+            </button>
+            <sub>
+                栈大小为4
+            </sub>
+            <input name = 'choose' type="radio" data = 'FIFO'> FIFO
+            <input name = 'choose' type="radio" data = 'LRU' checked="true"> LRU
+        </div>
+        <svg>
+        </svg>
+        <canvas height="240px" width="100">
+        </canvas>
+    </body>
+    <script type="text/javascript">
+    var SVG_NS = 'http://www.w3.org/2000/svg';
+	var svg = document.querySelector('svg');
+	var item = [];
+	var divs = [];
+	var ss = [];
+	var wrapper = document.querySelector('.page-num');
+	var h = 75,index=0;
+	var next = document.querySelector('button');
+	const size = 4;
+	var stack = [];
+	var canvas = document.querySelector('canvas');
+	canvas.setAttribute('width',document.body.clientWidth);
+	var ctx = canvas.getContext('2d');
+	var choice = document.querySelectorAll('input');
+	var flag = true;
+	[].slice.call(choice,0).forEach(function(c){
+		c.addEventListener('change',function(e){
+			switch (e.target.getAttribute('data'))
+			{
+				case 'FIFO':
+					// console.log(e.target.getAttribute('data'));
+					flag = !flag;
+					break;
+				case 'LRU':
+					// console.log(e.target.getAttribute('data'));
+					flag = !flag;
+					break;
+			}
+		})
+	});
+	for(let i = 0;i<10;i++){
+		item.push({
+			color: `rgb(${Math.floor(Math.random()*255)},${Math.floor(Math.random()*255)},${Math.floor(Math.random()*255)})`,
+			page_num: Math.ceil(Math.random()*10)
+		});
+	}
+	for(let i =0;i<item.length;i++){
+		var div = document.createElement('div');
+		divs.push(div);
+		div.setAttribute('class','item');
+		wrapper.appendChild(div);
+		div.setAttribute('style',`background-color:${item[i].color};animation: big .5 ease ${Math.ceil(i*0.3)}s`);
+		var span = document.createElement('span');
+		span.innerText = item[i].page_num;
+		div.appendChild(span);
+	}
+	function find(page){
+		for(let i = 0;i<stack.length;i++){
+			if(page===stack[i].page_num){
+				return i;
+			}
+		}
+		return -1;
+	}
+	function removeItem(){
+		var first = divs.splice(0,1)[0];
+		first.style = 'transform:scale(0)';
+		first.addEventListener('transitionend',function(){
+			if(first){
+				first.parentElement.removeChild(first);
+				first = null;
+			}
+		})
+	}
+	function addg(b){
+		index = index+1;
+		var g = document.createElementNS(SVG_NS,'g');
+		var rect = document.createElementNS(SVG_NS, 'rect');
+		rect.setAttribute('fill',b.color);
+		rect.setAttribute('x','50%');
+		rect.setAttribute('y', svg.clientHeight - (index)*h);
+		rect.setAttribute('style','transform: translateX(-50%)');
+		g.appendChild(rect);
+		var text = document.createElementNS(SVG_NS, 'text');
+		text.setAttribute('text-anchor','middle');
+		text.appendChild(document.createTextNode(b.page_num));
+		text.setAttribute('x','50%');
+		text.setAttribute('y',svg.clientHeight - (index)*h);
+		text.setAttribute('style','transform: translateX(-50%)');
+		text.setAttribute('dy','16%');
+		text.setAttribute('fill','white');
+		g.appendChild(text);
+		svg.appendChild(g);
+		ss.push(g);
+		stack.push(b);
+		setTimeout(function(){
+			drawCanvas(stack);
+		},1000);
+	}
+
+	function cleanAndMoveDown(s,b){
+		var div = ss[s];
+		div.style = 'transform: scale(0)';
+		div.addEventListener('transitionend',function(){
+			for(let i = s+1;i<stack.length;i++){
+				var d = ss[i].firstElementChild;
+				var t = ss[i].lastElementChild;
+				d.setAttribute('y',parseInt(d.getAttribute('y'))+h);
+				t.setAttribute('y',parseInt(t.getAttribute('y'))+h);
+			}
+			div.parentElement.removeChild(div);
+			index--;
+			ss.splice(s,1);
+			stack.splice(s,1);
+			addg(b);
+		});
+	}
+	function add(){
+		if(item.length==0) return;
+		var b = item.splice(0,1)[0];
+		var s = find(b.page_num);
+		if(s!=-1){
+			if(s==size-1||s==stack.length-1){
+				removeItem();
+				setTimeout(function(){
+					drawCanvas(stack);
+				},1000);
+			}
+			else {
+				if(flag){
+					cleanAndMoveDown(s,b);
+				}else{
+					setTimeout(function(){
+						drawCanvas(stack);
+					},1000);
+				}
+				removeItem();
+			}
+		}else{
+			if(stack.length==4){
+				cleanAndMoveDown(0,b);
+			}else{
+				addg(b);
+			}
+			removeItem();
+		}
+	}
+	next.onclick = add;
+	var ih = 60,iw = parseInt(canvas.getAttribute('width'))/10;
+	var q = [];
+	function drawCanvas(stack){
+		q.push([].slice.call(stack,0));
+		for(let i = 0;i<q.length;i++){
+			for(let j = 0;j<4;j++){
+				ctx.fillStyle = q[i][j]? q[i][j].color: 'white';
+				ctx.fillRect(i*iw+2,240-ih*(j+1),iw-4,ih);
+				ctx.font = '500 30px Arial';
+				if(q[i][j]){
+					ctx.textAlign = 'center';
+					ctx.textBaseline = 'middle';
+					ctx.fillStyle = 'white';
+					ctx.fillText(q[i][j].page_num,i*iw+2+iw/2,(240-ih*(j+1))+ih/2);
+				}
+			}
+		}
+	}
+    </script>
+</html>
