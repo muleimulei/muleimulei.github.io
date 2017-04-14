@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://muleimulei.github.io/"/>
-  <updated>2017-04-13T16:22:41.879Z</updated>
+  <updated>2017-04-14T16:23:26.671Z</updated>
   <id>https://muleimulei.github.io/</id>
   
   <author>
@@ -16,11 +16,96 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>phantomJS简单使用方法</title>
+    <link href="https://muleimulei.github.io/2017/04/14/nodejs/PhantomJS/"/>
+    <id>https://muleimulei.github.io/2017/04/14/nodejs/PhantomJS/</id>
+    <published>2017-04-14T15:57:33.168Z</published>
+    <updated>2017-04-14T16:23:26.671Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote class="blockquote-center"><p>phantomJS简单使用方法</p>
+</blockquote>
+<a id="more"></a>
+<ol>
+<li><p>概述<br>有时，我们需要浏览器处理网页，但并不需要浏览，比如生成网页的截图，抓取网页数据等操作。PhantomJS的功能，就是提供一个浏览器环境的命令行接口，你可以把它看做一个“虚拟浏览器”，除了不能浏览，其它与正常浏览器一样。它的内核是webkit引擎，不提供图形界面，只能在命令行中使用。</p>
+</li>
+<li><p>webpage模块<br>webpage模块是PhantomJS的核心模块，用于网页操作。</p>
+</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">var webpage = require(&apos;webpage&apos;);</div><div class="line">var page = webpage.create();</div></pre></td></tr></table></figure>
+<p>上面代码表示加载PhantomJS的webpage模块，并创建一个实例。</p>
+<ul>
+<li>open()方法<blockquote>
+<p>该方法用于打开具体的网页</p>
+</blockquote>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> page = <span class="built_in">require</span>(<span class="string">'webpage'</span>).create();</div><div class="line">page.open(url,<span class="function"><span class="keyword">function</span>(<span class="params">s</span>)</span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(s);</div><div class="line">    phantom.exit();  </div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>上述代码中，open()方法，用于打开具体的网页。他接受两个参数。第一个参数是网页的网址，第二个参数是回调函数，网页打开后该函数将会运行，它的参数是一个表示状态的字符串，如果打开成功就是success，否则就是fail。</p>
+<blockquote>
+<p>只要接受到服务器返回的结果，PhantomJS就会报告网页打开成功，而不管服务器是否返回404或者500错误。</p>
+</blockquote>
+<p>open方法默认使用GET方法，与服务器通信，但是也可以使用其它方法。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> webpage = <span class="built_in">require</span>(<span class="string">'webpage'</span>);</div><div class="line"><span class="keyword">var</span> page = webpage.create();</div><div class="line"><span class="keyword">var</span> postbody = <span class="string">'user=user&amp;password=password'</span>;</div><div class="line">page.open(url,<span class="string">'POST'</span>,postbody,<span class="function"><span class="keyword">function</span>(<span class="params">status</span>)</span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'Status: '</span>+status);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>上面代码中，使用post方法向服务器发送数据。open方法的第二个参数来指定http方法，第三个参数用来指定该方法所要使用的数据。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote class=&quot;blockquote-center&quot;&gt;&lt;p&gt;phantomJS简单使用方法&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="Node" scheme="https://muleimulei.github.io/categories/Node/"/>
+    
+    
+      <category term="tools" scheme="https://muleimulei.github.io/tags/tools/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>爬取网易云音乐</title>
+    <link href="https://muleimulei.github.io/2017/04/14/nodejs/%E7%88%AC%E5%8F%96%E7%BD%91%E6%98%93%E4%BA%91%E9%9F%B3%E4%B9%90/"/>
+    <id>https://muleimulei.github.io/2017/04/14/nodejs/爬取网易云音乐/</id>
+    <published>2017-04-14T15:07:13.645Z</published>
+    <updated>2017-04-14T15:56:49.964Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote class="blockquote-center"><p>爬取网易云音乐</p>
+</blockquote>
+<a id="more"></a>
+<blockquote>
+<p>该爬虫使用PhantomJS,cheerio,bluebird以及Node.js内置模块来实现</p>
+</blockquote>
+<p>首先，我们需要认识到利用普通爬取静态网页的方式是爬取不到源码的，你只会拿到源码的模板，数据根本没有被填充，所以我们需要使用PhantomJS这个工具。它的功能，就是提供一个浏览器环境的命令行接口，你可以把它看做一个虚拟的浏览器，除了不能浏览，其它与正常浏览器一样。它的内核是wenkit引擎，不提供图形界面，只能在命令行下使用。其次，我们使用cheerio模块，其提供了类似于jquery的方法来解析爬取到的HTML代码，另外，我们使用blueBird来异步爬取。(这些模块可以使用npm来下载安装)</p>
+<ol>
+<li>官网下载到的phantomJS是一个可执行程序，下载完成后配置其环境变量。然后利用Node.js的child_process新起进程来调用此命令。具体代码如下：</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//1.js文件</span></div><div class="line"></div><div class="line"><span class="keyword">var</span> page = <span class="built_in">require</span>(<span class="string">'webpage'</span>).create();</div><div class="line">page.onConsoleMessage = <span class="function"><span class="keyword">function</span>(<span class="params">msg</span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'Page title is '</span> + msg);</div><div class="line">&#125;;</div><div class="line">page.settings.userAgent = <span class="string">"Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36"</span>;</div><div class="line">page.open(<span class="string">'url'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">status</span>) </span>&#123;<span class="comment">//open方法的第一个参数是需要爬去的网址</span></div><div class="line">    <span class="keyword">if</span> (status !== <span class="string">'success'</span>) &#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">'Unable to access network'</span>);</div><div class="line">    &#125;<span class="keyword">else</span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">'正在爬取请稍后'</span>);</div><div class="line">        setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">            <span class="keyword">var</span> result = page.evaluate(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">                <span class="keyword">return</span> <span class="built_in">document</span>.getElementById(<span class="string">"g_iframe"</span>).contentDocument.documentElement.innerHTML;</div><div class="line">            &#125;);</div><div class="line">            <span class="built_in">console</span>.log(result);</div><div class="line">            phantom.exit();</div><div class="line">        &#125;, <span class="number">7000</span>); <span class="comment">//需进行延迟等待，带页面渲染完毕再进行爬取</span></div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<ol>
+<li>主程序代码如下：<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> cp = <span class="built_in">require</span>(<span class="string">'child_process'</span>);</div><div class="line"><span class="keyword">var</span> http = <span class="built_in">require</span>(<span class="string">'http'</span>);</div><div class="line"><span class="keyword">var</span> cheerio = <span class="built_in">require</span>(<span class="string">'cheerio'</span>);</div><div class="line"><span class="keyword">var</span> <span class="built_in">Promise</span> = <span class="built_in">require</span>(<span class="string">"bluebird"</span>);</div><div class="line"><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>);</div><div class="line"><span class="keyword">var</span> ids = []; <span class="comment">//存取歌曲ID</span></div><div class="line"><span class="keyword">var</span> list=[]; <span class="comment">//存取所有promise对象</span></div><div class="line"><span class="keyword">var</span> details = []; <span class="comment">//存取歌曲信息</span></div><div class="line"><span class="keyword">var</span> url = <span class="string">'http://music.163.com/api/song/detail/?id=425137664&amp;ids=[425137664]&amp;csrf_token='</span>;</div><div class="line"><span class="keyword">var</span> urls = []; <span class="comment">//存取歌曲json文件信息</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">getJson</span>(<span class="params">u</span>)</span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve,reject</span>)</span>&#123;</div><div class="line">        http.get(u, <span class="function"><span class="keyword">function</span>(<span class="params">res</span>) </span>&#123;</div><div class="line">            <span class="keyword">var</span> html = <span class="string">""</span>;</div><div class="line">            res.on(<span class="string">"data"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">data</span>) </span>&#123;</div><div class="line">                html += data;</div><div class="line">            &#125;);</div><div class="line">            res.on(<span class="string">"end"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">                resolve(html);</div><div class="line">            &#125;);</div><div class="line">        &#125;).on(<span class="string">"error"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;</div><div class="line">            reject(e);</div><div class="line">            <span class="built_in">console</span>.log(<span class="string">"获取信息出错!"</span>);</div><div class="line">        &#125;);</div><div class="line">    &#125;);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * 解析网页</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">parseContent</span>(<span class="params">$</span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> tr = $(<span class="string">'tbody'</span>).find(<span class="string">'tr'</span>);</div><div class="line">    tr.each(<span class="function"><span class="keyword">function</span>(<span class="params">i,t</span>)</span>&#123;</div><div class="line">        <span class="keyword">var</span> td = $(t).find(<span class="string">'td'</span>).eq(<span class="number">1</span>);</div><div class="line">        <span class="keyword">var</span> id = $(td).find(<span class="string">'a'</span>).attr(<span class="string">'href'</span>).split(<span class="string">'='</span>)[<span class="number">1</span>];</div><div class="line">        ids.push(id); <span class="comment">//获取到歌曲id</span></div><div class="line">    &#125;);</div><div class="line">    <span class="comment">//拼接URL,获取到歌曲的json文件</span></div><div class="line">    ids.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">num</span>)</span>&#123;</div><div class="line">        <span class="keyword">var</span> u = url.replace(<span class="regexp">/\d&#123;4,&#125;/g</span>,num);</div><div class="line">        urls.push(u);</div><div class="line">    &#125;);</div><div class="line">    urls.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">url</span>)</span>&#123;</div><div class="line">        list.push(getJson(url));</div><div class="line">    &#125;);</div><div class="line"></div><div class="line">    <span class="built_in">Promise</span>.all(list).then(<span class="function"><span class="keyword">function</span>(<span class="params">jsons</span>)</span>&#123;<span class="comment">//解析获取到的json文件</span></div><div class="line">        jsons.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">json</span>)</span>&#123;</div><div class="line">            <span class="keyword">var</span> json = <span class="built_in">JSON</span>.parse(json);</div><div class="line">            <span class="comment">//获取到歌曲的基本信息</span></div><div class="line">            <span class="keyword">var</span> name = json.songs[<span class="number">0</span>].name; </div><div class="line">            <span class="keyword">var</span> singer = json.songs[<span class="number">0</span>].artists[<span class="number">0</span>].name;</div><div class="line">            <span class="keyword">var</span> picUrl = json.songs[<span class="number">0</span>].album.picUrl;</div><div class="line">            <span class="keyword">var</span> src = json.songs[<span class="number">0</span>].mp3Url;</div><div class="line">            details.push(&#123;</div><div class="line">                <span class="string">"name"</span>: name,</div><div class="line">                <span class="string">"singer"</span>:singer,</div><div class="line">                <span class="string">"picUrl"</span>:picUrl,</div><div class="line">                <span class="string">"src"</span> : src</div><div class="line">            &#125;);</div><div class="line">        &#125;);</div><div class="line">        fs.writeFile(<span class="string">'music.json'</span>,<span class="built_in">JSON</span>.stringify(details)); <span class="comment">//将获取到的数据以json格式写入到文件中</span></div><div class="line">    &#125;);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//新建进程利用phantomJS来运行1.js文件</span></div><div class="line">cp.exec(<span class="string">'phantomjs.exe 1.js'</span>,&#123;</div><div class="line">    <span class="attr">timeout</span>: <span class="number">20000000</span>, <span class="comment">//超时时间</span></div><div class="line">&#125;,<span class="function"><span class="keyword">function</span>(<span class="params">error,stdout,stderr</span>)</span>&#123; <span class="comment">//传给回调的 stdout 和 stderr 参数会包含子进程的 stdout 和 stderr 的输出</span></div><div class="line">    <span class="keyword">if</span>(error)&#123;</div><div class="line">        <span class="built_in">console</span>.error(<span class="string">`exec error <span class="subst">$&#123;error&#125;</span>`</span>);</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">let</span> $ = cheerio.load(stdout); <span class="comment">//利用cheerio来解析爬取到的HTML</span></div><div class="line">    parseContent($);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>然后，你就可以在music.json中看到自己需要爬去的歌曲信息了 。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote class=&quot;blockquote-center&quot;&gt;&lt;p&gt;爬取网易云音乐&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="Node" scheme="https://muleimulei.github.io/categories/Node/"/>
+    
+    
+  </entry>
+  
+  <entry>
     <title>页面置换算法的实现</title>
     <link href="https://muleimulei.github.io/2017/04/13/OS/%E9%A1%B5%E9%9D%A2%E7%BD%AE%E6%8D%A2%E7%AE%97%E6%B3%95/"/>
     <id>https://muleimulei.github.io/2017/04/13/OS/页面置换算法/</id>
     <published>2017-04-13T14:57:18.498Z</published>
-    <updated>2017-04-13T16:22:41.879Z</updated>
+    <updated>2017-04-14T15:13:35.567Z</updated>
     
     <content type="html"><![CDATA[<blockquote class="blockquote-center"><p>页面置换算法的实现</p>
 </blockquote>
@@ -48,7 +133,7 @@
     
     </summary>
     
-      <category term="操作系统" scheme="https://muleimulei.github.io/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
+      <category term="os" scheme="https://muleimulei.github.io/categories/os/"/>
     
     
   </entry>
@@ -554,7 +639,7 @@
     <link href="https://muleimulei.github.io/2017/04/02/OS/%E6%97%B6%E9%97%B4%E7%89%87%E8%BD%AE%E8%BD%AC%E4%B8%8E%E9%AB%98%E5%93%8D%E5%BA%94%E6%AF%94%E4%BC%98%E5%85%88%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95/"/>
     <id>https://muleimulei.github.io/2017/04/02/OS/时间片轮转与高响应比优先调度算法/</id>
     <published>2017-04-02T14:53:13.349Z</published>
-    <updated>2017-04-07T11:49:12.356Z</updated>
+    <updated>2017-04-14T15:13:40.086Z</updated>
     
     <content type="html"><![CDATA[<blockquote class="blockquote-center"><p>时间片轮转与高响应比优先算法</p>
 </blockquote>
@@ -595,7 +680,7 @@
     
     </summary>
     
-      <category term="操作系统" scheme="https://muleimulei.github.io/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
+      <category term="os" scheme="https://muleimulei.github.io/categories/os/"/>
     
     
   </entry>

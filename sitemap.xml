@@ -2,23 +2,44 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://muleimulei.github.io/music/index.html</loc>
+    <loc>https://muleimulei.github.io/2017/04/14/nodejs/PhantomJS/</loc>
     
-    <lastmod>2017-04-14T11:03:16.686Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://muleimulei.github.io/2017/04/13/OS/%E9%A1%B5%E9%9D%A2%E7%BD%AE%E6%8D%A2%E7%AE%97%E6%B3%95/</loc>
-    
-    <lastmod>2017-04-13T16:22:41.879Z</lastmod>
+    <lastmod>2017-04-14T16:23:26.671Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://muleimulei.github.io/categories/index.html</loc>
     
-    <lastmod>2017-04-13T15:57:55.131Z</lastmod>
+    <lastmod>2017-04-14T15:59:51.221Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://muleimulei.github.io/2017/04/14/nodejs/%E7%88%AC%E5%8F%96%E7%BD%91%E6%98%93%E4%BA%91%E9%9F%B3%E4%B9%90/</loc>
+    
+    <lastmod>2017-04-14T15:56:49.964Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://muleimulei.github.io/2017/04/02/OS/%E6%97%B6%E9%97%B4%E7%89%87%E8%BD%AE%E8%BD%AC%E4%B8%8E%E9%AB%98%E5%93%8D%E5%BA%94%E6%AF%94%E4%BC%98%E5%85%88%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95/</loc>
+    
+    <lastmod>2017-04-14T15:13:40.086Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://muleimulei.github.io/2017/04/13/OS/%E9%A1%B5%E9%9D%A2%E7%BD%AE%E6%8D%A2%E7%AE%97%E6%B3%95/</loc>
+    
+    <lastmod>2017-04-14T15:13:35.567Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://muleimulei.github.io/music/index.html</loc>
+    
+    <lastmod>2017-04-14T11:03:16.686Z</lastmod>
     
   </url>
   
@@ -61,13 +82,6 @@
     <loc>https://muleimulei.github.io/2017/04/07/canvas/canvas%E5%AD%A6%E4%B9%A0%E7%AC%AC%E4%B8%80%E7%AB%A0/</loc>
     
     <lastmod>2017-04-07T16:36:46.578Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://muleimulei.github.io/2017/04/02/OS/%E6%97%B6%E9%97%B4%E7%89%87%E8%BD%AE%E8%BD%AC%E4%B8%8E%E9%AB%98%E5%93%8D%E5%BA%94%E6%AF%94%E4%BC%98%E5%85%88%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95/</loc>
-    
-    <lastmod>2017-04-07T11:49:12.356Z</lastmod>
     
   </url>
   

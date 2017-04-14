@@ -95,7 +95,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="jquery," />
+  <meta name="keywords" content="程序员，web开发" />
 
 
 
@@ -113,16 +113,16 @@
 
 
 
-<meta name="description" content="jquery选择器使用">
+<meta name="description" content="爬取网易云音乐">
 <meta property="og:type" content="article">
-<meta property="og:title" content="jquery选择器">
-<meta property="og:url" content="https://muleimulei.github.io/2017/04/08/jquery/jquery选择器/index.html">
+<meta property="og:title" content="爬取网易云音乐">
+<meta property="og:url" content="https://muleimulei.github.io/2017/04/14/nodejs/爬取网易云音乐/index.html">
 <meta property="og:site_name" content="风的影子">
-<meta property="og:description" content="jquery选择器使用">
-<meta property="og:updated_time" content="2017-04-08T10:22:32.992Z">
+<meta property="og:description" content="爬取网易云音乐">
+<meta property="og:updated_time" content="2017-04-14T15:56:49.964Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="jquery选择器">
-<meta name="twitter:description" content="jquery选择器使用">
+<meta name="twitter:title" content="爬取网易云音乐">
+<meta name="twitter:description" content="爬取网易云音乐">
 
 
 
@@ -150,13 +150,13 @@
 
 
 
-  <link rel="canonical" href="https://muleimulei.github.io/2017/04/08/jquery/jquery选择器/"/>
+  <link rel="canonical" href="https://muleimulei.github.io/2017/04/14/nodejs/爬取网易云音乐/"/>
 
 
 
 
 
-  <title> jquery选择器 | 风的影子 </title>
+  <title> 爬取网易云音乐 | 风的影子 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -339,7 +339,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://muleimulei.github.io/2017/04/08/jquery/jquery选择器/">
+    <link itemprop="mainEntityOfPage" href="https://muleimulei.github.io/2017/04/14/nodejs/爬取网易云音乐/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="穆蕾">
@@ -360,7 +360,7 @@
             
             
               
-                jquery选择器
+                爬取网易云音乐
               
             
           </h1>
@@ -375,8 +375,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-08T14:24:54+08:00">
-                2017-04-08
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-14T23:07:13+08:00">
+                2017-04-14
               </time>
             
 
@@ -398,19 +398,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JavaScript/" itemprop="url" rel="index">
-                    <span itemprop="name">JavaScript</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JavaScript/jquery/" itemprop="url" rel="index">
-                    <span itemprop="name">jquery</span>
+                  <a href="/categories/Node/" itemprop="url" rel="index">
+                    <span itemprop="name">Node</span>
                   </a>
                 </span>
 
@@ -449,39 +438,22 @@
       
 
       
-        <blockquote class="blockquote-center"><p>jquery选择器使用</p>
+        <blockquote class="blockquote-center"><p>爬取网易云音乐</p>
 </blockquote>
 <a id="more"></a>
-<h1 id="jquery选择器"><a href="#jquery选择器" class="headerlink" title="jquery选择器"></a>jquery选择器</h1><ol>
-<li>#id选择器<br> jquery能够使用css选择器来操作网页中的标签元素。如果你想要通过一个ID号去查找一个元素，<code>$(&#39;#my_id&#39;)</code>，其中#my_id表示根据ID选择器获取页面中的指定标签元素，且返回唯一一个元素。</li>
-<li>element选择器<br> 其中element就是元素的名称</li>
-<li>.class选择器<br> <code>$(&#39;.class&#39;)</code> 其中, .class参数表示元素的css类别(类选择器名称)</li>
-<li>sele1,sele2,…,seleN选择器<br> 有时需要精确的选择任意多个指定的元素。<code>$(&#39;sele1,sele2,...seleN&#39;)</code> ,其中sele1，sele2到seleN为有效选择器，每个选择器之间用逗号来隔开。它们可以是之前提及的各种类型选择器，如<code>$(&#39;#id&#39;),$(&#39;.class&#39;),$(&#39;selector&#39;)</code> 选择器等。</li>
-<li>ance , desc 选择器<br> <code>$(&#39;ance desc&#39;)</code>,其中ance,desc是使用空格隔开的两个参数,ance表示父元素,desc表示后代元素，包括子元素，孙元素等。两个元素都可以通过选择器来获取。</li>
-<li>parent &gt; child<br> <code>$(&#39;parent &gt; child&#39;)</code>，它所选择的目标是子集元素，相当于一个家庭中的子辈们，但不包括孙辈。</li>
-<li>prev + next 选择器<br> <code>$(&#39;prev + next&#39;)</code>,查找与”prev”元素紧邻的下一个”next”元素，并且只返回唯一一个元素。</li>
-<li>prev ~ siblings选择器<br> <code>$(&#39;prev ~ siblings&#39;)</code> 获取prev元素后边全部紧邻的元素。</li>
-<li>:first 过滤选择器<br> <code>$(&#39;li:first&#39;)</code> 得到一组相同标签中的第一个元素。</li>
-<li>:eq(index)过滤选择器<br><code>$(&#39;li:eq(3)&#39;)</code>在一组标签元素数组中，灵活选择任意一个标签元素。</li>
-<li>:contains(text)过滤选择器<br>希望按照文本内容来查找一个或多个元素，功能是选择包含指定字符串的全部元素。</li>
-<li>:has(selector)过滤选择器<br><code>$(&#39;li:has(&#39;p&#39;)&#39;)</code>是获取选择器中包含指定元素名称的全部字符。</li>
-<li>:hidden过滤选择器<br>获取全部不可见的元素，这些不可见的元素包括type属性值为hidden的元素，如<code>$(&#39;p:hidden&#39;)</code>。</li>
-<li>:visible过滤选择器<br>获取全部的可见元素，也就是说，只要不将元素的display属性值设置为none,那么都可以获取该标签。</li>
-<li>[attribute]包含属性选择器<br>用于选择包含给定属性的所有元素</li>
-<li>[attribute=value]属性等于选择器<br>获取与属性名和属性值完全相同的全部元素，其中[]是专用于属性选择器的括号符。</li>
-<li>[attribute!=’value’]属性不等于选择器<br>获取不包含属性名，或者与属性名和属性值不相同的全部元素</li>
-<li>[attribute|=’value’]属性选择器<br>获取指定属性值等于给定字符串或以字符串为前缀(该字符串后跟一个连字符‘-’)的元素</li>
-<li>[attribute*=’value’]属性包含过滤器<br>用于选择指定属性值包含给定字符串的所有元素</li>
-<li>[attribute~=’value’]属性包含单词过滤器<br>用于选择指定属性值中包含给定单词(由空格分隔)的元素</li>
-<li>[attribute^=’value’]属性开始过滤器<br>用于选择给定属性是以特定值开始的所有元素</li>
-<li>[attribute$=’value’]属性结尾过滤器<br>用于选择给定属性是以某特定值结尾的所有元素</li>
-<li>:first-child 获取属于其父元素和所有兄弟元素的第一个元素</li>
-<li>:last-child 获取每个父元素中返回的最后一个子元素</li>
-<li>:img图像域选择器<br>当一个input元素的type属性值设为”image”时，该元素就是一个图像域，```$(‘#form :img’)</li>
-<li>:button表单按钮选择器<br>获取’type’值为button的input和button这两类普通元素</li>
-<li>:checked选择状态选择器(复选框，单选按钮)<br>获取处于选重状态的全部元素</li>
-<li>:select 选中状态选择器<br>只能获取select下拉列表框中全部处于选中状态的option选项元素。</li>
+<blockquote>
+<p>该爬虫使用PhantomJS,cheerio,bluebird以及Node.js内置模块来实现</p>
+</blockquote>
+<p>首先，我们需要认识到利用普通爬取静态网页的方式是爬取不到源码的，你只会拿到源码的模板，数据根本没有被填充，所以我们需要使用PhantomJS这个工具。它的功能，就是提供一个浏览器环境的命令行接口，你可以把它看做一个虚拟的浏览器，除了不能浏览，其它与正常浏览器一样。它的内核是wenkit引擎，不提供图形界面，只能在命令行下使用。其次，我们使用cheerio模块，其提供了类似于jquery的方法来解析爬取到的HTML代码，另外，我们使用blueBird来异步爬取。(这些模块可以使用npm来下载安装)</p>
+<ol>
+<li>官网下载到的phantomJS是一个可执行程序，下载完成后配置其环境变量。然后利用Node.js的child_process新起进程来调用此命令。具体代码如下：</li>
 </ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//1.js文件</span></div><div class="line"></div><div class="line"><span class="keyword">var</span> page = <span class="built_in">require</span>(<span class="string">'webpage'</span>).create();</div><div class="line">page.onConsoleMessage = <span class="function"><span class="keyword">function</span>(<span class="params">msg</span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'Page title is '</span> + msg);</div><div class="line">&#125;;</div><div class="line">page.settings.userAgent = <span class="string">"Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36"</span>;</div><div class="line">page.open(<span class="string">'url'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">status</span>) </span>&#123;<span class="comment">//open方法的第一个参数是需要爬去的网址</span></div><div class="line">    <span class="keyword">if</span> (status !== <span class="string">'success'</span>) &#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">'Unable to access network'</span>);</div><div class="line">    &#125;<span class="keyword">else</span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">'正在爬取请稍后'</span>);</div><div class="line">        setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">            <span class="keyword">var</span> result = page.evaluate(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">                <span class="keyword">return</span> <span class="built_in">document</span>.getElementById(<span class="string">"g_iframe"</span>).contentDocument.documentElement.innerHTML;</div><div class="line">            &#125;);</div><div class="line">            <span class="built_in">console</span>.log(result);</div><div class="line">            phantom.exit();</div><div class="line">        &#125;, <span class="number">7000</span>); <span class="comment">//需进行延迟等待，带页面渲染完毕再进行爬取</span></div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<ol>
+<li>主程序代码如下：<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> cp = <span class="built_in">require</span>(<span class="string">'child_process'</span>);</div><div class="line"><span class="keyword">var</span> http = <span class="built_in">require</span>(<span class="string">'http'</span>);</div><div class="line"><span class="keyword">var</span> cheerio = <span class="built_in">require</span>(<span class="string">'cheerio'</span>);</div><div class="line"><span class="keyword">var</span> <span class="built_in">Promise</span> = <span class="built_in">require</span>(<span class="string">"bluebird"</span>);</div><div class="line"><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>);</div><div class="line"><span class="keyword">var</span> ids = []; <span class="comment">//存取歌曲ID</span></div><div class="line"><span class="keyword">var</span> list=[]; <span class="comment">//存取所有promise对象</span></div><div class="line"><span class="keyword">var</span> details = []; <span class="comment">//存取歌曲信息</span></div><div class="line"><span class="keyword">var</span> url = <span class="string">'http://music.163.com/api/song/detail/?id=425137664&amp;ids=[425137664]&amp;csrf_token='</span>;</div><div class="line"><span class="keyword">var</span> urls = []; <span class="comment">//存取歌曲json文件信息</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">getJson</span>(<span class="params">u</span>)</span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve,reject</span>)</span>&#123;</div><div class="line">        http.get(u, <span class="function"><span class="keyword">function</span>(<span class="params">res</span>) </span>&#123;</div><div class="line">            <span class="keyword">var</span> html = <span class="string">""</span>;</div><div class="line">            res.on(<span class="string">"data"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">data</span>) </span>&#123;</div><div class="line">                html += data;</div><div class="line">            &#125;);</div><div class="line">            res.on(<span class="string">"end"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">                resolve(html);</div><div class="line">            &#125;);</div><div class="line">        &#125;).on(<span class="string">"error"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;</div><div class="line">            reject(e);</div><div class="line">            <span class="built_in">console</span>.log(<span class="string">"获取信息出错!"</span>);</div><div class="line">        &#125;);</div><div class="line">    &#125;);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * 解析网页</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">parseContent</span>(<span class="params">$</span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> tr = $(<span class="string">'tbody'</span>).find(<span class="string">'tr'</span>);</div><div class="line">    tr.each(<span class="function"><span class="keyword">function</span>(<span class="params">i,t</span>)</span>&#123;</div><div class="line">        <span class="keyword">var</span> td = $(t).find(<span class="string">'td'</span>).eq(<span class="number">1</span>);</div><div class="line">        <span class="keyword">var</span> id = $(td).find(<span class="string">'a'</span>).attr(<span class="string">'href'</span>).split(<span class="string">'='</span>)[<span class="number">1</span>];</div><div class="line">        ids.push(id); <span class="comment">//获取到歌曲id</span></div><div class="line">    &#125;);</div><div class="line">    <span class="comment">//拼接URL,获取到歌曲的json文件</span></div><div class="line">    ids.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">num</span>)</span>&#123;</div><div class="line">        <span class="keyword">var</span> u = url.replace(<span class="regexp">/\d&#123;4,&#125;/g</span>,num);</div><div class="line">        urls.push(u);</div><div class="line">    &#125;);</div><div class="line">    urls.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">url</span>)</span>&#123;</div><div class="line">        list.push(getJson(url));</div><div class="line">    &#125;);</div><div class="line"></div><div class="line">    <span class="built_in">Promise</span>.all(list).then(<span class="function"><span class="keyword">function</span>(<span class="params">jsons</span>)</span>&#123;<span class="comment">//解析获取到的json文件</span></div><div class="line">        jsons.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">json</span>)</span>&#123;</div><div class="line">            <span class="keyword">var</span> json = <span class="built_in">JSON</span>.parse(json);</div><div class="line">            <span class="comment">//获取到歌曲的基本信息</span></div><div class="line">            <span class="keyword">var</span> name = json.songs[<span class="number">0</span>].name; </div><div class="line">            <span class="keyword">var</span> singer = json.songs[<span class="number">0</span>].artists[<span class="number">0</span>].name;</div><div class="line">            <span class="keyword">var</span> picUrl = json.songs[<span class="number">0</span>].album.picUrl;</div><div class="line">            <span class="keyword">var</span> src = json.songs[<span class="number">0</span>].mp3Url;</div><div class="line">            details.push(&#123;</div><div class="line">                <span class="string">"name"</span>: name,</div><div class="line">                <span class="string">"singer"</span>:singer,</div><div class="line">                <span class="string">"picUrl"</span>:picUrl,</div><div class="line">                <span class="string">"src"</span> : src</div><div class="line">            &#125;);</div><div class="line">        &#125;);</div><div class="line">        fs.writeFile(<span class="string">'music.json'</span>,<span class="built_in">JSON</span>.stringify(details)); <span class="comment">//将获取到的数据以json格式写入到文件中</span></div><div class="line">    &#125;);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//新建进程利用phantomJS来运行1.js文件</span></div><div class="line">cp.exec(<span class="string">'phantomjs.exe 1.js'</span>,&#123;</div><div class="line">    <span class="attr">timeout</span>: <span class="number">20000000</span>, <span class="comment">//超时时间</span></div><div class="line">&#125;,<span class="function"><span class="keyword">function</span>(<span class="params">error,stdout,stderr</span>)</span>&#123; <span class="comment">//传给回调的 stdout 和 stderr 参数会包含子进程的 stdout 和 stderr 的输出</span></div><div class="line">    <span class="keyword">if</span>(error)&#123;</div><div class="line">        <span class="built_in">console</span>.error(<span class="string">`exec error <span class="subst">$&#123;error&#125;</span>`</span>);</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">let</span> $ = cheerio.load(stdout); <span class="comment">//利用cheerio来解析爬取到的HTML</span></div><div class="line">    parseContent($);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>然后，你就可以在music.json中看到自己需要爬去的歌曲信息了 。</p>
 
       
     </div>
@@ -509,12 +481,6 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/jquery/" rel="tag"># jquery</a>
-          
-        </div>
-      
 
       
         
@@ -524,8 +490,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/04/08/canvas/canvas学习第三章/" rel="next" title="canvas学习第三章">
-                <i class="fa fa-chevron-left"></i> canvas学习第三章
+              <a href="/2017/04/13/OS/页面置换算法/" rel="next" title="页面置换算法的实现">
+                <i class="fa fa-chevron-left"></i> 页面置换算法的实现
               </a>
             
           </div>
@@ -534,8 +500,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/04/08/jquery/jquery基本方法/" rel="prev" title="jquery基本方法">
-                jquery基本方法 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/04/14/nodejs/PhantomJS/" rel="prev" title="phantomJS简单使用方法">
+                phantomJS简单使用方法 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -606,17 +572,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview sidebar-panel">
+      <section class="site-overview sidebar-panel sidebar-panel-active">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <div>
           <img class="site-author-image" itemprop="image"
@@ -758,22 +715,6 @@
 
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#jquery选择器"><span class="nav-number">1.</span> <span class="nav-text">jquery选择器</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
