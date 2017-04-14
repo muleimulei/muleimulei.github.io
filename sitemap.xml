@@ -2,9 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://muleimulei.github.io/music/index.html</loc>
+    
+    <lastmod>2017-04-14T11:03:16.686Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://muleimulei.github.io/2017/04/13/OS/%E9%A1%B5%E9%9D%A2%E7%BD%AE%E6%8D%A2%E7%AE%97%E6%B3%95/</loc>
     
-    <lastmod>2017-04-13T16:02:37.387Z</lastmod>
+    <lastmod>2017-04-13T16:22:41.879Z</lastmod>
     
   </url>
   
@@ -96,13 +103,6 @@
     <loc>https://muleimulei.github.io/2017/04/02/JavaScript/jquery%E7%9A%84Deferred%E5%AF%B9%E8%B1%A1%E8%AF%A6%E8%A7%A3/</loc>
     
     <lastmod>2017-04-02T15:22:10.799Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://muleimulei.github.io/music/index.html</loc>
-    
-    <lastmod>2017-04-02T06:28:24.242Z</lastmod>
     
   </url>
   
