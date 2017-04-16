@@ -2,9 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://muleimulei.github.io/2017/04/16/JavaScript/commonJs_AMD_CMD%E6%AF%94%E8%BE%83/</loc>
+    
+    <lastmod>2017-04-16T07:13:21.624Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://muleimulei.github.io/2017/04/14/nodejs/PhantomJS/</loc>
     
-    <lastmod>2017-04-14T16:23:26.671Z</lastmod>
+    <lastmod>2017-04-16T04:31:41.058Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://muleimulei.github.io/2017/04/14/nodejs/%E7%88%AC%E5%8F%96%E7%BD%91%E6%98%93%E4%BA%91%E9%9F%B3%E4%B9%90/</loc>
+    
+    <lastmod>2017-04-15T14:00:25.987Z</lastmod>
     
   </url>
   
@@ -12,13 +26,6 @@
     <loc>https://muleimulei.github.io/categories/index.html</loc>
     
     <lastmod>2017-04-14T15:59:51.221Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://muleimulei.github.io/2017/04/14/nodejs/%E7%88%AC%E5%8F%96%E7%BD%91%E6%98%93%E4%BA%91%E9%9F%B3%E4%B9%90/</loc>
-    
-    <lastmod>2017-04-14T15:56:49.964Z</lastmod>
     
   </url>
   

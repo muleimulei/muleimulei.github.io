@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://muleimulei.github.io/"/>
-  <updated>2017-04-14T16:23:26.671Z</updated>
+  <updated>2017-04-16T07:13:21.624Z</updated>
   <id>https://muleimulei.github.io/</id>
   
   <author>
@@ -16,11 +16,88 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>commonJS,AMD与CMD的区别与联系</title>
+    <link href="https://muleimulei.github.io/2017/04/16/JavaScript/commonJs_AMD_CMD%E6%AF%94%E8%BE%83/"/>
+    <id>https://muleimulei.github.io/2017/04/16/JavaScript/commonJs_AMD_CMD比较/</id>
+    <published>2017-04-16T04:33:06.370Z</published>
+    <updated>2017-04-16T07:13:21.624Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote class="blockquote-center"><p>commonJS,AMD与CMD的区别与联系</p>
+</blockquote>
+<a id="more"></a>
+<p><strong>1. CommonJS</strong>原本叫serverJS，是以在浏览器环境之外构建JavaScript生态环境为目标而产生的项目，比如在服务器和桌面环境中。</p>
+<blockquote>
+<p>commonJS规范是为了解决JavaScript的作用于问题而定义的模块形式，可以使每个模块在它自身的命名空间中执行。</p>
+</blockquote>
+<p>该规范的主要内容是，模块必须通过module.exports导出对外的变量或接口，通过require()来导入其它模块的输出到当前模块作用域中。<strong>Node.js</strong>就是采用commonJS规范。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//moduleA.js</span></div><div class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'hello'</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//moduleB.js</span></div><div class="line"><span class="keyword">var</span> moduleA = <span class="built_in">require</span>(<span class="string">'./moduleA'</span>);</div><div class="line">moduleA();</div></pre></td></tr></table></figure>
+<p><strong>2.AMD</strong>(Asynchronous Module Definition)(异步模块定义)是为了浏览器环境设计的，因为CommonJS模块系统是同步加载的，当前浏览器环境是异步的。</p>
+<blockquote>
+<p>AMD定义了一套JavaScript模块依赖异步加载标准，来解决同步加载问题。</p>
+</blockquote>
+<p>模块通过define函数定义在闭包中，格式如下</p>
+<p><code>define(id? String, dependencies? String[], factory: Function|Object)</code></p>
+<ul>
+<li><p>id是模块名字，它是可选参数</p>
+</li>
+<li><p>dependencies 指定了所要依赖的模块列表，他是一个数组，也是可选的参数，每个依赖的模块的输出将作为参数一次传入factory中。如果没有指定dependencies，那么他的默认值是<strong>[‘require’,’exports’,’module’]</strong>。</p>
+</li>
+<li><p>factory 是最后一个参数，它包裹了模块的具体实现，他是一个函数或是一个对象。如果是函数，那么它的返回值就是模块的的输出接口或值。</p>
+</li>
+</ul>
+<p>定义一个moduleA，它依赖jQuery模块</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">define(<span class="string">'moduleA'</span>,[<span class="string">'jquery'</span>],<span class="function"><span class="keyword">function</span>(<span class="params">$</span>)</span>&#123;</div><div class="line">    <span class="comment">//$是jquery模块输出</span></div><div class="line">    $(<span class="string">'body'</span>).text(<span class="string">'hello'</span>);</div><div class="line">&#125;);</div><div class="line"><span class="comment">//使用</span></div><div class="line">define([<span class="string">'moduleA'</span>],<span class="function"><span class="keyword">function</span>(<span class="params">moduleA</span>)</span>&#123;&#125;);</div></pre></td></tr></table></figure>
+<p>require.js就是采用AMD模块</p>
+<p><strong>3.CMD</strong>(Common Module Defination)</p>
+<blockquote>
+<p>在cmd规范中，一个模块就是一个文件。代码的书写格式如下：<strong>define(factory)</strong><br>define是全局函数，用来定义模块。define接受factory参数，factory可以是函数，对象或字符串。</p>
+</blockquote>
+<ul>
+<li><p>当factory为对象或字符串时，表示该模块的接口就是该对象或字符串，比如要定义一个json数据模块<br><code>define({‘key’,’value’})</code></p>
+</li>
+<li><p>也可以通过字符串定义模板模块 <code>define(‘Hello ‘)</code></p>
+</li>
+<li><p>factory是函数时，表示是模块的构造方法。执行该构造方法，可以得到模块对外提供的接口，factory方法在执行时，默认会传入三个参数，require，exports，module</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">define(function(require,exports,module)&#123;</div><div class="line">    //需要导出的模块</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>require是方法，接收模板标识作为唯一参数，用来获取其它模块提供的接口</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">define(function(require, exports)&#123;</div><div class="line">    const a = require(&apos;./a&apos;);</div><div class="line">    a.doSomething();</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<ul>
+<li>require是同步往下执行的，require.async(id,callback?)用来在模块内部异步加载模块，并在加载完后执行回调函数。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">define(function(require, exports)&#123;</div><div class="line">    require.async([&apos;./a,&apos;./b], function(c ,d )&#123;</div><div class="line">        c.doSomething();    </div><div class="line">        d.doSomething();    </div><div class="line">    &#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<ul>
+<li>factory是函数时的第二个参数是exports，exports是一个对象，用来对外提供模块接口</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">define(function(require, exports)&#123;</div><div class="line">    exports.str = &apos;xxxxxxxxx&apos;;</div><div class="line">    exports.doSomething = function()&#123; //对外提供doSomething方法</div><div class="line"></div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>除了exports外，还可以用return直接对外提供对象接口</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">define(function(require, exports)&#123;</div><div class="line">   return&#123;</div><div class="line">        str: &apos;xxxxxxx&apos;,</div><div class="line">        doSomething: function()&#123;</div><div class="line"></div><div class="line">        &#125;</div><div class="line">   &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>exports是module.exports对象的一个引用，很多时候exports都无法满足需求，列如对外提供一个实例对象</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">define(function(require, exports,module)&#123;</div><div class="line">    function Person(name, age)&#123;</div><div class="line">        this.name = name;</div><div class="line">        this.age = age;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    module.exports = new Person(&apos;lily&apos;,34);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h1 id="AMD与CMD比较"><a href="#AMD与CMD比较" class="headerlink" title=" AMD与CMD比较"></a> AMD与CMD比较</h1><p>AMD默认是依赖前置，在一开始就将需要依赖的文件配置并加载好</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">define(&apos;moduleA&apos;,[&apos;jquery&apos;],function($)&#123;</div><div class="line">    //依赖的配置文件已经配置并加载好了</div><div class="line">    $(&apos;body&apos;).text(&apos;hello world&apos;);    </div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>CMD是依赖就近，需要使用的时候才会去配置加载</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">define(function(require, exports)&#123;</div><div class="line">    var a = require(&apos;./a.js&apos;); //配置并加载，同步</div><div class="line">    if(false)&#123;</div><div class="line">        var b = require(&apos;./b.js&apos;); //配置的文件永远不会被加载</div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote class=&quot;blockquote-center&quot;&gt;&lt;p&gt;commonJS,AMD与CMD的区别与联系&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="JavaScript" scheme="https://muleimulei.github.io/categories/JavaScript/"/>
+    
+    
+  </entry>
+  
+  <entry>
     <title>phantomJS简单使用方法</title>
     <link href="https://muleimulei.github.io/2017/04/14/nodejs/PhantomJS/"/>
     <id>https://muleimulei.github.io/2017/04/14/nodejs/PhantomJS/</id>
     <published>2017-04-14T15:57:33.168Z</published>
-    <updated>2017-04-14T16:23:26.671Z</updated>
+    <updated>2017-04-16T04:31:41.058Z</updated>
     
     <content type="html"><![CDATA[<blockquote class="blockquote-center"><p>phantomJS简单使用方法</p>
 </blockquote>
@@ -47,7 +124,39 @@
 <p>open方法默认使用GET方法，与服务器通信，但是也可以使用其它方法。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> webpage = <span class="built_in">require</span>(<span class="string">'webpage'</span>);</div><div class="line"><span class="keyword">var</span> page = webpage.create();</div><div class="line"><span class="keyword">var</span> postbody = <span class="string">'user=user&amp;password=password'</span>;</div><div class="line">page.open(url,<span class="string">'POST'</span>,postbody,<span class="function"><span class="keyword">function</span>(<span class="params">status</span>)</span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'Status: '</span>+status);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
 <p>上面代码中，使用post方法向服务器发送数据。open方法的第二个参数来指定http方法，第三个参数用来指定该方法所要使用的数据。</p>
-]]></content>
+<p>open方法还允许提供配置对象，对HTTP请求进行更详细的配置。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> webpage = <span class="built_in">require</span>(<span class="string">'webpage'</span>);</div><div class="line"><span class="keyword">var</span> page = webpage.create();</div><div class="line"><span class="keyword">var</span> settings = &#123;</div><div class="line">    <span class="attr">operation</span>: <span class="string">'POST'</span>,</div><div class="line">    <span class="attr">encoding</span>: <span class="string">'utf-8'</span>,</div><div class="line">    <span class="attr">headers</span>: &#123;</div><div class="line">        <span class="string">'Content-Type'</span>: <span class="string">'application/json'</span></div><div class="line">    &#125;,</div><div class="line">    <span class="attr">data</span>: <span class="built_in">JSON</span>.stringfy(&#123;</div><div class="line">        <span class="attr">some</span>: <span class="string">'data'</span>,</div><div class="line">        <span class="attr">another</span>: [<span class="string">'customer'</span>,<span class="string">'data'</span>]</div><div class="line">    &#125;);</div><div class="line">&#125;;</div><div class="line"></div><div class="line">page.open(url,settings,<span class="function"><span class="keyword">function</span>(<span class="params">status</span>)</span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'Status'</span>+status);</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<ul>
+<li>evalute()方法<blockquote>
+<p>evalute方法用于打开网页后，在页面中执行JavaScript代码。</p>
+</blockquote>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> page = <span class="built_in">require</span>(<span class="string">'webpage'</span>).create();</div><div class="line">page.open(url,<span class="function"><span class="keyword">function</span>(<span class="params">status</span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> title = page.evalute(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="built_in">document</span>.title;    </div><div class="line">    &#125;);</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'Page title is'</span>+ title);</div><div class="line">    phantom.exit();</div><div class="line">    </div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>网页内部的console语句，以及evalute方法内部的console语句，默认不会显示在命令行。这时,可以用onConsoleMessage方法监听这个事件，进行处理。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> page = <span class="built_in">require</span>(<span class="string">'webpage'</span>).create();</div><div class="line">page.onConsoleMessage = <span class="function"><span class="keyword">function</span>(<span class="params">msg</span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'Page title is '</span> + msg);</div><div class="line">&#125;;</div><div class="line">page.open(url, <span class="function"><span class="keyword">function</span>(<span class="params">status</span>) </span>&#123;</div><div class="line">  page.evaluate(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="built_in">document</span>.title);</div><div class="line">  &#125;);</div><div class="line">  phantom.exit();</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<ul>
+<li>includeJs()<blockquote>
+<p>includeJs方法用于页面加载外部脚本，加载结束后就调用指定的回调函数。</p>
+</blockquote>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> page = <span class="built_in">require</span>(<span class="string">'webpage'</span>).create();</div><div class="line">page.open(url,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    page.includeJs(<span class="string">'jquery.min.js'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        page.evalute(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">            $(<span class="string">'button'</span>).click();</div><div class="line">        &#125;);</div><div class="line">    &#125;);</div><div class="line">    phantom.exit();</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>上面的例子在页面中注入jquery脚本，然后点击所有的按钮。需要注意的是，由于是异步加载，所以Phantom.exit()语句要放在page.includeJs()方法的回调函数之中，否则页面会过早移除。</p>
+<ul>
+<li>render()方法</li>
+</ul>
+<p>render方法用于将网页保存成图片，参数就是指定的文件名。该方法根据后缀名，将网页保存成不同的格式，目前支持PNG,GIF,JPEG和PDF。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> webpage = <span class="built_in">require</span>(<span class="string">'webpage'</span>);</div><div class="line"><span class="keyword">var</span> page = webpage.create();</div><div class="line">page.viewportSize = &#123;<span class="attr">width</span>: <span class="number">1920</span>, <span class="attr">height</span>: <span class="number">1080</span>&#125;;</div><div class="line">page.open(url,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    page.render(<span class="string">'main.jpeg'</span>,&#123;<span class="attr">format</span>: <span class="string">'jpeg'</span>,<span class="attr">quality</span>: <span class="string">'100'</span>&#125;);</div><div class="line">    phantom.exit();</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>该方法还可以接受一个配置对象，format字段用于指定图片格式，quality字段用于指定图片质量，最小为0，最大为100。</p>
+<ul>
+<li>viewportSize,zoomFactor</li>
+</ul>
+<p>viewportSize属性指定浏览器视口的大小,即网页加载的初始浏览器窗口大小。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> webpage = <span class="built_in">require</span>(<span class="string">'webpage'</span>);</div><div class="line"><span class="keyword">var</span> page = webpage.create();</div><div class="line">page.viewportSize = &#123;</div><div class="line">    <span class="attr">width</span>: <span class="number">480</span>,</div><div class="line">    <span class="attr">height</span>: <span class="number">800</span></div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>viewportSize的height字段必须指定，不可省略。</p>
+<p>zoomFactor属性用来指定渲染时页面的放大系数，默认是1。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> webpage = <span class="built_in">require</span>(<span class="string">'webpage'</span>);</div><div class="line"><span class="keyword">var</span> page = webpage.create();</div><div class="line">page.zoomFactor = <span class="number">0.25</span>;</div><div class="line">page.render(<span class="string">'capture.png'</span>);</div></pre></td></tr></table></figure>]]></content>
     
     <summary type="html">
     
@@ -68,7 +177,7 @@
     <link href="https://muleimulei.github.io/2017/04/14/nodejs/%E7%88%AC%E5%8F%96%E7%BD%91%E6%98%93%E4%BA%91%E9%9F%B3%E4%B9%90/"/>
     <id>https://muleimulei.github.io/2017/04/14/nodejs/爬取网易云音乐/</id>
     <published>2017-04-14T15:07:13.645Z</published>
-    <updated>2017-04-14T15:56:49.964Z</updated>
+    <updated>2017-04-15T14:00:25.987Z</updated>
     
     <content type="html"><![CDATA[<blockquote class="blockquote-center"><p>爬取网易云音乐</p>
 </blockquote>

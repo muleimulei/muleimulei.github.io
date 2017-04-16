@@ -119,7 +119,7 @@
 <meta property="og:url" content="https://muleimulei.github.io/2017/04/14/nodejs/PhantomJS/index.html">
 <meta property="og:site_name" content="风的影子">
 <meta property="og:description" content="phantomJS简单使用方法">
-<meta property="og:updated_time" content="2017-04-14T16:23:26.671Z">
+<meta property="og:updated_time" content="2017-04-16T04:31:41.058Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="phantomJS简单使用方法">
 <meta name="twitter:description" content="phantomJS简单使用方法">
@@ -463,7 +463,39 @@
 <p>open方法默认使用GET方法，与服务器通信，但是也可以使用其它方法。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> webpage = <span class="built_in">require</span>(<span class="string">'webpage'</span>);</div><div class="line"><span class="keyword">var</span> page = webpage.create();</div><div class="line"><span class="keyword">var</span> postbody = <span class="string">'user=user&amp;password=password'</span>;</div><div class="line">page.open(url,<span class="string">'POST'</span>,postbody,<span class="function"><span class="keyword">function</span>(<span class="params">status</span>)</span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'Status: '</span>+status);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
 <p>上面代码中，使用post方法向服务器发送数据。open方法的第二个参数来指定http方法，第三个参数用来指定该方法所要使用的数据。</p>
-
+<p>open方法还允许提供配置对象，对HTTP请求进行更详细的配置。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> webpage = <span class="built_in">require</span>(<span class="string">'webpage'</span>);</div><div class="line"><span class="keyword">var</span> page = webpage.create();</div><div class="line"><span class="keyword">var</span> settings = &#123;</div><div class="line">    <span class="attr">operation</span>: <span class="string">'POST'</span>,</div><div class="line">    <span class="attr">encoding</span>: <span class="string">'utf-8'</span>,</div><div class="line">    <span class="attr">headers</span>: &#123;</div><div class="line">        <span class="string">'Content-Type'</span>: <span class="string">'application/json'</span></div><div class="line">    &#125;,</div><div class="line">    <span class="attr">data</span>: <span class="built_in">JSON</span>.stringfy(&#123;</div><div class="line">        <span class="attr">some</span>: <span class="string">'data'</span>,</div><div class="line">        <span class="attr">another</span>: [<span class="string">'customer'</span>,<span class="string">'data'</span>]</div><div class="line">    &#125;);</div><div class="line">&#125;;</div><div class="line"></div><div class="line">page.open(url,settings,<span class="function"><span class="keyword">function</span>(<span class="params">status</span>)</span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'Status'</span>+status);</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<ul>
+<li>evalute()方法<blockquote>
+<p>evalute方法用于打开网页后，在页面中执行JavaScript代码。</p>
+</blockquote>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> page = <span class="built_in">require</span>(<span class="string">'webpage'</span>).create();</div><div class="line">page.open(url,<span class="function"><span class="keyword">function</span>(<span class="params">status</span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> title = page.evalute(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="built_in">document</span>.title;    </div><div class="line">    &#125;);</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'Page title is'</span>+ title);</div><div class="line">    phantom.exit();</div><div class="line">    </div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>网页内部的console语句，以及evalute方法内部的console语句，默认不会显示在命令行。这时,可以用onConsoleMessage方法监听这个事件，进行处理。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> page = <span class="built_in">require</span>(<span class="string">'webpage'</span>).create();</div><div class="line">page.onConsoleMessage = <span class="function"><span class="keyword">function</span>(<span class="params">msg</span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'Page title is '</span> + msg);</div><div class="line">&#125;;</div><div class="line">page.open(url, <span class="function"><span class="keyword">function</span>(<span class="params">status</span>) </span>&#123;</div><div class="line">  page.evaluate(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="built_in">document</span>.title);</div><div class="line">  &#125;);</div><div class="line">  phantom.exit();</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<ul>
+<li>includeJs()<blockquote>
+<p>includeJs方法用于页面加载外部脚本，加载结束后就调用指定的回调函数。</p>
+</blockquote>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> page = <span class="built_in">require</span>(<span class="string">'webpage'</span>).create();</div><div class="line">page.open(url,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    page.includeJs(<span class="string">'jquery.min.js'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        page.evalute(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">            $(<span class="string">'button'</span>).click();</div><div class="line">        &#125;);</div><div class="line">    &#125;);</div><div class="line">    phantom.exit();</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>上面的例子在页面中注入jquery脚本，然后点击所有的按钮。需要注意的是，由于是异步加载，所以Phantom.exit()语句要放在page.includeJs()方法的回调函数之中，否则页面会过早移除。</p>
+<ul>
+<li>render()方法</li>
+</ul>
+<p>render方法用于将网页保存成图片，参数就是指定的文件名。该方法根据后缀名，将网页保存成不同的格式，目前支持PNG,GIF,JPEG和PDF。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> webpage = <span class="built_in">require</span>(<span class="string">'webpage'</span>);</div><div class="line"><span class="keyword">var</span> page = webpage.create();</div><div class="line">page.viewportSize = &#123;<span class="attr">width</span>: <span class="number">1920</span>, <span class="attr">height</span>: <span class="number">1080</span>&#125;;</div><div class="line">page.open(url,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    page.render(<span class="string">'main.jpeg'</span>,&#123;<span class="attr">format</span>: <span class="string">'jpeg'</span>,<span class="attr">quality</span>: <span class="string">'100'</span>&#125;);</div><div class="line">    phantom.exit();</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>该方法还可以接受一个配置对象，format字段用于指定图片格式，quality字段用于指定图片质量，最小为0，最大为100。</p>
+<ul>
+<li>viewportSize,zoomFactor</li>
+</ul>
+<p>viewportSize属性指定浏览器视口的大小,即网页加载的初始浏览器窗口大小。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> webpage = <span class="built_in">require</span>(<span class="string">'webpage'</span>);</div><div class="line"><span class="keyword">var</span> page = webpage.create();</div><div class="line">page.viewportSize = &#123;</div><div class="line">    <span class="attr">width</span>: <span class="number">480</span>,</div><div class="line">    <span class="attr">height</span>: <span class="number">800</span></div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>viewportSize的height字段必须指定，不可省略。</p>
+<p>zoomFactor属性用来指定渲染时页面的放大系数，默认是1。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> webpage = <span class="built_in">require</span>(<span class="string">'webpage'</span>);</div><div class="line"><span class="keyword">var</span> page = webpage.create();</div><div class="line">page.zoomFactor = <span class="number">0.25</span>;</div><div class="line">page.render(<span class="string">'capture.png'</span>);</div></pre></td></tr></table></figure>
       
     </div>
 
@@ -514,6 +546,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/04/16/JavaScript/commonJs_AMD_CMD比较/" rel="prev" title="commonJS,AMD与CMD的区别与联系">
+                commonJS,AMD与CMD的区别与联系 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -602,7 +638,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-count">15</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
