@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://muleimulei.github.io/music/index.html</loc>
+    
+    <lastmod>2017-04-19T16:02:07.382Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://muleimulei.github.io/2017/04/16/JavaScript/commonJs_AMD_CMD%E6%AF%94%E8%BE%83/</loc>
     
     <lastmod>2017-04-16T07:13:21.624Z</lastmod>
@@ -40,13 +47,6 @@
     <loc>https://muleimulei.github.io/2017/04/13/OS/%E9%A1%B5%E9%9D%A2%E7%BD%AE%E6%8D%A2%E7%AE%97%E6%B3%95/</loc>
     
     <lastmod>2017-04-14T15:13:35.567Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://muleimulei.github.io/music/index.html</loc>
-    
-    <lastmod>2017-04-14T11:03:16.686Z</lastmod>
     
   </url>
   

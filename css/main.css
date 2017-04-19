@@ -1714,7 +1714,7 @@ div.site-author.motion-element > div {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #ff858a;
+  background: #8effff;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2882,6 +2882,9 @@ div.site-author.motion-element > div {
   .post-body {
     text-align: justify;
   }
+}
+body {
+  background-color: #a0c3e5;
 }
 .content-wrap {
   background: rgba(255,255,255,0.7);

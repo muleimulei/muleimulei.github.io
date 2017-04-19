@@ -34,6 +34,14 @@
             if(!balls[t].link&&Math.random()<.7){
                 balls[t].link = Math.floor(balls.length*Math.random());
             }
+            l.beginPath();
+            if(balls[t].link&&balls[balls[t].link]&&balls[balls[t].link]){
+                l.moveTo(balls[t].x,balls[t].y);
+                l.lineTo(balls[balls[t].link].x,balls[balls[t].link].y);
+            }
+            l.stroke();
+            l.closePath();
+
         	l.beginPath();
         	l.fillStyle = balls[t].color,
         	l.arc(balls[t].x,balls[t].y,balls[t].radius,0,Math.PI*2);
@@ -42,10 +50,7 @@
             l.fillStyle = `rgba(${Math.random()*255},${Math.random()*255},${Math.random()*255},${Math.random()+.001})`;
             l.lineWidth = '7px';
             l.strokeStyle = "rgba(0,0,0,0.5)"
-            if(balls[t].link&&balls[balls[t].link]&&balls[balls[t].link]){
-                l.moveTo(balls[t].x,balls[t].y);
-                l.lineTo(balls[balls[t].link].x,balls[balls[t].link].y);
-            }
+            
             l.stroke();
             l.fill();
         	l.closePath();

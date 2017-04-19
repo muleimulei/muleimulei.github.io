@@ -100,8 +100,6 @@
 
 
 
-  
-
 
   <link rel="alternate" href="/atom.xml" title="风的影子" type="application/atom+xml" />
 
@@ -120,9 +118,10 @@
 
 
 
+切换
+
 
     
-        
         
     
     
@@ -139,9 +138,10 @@
 
 
 
+切换
+
 
     
-        
         
     
     
@@ -150,7 +150,7 @@
                 我好像在哪见过你
                 --薛之谦">
 <meta property="og:image" content="http://p3.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg">
-<meta property="og:updated_time" content="2017-04-14T11:03:16.686Z">
+<meta property="og:updated_time" content="2017-04-19T16:02:07.382Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="音乐册子">
 <meta name="twitter:description" content="念念不忘，必有回响 
@@ -158,9 +158,10 @@
 
 
 
+切换
+
 
     
-        
         
     
     
@@ -397,10 +398,11 @@
 <link rel="stylesheet" type="text/css" href="/lib/font-awesome/css/font-awesome.min.css">
 <link rel="stylesheet" type="text/css" href="/music/music.css">
 
+<button class="toggle">切换</button>
+
 <div id="box">
     <div class="pic">
         <img src="http://p3.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg">
-        <!-- <span class="cover unplayed bg play-bg"></span> -->
     </div>
     <div class="ctrl-box">
         <div class="title">
@@ -424,12 +426,29 @@
     <div style="clear: both"></div>
     <div class="music-list">
         <ul>
-            
         </ul>
     </div>
     <canvas id="mycanvas"></canvas>
 </div>
 
+<div id="box2">
+    <div class="tools">
+        <div class="control">
+            音量：<input type="range" name="voice" min="0" max="100" value="50">
+            <div style="width: 100%;text-align: center;">
+                <button data-type="column">条形图</button>
+                <button data-type="wave">波形图</button>
+                <button data-type="circle">圆形图</button>
+            </div>
+        </div>
+        <div class="drop">
+            <input type="file" name="music">
+        </div>
+    </div>
+    <canvas>
+        
+    </canvas>
+</div>
 <script type="text/javascript" src="/lib/jquery/index.js"></script>
 <script type="text/javascript" src="/music/music.js"></script>
     
