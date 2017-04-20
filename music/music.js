@@ -250,7 +250,7 @@
     var dots = [];
 
     function checkFile(file) {
-        if (!/\/mp3$|\/ogg$|\/wav$/.test(file.type)) {
+        if (!/\/mp3$|\/ogg$|\/wav$|\/mpeg/.test(file.type)) {
             alert('请选择音频文件播放');
             return false;
         }
