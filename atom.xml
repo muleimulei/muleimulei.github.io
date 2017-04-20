@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://muleimulei.github.io/"/>
-  <updated>2017-04-16T07:13:21.624Z</updated>
+  <updated>2017-04-20T09:10:01.066Z</updated>
   <id>https://muleimulei.github.io/</id>
   
   <author>
@@ -14,6 +14,67 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>jquery异步获取数据</title>
+    <link href="https://muleimulei.github.io/2017/04/20/jquery/jquery%E8%8E%B7%E5%8F%96%E6%95%B0%E6%8D%AE/"/>
+    <id>https://muleimulei.github.io/2017/04/20/jquery/jquery获取数据/</id>
+    <published>2017-04-20T07:47:08.896Z</published>
+    <updated>2017-04-20T09:10:01.066Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote class="blockquote-center"><p>jquery异步获取数据</p>
+</blockquote>
+<a id="more"></a>
+<h1 id="jquery异步获取数据"><a href="#jquery异步获取数据" class="headerlink" title="jquery异步获取数据"></a>jquery异步获取数据</h1><ul>
+<li>使用load()方法异步请求数据<br>  使用load()方法通过ajax请求加载服务器的数据，并把返回的数据放置到指定的元素中。load(url,[data],[callback])，参数URL为加载服务器地址，可选项data参数为请求时发送的数据，callback参数为数据请求成功后执行的回调函数。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">$(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    $(<span class="string">'#btn'</span>).on(<span class="string">'click'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        <span class="keyword">var</span> <span class="keyword">this</span> = $(<span class="keyword">this</span>);</div><div class="line">        $(<span class="string">'.content'</span>).html(<span class="string">'&lt;img src='</span>loading.gif<span class="string">'/&gt;'</span>)</div><div class="line">                     .load(<span class="string">'fruit.html'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">                        $<span class="keyword">this</span>.attr(<span class="string">'disabled'</span>,<span class="literal">true</span>);</div><div class="line">                      &#125;);</div><div class="line">    &#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<ul>
+<li>使用getJSON()方法异步加载json格式数据<br>  使用getJSON()方法可以通过ajax异步请求的方式获取服务器中的数据，并对获取到的数据进行解析，显示在页面中。<code>$.getJSON(url,[data],[callback])</code>，其中，URL参数为请求加载json格式文件的服务器地址，可选项data参数为请求时发送的数据，callback参数为数据请求成功后，执行的回调函数。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">'#btn'</span>).on(<span class="string">'click'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> <span class="keyword">this</span> = $(<span class="keyword">this</span>);</div><div class="line">    $.getJSON(<span class="string">'sport.json'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</div><div class="line">        <span class="keyword">this</span>.attr(<span class="string">'disabled'</span>,<span class="literal">true</span>);</div><div class="line">        $.each(data,<span class="function"><span class="keyword">function</span>(<span class="params">index,sport</span>)</span>&#123;</div><div class="line">            $(<span class="string">'ul'</span>).append(<span class="string">`&lt;li&gt;sport["name"]&lt;/li&gt;`</span>);</div><div class="line">        &#125;);</div><div class="line">    &#125;);    </div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<ul>
+<li>使用getScript()方法异步加载并执行js文件，<code>$.getScript(url,[callback])</code></li>
+<li>使用get()方法以GET方式从服务器获取数据，通过方法中中的回调函数的参数返回请求的数据。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">'#btn'</span>).on(<span class="string">'click'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> <span class="keyword">this</span> = $(<span class="keyword">this</span>);</div><div class="line">    $.get(<span class="string">'info.php'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</div><div class="line">        <span class="keyword">this</span>.attr(<span class="string">'disabled'</span>,<span class="literal">false</span>);</div><div class="line">        $(<span class="string">'ul'</span>).append(data.name);</div><div class="line">        $(<span class="string">'ul'</span>).append(data.say);</div><div class="line">    &#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<ul>
+<li>使用post方法以post方式向服务器发送数据<br>  post()方法多用于以post方式向服务器发送数据，服务器接受到数据后，进行处理，并将处理结果返回给页面，<code>$.post(url,[data],[callback])</code>，参数URL为加载服务器地址，可选项data参数为请求时发送的数据，callback参数为数据请求成功后执行的回调函数。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">$(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    $(<span class="string">'#btn'</span>).on(<span class="string">'click'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        $.post(<span class="string">'check.php'</span>,&#123;</div><div class="line">            <span class="attr">num</span>: $(<span class="string">'#number'</span>).val()    </div><div class="line">        &#125;,</div><div class="line">        <span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</div><div class="line">            $(<span class="string">'ul'</span>).append(<span class="string">`&lt;li&gt;你输入的<span class="subst">$&#123;$(<span class="string">'#number'</span>),val()&#125;</span>是&lt;b&gt;<span class="subst">$&#123;data&#125;</span>&lt;/b&gt;&lt;/li&gt;`</span>);</div><div class="line">        &#125;);</div><div class="line">    &#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>后台代码如下：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$num = $_POST[<span class="string">'num'</span>];</div><div class="line"><span class="keyword">if</span>($num%<span class="number">2</span>==<span class="number">0</span>)&#123;</div><div class="line">    <span class="keyword">echo</span> <span class="string">'偶数'</span>;</div><div class="line">&#125;<span class="keyword">else</span>&#123;</div><div class="line">    <span class="keyword">echo</span> <span class="string">'奇数'</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li><p>使用serialize()方法序列化表单元素值<br>  使用serialize()方法可以将表单中有name属性的元素值进行序列化，生成标准的URL编码文本字符串，直接用于ajax请求，调用格式如下：<code>$(selector).serialize()</code></p>
+</li>
+<li><p>使用ajax方法加载服务器数据<br>  ajax方法是最底层，功能最强大的请求服务器数据的方式，它不仅仅可以获取服务器返回的数据，还可以向服务器发送并传递数值。$.ajas([settings])，其中参数setting为发送ajax请求时的配置对象，在该对像中，dada为请求时传递的数据，dataType为服务器返回的数据类型，success为请求成功时的回调函数，type为发送数据请求的方式，默认为get。</p>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">$(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    $(<span class="string">'#btn'</span>).on(<span class="string">'click'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        <span class="keyword">var</span> <span class="keyword">this</span> = $(<span class="keyword">this</span>);</div><div class="line">        $.ajax(&#123;</div><div class="line">            <span class="attr">url</span>: <span class="string">'article.php'</span>,</div><div class="line">            <span class="attr">dataType</span>: <span class="string">'text'</span>,</div><div class="line">            <span class="attr">success</span>: <span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</div><div class="line">                <span class="keyword">this</span>.attr(<span class="string">'disabled'</span>,<span class="literal">false</span>);</div><div class="line">                $(<span class="string">'ul'</span>).append(data);</div><div class="line">            &#125;    </div><div class="line">        &#125;);    </div><div class="line">    &#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<ul>
+<li>使用ajaxSetup方法设置全局ajax默认选项<br>  使用ajaxSetup()方法可以设置，ajax请求的一些全局变量，设置完成后，后面的ajax请求不需要添加这些选项值。<code>$.ajaxSetup([options])</code></li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">$(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    $.ajaxSetup(&#123;</div><div class="line">        <span class="attr">dataType</span>: <span class="string">'text'</span>,</div><div class="line">        <span class="attr">success</span>: <span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</div><div class="line">            $(<span class="string">'ul'</span>).empty().append(data);</div><div class="line">        &#125;    </div><div class="line">    &#125;);</div><div class="line">&#125;);</div><div class="line"></div><div class="line">$(<span class="string">'#btn1'</span>).on(<span class="string">'click'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    $.ajax(&#123;</div><div class="line">        <span class="attr">url</span>: <span class="string">'a1.txt'</span>    </div><div class="line">    &#125;);</div><div class="line">&#125;); </div><div class="line"></div><div class="line"></div><div class="line">$(<span class="string">'#btn2'</span>).on(<span class="string">'click'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    $.ajax(&#123;</div><div class="line">        <span class="attr">url</span>: <span class="string">'a2.txt'</span>    </div><div class="line">    &#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<ul>
+<li>使用ajaxStart()和ajaxStop()方法<br>  两者绑定ajax时间。ajaxStart()方法用于在ajax请求发出前触发函数，ajaxStop()方法在ajax请求完成后触发函数。</li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote class=&quot;blockquote-center&quot;&gt;&lt;p&gt;jquery异步获取数据&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="JavaScript" scheme="https://muleimulei.github.io/categories/JavaScript/"/>
+    
+      <category term="jquery" scheme="https://muleimulei.github.io/categories/JavaScript/jquery/"/>
+    
+    
+      <category term="jquery" scheme="https://muleimulei.github.io/tags/jquery/"/>
+    
+  </entry>
   
   <entry>
     <title>commonJS,AMD与CMD的区别与联系</title>
