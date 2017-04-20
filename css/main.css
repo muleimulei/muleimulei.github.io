@@ -1714,7 +1714,7 @@ div.site-author.motion-element > div {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #679cff;
+  background: #a3ec47;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2708,8 +2708,8 @@ div.site-author.motion-element > div {
 }
 .menu .menu-item a:hover,
 .menu-item-active a {
-  background: #f9f9f9;
-  border-bottom-color: #fff;
+  background: rgba(202,161,161,0.28);
+  border-bottom-color: #808080;
 }
 .menu .menu-item br {
   display: none;
@@ -2750,13 +2750,14 @@ div.site-author.motion-element > div {
   display: none;
   right: auto;
   bottom: auto;
+  background: rgba(255,255,255,0.5);
   -webkit-transform: none;
 }
 .sidebar-inner {
   box-sizing: border-box;
   width: 240px;
   color: #555;
-  background: #fff;
+  background: rgba(255,255,255,0.27);
   box-shadow: initial;
   border-radius: initial;
 }

@@ -418,7 +418,7 @@
                 {
                     cc.clearRect(0, 0, cw, ch);
                     cc.beginPath();
-                    cc.fillStyle = '#406182';
+                    cc.fillStyle = '#e3edf7';
                     cc.fillRect(0, 0, cw, ch);
                     cc.closePath();
                     cc.lineWidth = 0;
