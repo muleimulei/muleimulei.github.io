@@ -2,6 +2,13 @@
 		margin: 0;
 		padding: 0;
 	}
+	.content-wrap{
+		padding: 0;
+	}
+	#posts{
+		margin: 0;
+		padding: 0;
+	}
 	.wrapper{
 		display: -webkit-box;
 		display: -ms-flexbox;
@@ -10,8 +17,8 @@
 		    flex-wrap: wrap;
 	}
 	.wrapper >div{
-		width: 25%;
-		height: 240px;
+		width: calc(100%/3);
+		/* height: 240px; */
 		-webkit-transition: all .5s ease;
 		transition: all .5s ease;
 		
@@ -35,7 +42,7 @@
 	@media screen and (max-width: 600px){
 		.wrapper >div{
 			width: 100%;
-			height: 240px;
+			/* height: 400px; */
 		}
 	}
 	 @-webkit-keyframes down{
