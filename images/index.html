@@ -113,73 +113,16 @@
 
 
 
-<meta name="description" content="picture transition
-	
-
-
-
-	*{
-		margin: 0;
-		padding: 0;
-	}
-	.content-wrap{
-		padding: 0;
-	}
-	.posts-expand{
-		padding-top:0;
-		margin: 0 0;
-	}
-	.wrapper{
-		width: 100%;
-		overflow: hidden;
-		marg">
+<meta name="description" content="picture transition">
 <meta property="og:type" content="website">
 <meta property="og:title" content="风的影子">
 <meta property="og:url" content="https://muleimulei.github.io/images/index.html">
 <meta property="og:site_name" content="风的影子">
-<meta property="og:description" content="picture transition
-	
-
-
-
-	*{
-		margin: 0;
-		padding: 0;
-	}
-	.content-wrap{
-		padding: 0;
-	}
-	.posts-expand{
-		padding-top:0;
-		margin: 0 0;
-	}
-	.wrapper{
-		width: 100%;
-		overflow: hidden;
-		marg">
-<meta property="og:updated_time" content="2017-04-06T10:26:35.022Z">
+<meta property="og:description" content="picture transition">
+<meta property="og:updated_time" content="2017-04-21T13:59:08.919Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="风的影子">
-<meta name="twitter:description" content="picture transition
-	
-
-
-
-	*{
-		margin: 0;
-		padding: 0;
-	}
-	.content-wrap{
-		padding: 0;
-	}
-	.posts-expand{
-		padding-top:0;
-		margin: 0 0;
-	}
-	.wrapper{
-		width: 100%;
-		overflow: hidden;
-		marg">
+<meta name="twitter:description" content="picture transition">
 
 
 
@@ -408,139 +351,19 @@
 <head>
 	<meta charset="UTF-8">
 	<title>picture transition</title>
-	
-<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+	<link rel="stylesheet" type="text/css" href="/picture/picture.css">
+	<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
 </head>
-<style>
-	*{
-		margin: 0;
-		padding: 0;
-	}
-	.content-wrap{
-		padding: 0;
-	}
-	.posts-expand{
-		padding-top:0;
-		margin: 0 0;
-	}
-	.wrapper{
-		width: 100%;
-		overflow: hidden;
-		margin-top: 0px;
-		max-width: 1080px: 
-	}
-
-	.wrapper div a{
-		display: block;
-		height: 100%;
-		width: 100%;
-	}
-	.wrapper ul{
-		list-style: none;
-		display: table;
-		table-layout: fixed;
-		margin: 0;
-		padding: 0;
-		width: 100%;
-		height: 250px;
-	}
-	.wrapper ul li{
-		display: table-cell;
-		vertical-align: bottom;
-		position: relative;
-		height: 250px;
-		transition: all 0.5s ease;
-		width: 20%;
-		cursor: pointer;
-
-		transform-origin: center center;
-		transform: scale(0, 0);
-		animation: big 1s ease forwards;
-	}
-	@keyframes big{
-		100%{
-			transform: scale(1,1);
-		}
-	}
-
-	.wrapper ul li div{
-		height: 100%;
-		overflow: hidden;
-		position: relative;
-	}
-
-	.wrapper ul li div img{
-		height: 100%;
-		width: 100%;
-	}
+<style type="text/css">
 	
-	.wrapper ul:hover li {
-		width: 10%;
-		height: 250px;
-	}
-	.wrapper ul:hover li:hover{
-		width: 60%;
-		height: 250px;
-	}
-	.wrapper a{
-		display: inline-block;
-		width: 100%;
-		height: 100%;
-	}
-	@media screen and (max-width: 600px){
-		body{
-			margin: 0;
-		}
-		.wrapper{
-			height: auto;
-		}
-		.wrapper ul li, .wrapper ul li:hover, .wrapper ul:hover li, .wrapper ul:hover li:hover{
-			position: relative;
-			display: table;
-			table-layout: fixed;
-			width: 100%;
-		}
-	}
-}
 </style>
 <body>
+
 	<div class="wrapper">
 		
 	</div>
+	<script type="text/javascript" src="/picture/picture.js"></script>
 </body>
-
-<script type="text/javascript">
-	(function(){
-		var wrapper = document.querySelector('.wrapper');
-		var total = 17;
-		var index = 0;
-		var linenum = 6;
-		function addPictures(){
-			var ul = document.createElement('ul');
-			wrapper.appendChild(ul);
-			for(var i = 0;i<linenum;i++){
-				var li = document.createElement('li');
-				ul.appendChild(li);
-				var div = document.createElement('div');
-				li.appendChild(div);
-				var img = document.createElement('img');
-				img.setAttribute('src','./pictures/'+(++index)+'.jpg');
-				//<a href="./pictures/1.jpg" class="fancybox fancybox.image" rel="group"><img src="./pictures/1.jpg"></a>
-				var a = document.createElement('a');
-				a.className = 'fancybox fancybox.image';
-				a.setAttribute('href','./pictures/'+(index)+'.jpg');
-				div.appendChild(a);
-				a.appendChild(img);
-			}
-		}
-		
-		var line = Math.ceil(total/linenum);
-		for(var i=0;i<line;i++){
-			addPictures();
-		}
-	})()
-</script>
-
 </html>
     
   </div>

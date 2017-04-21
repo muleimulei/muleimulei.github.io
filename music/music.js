@@ -4,7 +4,7 @@
                 <i class="fa fa-music" aria-hidden="true"></i>
                 <h5 class='tt'>{{title}}</h5>
                 <h5 class="author">{{singer}}</h5>
-            	</li>`;
+                </li>`;
     var open = $("#box .ctrl-box .switch");
     var ul = $('#box .music-list ul');
     var list = [],
@@ -244,7 +244,7 @@
     analyser.fftSize = SIZE;
     var bufferLength = analyser.frequencyBinCount;
     var dataArray = new Uint8Array(bufferLength);
-    var requestAnimateFrame = window.requestAnimateFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame;
+    var requestAnimateF = window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame;
     var f = 'column';
     var btns = $('.control > div > button');
     var dots = [];
@@ -369,14 +369,15 @@
                 analyser.getByteTimeDomainData(dataArray);
             }
             draw(dataArray);
-            requestAnimateFrame(v);
+            requestAnimateF(v);
         }
-        requestAnimateFrame(v);
+        requestAnimateF(v);
     }
 
     function draw(arr) {
         var ch = c.height;
         var cw = c.width;
+        // console.log(ch,cw);
         cc.clearRect(0, 0, cw, ch);
         cc.beginPath();
         cc.globalAlpha = 0.3;
@@ -384,6 +385,7 @@
         cc.fillRect(0, 0, cw, ch);
         cc.closePath();
         cc.globalAlpha = 1.0;
+        // cc.scale(2,2);
         switch (f) {
             case 'wave':
                 {
@@ -395,8 +397,10 @@
                     for (let i = 0; i < bufferLength; i++) {
                         if (arr[i] < bufferLength) {
                             y = ch / 2 - arr[i] / 2;
-                        } else {
+                        } else if(arr[i]>=bufferLength) {
                             y = ch / 2 + arr[i] / 4;
+                        }else{
+                            y = ch / 2;
                         }
                         cc.lineTo(x, y);
                         x += sliceWidth;
@@ -418,13 +422,13 @@
                 {
                     cc.clearRect(0, 0, cw, ch);
                     cc.beginPath();
-                    cc.fillStyle = '#e3edf7';
+                    cc.fillStyle = 'rgba(114, 77, 150, 0.24)';
                     cc.fillRect(0, 0, cw, ch);
                     cc.closePath();
                     cc.lineWidth = 0;
                     for (let i = 0; i < bufferLength; i++) {
                         let o = dots[i];
-                        let r = arr[i] / 256 * 20;
+                        let r = arr[i] / 256 * 50;
                         cc.strokeStyle = 'white';
                         var g = cc.createRadialGradient(o.x, o.y, 0, o.x, o.y, r);
                         g.addColorStop(0, '#fff');
