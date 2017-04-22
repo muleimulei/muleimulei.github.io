@@ -397,9 +397,11 @@
                     for (let i = 0; i < bufferLength; i++) {
                         if (arr[i] < bufferLength) {
                             y = ch / 2 - arr[i] / 2;
-                        } else if(arr[i]>=bufferLength) {
+                            y = ch / 2 - (ch / 2 - y)*3;
+                        } else if (arr[i] >= bufferLength) {
                             y = ch / 2 + arr[i] / 4;
-                        }else{
+                            y = 3 * (y - ch / 2) + ch / 2;
+                        } else {
                             y = ch / 2;
                         }
                         cc.lineTo(x, y);
