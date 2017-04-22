@@ -395,14 +395,18 @@
                     let sliceWidth = cw * 1.0 / bufferLength;
                     let x = 0;
                     for (let i = 0; i < bufferLength; i++) {
-                        if (arr[i] < bufferLength) {
-                            y = ch / 2 - arr[i] / 2;
-                            y = ch / 2 - (ch / 2 - y)*3;
-                        } else if (arr[i] >= bufferLength) {
-                            y = ch / 2 + arr[i] / 4;
-                            y = 3 * (y - ch / 2) + ch / 2;
-                        } else {
+                        if (i == 0) {
                             y = ch / 2;
+                        } else {
+                            if (arr[i] < bufferLength) {
+                                y = ch / 2 - arr[i] / 2;
+                                y = ch / 2 - (ch / 2 - y) * 3;
+                            } else if (arr[i] >= bufferLength) {
+                                y = ch / 2 + arr[i] / 4;
+                                y = 3 * (y - ch / 2) + ch / 2;
+                            } else {
+                                y = ch / 2;
+                            }
                         }
                         cc.lineTo(x, y);
                         x += sliceWidth;
