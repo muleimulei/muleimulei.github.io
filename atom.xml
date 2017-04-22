@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://muleimulei.github.io/"/>
-  <updated>2017-04-20T09:10:01.066Z</updated>
+  <updated>2017-04-22T16:05:18.206Z</updated>
   <id>https://muleimulei.github.io/</id>
   
   <author>
@@ -14,6 +14,73 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>websocket入门</title>
+    <link href="https://muleimulei.github.io/2017/04/22/HTML5/websocket%E5%85%A5%E9%97%A8/"/>
+    <id>https://muleimulei.github.io/2017/04/22/HTML5/websocket入门/</id>
+    <published>2017-04-22T14:37:34.733Z</published>
+    <updated>2017-04-22T16:05:18.206Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote class="blockquote-center"><p>websocket基础</p>
+</blockquote>
+<a id="more"></a>
+<p>websocket API使你可以通过web，在客户端应用程序和服务器端进程进行之间建立全双工通信。</p>
+<ol>
+<li>websocket构造函数<br> 为了建立到服务器的websocket连接，使用websocket接口，通过指向一个代表所要连接端点的URL，实例化一个websocket对象。websocket协议定义了两种方案—ws和wss，分别用于客户端和服务器之间的非加密和加密流量。ws(websocket)方案与http URI方案类似。wss(websocket secure)URI方案表示使用传输层安全性(TLS,也叫SSL)的websocket连接,使用https采用的安全机制来保证http连接安全。<br> websocket构造函数有一个必须的参数URL(指向连接目标的URL)和一个可选参数protocols(为了建立连接，服务器必须在其响应中包含的一个或一组协议名称)。在protocols参数中可以使用的协议包括xmpp(eXtensible Messaging and Presence Protocol,可拓展消息处理现场协议)，soap(Simple Object Access Protocol,简单对象访问协议)或者自定义协议。</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> echoSocket = <span class="keyword">new</span> WebSocket(<span class="string">'ws://echo.websocket.org'</span>,[<span class="string">'com.kaazing.echo'</span>,<span class="string">'example.imaginary.protocol'</span>]);</div><div class="line">echoSocket.onopen = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(echoSocket.protocol);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ol>
+<li><p>websocket事件<br> websocket API是纯事件驱动的。应用程序代码监听websocket对象上的事件，以便处理输入数据和连接状态的改变。websocket协议也是事件驱动的。客户端应用程序不需要轮询服务器来得到更新的数据。消息和事件将在服务器发送它们的时候异步到达</p>
+<ul>
+<li><p>websocket事件：open</p>
+<ul>
+<li><p>一旦服务器响应了websocket连接，open事件触发并建立一个连接。open事件对应的回调函数称为onopen。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">ws.onopen = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'Connection open ....'</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>到open事件触发时，协议握手已经完成，websocket已经准备好发送和接收数据。如果应用程序接收到一个open事件，那么可以确定websocket服务器成功的处理了连接请求，并且同意与应用程序通信。</p>
+</li>
+</ul>
+</li>
+<li><p>websocket事件：message</p>
+<ul>
+<li><p>websocket消息包含来自服务器的数据。message事件在接收到消息时触发，对应于该事件的回调函数是onmessage。除了文本，websocket消息还可以处理二进制数据，这种数据作为BLOB消息或者ArrayBuffer消息来处理。因为设置websocket消息二进制数据类型的应用程序会影响二进制消息，所以必须在读取数据之前决定用于客户端二进制输入数据的类型。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">ws.onmessage = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">if</span>(<span class="keyword">typeof</span> e.data ===<span class="string">'string'</span>)&#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">'String message received'</span>,e,e.data);</div><div class="line">    &#125;<span class="keyword">else</span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">'String message received'</span>,e,e.data);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">       </div><div class="line"></div><div class="line"><span class="comment">//接受Blob消息</span></div><div class="line">ws.binaryType = <span class="string">'blob'</span>;</div><div class="line">ws.onmessage = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">if</span>(e.data <span class="keyword">instanceof</span> Blob)&#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">'Blob message received'</span>,e.data);</div><div class="line">        <span class="keyword">var</span> blob = <span class="keyword">new</span> Blob(e.data);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">    </div><div class="line"><span class="comment">//接受ArrayBuffer消息    </span></div><div class="line">ws.binaryType = <span class="string">'arraybuffer'</span>;</div><div class="line">ws.onmessage = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">if</span>(e.data <span class="keyword">instanceof</span> <span class="built_in">ArrayBuffer</span>)&#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">'ArrayBuffer message received'</span>,e.data);</div><div class="line">        <span class="keyword">var</span> blob = <span class="keyword">new</span> <span class="built_in">Uint8Array</span>(e.data);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>websocket事件：error</p>
+<ul>
+<li><p>error事件在响应意外故障的时候触发。与该事件对应的回调函数为onerror。错误还会导致websocket连接关闭。如果你接受一个error事件，可以预期很快就会触发close事件。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">ws.onerror = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'error'</span>,e);</div><div class="line">    handle(e);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>websocket事件：close</p>
+<ul>
+<li><p>close事件在websocket连接关闭时触发。对应于close事件的回调函数是onclose。一旦连接关闭，客户端与服务器不再接受或者发送消息。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">ws.onclose = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'close'</span>,e);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>close事件有三个有用的属性(property),可以用于错误处理和恢复：wasClean,code和error。wasClean属性是一个布尔属性，表示连接是否顺利关闭连接。如果websocket的关闭是对来自服务器的close帧的响应，则该属性为true。如果连接因为其它原因（列如，因为底层TCP连接关闭），则该属性为false。code和reason属性表示服务器发送的关闭握手状态。这些属性和websocket.close()方法中的code和reason参数一致。</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote class=&quot;blockquote-center&quot;&gt;&lt;p&gt;websocket基础&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="JavaScript" scheme="https://muleimulei.github.io/categories/JavaScript/"/>
+    
+    
+      <category term="HTML5" scheme="https://muleimulei.github.io/tags/HTML5/"/>
+    
+  </entry>
   
   <entry>
     <title>jquery异步获取数据</title>
