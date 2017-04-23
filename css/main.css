@@ -1714,7 +1714,7 @@ div.site-author.motion-element > div {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #fff;
+  background: #b300ff;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2885,10 +2885,10 @@ div.site-author.motion-element > div {
   }
 }
 body {
-  background-color: #a0c3e5;
+  background-color: rgba(81,47,17,0.36);
 }
 .content-wrap {
-  background: rgba(255,255,255,0.7);
+  background: rgba(255,255,255,0.8);
 }
 .header-inner {
   background: rgba(255,255,255,0.7) !important;
