@@ -45,7 +45,7 @@
 		        animation: shave 1s ease;
 	}
 	@media screen and (max-width: 600px){
-		.wrapper >div{
+		.wrapper >div, .wrapper img{
 			width: 100%;
 		}
 	}
