@@ -36,7 +36,7 @@
 		height: 100% !important;
 		display: inline-block;
 	}
-	img{
+	a>img{
 		height: 100% !important;
 	}
 	.wrapper >div:hover>a{
