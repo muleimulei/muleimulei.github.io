@@ -36,8 +36,9 @@
 		height: 100% !important;
 		display: inline-block;
 	}
-	a>img{
+	.wrapper div>a>img{
 		height: 100% !important;
+		width: 100%;
 	}
 	.wrapper >div:hover>a{
 		-webkit-animation: shave 1s ease;
