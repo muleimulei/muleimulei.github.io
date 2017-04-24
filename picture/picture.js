@@ -29,6 +29,7 @@
 			img.setAttribute('src',arr[i]);
 			var a = document.createElement('a');
 			a.className = 'fancybox fancybox.image';
+			a.setAttribute('rel','group');
 			a.setAttribute('href',arr[i]);
 			a.style = 'border:none';
 			div.appendChild(a);
