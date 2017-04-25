@@ -114,42 +114,36 @@
 
 
 <meta name="description" content="div.wrapper{
+		display: -webkit-box;
+		display: -ms-flexbox;
 		display: flex;
-	    justify-content: space-around;
+	    -ms-flex-pack: distribute;
+	        justify-content: space-around;
 		margin-bottom: 10px;
-		flex-wrap: wrap;
-	}
-	div.wrapper div.item{
-		width: 100px;
-		height: 100px;
-		background-color: rgba(14, 21">
+		-ms-flex-wrap: wrap;">
 <meta property="og:type" content="website">
 <meta property="og:title" content="风的影子">
 <meta property="og:url" content="https://muleimulei.github.io/categories/index.html">
 <meta property="og:site_name" content="风的影子">
 <meta property="og:description" content="div.wrapper{
+		display: -webkit-box;
+		display: -ms-flexbox;
 		display: flex;
-	    justify-content: space-around;
+	    -ms-flex-pack: distribute;
+	        justify-content: space-around;
 		margin-bottom: 10px;
-		flex-wrap: wrap;
-	}
-	div.wrapper div.item{
-		width: 100px;
-		height: 100px;
-		background-color: rgba(14, 21">
-<meta property="og:updated_time" content="2017-04-14T15:59:51.221Z">
+		-ms-flex-wrap: wrap;">
+<meta property="og:updated_time" content="2017-04-24T15:34:13.129Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="风的影子">
 <meta name="twitter:description" content="div.wrapper{
+		display: -webkit-box;
+		display: -ms-flexbox;
 		display: flex;
-	    justify-content: space-around;
+	    -ms-flex-pack: distribute;
+	        justify-content: space-around;
 		margin-bottom: 10px;
-		flex-wrap: wrap;
-	}
-	div.wrapper div.item{
-		width: 100px;
-		height: 100px;
-		background-color: rgba(14, 21">
+		-ms-flex-wrap: wrap;">
 
 
 
@@ -375,10 +369,14 @@
     
       <style type="text/css">
 	div.wrapper{
+		display: -webkit-box;
+		display: -ms-flexbox;
 		display: flex;
-	    justify-content: space-around;
+	    -ms-flex-pack: distribute;
+	        justify-content: space-around;
 		margin-bottom: 10px;
-		flex-wrap: wrap;
+		-ms-flex-wrap: wrap;
+		    flex-wrap: wrap;
 	}
 	div.wrapper div.item{
 		width: 100px;
@@ -395,7 +393,8 @@
 		position: absolute;
 		margin-top: 50%;
 		margin-left: 50%;
-		transform: translate(-50%,-50%);
+		-webkit-transform: translate(-50%,-50%);
+		        transform: translate(-50%,-50%);
 		border:0;
 		width: 100%;
 		text-align: center;
@@ -408,25 +407,52 @@
 		font-weight: 500;
 	}
 
-	@keyframes shave{
+	@-webkit-keyframes shave{
 		0%{
-			transform: scale(0) rotateZ(360deg);
+			-webkit-transform: scale(0) rotateZ(360deg);
+			        transform: scale(0) rotateZ(360deg);
 		}
 		100%{
-			transform: scale(1) rotateZ(0);
+			-webkit-transform: scale(1) rotateZ(0);
+			        transform: scale(1) rotateZ(0);
+		}
+	}
+
+	@keyframes shave{
+		0%{
+			-webkit-transform: scale(0) rotateZ(360deg);
+			        transform: scale(0) rotateZ(360deg);
+		}
+		100%{
+			-webkit-transform: scale(1) rotateZ(0);
+			        transform: scale(1) rotateZ(0);
+		}
+	}
+	@-webkit-keyframes bigger{
+		0%{
+			-webkit-transform: scale(0);
+			        transform: scale(0);
+		}
+		100%{
+			-webkit-transform: scale(1);
+			        transform: scale(1);
 		}
 	}
 	@keyframes bigger{
 		0%{
-			transform: scale(0);
+			-webkit-transform: scale(0);
+			        transform: scale(0);
 		}
 		100%{
-			transform: scale(1);
+			-webkit-transform: scale(1);
+			        transform: scale(1);
 		}
 	}
 	iframe{
-		transform-origin: center center; 
-		animation: bigger 1s ease-in;
+		-webkit-transform-origin: center center;
+		        transform-origin: center center; 
+		-webkit-animation: bigger 1s ease-in; 
+		        animation: bigger 1s ease-in;
 	}
 </style>
 
@@ -436,7 +462,7 @@
 <iframe src="/assets/monster.html" width="100%" height="300" frameborder="0" allowfullscreen></iframe>
 
 <script type="text/javascript">
-	var list = ['/categories/JavaScript/jquery','/categories/canvas','/categories/os','/categories/JavaScript','/categories/Node'];
+	var list = ['/categories/JavaScript/jquery','/categories/canvas','/categories/os','/categories/JavaScript','/categories/Node','Git'];
 	var wrap = document.querySelector('.wrapper');
 	list.forEach(function(item,index){
 		var d = document.createElement('div');
@@ -503,7 +529,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">17</span>
+                <span class="site-state-item-count">18</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -514,7 +540,7 @@
             
             <div class="site-state-item site-state-categories">
               
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">6</span>
                 <span class="site-state-item-name">分类</span>
               
             </div>
@@ -525,7 +551,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-count">10</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

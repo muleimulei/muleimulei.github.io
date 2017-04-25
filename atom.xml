@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://muleimulei.github.io/"/>
-  <updated>2017-04-23T10:27:20.048Z</updated>
+  <updated>2017-04-24T16:12:19.289Z</updated>
   <id>https://muleimulei.github.io/</id>
   
   <author>
@@ -14,6 +14,58 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Git分支操作</title>
+    <link href="https://muleimulei.github.io/2017/04/24/git/git%E5%88%86%E6%94%AF/"/>
+    <id>https://muleimulei.github.io/2017/04/24/git/git分支/</id>
+    <published>2017-04-24T15:31:51.684Z</published>
+    <updated>2017-04-24T16:12:19.289Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote class="blockquote-center"><p>Git分支操作</p>
+</blockquote>
+<a id="more"></a>
+<p>这篇文章主要说明如何使用分支使我们的开发工作更加顺滑。</p>
+<h2 id="git-branch-用法"><a href="#git-branch-用法" class="headerlink" title="git branch 用法"></a>git branch 用法</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">git branch //列出所有分支</div><div class="line">git branch <span class="tag">&lt;<span class="name">branch</span>&gt;</span> //创建名为<span class="tag">&lt;<span class="name">branch</span>&gt;</span>的分支，但是不会切换过去</div><div class="line">git branch -d <span class="tag">&lt;<span class="name">branch</span>&gt;</span> //删除指定分支，这是一个安全操作，git会阻止你删除包含未合并更改的分支</div><div class="line">git branch -D <span class="tag">&lt;<span class="name">branch</span>&gt;</span> //强制删除分支</div><div class="line">git branch -m <span class="tag">&lt;<span class="name">branch</span>&gt;</span> //重新命名当前分支</div></pre></td></tr></table></figure>
+<blockquote>
+<p>在日常开发中，无论是修复一个我们不稳定bug或者是添加一个功能，我们都应该新建一个分支来封装我们的修改。这样可以保证我们不稳定的代码永远不会提交到主分支上。</p>
+</blockquote>
+<ol>
+<li><p>创建分支<br> 分支只是指向提交的指针，当你创建新分支，实际上只是创建了一个新的指针，仓库本身不会受到影响，一开始你的仓库只有一条分支：</p>
+<p> <img src="http://upload-images.jianshu.io/upload_images/272719-b965174b6cab013a.PNG?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="git branch"></p>
+<p> 然后你执行下面的命令创建一个分支，用于加一个新的feature：</p>
+<p> <img src="http://upload-images.jianshu.io/upload_images/272719-ce3367855cc86818.PNG?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="git branch"></p>
+<p> 当然执行后，你只是创建了这个分支，还需要执行<code>git checkout new-feature</code>切换到<code>new-feature</code>分支，然后在使用<code>git add,git commit</code></p>
+</li>
+</ol>
+<ol>
+<li><p>删除分支<br> 假如你已经开发完了new-feature ,并且已经commit代码了，你就可以自由的删除这个分支了。<code>git branch -d new-feature</code><br> 如果分支没有合入master，会报下面的错误：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">error: The branch &apos;new feature&apos; is not fully merged.</div><div class="line">If you are sure you want to delete it, run &apos;git branch -D crazy-experiment&apos;.</div></pre></td></tr></table></figure>
+<p> 这时候你就可以合并分支，如果你真的确定要删除分支，可以使用<strong>-D</strong>执行强制删除：<code>git branch -D new-feature</code></p>
+</li>
+<li><p>切换分支（git checkout）</p>
+<p> <code>git checkout</code>命令允许你切换到用<code>git branch</code>创建的分支。切换分支会更新当前工作目录中的文件，还可以使用<code>git log</code>查看当前分支的历史。</p>
+ <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">git checkout <span class="tag">&lt;<span class="name">existing-branch</span>&gt;</span> //切换到一个已有分支上</div><div class="line">git checkout -b <span class="tag">&lt;<span class="name">new-branch</span>&gt;</span> //创建时进行直接切换</div><div class="line">git checkout -b <span class="tag">&lt;<span class="name">new-branch</span>&gt;</span> <span class="tag">&lt;<span class="name">existing-branch</span>&gt;</span> //在已有的分支上创建分支，原来的分支是新分支的基</div></pre></td></tr></table></figure>
+<p> <code>git branch</code>和<code>git checkout</code>是一对兄弟，你可以使用<code>git checkout</code>在不同的分支或者bug分支之间切换，而不产生影响。</p>
+</li>
+<li><p>合并(git merge)<br> 合并是git将被fork的历史放回到一起的方式。<code>git merge</code>命令允许你将<code>git branch</code>创建的多条分支合并成一个。</p>
+ <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git merge <span class="tag">&lt;<span class="name">branch</span>&gt;</span> //将指定分支并入当前分支</div><div class="line">git merge --no-ff <span class="tag">&lt;<span class="name">branch</span>&gt;</span> //经指定分支并入当前分支，但总是生成一个合并提交(即是快速向前合并)。这可以用来记录仓库中发生的所有合并。</div></pre></td></tr></table></figure></li>
+</ol>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote class=&quot;blockquote-center&quot;&gt;&lt;p&gt;Git分支操作&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="Git" scheme="https://muleimulei.github.io/categories/Git/"/>
+    
+    
+      <category term="Git" scheme="https://muleimulei.github.io/tags/Git/"/>
+    
+  </entry>
   
   <entry>
     <title>websocket入门</title>
