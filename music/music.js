@@ -106,6 +106,15 @@
         $(audio).on('ended', function() {
             next.trigger('click');
         });
+        // $(audio).on('waiting', function() {
+        //     play.get(0).className = 'fa fa-spin';
+        // });
+        // $(audio).on('suspend', function() {
+        //     play.get(0).className = 'fa fa-spin';
+        // });
+        // $(audio).on('stalled', function() {
+        //     play.get(0).className = 'fa fa-spin';
+        // });
     }
     play.on('click', function() {
         if (audio) {

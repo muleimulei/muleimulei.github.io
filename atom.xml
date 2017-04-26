@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://muleimulei.github.io/"/>
-  <updated>2017-04-24T16:12:19.289Z</updated>
+  <updated>2017-04-26T12:38:09.769Z</updated>
   <id>https://muleimulei.github.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="https://muleimulei.github.io/2017/04/24/git/git%E5%88%86%E6%94%AF/"/>
     <id>https://muleimulei.github.io/2017/04/24/git/git分支/</id>
     <published>2017-04-24T15:31:51.684Z</published>
-    <updated>2017-04-24T16:12:19.289Z</updated>
+    <updated>2017-04-26T12:38:09.769Z</updated>
     
     <content type="html"><![CDATA[<blockquote class="blockquote-center"><p>Git分支操作</p>
 </blockquote>
@@ -49,8 +49,30 @@
 <p> <code>git branch</code>和<code>git checkout</code>是一对兄弟，你可以使用<code>git checkout</code>在不同的分支或者bug分支之间切换，而不产生影响。</p>
 </li>
 <li><p>合并(git merge)<br> 合并是git将被fork的历史放回到一起的方式。<code>git merge</code>命令允许你将<code>git branch</code>创建的多条分支合并成一个。</p>
- <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git merge <span class="tag">&lt;<span class="name">branch</span>&gt;</span> //将指定分支并入当前分支</div><div class="line">git merge --no-ff <span class="tag">&lt;<span class="name">branch</span>&gt;</span> //经指定分支并入当前分支，但总是生成一个合并提交(即是快速向前合并)。这可以用来记录仓库中发生的所有合并。</div></pre></td></tr></table></figure></li>
+ <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git merge <span class="tag">&lt;<span class="name">branch</span>&gt;</span> //将指定分支并入当前分支</div><div class="line">git merge --no-ff <span class="tag">&lt;<span class="name">branch</span>&gt;</span> //经指定分支并入当前分支，但总是生成一个合并提交(即是快速向前合并)。这可以用来记录仓库中发生的所有合并。</div></pre></td></tr></table></figure>
+</li>
 </ol>
+<blockquote>
+<p>一旦在分支上完成开发，我们需要把新分支的提交合并到主分支，git会根据目前分支之间的结构信息，选择不同的算法来完成合并。</p>
+</blockquote>
+<ul>
+<li>快速向前合并</li>
+<li>三路合并</li>
+</ul>
+<h2 id="快速向前合并"><a href="#快速向前合并" class="headerlink" title="快速向前合并"></a>快速向前合并</h2><p>当new-feature的分支与原有的master分支呈现线性关系时，执行快速向前合并，git将当前的HEAD指针快速移到目前分支的顶端，master分支也就拥有了new-feature分支的历史了，</p>
+<p>来看一个快速向前合并的实例</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"># 开始新功能</div><div class="line">git checkout -b new-branch master</div><div class="line"></div><div class="line"># 编辑文件</div><div class="line">git add <span class="tag">&lt;<span class="name">file</span>&gt;</span></div><div class="line">git commit -m '开始新功能'</div><div class="line"></div><div class="line"># 编辑文件</div><div class="line">git add <span class="tag">&lt;<span class="name">file</span>&gt;</span></div><div class="line">git commit -m '完成功能'</div><div class="line"></div><div class="line"># 合并new-feature分支</div><div class="line">git checkout master</div><div class="line">git merge new-feature</div><div class="line">git branch -d new-feature</div></pre></td></tr></table></figure>
+<p> <img src="http://upload-images.jianshu.io/upload_images/272719-6d2a2fdb236db48d.PNG?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="git branch"></p>
+<p>对于合作开发的人少的项目，这是一种主要的工作流，合作开发的人多的话，主master分支经常会有新提交，如果你的new-feature耗时比较久，再提交时，master分支就可能过去几个版本了，这时候就需要下面的三路合并了。</p>
+<h2 id="三路合并"><a href="#三路合并" class="headerlink" title="三路合并"></a>三路合并</h2><p>如果master分支在new-feature分离后，又有了新的提交，即开始分叉了，git只能执行三路合并，三路合并使用一个专门的提交来合并两个分支的历史。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/272719-9f23d7fc6aff8a45.PNG?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="git branch"></p>
+<p>所谓的三路也就是：两个分支的顶端以及他们共同的祖先。在执行三路合并后：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/272719-9f23d7fc6aff8a45.PNG?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="git branch"></p>
+<p>使用三路合并产生的合并提交作为两个分支的连接标志。</p>
+<h2 id="解决冲突"><a href="#解决冲突" class="headerlink" title="解决冲突"></a>解决冲突</h2><p>如果两个分支对同一个文件的同一部分均有修改时，git将无法判断应该使用哪个，这时候合并提交会停止，需要你手动解决这些冲突。你可以使用<code>git status</code>来查看哪里存在冲突，也可以在目录下执行<code>grep -rn HEAD</code>来查看哪些文件里有这个标记，有这个的地方都是有冲突的。</p>
+<p>当修改完所有的冲突后，<code>git add</code>所有的冲突文件，运行<code>git commit</code>生成一个合并提交，这和提交一个普通快照的流程相同。<strong>提交冲突只会存在三路合并中，快速向前合并中不可能出现针对同一文件同一部分的不一样的修改</strong>。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"># 开始新功能</div><div class="line">git checkout -b new-feature master</div><div class="line"></div><div class="line"># 编辑文件</div><div class="line">git add <span class="tag">&lt;<span class="name">file</span>&gt;</span></div><div class="line">git commit -m '开始新功能'</div><div class="line"></div><div class="line"># 编辑文件</div><div class="line">git add <span class="tag">&lt;<span class="name">file</span>&gt;</span></div><div class="line">git commit -m '完成功能'</div><div class="line"></div><div class="line"># 在master分支上开发</div><div class="line">git checkout master</div><div class="line"></div><div class="line"># 编辑文件</div><div class="line">git add <span class="tag">&lt;<span class="name">file</span>&gt;</span></div><div class="line">git commit -m '在master上添加了一些及其稳定的功能'</div><div class="line"></div><div class="line"># 合并new-feature分支</div><div class="line">git merge new-feature</div><div class="line">git branch -d new-feature</div></pre></td></tr></table></figure>
+<p>这时候，merge会停止，因为无法将master直接移动到new-feature。所有需要你手动合并冲突后在提交。</p>
 ]]></content>
     
     <summary type="html">
