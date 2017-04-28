@@ -964,7 +964,7 @@ pre .javascript .function {
 }
 .headband {
   height: 3px;
-  background: #222;
+  background: #3c3196;
 }
 .site-meta {
   margin: 0;
@@ -1714,7 +1714,7 @@ div.site-author.motion-element > div {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #3628aa;
+  background: #cb06ff;
 }
 .links-of-blogroll {
   font-size: 13px;
