@@ -94,7 +94,7 @@
         if (audio) {
             audio.src = first.data('src');
         }
-        // audio.play();
+        audio.play();
         $(audio).on('canplaythrough', function() {
             play.get(0).className = 'fa fa-pause';
         });
@@ -106,15 +106,11 @@
         $(audio).on('ended', function() {
             next.trigger('click');
         });
-        // $(audio).on('waiting', function() {
-        //     play.get(0).className = 'fa fa-spin';
-        // });
-        // $(audio).on('suspend', function() {
-        //     play.get(0).className = 'fa fa-spin';
-        // });
-        // $(audio).on('stalled', function() {
-        //     play.get(0).className = 'fa fa-spin';
-        // });
+    }
+    if (bw < 400) {
+        $('.content-wrap').one('click', function() {
+            audio.play();
+        });
     }
     play.on('click', function() {
         if (audio) {
