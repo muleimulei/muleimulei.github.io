@@ -100,8 +100,6 @@
 
 
 
-  
-
 
   <link rel="alternate" href="/atom.xml" title="风的影子" type="application/atom+xml" />
 
@@ -115,63 +113,16 @@
 
 
 
-<meta name="description" content="念念不忘，必有回响 
-
-
-
-
-切换
-
-
-    
-        
-    
-    
-        
-            
-                我好像在哪见过你
-                --薛之谦">
-<meta property="og:type" content="website">
-<meta property="og:title" content="音乐册子">
-<meta property="og:url" content="https://muleimulei.github.io/music/index.html">
+<meta name="description" content="使用Docker">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用Docker">
+<meta property="og:url" content="https://muleimulei.github.io/2017/05/04/docker/使用Docker/index.html">
 <meta property="og:site_name" content="风的影子">
-<meta property="og:description" content="念念不忘，必有回响 
-
-
-
-
-切换
-
-
-    
-        
-    
-    
-        
-            
-                我好像在哪见过你
-                --薛之谦">
-<meta property="og:image" content="http://p3.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg">
-<meta property="og:updated_time" content="2017-04-23T13:54:55.225Z">
+<meta property="og:description" content="使用Docker">
+<meta property="og:updated_time" content="2017-05-04T09:13:28.618Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="音乐册子">
-<meta name="twitter:description" content="念念不忘，必有回响 
-
-
-
-
-切换
-
-
-    
-        
-    
-    
-        
-            
-                我好像在哪见过你
-                --薛之谦">
-<meta name="twitter:image" content="http://p3.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg">
+<meta name="twitter:title" content="使用Docker">
+<meta name="twitter:description" content="使用Docker">
 
 
 
@@ -199,19 +150,13 @@
 
 
 
-  <link rel="canonical" href="https://muleimulei.github.io/music/"/>
+  <link rel="canonical" href="https://muleimulei.github.io/2017/05/04/docker/使用Docker/"/>
 
 
 
 
 
-  <title>
-  
-
-  
-    音乐册子 | 风的影子
-  
-</title>
+  <title> 使用Docker | 风的影子 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -236,7 +181,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left  ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -385,75 +330,200 @@
             
 
   <div id="posts" class="posts-expand">
-  <header class="post-header">
+    
 
-	<h1 class="post-title" itemprop="name headline">音乐册子</h1>
+  
 
+  
+  
+  
 
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://muleimulei.github.io/2017/05/04/docker/使用Docker/">
 
-</header>
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="穆蕾">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="风的影子">
+    </span>
 
     
-    
-      <blockquote class="blockquote-center"><p>念念不忘，必有回响 </p>
-</blockquote>
-<link rel="stylesheet" type="text/css" href="/lib/font-awesome/css/font-awesome.min.css">
-<link rel="stylesheet" type="text/css" href="/music/music.css">
+      <header class="post-header">
 
-<button class="toggle">切换</button>
-
-<div id="box">
-    <div class="pic">
-        <img src="http://p3.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg">
-    </div>
-    <div class="ctrl-box">
-        <div class="title">
-            <div class="content">
-                <span>我好像在哪见过你</span>
-                <sub>--薛之谦</sub>
-            </div>
-        </div>
-        <div class="bar">
-            <div class="played">
-            </div>
-            <span class="thumb"></span>
-        </div>
-        <div class="menu">
-            <i class="fa fa-step-backward" aria-hidden="true"></i>
-            <i class="fa fa-play" aria-hidden="true"></i>
-            <i class="fa fa-step-forward" aria-hidden="true"></i>
-        </div>
-        <div class="switch fa fa-list"></div>
-    </div>
-    <div style="clear: both"></div>
-    <div class="music-list">
-        <ul>
-        </ul>
-    </div>
-    <canvas id="mycanvas"></canvas>
-</div>
-
-<div id="box2">
-    <div class="tools">
-        <div class="control">
-            音量：<input type="range" name="voice" min="0" max="100" value="50">
-            <div style="width: 100%;text-align: center;display: flex;justify-content: space-between;">
-                <button data-type="column">条形图</button>
-                <button data-type="wave">折线图</button>
-                <button data-type="circle">圆形图</button>
-            </div>
-        </div>
-        <div class="drop">
-            <input type="file" name="music">
-        </div>
-    </div>
-    <canvas width="700" height="700">
         
-    </canvas>
-</div>
-<script type="text/javascript" src="/lib/jquery/index.js"></script>
-<script type="text/javascript" src="/music/music.js"></script>
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                使用Docker
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-04T17:08:44+08:00">
+                2017-05-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/docker/" itemprop="url" rel="index">
+                    <span itemprop="name">docker</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
     
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote class="blockquote-center"><p>使用Docker</p>
+</blockquote>
+<a id="more"></a>
+<h2 id="使用Docker"><a href="#使用Docker" class="headerlink" title="使用Docker"></a>使用Docker</h2>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/05/03/docker/docker简介/" rel="next" title="docker简介">
+                <i class="fa fa-chevron-left"></i> docker简介
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
   </div>
 
           
@@ -485,8 +555,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <div>
           <img class="site-author-image" itemprop="image"
@@ -629,6 +708,22 @@
       </section>
 
       
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#使用Docker"><span class="nav-number">1.</span> <span class="nav-text">使用Docker</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
 
       
 
@@ -763,6 +858,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
 
   
 

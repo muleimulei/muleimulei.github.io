@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://muleimulei.github.io/"/>
-  <updated>2017-04-26T12:38:09.769Z</updated>
+  <updated>2017-05-04T09:13:28.618Z</updated>
   <id>https://muleimulei.github.io/</id>
   
   <author>
@@ -14,6 +14,99 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>使用Docker</title>
+    <link href="https://muleimulei.github.io/2017/05/04/docker/%E4%BD%BF%E7%94%A8Docker/"/>
+    <id>https://muleimulei.github.io/2017/05/04/docker/使用Docker/</id>
+    <published>2017-05-04T09:08:44.098Z</published>
+    <updated>2017-05-04T09:13:28.618Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote class="blockquote-center"><p>使用Docker</p>
+</blockquote>
+<a id="more"></a>
+<h2 id="使用Docker"><a href="#使用Docker" class="headerlink" title="使用Docker"></a>使用Docker</h2>]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote class=&quot;blockquote-center&quot;&gt;&lt;p&gt;使用Docker&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="docker" scheme="https://muleimulei.github.io/categories/docker/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>docker简介</title>
+    <link href="https://muleimulei.github.io/2017/05/03/docker/docker%E7%AE%80%E4%BB%8B/"/>
+    <id>https://muleimulei.github.io/2017/05/03/docker/docker简介/</id>
+    <published>2017-05-03T08:34:48.255Z</published>
+    <updated>2017-05-04T09:13:17.549Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote class="blockquote-center"><p>docker简介</p>
+</blockquote>
+<a id="more"></a>
+<h2 id="docker简介"><a href="#docker简介" class="headerlink" title="docker简介"></a>docker简介</h2><p>Docker是Docker公司2013年3月推出的开源容器项目，上市至今已有3年，是世界范围内拥有超高人气。进入2010年，服务器市场急速向云环境转移。人们开始更多的租用虚拟服务器，只需要缴纳一定的租金。不需要购买实际的物理服务器。尤其是在搭建物理服务器时，服务器硬件的购买及其安装都需要耗费相当长的时间。但在云环境下，无论是1台还是1000台，只需单击几次即可轻松搭建虚拟服务器。</p>
+<p>创建虚拟服务器后，还要在其中安装各种软件，进行各种设置。如果只有一两台服务器。那么能够进行轻松设置；但随着服务器数量的增加，采用人工设置就难了。linux/Unix环境中，虽然可以借助沿用至今的shell脚本进行自动安装与设置，但这种方式有一定的局限性。使用shell脚本很难实现集中式管理功能与其它复杂功能。</p>
+<p>此时出现了“不可变基础设施”，指的<strong>是主机OS与服务器运行环境(服务器程序，源代码，已编译的二进制文件)分离，只设置一次运行环境，之后不发生变更</strong>。也就是说，将服务器运行环境创建为镜像后，部署至各服务器运行。此时若服务器更新，则运行环境本身不会发生变更，只要重新生成镜像并再次部署即可。就像云平台对服务器“用过即扔”，不可变基础设施中的服务运行环境镜像也是用过一次后就扔掉。</p>
+<p>不可变基础设施拥有多种优点：</p>
+<ul>
+<li><strong>管理方便</strong> : 由于服务运行环境以镜像形式存在，所以只要管理镜像本身即可。特别是可以集中管理镜像，实现系统部署与管理。此外，镜像生成设置也以文件形式存在，可以灵活用于版本管理系统。</li>
+<li><strong>拓展</strong> : 可以利用一个镜像不断创建服务器。与云平台的自动伸缩功能配合使用，能够轻松实现服务扩展。</li>
+<li><strong>测试</strong> : 只要在开发人员PC或测试服务器中运行镜像，就可以搭建与实际服务运行环境一致的环境，非常易于测试。</li>
+<li><strong>轻量</strong> : 分离操作系统与服务运行环境，实现轻量化，提供可以随时运行的环境。</li>
+</ul>
+<p>Docker项目实现了不可变基础设施。</p>
+<h2 id="虚拟机与docker"><a href="#虚拟机与docker" class="headerlink" title="虚拟机与docker"></a>虚拟机与docker</h2><p>Docker与我们之前使用的VMware、Microsoft Hyper-V (Virtual PC)、Xen、Linux KVM等虚拟机类似。在虚拟机中安装Linux后，可以安装各种服务器程序与DB，运行已开发的应用程序与网站。将搭建好的虚拟机镜像复制到多台服务器运行，之后即可用一个镜像不断创建服务器。</p>
+<ol>
+<li><p>虚拟机<br> 虚拟机非常方便，但性能不佳。当前许多CPU都添加了对虚拟化功能的大量支持，但与物理机器相比，虚拟机的运行速度比较慢。<br> 为了进一步改善“完全虚拟化”的运行速度，半虚拟化技术登场，现在正得到广泛应用。</p>
+ <img src="/assets/segment/1.png">
+<p> 虚拟机本身是一台完整的计算机，总是需要安装客户OS。由于镜像中含有OS，所以镜像体积会变大。</p>
+ <img src="/assets/segment/2.png">
+<p> 无论网速多快，收发虚拟机镜像都会非常耗时，尤其是开源虚拟化软件。其重点在于OS虚拟化，只提供镜像创建与运行功能，在部署与管理功能上存在不足。</p>
+</li>
+<li><p>Docker<br> 与半虚拟化相比，Docker是一种更轻量化的方式。使用Docker则不需要安装客户OS。Docker镜像中只隔离并安装服务器运行所需的程序与库，与主机共享OS资源(系统调用)，这样就大大减小了镜像的体积。</p>
+ <img src="/assets/segment/3.png">
+<p> Docker没有硬件虚拟化层，所以与虚拟机相比，其在内存访问，文件系统，网络速度上明显快得多。与虚拟机不同，Docker提供了专门创建并部署镜像的功能。如同在git中管理源代码一样，Docker也提供镜像版本管理功能。此外，为了进行集中管理，Docker也提供了镜像的上传与下载功能(push/pull)。就像GitHub一样，Docker Hub 提供帮助用户共享的Docker镜像。</p>
+</li>
+<li><p>Docker镜像与容器<br> Docker中有“镜像”与“容器”的概念。首先了解“基础镜像”，它是指仅Linux发行版userland中安装的文件，一般为Linux发行版本的名称。此外，Linux发行版userland中也有安装Redis或Nginx等的基础镜像。因此，一般所说的“Docker镜像”是指安装基础镜像所需的程序，库，源代码之后创建的一个文件。<br> 我们很容易想到，若每次都安装基础镜像所需的程序，库，源代码，就会出现大容量镜像重复创建。Docker镜像只将基础镜像中变化的部分创建为镜像，运行时将基础镜像与可变部分合并运行。</p>
+ <img src="/assets/segment/4.png">
+</li>
+</ol>
+<blockquote>
+<p>userland：以内存使用为基准，OS可化为<strong>内核空间</strong>与<strong>用户空间</strong>，用户空间中运行的可执行文件与库称为userland。Linux不能只从内核启动，所以userland也指启动时所需的最少可执行文件与库的组合。Linux发行版本中，userland通常包含启动所需的可执行文件，库以及原有的包系统。</p>
+</blockquote>
+<p>Docker不会创建整个镜像，而只针对变化的部分进行创建，然后继续引用父镜像。这种工作方式在Docker中称为“层”。<br>Docker镜像是文件，所以上传到存储空间后可以在别处下载使用。并且，向存储空间上传时，会同时上传子镜像与父镜像；同样，下载时也会同时操作子镜像与父镜像，之后只传输内容有变化的镜像。</p>
+<p><strong>Docker容器是处于运行状态的镜像，使用一个镜像可以创建多个容器。从操作系统角度看，镜像是可执行的文件，容器是进程。而已经运行的容器中，也可以将更改的部分创建为镜像。可以将Docker视为特定执行文件或脚本的运行环境。</strong></p>
+<p>linux/Unix系列系统中，文件运行所需的所有组成元素被切割的很小。这样虽然可以使系统结构简单明了，但会导致过度依赖，也很难解决。因此，Linux发行版也单独提供经过编译的包(rpm,deb包)。但每当运行服务器时，要想逐个编译源代码或安装并设置已有包也是相当麻烦的。</p>
+<p>如果只有一两台服务器，则不会有太大困难，但云环境中创建的服务器多达几十台，几百台。此时若使用已经完成服务器配置的Docker镜像，那么无论要运行多少台服务器都能轻松搞定。</p>
+<h2 id="安装docker"><a href="#安装docker" class="headerlink" title="安装docker"></a>安装docker</h2><ol>
+<li>Ubuntu安装</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">sudo apt-get update</div><div class="line">sudo apt-get install docker.io</div><div class="line">sudo ln -sf /usr/bin/docker.io /usr/local/bin/docker</div></pre></td></tr></table></figure>
+<ol>
+<li>RedHat Enterprise Linux、CentOS</li>
+</ol>
+<p>CentOS 6：<code>sudo yum install http://dl.fedoraproject.org/pub/epel/6/x86-64/epel-release-6-8.noarch.rpm</code>。</p>
+<p>CentOS 7：<code>sudo yum install docker</code>。</p>
+<p>启动Docker服务：<code>sudo service docker start</code>。</p>
+<p>启动时自动运行：<code>sudo chkconfig docker on</code>。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote class=&quot;blockquote-center&quot;&gt;&lt;p&gt;docker简介&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="docker" scheme="https://muleimulei.github.io/categories/docker/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>Git分支操作</title>
