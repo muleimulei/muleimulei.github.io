@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://muleimulei.github.io/resume/index.html</loc>
+    
+    <lastmod>2017-06-26T08:38:08.273Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://muleimulei.github.io/categories/index.html</loc>
+    
+    <lastmod>2017-06-26T07:53:33.957Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://muleimulei.github.io/2017/05/04/docker/%E4%BD%BF%E7%94%A8Docker/</loc>
     
     <lastmod>2017-05-04T09:13:28.618Z</lastmod>
@@ -12,13 +26,6 @@
     <loc>https://muleimulei.github.io/2017/05/03/docker/docker%E7%AE%80%E4%BB%8B/</loc>
     
     <lastmod>2017-05-04T09:13:17.549Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://muleimulei.github.io/categories/index.html</loc>
-    
-    <lastmod>2017-05-03T08:31:09.185Z</lastmod>
     
   </url>
   
