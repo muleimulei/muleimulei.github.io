@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://muleimulei.github.io/resume/index.html</loc>
+    
+    <lastmod>2017-07-01T15:43:22.538Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://muleimulei.github.io/2017/07/01/DataBase/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%8C%83%E5%BC%8F/</loc>
     
     <lastmod>2017-07-01T15:36:49.972Z</lastmod>
@@ -19,13 +26,6 @@
     <loc>https://muleimulei.github.io/2017/06/27/DataStructure/%E5%B8%B8%E7%94%A8%E5%86%85%E6%8E%92%E5%BA%8F/</loc>
     
     <lastmod>2017-07-01T15:03:19.366Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://muleimulei.github.io/resume/index.html</loc>
-    
-    <lastmod>2017-07-01T14:39:45.072Z</lastmod>
     
   </url>
   
