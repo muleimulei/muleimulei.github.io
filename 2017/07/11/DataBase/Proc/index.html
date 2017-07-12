@@ -1,0 +1,1295 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=FangSong_GB2312:300,300italic,400,400italic,700,700italic|Courier New:300,300italic,400,400italic,700,700italic|LiSong Pro Light:300,300italic,400,400italic,700,700italic|华文琥珀:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="c++操作数据库Oracle数据库," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="风的影子" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="Proc/C++开发">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Proc/C++开发">
+<meta property="og:url" content="https://muleimulei.github.io/2017/07/11/DataBase/Proc/index.html">
+<meta property="og:site_name" content="风的影子">
+<meta property="og:description" content="Proc/C++开发">
+<meta property="og:image" content="https://muleimulei.github.io/assets/segment/5.png">
+<meta property="og:image" content="https://muleimulei.github.io/assets/segment/6.png">
+<meta property="og:updated_time" content="2017-07-11T15:14:51.486Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Proc/C++开发">
+<meta name="twitter:description" content="Proc/C++开发">
+<meta name="twitter:image" content="https://muleimulei.github.io/assets/segment/5.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://muleimulei.github.io/2017/07/11/DataBase/Proc/"/>
+
+
+
+
+
+  <title> Proc/C++开发 | 风的影子 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">风的影子</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">小站</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-music">
+          <a href="/music" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-music"></i> <br />
+            
+            音乐
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-image">
+          <a href="/images" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-image"></i> <br />
+            
+            美图
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-resume">
+          <a href="/resume" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-address-card"></i> <br />
+            
+            简历
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://muleimulei.github.io/2017/07/11/DataBase/Proc/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="穆蕾">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="风的影子">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Proc/C++开发
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-11T20:29:25+08:00">
+                2017-07-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/DataBase/" itemprop="url" rel="index">
+                    <span itemprop="name">DataBase</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote class="blockquote-center"><p>Proc/C++开发</p>
+</blockquote>
+<a id="more"></a>
+<h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><ul>
+<li>SQL<blockquote>
+<p>结构化查询语言，简称SQL，是一种数据库查询和程序设计语言，用于存取数据以及查询，更新和管理关系数据库系统；同时，也是数据库脚本文件的扩展名。</p>
+</blockquote>
+</li>
+<li>Pro*C/C++<blockquote>
+<p>在C/C++程序中嵌入SQL语句操作数据库，得到的应用程序叫做Proc*C/C++程序。</p>
+</blockquote>
+</li>
+<li>嵌入式SQL<blockquote>
+<p>能在其它编程语言中混合使用的SQL语句，叫做嵌入式SQL语句！但是各个厂商对嵌入式SQL的具体实现不一样，但是具体的混合语法不一样，各厂商有自己的预编译工具。</p>
+</blockquote>
+</li>
+<li>宿主语言<blockquote>
+<p>嵌入式SQL的载体是宿主语言，比如这里说的就是C/C++。</p>
+</blockquote>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>宿主语言</th>
+<th style="text-align:right">Pro程序</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>C/C++</td>
+<td style="text-align:right">Pro*C/C++</td>
+</tr>
+<tr>
+<td>FORTRAN</td>
+<td style="text-align:right">Pro*FORTRAN</td>
+</tr>
+<tr>
+<td>PASCAL</td>
+<td style="text-align:right">Pro*PASCAL</td>
+</tr>
+<tr>
+<td>COBOL</td>
+<td style="text-align:right">Pro*COBOL</td>
+</tr>
+<tr>
+<td>PL/I</td>
+<td style="text-align:right">Pro*PL/I</td>
+</tr>
+<tr>
+<td>Ada</td>
+<td style="text-align:right">Pro*Ada</td>
+</tr>
+</tbody>
+</table>
+<h2 id="程序结构"><a href="#程序结构" class="headerlink" title="程序结构"></a>程序结构</h2><blockquote>
+<ol>
+<li>Include 头文件(c/c++ and Pro*c/c++)</li>
+<li>定义变量</li>
+<li>定义函数</li>
+<li>main<br>4.1 连接数据库 ：connect<br>4.2 SQL操作语句：EXEC SQL …..<br>4.3 exception handle<br>4.4 断开连接<br>4.5 EXEC SQL COMMIT / ROLLBACK WORK release</li>
+</ol>
+</blockquote>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"sqlca.h"</span></span></div><div class="line"></div><div class="line">EXEC SQL BEGIN DECLARE SECTION</div><div class="line">    <span class="keyword">char</span> username[<span class="number">32</span>];</div><div class="line">    <span class="keyword">char</span> passwd[<span class="number">32</span>];</div><div class="line">    <span class="keyword">char</span> dname[<span class="number">25</span>];</div><div class="line">EXEC SQL END DECLARE SECTION</div><div class="line"></div><div class="line">EXEC SQL INCLUDE sqlca;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">sqlerror</span><span class="params">()</span></span>;</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line">    <span class="function">EXEC SQL WHENEVER SQLERROR DO <span class="title">sqlerror</span><span class="params">()</span></span>;</div><div class="line">    <span class="built_in">strcpy</span>(username, <span class="string">"scott"</span>);</div><div class="line">    <span class="built_in">strcpy</span>(passwd, <span class="string">"XXXXX"</span>);</div><div class="line">    EXEC SQL CONNECT :username IDENTIFIED BY :passwd;</div><div class="line">    EXEC SQL select dname from dept where id=<span class="number">10</span>;</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"dname: %s\n"</span>,dname);</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">sqlerror</span><span class="params">()</span></span>&#123;</div><div class="line">    EXEC SQL WHENEVER SQLERROR CONTINUE;</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"\n oracle error detected\n"</span>);</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"%.70s\n"</span>,sqlca.sqlerrm.sqlerrmc);</div><div class="line">    EXEC SQL ROLLBACK WORK RELEASE;</div><div class="line">    <span class="built_in">exit</span>(<span class="number">1</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="开发流程"><a href="#开发流程" class="headerlink" title="开发流程"></a>开发流程</h2><ol>
+<li><p>一般应用程序c开发运行标准流程</p>
+<img src="/assets/segment/5.png">
+</li>
+<li><p>一般应用程序c++开发运行标准流程</p>
+<img src="/assets/segment/6.png">
+</li>
+</ol>
+<blockquote>
+<p>Pro*C/C++ 应用程序的开发多了一个预编译的过程：pc转换成c或cpp文件</p>
+</blockquote>
+<h2 id="关于预编译工具（Proc）"><a href="#关于预编译工具（Proc）" class="headerlink" title="关于预编译工具（Proc）"></a>关于预编译工具（Proc）</h2><ol>
+<li>位置：$ORACLE_HOME/bin 目录下拥有数据库访问权限的用户可以直接在终端使用，不需要绝对路径。</li>
+<li>配置文件：$ORACLE_HOME/precomp/admin/pcscfg.cfg 头文件，库文件路径。</li>
+<li>基本命令格式：<code>proc iname=filename oname=outname [OptionName1=value1]…[OptionNameN=valueN]</code></li>
+<li>基本选项：</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>选项</th>
+<th style="text-align:right">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>INAME</td>
+<td style="text-align:right">path and filename (name of input file) 1.pc</td>
+</tr>
+<tr>
+<td>ONAME</td>
+<td style="text-align:right">path and filename (name of output file) 1.c</td>
+</tr>
+<tr>
+<td>INCLUDE</td>
+<td style="text-align:right">path (头文件所在路径) -INCLUDE 路径名 或 INCLUDE= (路径名1，路径名2)</td>
+</tr>
+<tr>
+<td>PARSE</td>
+<td style="text-align:right">FULL 、PARTIA、NONE (DEFAULT FULL for C，Others for C++)</td>
+</tr>
+<tr>
+<td>CODE</td>
+<td style="text-align:right">ANSI_C、CPP (default ansi_c)</td>
+</tr>
+<tr>
+<td>USERID</td>
+<td style="text-align:right">username/password</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>默认预编译得到的是C文件，使用下列选项得到C++文件<br>parse=none     告诉proc编译器，按照C++规范解析 dm02_hello.pc<br>code = cpp     告诉proc编译器，按照C++规范生成文件<br>proc dm02_hello.pc parse=none code=cpp oname=dm02_hello.cpp</p>
+</blockquote>
+<h2 id="相关操作"><a href="#相关操作" class="headerlink" title="相关操作"></a>相关操作</h2><ol>
+<li><p>连接数据库</p>
+<ul>
+<li>方法一<br><code>EXEC SQL CONNECT :usr_pwd</code></li>
+<li>方法二<br><code>EXEC SQL CONNECT :username IDENTIFIED BY :passwd</code></li>
+<li>方法三<br>通过db_name连接没有限定名字的数据库–可以修改数据库的名字–at选项<br><code>EXEC SQL CONNECT :username IDENTIFIED BY :passwd AT :db_name USING :db_string</code></li>
+</ul>
+</li>
+<li><p>代码里写死了用户名和密码</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"sqlca.h"</span></span></div><div class="line"><span class="comment">//定义宿主变量（SQL变量）</span></div><div class="line"><span class="comment">//C语言可以直接使用</span></div><div class="line"><span class="comment">//嵌入式SQL语句里面使用的话需要加上EXEC SQL前缀</span></div><div class="line">EXEC SQL BEGIN DECLARE SECTION;</div><div class="line"><span class="keyword">char</span> * serverid = <span class="string">"scott/lzj123529"</span>;</div><div class="line">EXEC SQL END DECLARE SECTION;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">int</span> ret = <span class="number">0</span>;</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"HelloWorld\n"</span>);</div><div class="line">    EXEC SQL connect:serverid;</div><div class="line">    <span class="keyword">if</span>(sqlca.sqlcode != <span class="number">0</span>)</div><div class="line">    &#123;</div><div class="line">        ret = sqlca.sqlcode ;</div><div class="line">        <span class="built_in">printf</span>(<span class="string">"ret :%d\n"</span>,ret);</div><div class="line">        <span class="keyword">return</span> ret;</div><div class="line">    &#125;</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"connect OK!\n"</span>);</div><div class="line">    EXEC SQL COMMIT RELEASE;<span class="comment">//提交事务并且断开</span></div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>交互式的连接数据库</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">EXEC SQL BEGIN DECLARE SECTION;</div><div class="line"><span class="keyword">char</span> user[<span class="number">32</span>];</div><div class="line"><span class="keyword">char</span> passwd[<span class="number">32</span>];</div><div class="line"><span class="keyword">char</span> sid[<span class="number">32</span>];</div><div class="line">EXEC SQL END DECLARE SECTION;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">int</span> ret = <span class="number">0</span>;</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"user:"</span>);</div><div class="line">    <span class="built_in">scanf</span>(<span class="string">"%s"</span>,user);</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"passwd:"</span>);</div><div class="line">    <span class="built_in">scanf</span>(<span class="string">"%s"</span>,passwd);</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"sid:"</span>);</div><div class="line">    <span class="built_in">scanf</span>(<span class="string">"%s"</span>,sid);</div><div class="line">    EXEC SQL CONNECT :user IDENTIFIED BY :passwd USING :sid;</div><div class="line">    <span class="keyword">if</span>(sqlca.sqlcode != <span class="number">0</span>)</div><div class="line">    &#123;</div><div class="line">        ret = sqlca.sqlcode ;</div><div class="line">        <span class="built_in">printf</span>(<span class="string">"ret :%d\n"</span>,ret);</div><div class="line">        <span class="keyword">return</span> ret;</div><div class="line">    &#125;</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"connect OK!\n"</span>);</div><div class="line">    EXEC SQL COMMIT RELEASE;<span class="comment">//提交事务并且断开</span></div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>通过宿主变量指定连接名字</p>
+</li>
+</ol>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//演示通过程序连接多个数据库</span></div><div class="line">EXEC SQL BEGIN DECLARE SECTION;</div><div class="line">    <span class="keyword">char</span>        *usrname = <span class="string">"scott"</span>;</div><div class="line">    <span class="keyword">char</span>        *passwd = <span class="string">"tiger"</span>;</div><div class="line">    <span class="keyword">char</span>        *link1 = <span class="string">"link1"</span>;  <span class="comment">//通过宿主变量指定连接名字</span></div><div class="line">    <span class="keyword">char</span>        *serverid = <span class="string">"orcl"</span>;</div><div class="line"></div><div class="line">    <span class="keyword">char</span>        *usrname2 = <span class="string">"scott"</span>;</div><div class="line">    <span class="keyword">char</span>        *passwd2 = <span class="string">"tiger"</span>;</div><div class="line">    <span class="keyword">char</span>        *link2 = <span class="string">"link2"</span>;</div><div class="line">    <span class="keyword">char</span>        *serverid2 = <span class="string">"orcl"</span>;</div><div class="line">EXEC SQL END DECLARE SECTION;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">int</span> ret = <span class="number">0</span>;    </div><div class="line">    <span class="comment">//第一个用户连接数据库</span></div><div class="line">    EXEC SQL CONNECT :usrname IDENTIFIED BY :passwd AT :link1  USING :serverid  ;</div><div class="line">    <span class="keyword">if</span> (sqlca.sqlcode != <span class="number">0</span>)</div><div class="line">    &#123;</div><div class="line">        ret = sqlca.sqlcode;</div><div class="line">        <span class="built_in">printf</span>(<span class="string">"第一个用户连接数据库 失败sqlca.sqlcode: err:%d \n"</span>, sqlca.sqlcode);</div><div class="line">        <span class="keyword">return</span> ret;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">else</span></div><div class="line">    &#123;</div><div class="line">        <span class="built_in">printf</span>(<span class="string">"第一个用户连接数据库 成功connect ok...\n"</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="comment">//第二个用户连接数据库</span></div><div class="line">    EXEC SQL CONNECT:usrname2 IDENTIFIED BY:passwd2 AT:link2  USING:serverid2  ;</div><div class="line">    <span class="keyword">if</span> (sqlca.sqlcode != <span class="number">0</span>)</div><div class="line">    &#123;</div><div class="line">        ret = sqlca.sqlcode;</div><div class="line">        <span class="built_in">printf</span>(<span class="string">"第二个用户连接数据库 失败sqlca.sqlcode: err:%d \n"</span>, sqlca.sqlcode);</div><div class="line">        <span class="keyword">return</span> ret;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">else</span></div><div class="line">    &#123;</div><div class="line">        <span class="built_in">printf</span>(<span class="string">"第二个用户连接数据库 成功connect ok...\n"</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="comment">//断开连接</span></div><div class="line">    EXEC SQL AT:link1 COMMIT RELEASE;</div><div class="line">    <span class="keyword">if</span> (sqlca.sqlcode != <span class="number">0</span>)</div><div class="line">    &#123;</div><div class="line">        ret = sqlca.sqlcode;</div><div class="line">        <span class="built_in">printf</span>(<span class="string">"第1个用户断开数据库 失败sqlca.sqlcode: err:%d \n"</span>, sqlca.sqlcode);</div><div class="line">        <span class="keyword">return</span> ret;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">else</span></div><div class="line">    &#123;</div><div class="line">        <span class="built_in">printf</span>(<span class="string">"第1个用户断开数据库 成功 RELEASE ok...\n"</span>);</div><div class="line">    &#125;</div><div class="line">    EXEC SQL AT:link2 COMMIT RELEASE;</div><div class="line">    <span class="keyword">if</span> (sqlca.sqlcode != <span class="number">0</span>)</div><div class="line">    &#123;</div><div class="line">        ret = sqlca.sqlcode;</div><div class="line">        <span class="built_in">printf</span>(<span class="string">"第二个用户断开数据库 失败sqlca.sqlcode: err:%d \n"</span>, sqlca.sqlcode);</div><div class="line">        <span class="keyword">return</span> ret;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">else</span></div><div class="line">    &#123;</div><div class="line">        <span class="built_in">printf</span>(<span class="string">"第二个用户断开数据库 成功 RELEASE ok...\n"</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> ret ;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ol>
+<li>宿主变量</li>
+</ol>
+<p>C的数据类型不同于Oracle的数据类型，在数据传递时有一个数据类型转换过程。<br>在Proc*C/C++程序中，是被C和SQL语句使用的变量，位于</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">EXEC SQL BEGIN DECLARE SECTION</div><div class="line">.............</div><div class="line">EXEC SQL END DECLARE SECTION</div></pre></td></tr></table></figure>
+<p>之内。</p>
+<p>主要类型：</p>
+<table>
+<thead>
+<tr>
+<th>程序中形式</th>
+<th style="text-align:right">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>char</td>
+<td style="text-align:right">单字符</td>
+</tr>
+<tr>
+<td>char[N]</td>
+<td style="text-align:right">N个定长字符数组</td>
+</tr>
+<tr>
+<td>short</td>
+<td style="text-align:right">短整型</td>
+</tr>
+<tr>
+<td>long</td>
+<td style="text-align:right">长整型</td>
+</tr>
+<tr>
+<td>float</td>
+<td style="text-align:right">单精度浮点数</td>
+</tr>
+<tr>
+<td>double</td>
+<td style="text-align:right">双精度浮点数</td>
+</tr>
+<tr>
+<td>VARCHAR[N]</td>
+<td style="text-align:right">变长字符串</td>
+</tr>
+</tbody>
+</table>
+<p><strong>使用场景</strong></p>
+<blockquote>
+<ul>
+<li>输入：将应用程序的数据传递到数据库中</li>
+</ul>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">int</span> salary,emp_number;</div><div class="line"><span class="built_in">cin</span>&gt;&gt;salary;</div><div class="line"><span class="built_in">cin</span>&gt;&gt;emp_number;</div><div class="line">EXEC SQL update emp <span class="built_in">set</span> sal= :salary where empno= :emp_number;</div></pre></td></tr></table></figure>
+<blockquote>
+<ul>
+<li>输出：将数据库的数据传递到应用程序中。</li>
+</ul>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">float</span> v_salary;</div><div class="line"><span class="keyword">char</span> v_job;</div><div class="line">EXEC SQL select sal,job INTO :v_salary, :v_job from emp where empno=<span class="number">90</span>;</div><div class="line"><span class="built_in">cout</span>&lt;&lt; v_salary&lt;&lt;v_job;</div></pre></td></tr></table></figure>
+<blockquote>
+<ul>
+<li>申明语法与普通C变量一致，但在CODE=CPP或MODE=ANSI时变量必须放在申明区。</li>
+<li>可使用Pointer作为宿主变量，使用前分配空间。</li>
+<li>在数据定义语言（DDL）语句中不能用宿主变量。错误例子：</li>
+</ul>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">char</span> table_name[<span class="number">30</span>];</div><div class="line"><span class="built_in">cin</span>&gt;&gt; table_name;</div><div class="line">EXEC SQL DROP TABLE :table_name</div></pre></td></tr></table></figure>
+<ol>
+<li>关于数据的增删改查</li>
+</ol>
+<p>预先定义了<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">EXEC SQL BEGIN DECLARE SECTION;</div><div class="line"><span class="keyword">int</span> deptid = <span class="number">50</span>;</div><div class="line"><span class="keyword">char</span> dname[<span class="number">32</span>] = <span class="string">"20name"</span>;</div><div class="line"><span class="keyword">char</span> loc[<span class="number">32</span>] = <span class="string">"20loc"</span>;</div><div class="line">EXEC SQL END DECLARE SECTION;</div></pre></td></tr></table></figure></p>
+<blockquote>
+<ul>
+<li>插入数据</li>
+</ul>
+</blockquote>
+<pre><code>EXEC SQL insert into dept(DEPTNO,DNAME,LOC) values(:deptid,:dname,:loc);
+</code></pre><blockquote>
+<ul>
+<li>删除数据</li>
+</ul>
+</blockquote>
+<pre><code>EXEC SQL delete from dept where deptno=:deptid;
+</code></pre><blockquote>
+<ul>
+<li>修改数据</li>
+</ul>
+</blockquote>
+<pre><code>EXEC SQL update dept set loc = :loc where deptno=:deptid;
+</code></pre><p>综合示例：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"sqlca.h"</span></span></div><div class="line"><span class="comment">//定义宿主变量（SQL变量）</span></div><div class="line"><span class="comment">//C语言可以直接使用</span></div><div class="line"><span class="comment">//嵌入式SQL语句里面使用的话需要加上EXEC SQL前缀</span></div><div class="line">EXEC SQL BEGIN DECLARE SECTION;</div><div class="line"><span class="comment">//char * serverid = "scott/lzj123529";</span></div><div class="line"><span class="keyword">char</span> user[<span class="number">32</span>];</div><div class="line"><span class="keyword">char</span> passwd[<span class="number">32</span>];</div><div class="line"><span class="keyword">char</span> sid[<span class="number">32</span>];</div><div class="line"><span class="keyword">int</span> deptid = <span class="number">50</span>;</div><div class="line"><span class="keyword">char</span> dname[<span class="number">32</span>] = <span class="string">"20name"</span>;</div><div class="line"><span class="keyword">char</span> loc[<span class="number">32</span>] = <span class="string">"20loc"</span>;</div><div class="line">EXEC SQL END DECLARE SECTION;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">int</span> ret = <span class="number">0</span>;</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"HelloWorld\n"</span>);</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"\nuser:"</span>);</div><div class="line">    <span class="built_in">scanf</span>(<span class="string">"%s"</span>,user);</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"\npasswd:"</span>);</div><div class="line">    <span class="built_in">scanf</span>(<span class="string">"%s"</span>,passwd);</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"sid:"</span>);</div><div class="line">    <span class="built_in">scanf</span>(<span class="string">"%s"</span>,sid);</div><div class="line">    EXEC SQL CONNECT:user IDENTIFIED BY:passwd USING:sid;</div><div class="line">    <span class="keyword">if</span>(sqlca.sqlcode != <span class="number">0</span>)</div><div class="line">    &#123;</div><div class="line">        ret = sqlca.sqlcode ;</div><div class="line">        <span class="built_in">printf</span>(<span class="string">"ret :%d\n"</span>,ret);</div><div class="line">        <span class="keyword">return</span> ret;</div><div class="line">    &#125;</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"connect OK!\n"</span>);</div><div class="line">    <span class="function">EXEC SQL insert into <span class="title">dept</span><span class="params">(DEPTNO,DNAME,LOC)</span> <span class="title">values</span><span class="params">(:deptid,:dname,:loc)</span></span>;</div><div class="line">    EXEC SQL COMMIT;<span class="comment">//提交事务不退出</span></div><div class="line">    sleep(<span class="number">10</span>);</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"delete ....\n"</span>);</div><div class="line">    <span class="comment">//EXEC SQL delete from dept where deptno=:deptid;</span></div><div class="line">    <span class="built_in">strcpy</span>(loc,<span class="string">"中国"</span>);</div><div class="line">    EXEC SQL update dept <span class="built_in">set</span> loc = :loc where deptno=:deptid;</div><div class="line">    EXEC SQL COMMIT RELEASE;<span class="comment">//提交事务并且断开</span></div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/c-操作数据库Oracle数据库/" rel="tag"># c++操作数据库Oracle数据库</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/07/01/DataBase/数据库范式/" rel="next" title="数据库范式">
+                <i class="fa fa-chevron-left"></i> 数据库范式
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/07/11/DataBase/数据库语言分类/" rel="prev" title="数据库语言分类">
+                数据库语言分类 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <div>
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="穆蕾" />
+          <h4 class='topic'>念念不忘<br/>必有回响</h4>
+          </div>
+          <p class="site-author-name" itemprop="name">穆蕾</p>
+           
+              <p class="site-description motion-element" itemprop="description">个人学习总结</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">24</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate" title="RSS订阅">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          <a title="收藏到书签，偶尔High一下^_^" rel="alternate" class="mw-harlem_shake_slow wobble shake" href='javascript:(
+    /*
+     * Copyright (C) 2015 Rocko (rocko.xyz) <rocko.zxp@gmail.com>
+     *
+     * Licensed under the Apache License, Version 2.0 (the "License");
+     * you may not use this file except in compliance with the License.
+
+     * Unless required by applicable law or agreed to in writing, software
+     * distributed under the License is distributed on an "AS IS" BASIS,
+     * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     * See the License for the specific language governing permissions and
+     * limitations under the License.
+     */
+    function go() {
+
+      var songs = [
+          "http://m2.music.126.net/3uHnH7uQAeFwUfuvEB9lrg==/3265549619475054.mp3", 
+          "http://m2.music.126.net/NnHwR2HV-1OoKZ6R5LVy4Q==/18502581673300023.mp3",
+          "http://m2.music.126.net/qv3RI4K7ABKJ0TyAdb3taw==/3250156397064860.mp3",    
+          "......"
+      ];
+
+      function S() {
+          var e = document.getElementById("audio_element_id");
+          if(e != null){
+              var index = parseInt(e.getAttribute("curSongIndex"));
+              if(index > songs.length - 2) {
+                  index = 0;
+              } else {
+                  index++;
+              }
+              e.setAttribute("curSongIndex", index);
+          }
+          e.src = i;
+          e.play()
+      }
+      function initAudioEle() {
+          var e = document.getElementById("audio_element_id");
+          if(e === null){
+            e = document.createElement("audio");
+            e.setAttribute("curSongIndex", 0);
+            e.id = "audio_element_id";
+            e.loop = false;
+            e.bgcolor = 0;
+            e.innerHTML = " <p>If you are reading this, it is because your browser does not support the audio element. We recommend that you get a new browser.</p> <p>";
+            document.body.appendChild(e);
+            e.addEventListener("ended", function() {
+              go();
+            }, true);
+          }        
+      }
+
+      initAudioEle();
+      var curSongIndex = parseInt(document.getElementById("audio_element_id").getAttribute("curSongIndex"));
+      var i = songs[curSongIndex];
+      S();
+    })()'>
+    
+    <i class="fa fa-music"></i> 听音乐</a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/muleimulei" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#基本概念"><span class="nav-number">1.</span> <span class="nav-text">基本概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#程序结构"><span class="nav-number">2.</span> <span class="nav-text">程序结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码"><span class="nav-number">3.</span> <span class="nav-text">代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#开发流程"><span class="nav-number">4.</span> <span class="nav-text">开发流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关于预编译工具（Proc）"><span class="nav-number">5.</span> <span class="nav-text">关于预编译工具（Proc）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#相关操作"><span class="nav-number">6.</span> <span class="nav-text">相关操作</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2014 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">穆蕾</span>
+</div>
+
+
+<!--<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div> -->
+
+<!--<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>-->
+&nbsp;&nbsp;&nbsp;&nbsp;本页点击 <span id="busuanzi_value_page_pv"></span> 次
+&nbsp;&nbsp;|&nbsp;&nbsp;本站总点击 <span id="busuanzi_value_site_pv"></span> 次
+&nbsp;&nbsp;|&nbsp;&nbsp;您是第 <span id="busuanzi_value_site_uv"></span> 位访客
+
+&nbsp;&nbsp;|&nbsp;&nbsp;<span><a href="/sitemap.xml">Google网站地图</a></span>
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span>人</span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span>次</span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+  
+
+
+  
+
+  
+
+  
+
+
+  
+  <script type="text/javascript" src="/js/src/particle.js" count="50" zindex="-2" opacity="1" color="0,104,183"></script>
+  <!-- 小红心 -->
+<script type="text/javascript" src="/js/src/heart.js"></script>
+<script type = 'text/javascript' src='/js/src/topic.js'></script>
+</body>
+</html>

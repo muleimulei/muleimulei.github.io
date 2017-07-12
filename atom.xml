@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://muleimulei.github.io/"/>
-  <updated>2017-07-01T15:36:49.972Z</updated>
+  <updated>2017-07-11T15:20:49.329Z</updated>
   <id>https://muleimulei.github.io/</id>
   
   <author>
@@ -14,6 +14,322 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>数据库语言分类</title>
+    <link href="https://muleimulei.github.io/2017/07/11/DataBase/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AF%AD%E8%A8%80%E5%88%86%E7%B1%BB/"/>
+    <id>https://muleimulei.github.io/2017/07/11/DataBase/数据库语言分类/</id>
+    <published>2017-07-11T15:16:12.527Z</published>
+    <updated>2017-07-11T15:20:49.329Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote class="blockquote-center"><p>数据库语言分类</p>
+</blockquote>
+<a id="more"></a>
+<p>SQL语言共分为四大类：数据查询语言DQL，数据操纵语言DML，数据定义语言DDL，数据控制语言DCL。</p>
+<h2 id="数据查询语言DQL"><a href="#数据查询语言DQL" class="headerlink" title="数据查询语言DQL"></a>数据查询语言DQL</h2><p>数据查询语言DQL基本结构是由SELECT子句，FROM子句，WHERE</p>
+<p>子句组成的查询块：</p>
+<p>SELECT &lt;字段名表&gt;</p>
+<p>FROM &lt;表或视图名&gt;</p>
+<p>WHERE &lt;查询条件&gt;</p>
+<h2 id="数据操纵语言DML"><a href="#数据操纵语言DML" class="headerlink" title="数据操纵语言DML"></a>数据操纵语言DML</h2><p>数据操纵语言DML主要有三种形式：</p>
+<p>1) 插入：INSERT</p>
+<p>2) 更新：UPDATE</p>
+<p>3) 删除：DELETE</p>
+<h2 id="数据定义语言DDL"><a href="#数据定义语言DDL" class="headerlink" title="数据定义语言DDL"></a>数据定义语言DDL</h2><p>数据定义语言DDL用来创建数据库中的各种对象—–表、视图、</p>
+<p>索引、同义词、聚簇等如：</p>
+<p>CREATE TABLE/VIEW/INDEX/SYN/CLUSTER</p>
+<p>表 视图 索引 同义词 簇</p>
+<p>DDL操作是隐性提交的！不能rollback</p>
+<ol>
+<li>数据控制语言DCL</li>
+</ol>
+<p>数据控制语言DCL用来授予或回收访问数据库的某种特权，并控制</p>
+<p>数据库操纵事务发生的时间及效果，对数据库实行监视等。如：</p>
+<p>1) GRANT：授权。</p>
+<p>2) ROLLBACK [WORK] TO [SAVEPOINT]：回退到某一点。</p>
+<p>回滚—ROLLBACK</p>
+<p>回滚命令使数据库状态回到上次最后提交的状态。其格式为：</p>
+<p>SQL&gt;ROLLBACK;</p>
+<p>3) COMMIT [WORK]：提交。</p>
+<p>在数据库的插入、删除和修改操作时，只有当事务在提交到数据</p>
+<p>库时才算完成。在事务提交前，只有操作数据库的这个人才能有权看</p>
+<p>到所做的事情，别人只有在最后提交完成后才可以看到。</p>
+<p>提交数据有三种类型：显式提交、隐式提交及自动提交。下面分</p>
+<p>别说明这三种类型。</p>
+<p>(1) 显式提交</p>
+<p>用COMMIT命令直接完成的提交为显式提交。其格式为：</p>
+<p>SQL&gt;COMMIT；</p>
+<p>(2) 隐式提交</p>
+<p>用SQL命令间接完成的提交为隐式提交。这些命令是：</p>
+<p>ALTER，AUDIT，COMMENT，CONNECT，CREATE，DISCONNECT，DROP，</p>
+<p>EXIT，GRANT，NOAUDIT，QUIT，REVOKE，RENAME。</p>
+<p>(3) 自动提交</p>
+<p>若把AUTOCOMMIT设置为ON，则在插入、修改、删除语句执行后，</p>
+<p>系统将自动进行提交，这就是自动提交。其格式为：</p>
+<p>SQL&gt;SET AUTOCOMMIT ON；</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote class=&quot;blockquote-center&quot;&gt;&lt;p&gt;数据库语言分类&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="DataBase" scheme="https://muleimulei.github.io/categories/DataBase/"/>
+    
+    
+      <category term="数据库语言分类" scheme="https://muleimulei.github.io/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AF%AD%E8%A8%80%E5%88%86%E7%B1%BB/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Proc/C++开发</title>
+    <link href="https://muleimulei.github.io/2017/07/11/DataBase/Proc/"/>
+    <id>https://muleimulei.github.io/2017/07/11/DataBase/Proc/</id>
+    <published>2017-07-11T12:29:25.054Z</published>
+    <updated>2017-07-11T15:14:51.486Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote class="blockquote-center"><p>Proc/C++开发</p>
+</blockquote>
+<a id="more"></a>
+<h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><ul>
+<li>SQL<blockquote>
+<p>结构化查询语言，简称SQL，是一种数据库查询和程序设计语言，用于存取数据以及查询，更新和管理关系数据库系统；同时，也是数据库脚本文件的扩展名。</p>
+</blockquote>
+</li>
+<li>Pro*C/C++<blockquote>
+<p>在C/C++程序中嵌入SQL语句操作数据库，得到的应用程序叫做Proc*C/C++程序。</p>
+</blockquote>
+</li>
+<li>嵌入式SQL<blockquote>
+<p>能在其它编程语言中混合使用的SQL语句，叫做嵌入式SQL语句！但是各个厂商对嵌入式SQL的具体实现不一样，但是具体的混合语法不一样，各厂商有自己的预编译工具。</p>
+</blockquote>
+</li>
+<li>宿主语言<blockquote>
+<p>嵌入式SQL的载体是宿主语言，比如这里说的就是C/C++。</p>
+</blockquote>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>宿主语言</th>
+<th style="text-align:right">Pro程序</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>C/C++</td>
+<td style="text-align:right">Pro*C/C++</td>
+</tr>
+<tr>
+<td>FORTRAN</td>
+<td style="text-align:right">Pro*FORTRAN</td>
+</tr>
+<tr>
+<td>PASCAL</td>
+<td style="text-align:right">Pro*PASCAL</td>
+</tr>
+<tr>
+<td>COBOL</td>
+<td style="text-align:right">Pro*COBOL</td>
+</tr>
+<tr>
+<td>PL/I</td>
+<td style="text-align:right">Pro*PL/I</td>
+</tr>
+<tr>
+<td>Ada</td>
+<td style="text-align:right">Pro*Ada</td>
+</tr>
+</tbody>
+</table>
+<h2 id="程序结构"><a href="#程序结构" class="headerlink" title="程序结构"></a>程序结构</h2><blockquote>
+<ol>
+<li>Include 头文件(c/c++ and Pro*c/c++)</li>
+<li>定义变量</li>
+<li>定义函数</li>
+<li>main<br>4.1 连接数据库 ：connect<br>4.2 SQL操作语句：EXEC SQL …..<br>4.3 exception handle<br>4.4 断开连接<br>4.5 EXEC SQL COMMIT / ROLLBACK WORK release</li>
+</ol>
+</blockquote>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"sqlca.h"</span></span></div><div class="line"></div><div class="line">EXEC SQL BEGIN DECLARE SECTION</div><div class="line">    <span class="keyword">char</span> username[<span class="number">32</span>];</div><div class="line">    <span class="keyword">char</span> passwd[<span class="number">32</span>];</div><div class="line">    <span class="keyword">char</span> dname[<span class="number">25</span>];</div><div class="line">EXEC SQL END DECLARE SECTION</div><div class="line"></div><div class="line">EXEC SQL INCLUDE sqlca;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">sqlerror</span><span class="params">()</span></span>;</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line">    <span class="function">EXEC SQL WHENEVER SQLERROR DO <span class="title">sqlerror</span><span class="params">()</span></span>;</div><div class="line">    <span class="built_in">strcpy</span>(username, <span class="string">"scott"</span>);</div><div class="line">    <span class="built_in">strcpy</span>(passwd, <span class="string">"XXXXX"</span>);</div><div class="line">    EXEC SQL CONNECT :username IDENTIFIED BY :passwd;</div><div class="line">    EXEC SQL select dname from dept where id=<span class="number">10</span>;</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"dname: %s\n"</span>,dname);</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">sqlerror</span><span class="params">()</span></span>&#123;</div><div class="line">    EXEC SQL WHENEVER SQLERROR CONTINUE;</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"\n oracle error detected\n"</span>);</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"%.70s\n"</span>,sqlca.sqlerrm.sqlerrmc);</div><div class="line">    EXEC SQL ROLLBACK WORK RELEASE;</div><div class="line">    <span class="built_in">exit</span>(<span class="number">1</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="开发流程"><a href="#开发流程" class="headerlink" title="开发流程"></a>开发流程</h2><ol>
+<li><p>一般应用程序c开发运行标准流程</p>
+<img src="/assets/segment/5.png">
+</li>
+<li><p>一般应用程序c++开发运行标准流程</p>
+<img src="/assets/segment/6.png">
+</li>
+</ol>
+<blockquote>
+<p>Pro*C/C++ 应用程序的开发多了一个预编译的过程：pc转换成c或cpp文件</p>
+</blockquote>
+<h2 id="关于预编译工具（Proc）"><a href="#关于预编译工具（Proc）" class="headerlink" title="关于预编译工具（Proc）"></a>关于预编译工具（Proc）</h2><ol>
+<li>位置：$ORACLE_HOME/bin 目录下拥有数据库访问权限的用户可以直接在终端使用，不需要绝对路径。</li>
+<li>配置文件：$ORACLE_HOME/precomp/admin/pcscfg.cfg 头文件，库文件路径。</li>
+<li>基本命令格式：<code>proc iname=filename oname=outname [OptionName1=value1]…[OptionNameN=valueN]</code></li>
+<li>基本选项：</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>选项</th>
+<th style="text-align:right">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>INAME</td>
+<td style="text-align:right">path and filename (name of input file) 1.pc</td>
+</tr>
+<tr>
+<td>ONAME</td>
+<td style="text-align:right">path and filename (name of output file) 1.c</td>
+</tr>
+<tr>
+<td>INCLUDE</td>
+<td style="text-align:right">path (头文件所在路径) -INCLUDE 路径名 或 INCLUDE= (路径名1，路径名2)</td>
+</tr>
+<tr>
+<td>PARSE</td>
+<td style="text-align:right">FULL 、PARTIA、NONE (DEFAULT FULL for C，Others for C++)</td>
+</tr>
+<tr>
+<td>CODE</td>
+<td style="text-align:right">ANSI_C、CPP (default ansi_c)</td>
+</tr>
+<tr>
+<td>USERID</td>
+<td style="text-align:right">username/password</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>默认预编译得到的是C文件，使用下列选项得到C++文件<br>parse=none     告诉proc编译器，按照C++规范解析 dm02_hello.pc<br>code = cpp     告诉proc编译器，按照C++规范生成文件<br>proc dm02_hello.pc parse=none code=cpp oname=dm02_hello.cpp</p>
+</blockquote>
+<h2 id="相关操作"><a href="#相关操作" class="headerlink" title="相关操作"></a>相关操作</h2><ol>
+<li><p>连接数据库</p>
+<ul>
+<li>方法一<br><code>EXEC SQL CONNECT :usr_pwd</code></li>
+<li>方法二<br><code>EXEC SQL CONNECT :username IDENTIFIED BY :passwd</code></li>
+<li>方法三<br>通过db_name连接没有限定名字的数据库–可以修改数据库的名字–at选项<br><code>EXEC SQL CONNECT :username IDENTIFIED BY :passwd AT :db_name USING :db_string</code></li>
+</ul>
+</li>
+<li><p>代码里写死了用户名和密码</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"sqlca.h"</span></span></div><div class="line"><span class="comment">//定义宿主变量（SQL变量）</span></div><div class="line"><span class="comment">//C语言可以直接使用</span></div><div class="line"><span class="comment">//嵌入式SQL语句里面使用的话需要加上EXEC SQL前缀</span></div><div class="line">EXEC SQL BEGIN DECLARE SECTION;</div><div class="line"><span class="keyword">char</span> * serverid = <span class="string">"scott/lzj123529"</span>;</div><div class="line">EXEC SQL END DECLARE SECTION;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">int</span> ret = <span class="number">0</span>;</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"HelloWorld\n"</span>);</div><div class="line">    EXEC SQL connect:serverid;</div><div class="line">    <span class="keyword">if</span>(sqlca.sqlcode != <span class="number">0</span>)</div><div class="line">    &#123;</div><div class="line">        ret = sqlca.sqlcode ;</div><div class="line">        <span class="built_in">printf</span>(<span class="string">"ret :%d\n"</span>,ret);</div><div class="line">        <span class="keyword">return</span> ret;</div><div class="line">    &#125;</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"connect OK!\n"</span>);</div><div class="line">    EXEC SQL COMMIT RELEASE;<span class="comment">//提交事务并且断开</span></div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>交互式的连接数据库</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">EXEC SQL BEGIN DECLARE SECTION;</div><div class="line"><span class="keyword">char</span> user[<span class="number">32</span>];</div><div class="line"><span class="keyword">char</span> passwd[<span class="number">32</span>];</div><div class="line"><span class="keyword">char</span> sid[<span class="number">32</span>];</div><div class="line">EXEC SQL END DECLARE SECTION;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">int</span> ret = <span class="number">0</span>;</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"user:"</span>);</div><div class="line">    <span class="built_in">scanf</span>(<span class="string">"%s"</span>,user);</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"passwd:"</span>);</div><div class="line">    <span class="built_in">scanf</span>(<span class="string">"%s"</span>,passwd);</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"sid:"</span>);</div><div class="line">    <span class="built_in">scanf</span>(<span class="string">"%s"</span>,sid);</div><div class="line">    EXEC SQL CONNECT :user IDENTIFIED BY :passwd USING :sid;</div><div class="line">    <span class="keyword">if</span>(sqlca.sqlcode != <span class="number">0</span>)</div><div class="line">    &#123;</div><div class="line">        ret = sqlca.sqlcode ;</div><div class="line">        <span class="built_in">printf</span>(<span class="string">"ret :%d\n"</span>,ret);</div><div class="line">        <span class="keyword">return</span> ret;</div><div class="line">    &#125;</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"connect OK!\n"</span>);</div><div class="line">    EXEC SQL COMMIT RELEASE;<span class="comment">//提交事务并且断开</span></div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>通过宿主变量指定连接名字</p>
+</li>
+</ol>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//演示通过程序连接多个数据库</span></div><div class="line">EXEC SQL BEGIN DECLARE SECTION;</div><div class="line">    <span class="keyword">char</span>        *usrname = <span class="string">"scott"</span>;</div><div class="line">    <span class="keyword">char</span>        *passwd = <span class="string">"tiger"</span>;</div><div class="line">    <span class="keyword">char</span>        *link1 = <span class="string">"link1"</span>;  <span class="comment">//通过宿主变量指定连接名字</span></div><div class="line">    <span class="keyword">char</span>        *serverid = <span class="string">"orcl"</span>;</div><div class="line"></div><div class="line">    <span class="keyword">char</span>        *usrname2 = <span class="string">"scott"</span>;</div><div class="line">    <span class="keyword">char</span>        *passwd2 = <span class="string">"tiger"</span>;</div><div class="line">    <span class="keyword">char</span>        *link2 = <span class="string">"link2"</span>;</div><div class="line">    <span class="keyword">char</span>        *serverid2 = <span class="string">"orcl"</span>;</div><div class="line">EXEC SQL END DECLARE SECTION;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">int</span> ret = <span class="number">0</span>;    </div><div class="line">    <span class="comment">//第一个用户连接数据库</span></div><div class="line">    EXEC SQL CONNECT :usrname IDENTIFIED BY :passwd AT :link1  USING :serverid  ;</div><div class="line">    <span class="keyword">if</span> (sqlca.sqlcode != <span class="number">0</span>)</div><div class="line">    &#123;</div><div class="line">        ret = sqlca.sqlcode;</div><div class="line">        <span class="built_in">printf</span>(<span class="string">"第一个用户连接数据库 失败sqlca.sqlcode: err:%d \n"</span>, sqlca.sqlcode);</div><div class="line">        <span class="keyword">return</span> ret;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">else</span></div><div class="line">    &#123;</div><div class="line">        <span class="built_in">printf</span>(<span class="string">"第一个用户连接数据库 成功connect ok...\n"</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="comment">//第二个用户连接数据库</span></div><div class="line">    EXEC SQL CONNECT:usrname2 IDENTIFIED BY:passwd2 AT:link2  USING:serverid2  ;</div><div class="line">    <span class="keyword">if</span> (sqlca.sqlcode != <span class="number">0</span>)</div><div class="line">    &#123;</div><div class="line">        ret = sqlca.sqlcode;</div><div class="line">        <span class="built_in">printf</span>(<span class="string">"第二个用户连接数据库 失败sqlca.sqlcode: err:%d \n"</span>, sqlca.sqlcode);</div><div class="line">        <span class="keyword">return</span> ret;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">else</span></div><div class="line">    &#123;</div><div class="line">        <span class="built_in">printf</span>(<span class="string">"第二个用户连接数据库 成功connect ok...\n"</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="comment">//断开连接</span></div><div class="line">    EXEC SQL AT:link1 COMMIT RELEASE;</div><div class="line">    <span class="keyword">if</span> (sqlca.sqlcode != <span class="number">0</span>)</div><div class="line">    &#123;</div><div class="line">        ret = sqlca.sqlcode;</div><div class="line">        <span class="built_in">printf</span>(<span class="string">"第1个用户断开数据库 失败sqlca.sqlcode: err:%d \n"</span>, sqlca.sqlcode);</div><div class="line">        <span class="keyword">return</span> ret;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">else</span></div><div class="line">    &#123;</div><div class="line">        <span class="built_in">printf</span>(<span class="string">"第1个用户断开数据库 成功 RELEASE ok...\n"</span>);</div><div class="line">    &#125;</div><div class="line">    EXEC SQL AT:link2 COMMIT RELEASE;</div><div class="line">    <span class="keyword">if</span> (sqlca.sqlcode != <span class="number">0</span>)</div><div class="line">    &#123;</div><div class="line">        ret = sqlca.sqlcode;</div><div class="line">        <span class="built_in">printf</span>(<span class="string">"第二个用户断开数据库 失败sqlca.sqlcode: err:%d \n"</span>, sqlca.sqlcode);</div><div class="line">        <span class="keyword">return</span> ret;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">else</span></div><div class="line">    &#123;</div><div class="line">        <span class="built_in">printf</span>(<span class="string">"第二个用户断开数据库 成功 RELEASE ok...\n"</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> ret ;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ol>
+<li>宿主变量</li>
+</ol>
+<p>C的数据类型不同于Oracle的数据类型，在数据传递时有一个数据类型转换过程。<br>在Proc*C/C++程序中，是被C和SQL语句使用的变量，位于</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">EXEC SQL BEGIN DECLARE SECTION</div><div class="line">.............</div><div class="line">EXEC SQL END DECLARE SECTION</div></pre></td></tr></table></figure>
+<p>之内。</p>
+<p>主要类型：</p>
+<table>
+<thead>
+<tr>
+<th>程序中形式</th>
+<th style="text-align:right">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>char</td>
+<td style="text-align:right">单字符</td>
+</tr>
+<tr>
+<td>char[N]</td>
+<td style="text-align:right">N个定长字符数组</td>
+</tr>
+<tr>
+<td>short</td>
+<td style="text-align:right">短整型</td>
+</tr>
+<tr>
+<td>long</td>
+<td style="text-align:right">长整型</td>
+</tr>
+<tr>
+<td>float</td>
+<td style="text-align:right">单精度浮点数</td>
+</tr>
+<tr>
+<td>double</td>
+<td style="text-align:right">双精度浮点数</td>
+</tr>
+<tr>
+<td>VARCHAR[N]</td>
+<td style="text-align:right">变长字符串</td>
+</tr>
+</tbody>
+</table>
+<p><strong>使用场景</strong></p>
+<blockquote>
+<ul>
+<li>输入：将应用程序的数据传递到数据库中</li>
+</ul>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">int</span> salary,emp_number;</div><div class="line"><span class="built_in">cin</span>&gt;&gt;salary;</div><div class="line"><span class="built_in">cin</span>&gt;&gt;emp_number;</div><div class="line">EXEC SQL update emp <span class="built_in">set</span> sal= :salary where empno= :emp_number;</div></pre></td></tr></table></figure>
+<blockquote>
+<ul>
+<li>输出：将数据库的数据传递到应用程序中。</li>
+</ul>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">float</span> v_salary;</div><div class="line"><span class="keyword">char</span> v_job;</div><div class="line">EXEC SQL select sal,job INTO :v_salary, :v_job from emp where empno=<span class="number">90</span>;</div><div class="line"><span class="built_in">cout</span>&lt;&lt; v_salary&lt;&lt;v_job;</div></pre></td></tr></table></figure>
+<blockquote>
+<ul>
+<li>申明语法与普通C变量一致，但在CODE=CPP或MODE=ANSI时变量必须放在申明区。</li>
+<li>可使用Pointer作为宿主变量，使用前分配空间。</li>
+<li>在数据定义语言（DDL）语句中不能用宿主变量。错误例子：</li>
+</ul>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">char</span> table_name[<span class="number">30</span>];</div><div class="line"><span class="built_in">cin</span>&gt;&gt; table_name;</div><div class="line">EXEC SQL DROP TABLE :table_name</div></pre></td></tr></table></figure>
+<ol>
+<li>关于数据的增删改查</li>
+</ol>
+<p>预先定义了<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">EXEC SQL BEGIN DECLARE SECTION;</div><div class="line"><span class="keyword">int</span> deptid = <span class="number">50</span>;</div><div class="line"><span class="keyword">char</span> dname[<span class="number">32</span>] = <span class="string">"20name"</span>;</div><div class="line"><span class="keyword">char</span> loc[<span class="number">32</span>] = <span class="string">"20loc"</span>;</div><div class="line">EXEC SQL END DECLARE SECTION;</div></pre></td></tr></table></figure></p>
+<blockquote>
+<ul>
+<li>插入数据</li>
+</ul>
+</blockquote>
+<pre><code>EXEC SQL insert into dept(DEPTNO,DNAME,LOC) values(:deptid,:dname,:loc);
+</code></pre><blockquote>
+<ul>
+<li>删除数据</li>
+</ul>
+</blockquote>
+<pre><code>EXEC SQL delete from dept where deptno=:deptid;
+</code></pre><blockquote>
+<ul>
+<li>修改数据</li>
+</ul>
+</blockquote>
+<pre><code>EXEC SQL update dept set loc = :loc where deptno=:deptid;
+</code></pre><p>综合示例：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"sqlca.h"</span></span></div><div class="line"><span class="comment">//定义宿主变量（SQL变量）</span></div><div class="line"><span class="comment">//C语言可以直接使用</span></div><div class="line"><span class="comment">//嵌入式SQL语句里面使用的话需要加上EXEC SQL前缀</span></div><div class="line">EXEC SQL BEGIN DECLARE SECTION;</div><div class="line"><span class="comment">//char * serverid = "scott/lzj123529";</span></div><div class="line"><span class="keyword">char</span> user[<span class="number">32</span>];</div><div class="line"><span class="keyword">char</span> passwd[<span class="number">32</span>];</div><div class="line"><span class="keyword">char</span> sid[<span class="number">32</span>];</div><div class="line"><span class="keyword">int</span> deptid = <span class="number">50</span>;</div><div class="line"><span class="keyword">char</span> dname[<span class="number">32</span>] = <span class="string">"20name"</span>;</div><div class="line"><span class="keyword">char</span> loc[<span class="number">32</span>] = <span class="string">"20loc"</span>;</div><div class="line">EXEC SQL END DECLARE SECTION;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">int</span> ret = <span class="number">0</span>;</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"HelloWorld\n"</span>);</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"\nuser:"</span>);</div><div class="line">    <span class="built_in">scanf</span>(<span class="string">"%s"</span>,user);</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"\npasswd:"</span>);</div><div class="line">    <span class="built_in">scanf</span>(<span class="string">"%s"</span>,passwd);</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"sid:"</span>);</div><div class="line">    <span class="built_in">scanf</span>(<span class="string">"%s"</span>,sid);</div><div class="line">    EXEC SQL CONNECT:user IDENTIFIED BY:passwd USING:sid;</div><div class="line">    <span class="keyword">if</span>(sqlca.sqlcode != <span class="number">0</span>)</div><div class="line">    &#123;</div><div class="line">        ret = sqlca.sqlcode ;</div><div class="line">        <span class="built_in">printf</span>(<span class="string">"ret :%d\n"</span>,ret);</div><div class="line">        <span class="keyword">return</span> ret;</div><div class="line">    &#125;</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"connect OK!\n"</span>);</div><div class="line">    <span class="function">EXEC SQL insert into <span class="title">dept</span><span class="params">(DEPTNO,DNAME,LOC)</span> <span class="title">values</span><span class="params">(:deptid,:dname,:loc)</span></span>;</div><div class="line">    EXEC SQL COMMIT;<span class="comment">//提交事务不退出</span></div><div class="line">    sleep(<span class="number">10</span>);</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"delete ....\n"</span>);</div><div class="line">    <span class="comment">//EXEC SQL delete from dept where deptno=:deptid;</span></div><div class="line">    <span class="built_in">strcpy</span>(loc,<span class="string">"中国"</span>);</div><div class="line">    EXEC SQL update dept <span class="built_in">set</span> loc = :loc where deptno=:deptid;</div><div class="line">    EXEC SQL COMMIT RELEASE;<span class="comment">//提交事务并且断开</span></div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote class=&quot;blockquote-center&quot;&gt;&lt;p&gt;Proc/C++开发&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="DataBase" scheme="https://muleimulei.github.io/categories/DataBase/"/>
+    
+    
+      <category term="c++操作数据库Oracle数据库" scheme="https://muleimulei.github.io/tags/c-%E6%93%8D%E4%BD%9C%E6%95%B0%E6%8D%AE%E5%BA%93Oracle%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+  </entry>
   
   <entry>
     <title>数据库范式</title>
@@ -942,7 +1258,7 @@
     <link href="https://muleimulei.github.io/2017/04/08/canvas/canvas%E5%AD%A6%E4%B9%A0%E7%AC%AC%E4%B8%89%E7%AB%A0/"/>
     <id>https://muleimulei.github.io/2017/04/08/canvas/canvas学习第三章/</id>
     <published>2017-04-08T04:32:15.856Z</published>
-    <updated>2017-04-08T06:23:39.873Z</updated>
+    <updated>2017-07-11T12:28:23.132Z</updated>
     
     <content type="html"><![CDATA[<blockquote class="blockquote-center"><p>canvas学习第三章</p>
 </blockquote>
@@ -1183,138 +1499,6 @@
     
     
       <category term="JavaScript内置函数" scheme="https://muleimulei.github.io/tags/JavaScript%E5%86%85%E7%BD%AE%E5%87%BD%E6%95%B0/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>时间片轮转与高响应比优先算法</title>
-    <link href="https://muleimulei.github.io/2017/04/02/OS/%E6%97%B6%E9%97%B4%E7%89%87%E8%BD%AE%E8%BD%AC%E4%B8%8E%E9%AB%98%E5%93%8D%E5%BA%94%E6%AF%94%E4%BC%98%E5%85%88%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95/"/>
-    <id>https://muleimulei.github.io/2017/04/02/OS/时间片轮转与高响应比优先调度算法/</id>
-    <published>2017-04-02T14:53:13.349Z</published>
-    <updated>2017-04-14T15:13:40.086Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote class="blockquote-center"><p>时间片轮转与高响应比优先算法</p>
-</blockquote>
-<a id="more"></a>
-<h1 id="轮转调度算法"><a href="#轮转调度算法" class="headerlink" title="轮转调度算法"></a>轮转调度算法</h1><h4 id="轮转法的基本原理"><a href="#轮转法的基本原理" class="headerlink" title="轮转法的基本原理"></a>轮转法的基本原理</h4><hr>
-<blockquote>
-<p>在轮转(RR)法中，系统根据FCFS策略，将所有的就绪队列排成一个就绪队列，并可设置一定时间间隔（如30ms）产生一次终断，激活系统中的进程调度程序，完成一次调度，将CPU分配给队首进程，另其执行。当该进程的时间片耗尽或运行完毕时，系统再次将CPU分配给新的队首进程（或新到达的紧迫进程），由此，可保证就绪队列中的所有进程在一个确定的时间片内，都能获得一次CPU执行。</p>
-</blockquote>
-<h4 id="进程切换时机"><a href="#进程切换时机" class="headerlink" title="进程切换时机"></a>进程切换时机</h4><hr>
-<h6 id="在RR调度算法中，应在何事进行进程的切换，可分为两种情况："><a href="#在RR调度算法中，应在何事进行进程的切换，可分为两种情况：" class="headerlink" title="在RR调度算法中，应在何事进行进程的切换，可分为两种情况："></a>在RR调度算法中，应在何事进行进程的切换，可分为两种情况：</h6><ol>
-<li><p>若一个时间片尚未用完，正在运行的进程便已经完成，就立即激活调度程序，将他从就绪队列中删除，再调度就绪队列中队首的进程运行，并启动一个新的时间片。 </p>
-</li>
-<li><p>在一个时间片用完时，计时器中断处理程序被激活。如果进程尚未运行完毕，调度程序就把他送往就绪队列的尾部。</p>
-</li>
-</ol>
-<h4 id="时间片大小确定"><a href="#时间片大小确定" class="headerlink" title="时间片大小确定"></a>时间片大小确定</h4><hr>
-<p>如果选择的时间片小，将有利于短作业，因为它能在该时间片内完成。但时间片小，意味着会进行频繁的进程调度和进程上下文的切换，无疑会增加系统的开销。反之，若时间片选择得太长，且为使每个进程都能在一个时间片内完成。RR算法便会退化成FCFS算法，无法满足短作业和交互式用户的需求。<strong> 一个较为可取的时间片大小是略大于一次典型的交互所需要的时间，使大多数交互式进程能在一个时间片内完成</strong></p>
-<h1 id="高响应比优先调度算法"><a href="#高响应比优先调度算法" class="headerlink" title="高响应比优先调度算法"></a>高响应比优先调度算法</h1><p>高响应比优先调度算法为每一个作业引入一个动态优先级，即优先级是可以改变的，令他随等待时间延长而增加，这将使长作业的优先级在等待期间不断的增加，等到足够的时间后，必然会有机会获得处理机。该优先级变化规律为：</p>
-<center> <strong> 优先级 = (等待时间+要求服务时间)/要求服务时间 </strong> </center>
-
-<p>由于等待时间与服务时间之和就是系统对该作业的响应时间，故该优先级又相当于响应比R<sub>p</sub>。优先级又可表示为：</p>
-<center> <strong> 优先级 = (等待时间+要求服务时间)/要求服务时间 = 响应时间/要求服务时间 </strong> </center>
-
-<h6 id="由上式可以看出"><a href="#由上式可以看出" class="headerlink" title="由上式可以看出"></a>由上式可以看出</h6><ol>
-<li>如果作业的等待时间相同，则要求服务的时间愈短，其优先级愈高，因而类似于SJF算法，有利于短作业。</li>
-<li>当要求服务的的时间相同时，作业的优先级又取决于其等待时间，因而又类似于FCFS算法。</li>
-<li>对于长作业的优先级，可以随等待时间的增加而增大，当其等待时间足够长时，也可获得处理机。</li>
-<li>在每次进行调度前，都需要进行响应比的计算，显然会增加系统开销。</li>
-</ol>
-<p>两种算法代码实现如下：</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div></pre></td><td class="code"><pre><div class="line">//进程类</div><div class="line">function Process()&#123;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">Process.list = []; //进程列表</div><div class="line">Process.task_num = 5;//进程数</div><div class="line">Process.regetRatioAndGetProcess = function(list)&#123; //获得响应比</div><div class="line">    list.forEach(function(item)&#123;</div><div class="line">        item.ratio = ((Date.parse(new Date()) - item.arriveTime) / item.runTime) +1; //一个进程结束后，重新计算响应比</div><div class="line">    &#125;);</div><div class="line"></div><div class="line">    var maxRatio = 0,NO = -1;</div><div class="line">    list.forEach(function(item,index)&#123; //挑选出响应比最大的进程</div><div class="line">        if(item.ratio&gt;maxRatio)&#123;</div><div class="line">            maxRatio = item.ratio;</div><div class="line">            NO = index;</div><div class="line">        &#125;</div><div class="line">    &#125;);</div><div class="line">    return list.splice(NO,1)[0];</div><div class="line">&#125;</div><div class="line"></div><div class="line">//进程初始化</div><div class="line">Process.init = function()&#123;</div><div class="line">    Process.list.splice(0,Process.list.length);</div><div class="line">    for(var i = 0;i&lt;Process.task_num;i++)&#123;</div><div class="line">        Process.list.push(&#123;</div><div class="line">            id: i,//进程号</div><div class="line">            arriveTime: 0, //进程到达时间</div><div class="line">            ratio: 0, //响应比</div><div class="line">            runTime: (Math.floor(Math.random()*4)+2)*1000, //运行时间间隔为[2,6]s</div><div class="line">        &#125;);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">//-----------------------------------------------------------</div><div class="line">//高响应比优先调度算法</div><div class="line">var HRRN = &#123;</div><div class="line">    list:[], //记录进程响应时间</div><div class="line">    init_task: function(list,num)&#123;</div><div class="line">        list.forEach(function(item)&#123;</div><div class="line">            item.arriveTime = Date.parse(new Date()); //获得进程到达时间</div><div class="line">        &#125;);</div><div class="line">    &#125;,</div><div class="line">    //进程运行</div><div class="line">    run: function(list,num)&#123;</div><div class="line">        for(var i = 0;i&lt;num;i++)&#123;</div><div class="line">            var runItem = Process.regetRatioAndGetProcess(list); //得到响应比最大的进程</div><div class="line">            console.log(`第$&#123;runItem.id&#125;号进程开始运行：$&#123;new Date()&#125;`);</div><div class="line">            var t = Date.parse(new Date());</div><div class="line">            var exit = t + runItem.runTime;</div><div class="line">            while(true)&#123; //模拟进程运行</div><div class="line">                if(Date.parse(new Date()) &gt;=exit)&#123;</div><div class="line">                    break;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">            console.log(`第$&#123;runItem.id&#125;号进程结束运行：$&#123;new Date()&#125;`);</div><div class="line">            //记录进程的响应时间 ：现在时间-到达时间</div><div class="line">            HRRN.list.push(&#123;</div><div class="line">                id: runItem.id,</div><div class="line">                responseTime: Date.parse(new Date()) - runItem.arriveTime</div><div class="line">            &#125;);</div><div class="line">        &#125;</div><div class="line">    &#125;,</div><div class="line">    //打印进程响应时间，计算平均响应周期</div><div class="line">    show:function()&#123;</div><div class="line">        var total = 0;</div><div class="line">        HRRN.list.forEach(function(item)&#123;</div><div class="line">            console.log(`$&#123;item.id&#125;的响应时间为$&#123;Math.floor(item.responseTime)&#125;`);</div><div class="line">            total+=Math.floor(item.responseTime);</div><div class="line">        &#125;);</div><div class="line">        console.log(`平均周转周期为$&#123;Math.floor(total/HRRN.list.length)/1000&#125;s`);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line">Process.init();</div><div class="line">HRRN.init_task(Process.list,Process.task_num);</div><div class="line">HRRN.run(Process.list,Process.task_num);</div><div class="line">HRRN.show();</div><div class="line"></div><div class="line">//---------------------------------------------------------------</div><div class="line">//时间片轮转算法</div><div class="line">var RR = &#123;</div><div class="line">    circle_size:4000,//时间片大小</div><div class="line">    list:[], //记录进程执行时间</div><div class="line">    init_task:function(list)&#123; //初始化进程</div><div class="line">        list.forEach(function(item)&#123;</div><div class="line">            item.arriveTime = Date.parse(new Date());</div><div class="line">        &#125;);</div><div class="line">    &#125;,</div><div class="line">    run:function(list)&#123;</div><div class="line">        while(true)&#123;</div><div class="line">            if(list.length===0) break; //进程全部运行完成后，退出死循环</div><div class="line">            var item = list.splice(0,1)[0]; //选出队首进程</div><div class="line">            var runTime = item.runTime;</div><div class="line">            var id = item.id;</div><div class="line">            console.log(`第$&#123;id&#125;号进程开始运行 :$&#123;new Date()&#125;`);</div><div class="line">            if(runTime&lt;RR.circle_size)&#123; //如果能够在本时间片内运行完</div><div class="line">                var exit = Date.parse(new Date()) + runTime;</div><div class="line">                while((Date.parse(new Date()))&lt; exit);</div><div class="line">                console.log(`第$&#123;id&#125;号进程结束运行,运行时间为$&#123;runTime/1000&#125;s :$&#123;new Date()&#125;`);</div><div class="line">                RR.list.push(&#123;</div><div class="line">                    id: item.id,</div><div class="line">                    responseTime: Date.parse(new Date()) - item.arriveTime</div><div class="line">                &#125;);</div><div class="line">            &#125;else&#123; //计算下一次需要的运行时间</div><div class="line">                item.runTime -= RR.circle_size;</div><div class="line">                list.push(item);</div><div class="line">                var exit = Date.parse(new Date()) + RR.circle_size;</div><div class="line">                while((Date.parse(new Date()))&lt; exit);</div><div class="line">                console.log(`$&#123;new Date()&#125;:第$&#123;id&#125;号进程时间片用完，处于等待状态`);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;,</div><div class="line">    //打印每个进程的响应时间与平均周转周期</div><div class="line">    show:function()&#123;</div><div class="line">        var total = 0;</div><div class="line">        RR.list.forEach(function(item)&#123;</div><div class="line">            console.log(`$&#123;item.id&#125;的响应时间为$&#123;Math.floor(item.responseTime)&#125;`);</div><div class="line">            total+=Math.floor(item.responseTime);</div><div class="line">        &#125;);</div><div class="line">        console.log(`平均周转周期为$&#123;Math.floor(total/RR.list.length)/1000&#125;s`);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">Process.init();</div><div class="line">RR.init_task(Process.list);</div><div class="line">RR.run(Process.list);</div><div class="line">RR.show();</div></pre></td></tr></table></figure>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;blockquote class=&quot;blockquote-center&quot;&gt;&lt;p&gt;时间片轮转与高响应比优先算法&lt;/p&gt;
-&lt;/blockquote&gt;
-    
-    </summary>
-    
-      <category term="os" scheme="https://muleimulei.github.io/categories/os/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>JQuery的Deferred对象详解</title>
-    <link href="https://muleimulei.github.io/2017/04/02/JavaScript/jquery%E7%9A%84Deferred%E5%AF%B9%E8%B1%A1%E8%AF%A6%E8%A7%A3/"/>
-    <id>https://muleimulei.github.io/2017/04/02/JavaScript/jquery的Deferred对象详解/</id>
-    <published>2017-04-02T10:24:29.261Z</published>
-    <updated>2017-04-02T15:22:10.799Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote class="blockquote-center"><p>JQuery的Deferred对象就是Jquery的回调函数的解决方案</p>
-</blockquote>
-<a id="more"></a>
-<p>在我们开发网站的过程中，我们经常会遇到很长的JavaScript操作。其中，既有异步的操作，如ajax读取服务器的数据，也有异步的操作，如遍历一个大型数组，他们都不是能立即返回结果的。通常的做法是，为他们指定回调函数（callback）。即事先规定，一旦它们运行结束，应该调用哪些函数。简单地说，Deferred对象就是JQuery的回调函数的解决方案。在英语中，defer的意思是“延迟”，所以Deferred对象的含义是延迟到未来的某个点在执行。</p>
-<h3 id="ajax的链式写法"><a href="#ajax的链式写法" class="headerlink" title="ajax的链式写法"></a>ajax的链式写法</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">$.ajax(&#123;</div><div class="line">        <span class="attr">url</span>: <span class="string">'test.html'</span>,</div><div class="line">        <span class="attr">success</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">            alert(<span class="string">'ok'</span>);</div><div class="line">        &#125;,</div><div class="line">        <span class="attr">error</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">            alert(<span class="string">'fail'</span>);</div><div class="line">        &#125;</div><div class="line">    &#125;);</div></pre></td></tr></table></figure>
-<p>在上面的代码中，$.ajax()接受一个对象参数，这个对象包含两个方法：success方法指定操作成功后的回调方法，error方法指定操作失败后的回调函数。</p>
-<p>$.ajax()操作完成后，如果使用的是低于1.5.0版本的JQuery，返回的是XHR对象，没法进行链式操作；如果高于1.5.0版本，返回的是Deferred对象，可以进行链式操作。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">$.ajax(<span class="string">'text.html'</span>)</div><div class="line">.done(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    alert(<span class="string">'ok'</span>);    </div><div class="line">&#125;)</div><div class="line">.fail(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    alert(<span class="string">'fail'</span>);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<h3 id="指定同一操作的多个回调函数"><a href="#指定同一操作的多个回调函数" class="headerlink" title="指定同一操作的多个回调函数"></a>指定同一操作的多个回调函数</h3><p>Deferred对象的一大好处是允许你自由添加多个回调函数。<br>还是以上面的代码为例，如果ajax操作成功后，除了原来的回调函数，还想再运行一个回调函数。代码如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">$.ajax(<span class="string">'test.html'</span>)</div><div class="line">.done(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    alert(<span class="string">'ok'</span>);</div><div class="line">&#125;)</div><div class="line">.fail(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    alert(<span class="string">'fail'</span>)</div><div class="line">&#125;)</div><div class="line">.done(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    alert(<span class="string">'第二个回调'</span>);</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
-<p>回调函数可以添加任意多个，它们按添加顺序执行</p>
-<h3 id="为多个操作指定回调函数"><a href="#为多个操作指定回调函数" class="headerlink" title="为多个操作指定回调函数"></a>为多个操作指定回调函数</h3><p>Deferred对象的另一大好处，就是它允许你为多个事件指定一个回调函数，这是传统写法做不到的。此时用到一个新的方法：<code>$.when()</code>:</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">$.when($.ajax(<span class="string">'test1.html'</span>),$.ajax(<span class="string">'test2.html'</span>))</div><div class="line">.done(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    alert(<span class="string">'ok'</span>)  </div><div class="line">&#125;)</div><div class="line">.fail(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    alert(<span class="string">'fail'</span>);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<p>这段代码的意思是，先执行两个操作$.ajax()操作，如果都成功了，就运行done()指定的回调函数；如果有一个失败或都失败了，就执行fail()指定的回调函数。</p>
-<h3 id="普通函数的回调函数接口（上）"><a href="#普通函数的回调函数接口（上）" class="headerlink" title="普通函数的回调函数接口（上）"></a>普通函数的回调函数接口（上）</h3><p>Deferred对象的最大优点，就是它把这一套回调函数接口，从ajax操作扩展到了所有操作。也就是说，任何一个操作（不管是ajax操作还是本地操作，也不管是异步操作还是同步操作，都可以使用Deferred对象的各种方法，指定回调函数）。</p>
-<p>来看一个具体的例子。假如有一个很耗时的操作wait:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> wait = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> tasks = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        alert(<span class="string">'执行完毕'</span>);</div><div class="line">    &#125;;</div><div class="line">    setTimeout(tasks,<span class="number">5000</span>);</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
-<p>为它指定回调函数，应该怎么做呢？<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">$.when(wait())</div><div class="line">.done(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    alert(<span class="string">'haha'</span>);</div><div class="line">&#125;)</div><div class="line">.fail(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    alert(<span class="string">'fail'</span>);</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
-<p>但是，这样写的话，done()方法会立即执行，起不到回调函数的作用。原因在于$.when()的参数只能是Deferred对象，所以必须对wait()改写：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> dtd = $.Deferred(); <span class="comment">//新建一个Deferred对象</span></div><div class="line"><span class="keyword">var</span> wait = <span class="function"><span class="keyword">function</span>(<span class="params">dtd</span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> tasks = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        alert(<span class="string">'执行完毕'</span>);</div><div class="line">        dtd.resolve();</div><div class="line">    &#125;;</div><div class="line">    setTimeout(tasks,<span class="number">5000</span>);</div><div class="line">    <span class="keyword">return</span> dtd;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<p>现在，wait()函数返回的是Deferred对象，这样就可以加上链式操作了。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">$.when(wait(dtd))</div><div class="line">.done(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    alert(<span class="string">'haha'</span>);</div><div class="line">&#125;)</div><div class="line">.fail(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    alert(<span class="string">'fail'</span>);</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
-<p>wait()函数运行完，就会自动运行done()方法指定的回调函数。</p>
-<h3 id="deferred-resolve-方法和deferred-reject-方法"><a href="#deferred-resolve-方法和deferred-reject-方法" class="headerlink" title="deferred.resolve()方法和deferred.reject()方法"></a>deferred.resolve()方法和deferred.reject()方法</h3><p>JQuery规定，Deferred对象有三种执行状态:未完成，已完成和已失败。如果执行状态是“已完成”(resolved)，Deferred对象立即调用done()方法指定的回调函数；如果执行状态是“已失败”(rejected)，调用fail()方法指定的回调函数；如果执行状态是“未完成”(pending)，调用progress()方法指定的回调函数。</p>
-<p>前面部分的ajax操作，Deferred对象会根据返回结果，自动改变自身的执行状态；但在wait()函数中，这个状态必须有程序员手动指定。dtd.resolve()的意思是，将Deferred对象的执行状态从“未完成”改为<strong>“已完成”</strong>，从而触发done()方法。类似的，还存在一个deferred.reject()方法，作用是将Deferred对象的执行状态从“未完成”改为<strong>“已失败”</strong>，从而触发fail()方法。</p>
-<h3 id="Deferred对象的promise-方法"><a href="#Deferred对象的promise-方法" class="headerlink" title="Deferred对象的promise()方法"></a>Deferred对象的promise()方法</h3><p>上面这种写法，还是有问题。那就是dtd是一个全局对象，所以它的执行状态可以从外部改变。<br>看如下代码：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> dtd = $.Deferred(); <span class="comment">//新建一个Deferred对象</span></div><div class="line"><span class="keyword">var</span> wait = <span class="function"><span class="keyword">function</span>(<span class="params">dtd</span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> tasks = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        alert(<span class="string">'执行完毕'</span>);</div><div class="line">        dtd.resolve();</div><div class="line">    &#125;;</div><div class="line">    setTimeout(tasks,<span class="number">5000</span>);</div><div class="line">    <span class="keyword">return</span> dtd;</div><div class="line">&#125;;</div><div class="line">$.when(wait(dtd))</div><div class="line">.done(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    alert(<span class="string">'haha'</span>);</div><div class="line">&#125;)</div><div class="line">.fail(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    alert(<span class="string">'fail'</span>);</div><div class="line">&#125;);</div><div class="line">dtd.resolve();</div></pre></td></tr></table></figure></p>
-<p>在其尾部添加一行dtd.resolve()，这就改变了dtd对象的执行状态，因此导致done()方法立即执行，先跳出“haha”,然后5秒后在跳出”执行完毕”的提示框。<br>为了避免这种情况，JQuery提供了<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">```JavaScript</div><div class="line">    var dtd = $.Deferred(); // 新建一个Deferred对象</div><div class="line">　　var wait = function(dtd)&#123;</div><div class="line">　　　　var tasks = function()&#123;</div><div class="line">　　　　　　alert(&quot;执行完毕！&quot;);</div><div class="line">　　　　　　dtd.resolve(); // 改变Deferred对象的执行状态</div><div class="line">　　　　&#125;;</div><div class="line">　　　　setTimeout(tasks,5000);</div><div class="line">　　　　return dtd.promise(); // 返回promise对象</div><div class="line">　　&#125;;</div><div class="line">　　var d = wait(dtd); // 新建一个d对象，改为对这个对象进行操作</div><div class="line">　　$.when(d)</div><div class="line">　　.done(function()&#123; alert(&quot;哈哈，成功了！&quot;); &#125;)</div><div class="line">　　.fail(function()&#123; alert(&quot;出错啦！&quot;); &#125;);</div><div class="line">　　d.resolve(); // 此时，这个语句是无效的</div></pre></td></tr></table></figure></p>
-<p>在上面的这段代码中，wait()函数返回的是promise对象。然后，我们把回调函数绑定到这个对象上，而不是原来的Deferred对象。这样的好处是，无法改变这个对象的执行状态，要想改变执行状态，只能操作原来的Deferred对象。</p>
-<p>不过最好的写法如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">　　<span class="keyword">var</span> wait = <span class="function"><span class="keyword">function</span>(<span class="params">dtd</span>)</span>&#123;</div><div class="line"><span class="keyword">var</span> dtd = $.Deferred(); <span class="comment">// 新建一个Deferred对象</span></div><div class="line">　　　　<span class="keyword">var</span> tasks = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">　　　　　　alert(<span class="string">"执行完毕！"</span>);</div><div class="line">　　　　　　dtd.resolve(); <span class="comment">// 改变Deferred对象的执行状态</span></div><div class="line">　　　　&#125;;</div><div class="line">　　　　setTimeout(tasks,<span class="number">5000</span>);</div><div class="line">　　　　<span class="keyword">return</span> dtd.promise(); <span class="comment">// 返回promise对象</span></div><div class="line">　　&#125;;</div><div class="line">　　<span class="keyword">var</span> d = wait(dtd); <span class="comment">// 新建一个d对象，改为对这个对象进行操作</span></div><div class="line">　　$.when(d)</div><div class="line">　　.done(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; alert(<span class="string">"哈哈，成功了！"</span>); &#125;)</div><div class="line">　　.fail(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; alert(<span class="string">"出错啦！"</span>); &#125;);</div></pre></td></tr></table></figure></p>
-<h3 id="Deferred对象的方法"><a href="#Deferred对象的方法" class="headerlink" title="Deferred对象的方法"></a>Deferred对象的方法</h3><ul>
-<li>$.Deferred() 生成一个Deferred对象</li>
-<li>deferred.progress() 该方法用于指定deferred对象状态为等待中的回调函数。但是她仅在deferred对象生成了进度通知时才会被调用。</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line">    <span class="keyword">var</span> wait = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> dtd = $.Deferred(); <span class="comment">// 新建一个deferred对象    </span></div><div class="line">    <span class="keyword">var</span> i = <span class="number">1</span>,</div><div class="line">        timer,</div><div class="line">        percent; <span class="comment">// 记录进度</span></div><div class="line"></div><div class="line"></div><div class="line">    <span class="keyword">var</span> tasks = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="keyword">if</span> (i == <span class="number">11</span>) &#123;</div><div class="line">            alert(<span class="string">"执行完毕！"</span>);</div><div class="line">            dtd.resolve(); <span class="comment">// 此操作完成后改变deferred对象的执行状态</span></div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            percent = (i * <span class="number">500</span>) / <span class="number">5000</span> * <span class="number">100</span> + <span class="string">'%'</span>;</div><div class="line">            dtd.notify(percent); <span class="comment">// 调用progress回调</span></div><div class="line">            i++;</div><div class="line">            setTimeout(tasks, <span class="number">500</span>);</div><div class="line">        &#125;</div><div class="line">    &#125;;</div><div class="line">    setTimeout(tasks, <span class="number">1000</span>);</div><div class="line">    <span class="keyword">return</span> dtd;</div><div class="line">&#125;;</div><div class="line"><span class="comment">// 绑定回调函数</span></div><div class="line">$.when(wait())</div><div class="line">    .done(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        alert(<span class="string">"执行成功了！"</span>);</div><div class="line">    &#125;)</div><div class="line">    .fail(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        alert(<span class="string">"出错啦！"</span>);</div><div class="line">    &#125;)</div><div class="line">    .progress(<span class="function"><span class="keyword">function</span>(<span class="params">data</span>) </span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">'执行中,已完成'</span>, data);</div><div class="line">    &#125;);</div><div class="line"><span class="comment">// 执行中,已完成 10%</span></div><div class="line"><span class="comment">// 执行中,已完成 20%</span></div><div class="line"><span class="comment">// 执行中,已完成 30%</span></div><div class="line"><span class="comment">// 执行中,已完成 40%</span></div><div class="line"><span class="comment">// 执行中,已完成 50%</span></div><div class="line"><span class="comment">// 执行中,已完成 60%</span></div><div class="line"><span class="comment">// 执行中,已完成 70%</span></div><div class="line"><span class="comment">// 执行中,已完成 80%</span></div><div class="line"><span class="comment">// 执行中,已完成 90%</span></div><div class="line"><span class="comment">// 执行中,已完成 100%</span></div><div class="line"><span class="comment">// 之后弹出 执行完毕！和 执行成功了！</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>jQuery3.0以上版本对when方法做了大幅调整。向promise/A+靠齐，上面的写法中notify是触发不了when中的progress回调的，需要使用promise来给对象部署deferred接口或使用$.Deferred()传入函数名。</p>
-</blockquote>
-<ol>
-<li>promise 给一个对象部署Deferred接口</li>
-</ol>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> dtd = $.Deferred(); <span class="comment">// 新建一个deferred对象</span></div><div class="line"><span class="keyword">var</span> wait = <span class="function"><span class="keyword">function</span>(<span class="params">dtd</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> i = <span class="number">1</span>,</div><div class="line">        timer,</div><div class="line">        percent; <span class="comment">// 记录进度</span></div><div class="line">    <span class="keyword">var</span> tasks = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="keyword">if</span> (i == <span class="number">11</span>) &#123;</div><div class="line">            alert(<span class="string">"执行完毕！"</span>);</div><div class="line">            dtd.resolve(); <span class="comment">// 此操作完成后改变deferred对象的执行状态</span></div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            percent = (i * <span class="number">500</span>) / <span class="number">5000</span> * <span class="number">100</span> + <span class="string">'%'</span>;</div><div class="line">            dtd.notify(percent); <span class="comment">// 调用progress回调</span></div><div class="line">            i++;</div><div class="line">            setTimeout(tasks, <span class="number">500</span>);</div><div class="line">        &#125;</div><div class="line">    &#125;;</div><div class="line">    setTimeout(tasks, <span class="number">1000</span>);        </div><div class="line">&#125;;</div><div class="line"><span class="comment">// 在wait对象上部署Deferred接口，此后就可以直接在wait上使用deferred对象promise后的方法了</span></div><div class="line">dtd.promise(wait);</div><div class="line"><span class="comment">// 在wait对象上使用deferred对象的方法指定回调。</span></div><div class="line">wait.done(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    alert(<span class="string">"执行成功了！"</span>);</div><div class="line">&#125;)</div><div class="line">.fail(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    alert(<span class="string">"出错啦！"</span>);</div><div class="line">&#125;)</div><div class="line">.progress(<span class="function"><span class="keyword">function</span>(<span class="params">data</span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'执行中,已完成'</span>, data);</div><div class="line">&#125;);</div><div class="line"><span class="comment">// 执行</span></div><div class="line">wait(dtd);</div></pre></td></tr></table></figure>
-<ol>
-<li>使用$.Deferred传入函数名：</li>
-</ol>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> wait = <span class="function"><span class="keyword">function</span>(<span class="params">dtd</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> i = <span class="number">1</span>,</div><div class="line">        timer,</div><div class="line">        percent; <span class="comment">// 记录进度</span></div><div class="line"></div><div class="line">    <span class="keyword">var</span> tasks = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="keyword">if</span> (i == <span class="number">11</span>) &#123;</div><div class="line">            alert(<span class="string">"执行完毕！"</span>);</div><div class="line">            dtd.resolve(); <span class="comment">// 此操作完成后改变deferred对象的执行状态</span></div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            percent = (i * <span class="number">500</span>) / <span class="number">5000</span> * <span class="number">100</span> + <span class="string">'%'</span>;</div><div class="line">            dtd.notify(percent); <span class="comment">// 调用progress回调</span></div><div class="line">            i++;</div><div class="line">            setTimeout(tasks, <span class="number">500</span>);</div><div class="line">        &#125;</div><div class="line">    &#125;;</div><div class="line">    setTimeout(tasks, <span class="number">1000</span>);</div><div class="line">    <span class="keyword">return</span> dtd;</div><div class="line">&#125;;</div><div class="line"><span class="comment">// 绑定回调函数</span></div><div class="line">$.Deferred(wait)  <span class="comment">//$.Deferred()的返回值将作为wait函数的参数</span></div><div class="line">    .done(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        alert(<span class="string">"执行成功了！"</span>);</div><div class="line">    &#125;)</div><div class="line">    .fail(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        alert(<span class="string">"出错啦！"</span>);</div><div class="line">    &#125;)</div><div class="line">    .progress(<span class="function"><span class="keyword">function</span>(<span class="params">data</span>) </span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">'执行中,已完成'</span>, data);</div><div class="line">    &#125;);</div></pre></td></tr></table></figure>
-<ul>
-<li>deferred.done() 指定操作成功时的回调函数</li>
-<li>deferred.fail() 指定操作失败时的回调函数</li>
-<li>deferred.promise() 没有参数时，返回一个新的Deferred对象，该对象的运行状态无法被改变；接受参数时，作用为在参数对象上部署deferred接口。</li>
-<li>deferred.resolve() 手动改变deferred对象的运行状态为“已完成”，从而触发done()方法。</li>
-<li>deferred.always() 不管Deferred对象如何，总是执行。</li>
-<li>deferred.reject() 这个方法与deferred.resolve()正好相反，调用后将Deferred对象的运行状态变为“已失败”，从而立即触发fail()方法。</li>
-<li>$.when() 为多个操作指定回调函数。</li>
-<li>deferred.then() 有时为了省事，可以把done()和fail()合写在一起，这就是then()方法。</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$.when($.ajax(<span class="string">'test.html'</span>))</div><div class="line">    .then(successFunc,failureFunc);</div></pre></td></tr></table></figure>
-<p>如果then()有两个参数，那么第一个参数时done()方法的回调函数。如果then()只有一个参数，那么等同于done()。</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;blockquote class=&quot;blockquote-center&quot;&gt;&lt;p&gt;JQuery的Deferred对象就是Jquery的回调函数的解决方案&lt;/p&gt;
-&lt;/blockquote&gt;
-    
-    </summary>
-    
-      <category term="JavaScript" scheme="https://muleimulei.github.io/categories/JavaScript/"/>
-    
-    
-      <category term="JavaScript" scheme="https://muleimulei.github.io/tags/JavaScript/"/>
-    
-      <category term="JQuery" scheme="https://muleimulei.github.io/tags/JQuery/"/>
-    
-      <category term="Deferred" scheme="https://muleimulei.github.io/tags/Deferred/"/>
     
   </entry>
   
