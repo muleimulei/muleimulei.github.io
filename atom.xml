@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://muleimulei.github.io/"/>
-  <updated>2017-07-11T15:20:49.329Z</updated>
+  <updated>2017-07-14T14:58:07.797Z</updated>
   <id>https://muleimulei.github.io/</id>
   
   <author>
@@ -14,6 +14,53 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>strcpy与strncpy用法与区别</title>
+    <link href="https://muleimulei.github.io/2017/07/14/c%E4%B8%8Ec++/strcpy%E4%B8%8Estrncpy%E7%94%A8%E6%B3%95%E4%B8%8E%E5%8C%BA%E5%88%AB/"/>
+    <id>https://muleimulei.github.io/2017/07/14/c与c++/strcpy与strncpy用法与区别/</id>
+    <published>2017-07-14T14:03:11.444Z</published>
+    <updated>2017-07-14T14:58:07.797Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote class="blockquote-center"><p>strcpy与strncpy用法与区别</p>
+</blockquote>
+<a id="more"></a>
+<ul>
+<li>strcpy函数：把从src地址开始含有NULL结束符的字符串复制到以dest开始的地址空间，返回dest。要求：src和dest所指的内存区域不可以重叠且dest必须有足够的空间来容纳src字符串。函数原型为：    extern char <em> strcpy(char </em>dest, char <em>src</em>);</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">char</span> *<span class="title">strcpy</span><span class="params">( <span class="keyword">char</span>* strDest, <span class="keyword">const</span> <span class="keyword">char</span> *strSrc)</span></span>&#123;</div><div class="line">    <span class="keyword">char</span> *strDestCopy = strDest;</div><div class="line">    <span class="keyword">if</span>((strDest==<span class="literal">NULL</span>)||(strSrc==<span class="literal">NULL</span>))</div><div class="line">        <span class="keyword">throw</span> <span class="string">"Invalid arguments"</span>;</div><div class="line">    <span class="keyword">while</span>((*strDest++ = *strSrc++)!=<span class="string">'\0'</span>);</div><div class="line">    <span class="keyword">return</span> strDestCopy;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>该函数的参数是字符指针，也就是可以是字符串变量和字符数组，因为它们的变量名代表字符地址。字符串默认有一个以null的结束符，字符数组没有。所以此处需要注意：因为src要求有null结束符，所以字符数组的长度必须大于等于src包含null结束符的总长度。例如，char *src=”abcd”；char dest[5] ；这里的dest的长度至少为5；</p>
+</blockquote>
+<ul>
+<li><p>strncpy函数：n代表可以指定字符个数进行赋值。原型：char <em>strncpy(char </em>dest, char *src, size_t n)；功能：将字符串src最多n个字符复制到字符数组dest中（它并不像strcpy一样遇到NULL才停止复制，而是等凑够n个字符才开始复制），返回指向dest的指针。要求：如果n &gt; dest串长度，dest栈空间溢出产生崩溃异常。</p>
+<ol>
+<li><p>src串长度 &lt;= dest串长度（这里的串长度包含串尾NULL字符）<br>如果 n = (0, src串长度)，src的前n个字符复制到dest中。但是由于没有NULL字符，所以直接访问dest会发生乱码。这时，一般建议采用memset将dest的全部元素用null填充，如memset(dest, 0, 7)</p>
+<p>如果n=src串长度,与strcpy一致。<br>如果n=dest串长度，[0, src串长度]处存放src字符串，（src串长度，dest串长度]处存放NULL。</p>
+</li>
+<li><p>src串长度 &gt; des串长度<br>如果n = dest串长度，则dest串没有null字符，会导致输出有乱码。如果不考虑src串复制完整性，可以将dest最后一个字符置为NULL。</p>
+</li>
+</ol>
+</li>
+</ul>
+<blockquote>
+<p>所以，一般把n设为dest（含null）的长度,当n=dest串长度时，定义dest为字符数组，因为这时没有null字符拷贝。</p>
+</blockquote>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote class=&quot;blockquote-center&quot;&gt;&lt;p&gt;strcpy与strncpy用法与区别&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="C++" scheme="https://muleimulei.github.io/categories/C/"/>
+    
+    
+      <category term="c++拷贝函数解析" scheme="https://muleimulei.github.io/tags/c-%E6%8B%B7%E8%B4%9D%E5%87%BD%E6%95%B0%E8%A7%A3%E6%9E%90/"/>
+    
+  </entry>
   
   <entry>
     <title>数据库语言分类</title>
@@ -1323,7 +1370,7 @@
     <link href="https://muleimulei.github.io/2017/04/07/canvas/cancas%E5%AD%A6%E4%B9%A0%E7%AC%AC%E4%BA%8C%E7%AB%A0/"/>
     <id>https://muleimulei.github.io/2017/04/07/canvas/cancas学习第二章/</id>
     <published>2017-04-07T11:07:25.077Z</published>
-    <updated>2017-04-08T04:32:41.712Z</updated>
+    <updated>2017-07-14T13:58:46.323Z</updated>
     
     <content type="html"><![CDATA[<blockquote class="blockquote-center"><p>canvas学习第二章</p>
 </blockquote>
@@ -1447,58 +1494,6 @@
     
     
       <category term="JavaScript" scheme="https://muleimulei.github.io/tags/JavaScript/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>JavaScript的reduce如何工作</title>
-    <link href="https://muleimulei.github.io/2017/04/07/JavaScript/JavaScript%E7%9A%84Reduce%E6%96%B9%E6%B3%95%E5%A6%82%E4%BD%95%E5%B7%A5%E4%BD%9C/"/>
-    <id>https://muleimulei.github.io/2017/04/07/JavaScript/JavaScript的Reduce方法如何工作/</id>
-    <published>2017-04-07T08:17:33.093Z</published>
-    <updated>2017-04-07T10:23:35.604Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote class="blockquote-center"><p>JavaScript的reduce如何工作</p>
-</blockquote>
-<a id="more"></a>
-<h3 id="一个简单的问题，你如何来求一个数组的和。"><a href="#一个简单的问题，你如何来求一个数组的和。" class="headerlink" title="一个简单的问题，你如何来求一个数组的和。"></a>一个简单的问题，你如何来求一个数组的和。</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> arr = [<span class="number">29</span>,<span class="number">27</span>,<span class="number">2</span>,<span class="number">23</span>];</div><div class="line"><span class="keyword">const</span> sum = arr.reduce(<span class="function">(<span class="params">total,amount</span>)=&gt;</span>total+amount);</div><div class="line"><span class="built_in">console</span>.log(sum); <span class="comment">//81</span></div></pre></td></tr></table></figure>
-<ul>
-<li>在这个例子中，reduce接受两个参数，total参数和amount参数。</li>
-<li>reduce函数循环遍历数组，像for循环一样。</li>
-<li>当循环开始时，total参数是最左边的29，amount参数值是27.</li>
-<li>函数会把total的值加上amount的值，然后赋值给total。</li>
-<li>然后下次函数total的值为56，amount的值为2，一直向右循环，直到没有数据时函数会把total的值返回。</li>
-</ul>
-<h3 id="计算数组的平均值。"><a href="#计算数组的平均值。" class="headerlink" title="计算数组的平均值。"></a>计算数组的平均值。</h3><p>reduce方法中的函数其余的参数，剩余第一个参数的含义为，数据在数组中的下标（从零开始），最后一个为数组本身。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">const</span> arr = [<span class="number">29</span>,<span class="number">27</span>,<span class="number">2</span>,<span class="number">23</span>];</div><div class="line"><span class="keyword">const</span> average = arr.reduce(<span class="function">(<span class="params">total,amount,index,array</span>)=&gt;</span>&#123;</div><div class="line">    total+=amount;</div><div class="line">    <span class="keyword">if</span>(index===array.length<span class="number">-1</span>)&#123;</div><div class="line">        <span class="keyword">return</span> total/array.length;</div><div class="line">    &#125;<span class="keyword">else</span>&#123;</div><div class="line">        <span class="keyword">return</span> total;</div><div class="line">    &#125;</div><div class="line">&#125;);</div><div class="line"><span class="built_in">console</span>.log(average);<span class="comment">//20.25</span></div><div class="line"><span class="string">``</span><span class="string">`</span></div></pre></td></tr></table></figure></p>
-<h3 id="如何用reduce方法返回一个数组。"><a href="#如何用reduce方法返回一个数组。" class="headerlink" title="如何用reduce方法返回一个数组。"></a>如何用reduce方法返回一个数组。</h3><p>上面的例子都是返回一个数值，你也可以返回一个数组，这就需要用到reduce函数的第二个参数。指定reduce方法第一个参数函数的第一个参数。在以前的例子中，我们忽略了它。默认为数组的第一个数据。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> arr = [<span class="number">29</span>,<span class="number">27</span>,<span class="number">2</span>,<span class="number">23</span>];</div><div class="line"><span class="keyword">const</span> average = arr.reduce(<span class="function">(<span class="params">total,amount</span>)=&gt;</span>&#123;  <span class="comment">//total为29，amount为27</span></div><div class="line">    total+=amount;</div><div class="line">    <span class="keyword">if</span>(index===array.length<span class="number">-1</span>)&#123;</div><div class="line">        <span class="keyword">return</span> total/array.length;</div><div class="line">    &#125;<span class="keyword">else</span>&#123;</div><div class="line">        <span class="keyword">return</span> total;</div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
-<p>但如果我们给reduce函数加上了第二个参数如：10，代码如下：这时total为10，amount变成了数组的第一个数据29<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> arr = [<span class="number">29</span>,<span class="number">27</span>,<span class="number">2</span>,<span class="number">23</span>];</div><div class="line"><span class="keyword">const</span> average = arr.reduce(<span class="function">(<span class="params">total,amount,index,array</span>)=&gt;</span>&#123;  <span class="comment">//total为29，amount为27</span></div><div class="line">    total+=amount;</div><div class="line">    <span class="keyword">if</span>(index===array.length<span class="number">-1</span>)&#123;</div><div class="line">        <span class="keyword">return</span> total/array.length;</div><div class="line">    &#125;<span class="keyword">else</span>&#123;</div><div class="line">        <span class="keyword">return</span> total;</div><div class="line">    &#125;</div><div class="line">&#125;,<span class="number">10</span>); <span class="comment">//此时平均值的结果的计算要数组元素加上10，在求平均值22.75</span></div></pre></td></tr></table></figure></p>
-<p>有了上面的知识，我们可以把reduce的第二个参数设置为数组，作为参数传入。就可以返回数组。代码如下(将数组数据乘二返回)：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> arr = [<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>];</div><div class="line"><span class="keyword">const</span> doubled = arr.reduce(<span class="function">(<span class="params">total,amount</span>)=&gt;</span>&#123; <span class="comment">//注意此时的total为[],amount为2</span></div><div class="line">    total.push(amount*<span class="number">2</span>);</div><div class="line">    <span class="keyword">return</span> total;</div><div class="line">&#125;,[]);</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(doubled); <span class="comment">//[4,6,8,10]</span></div></pre></td></tr></table></figure></p>
-<p>我们也可以在其中添加if判断，过滤掉我们不需要的数据<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> arr = [<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>];</div><div class="line"><span class="keyword">const</span> doubled = arr.reduce(<span class="function">(<span class="params">total,amount</span>)=&gt;</span>&#123; <span class="comment">//注意此时的total为[],amount为2</span></div><div class="line">    <span class="keyword">if</span>(amount&gt;<span class="number">3</span>)&#123;</div><div class="line">        total.push(amount*<span class="number">2</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> total;</div><div class="line">&#125;,[]);</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(doubled); <span class="comment">//[8,10]</span></div></pre></td></tr></table></figure></p>
-<blockquote>
-<p>上面的方法是map和filter方法被reduce方法重写，或许没有map与filter方法更容易让人理解，但reduce方法的好处是你可以综合使用它们，并且操作大量的数据。</p>
-</blockquote>
-<h3 id="我们再来讨论一个问题，你有一个集合，想知道每一个元素在集合中的数目。"><a href="#我们再来讨论一个问题，你有一个集合，想知道每一个元素在集合中的数目。" class="headerlink" title="我们再来讨论一个问题，你有一个集合，想知道每一个元素在集合中的数目。"></a>我们再来讨论一个问题，你有一个集合，想知道每一个元素在集合中的数目。</h3><p>我们可以利用reduce来解决<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> basket = [<span class="string">'banana'</span>,<span class="string">'cherry'</span>,<span class="string">'apple'</span>,<span class="string">'banana'</span>,<span class="string">'cherry'</span>,<span class="string">'apple'</span>,<span class="string">'orange'</span>];</div><div class="line"><span class="keyword">const</span> count = basket.reduce(<span class="function">(<span class="params">total,fruit</span>)=&gt;</span>&#123;</div><div class="line">    total[fruit] = (total[fruit]||<span class="number">0</span>)+<span class="number">1</span>;</div><div class="line">    <span class="keyword">return</span> total;    </div><div class="line">&#125;,&#123;&#125;);</div><div class="line"><span class="built_in">console</span>.log(count); <span class="comment">//&#123;banana: 2, cherry: 2, apple: 2, orange: 1&#125;</span></div></pre></td></tr></table></figure></p>
-<h3 id="使用reduce方法也可以将嵌套数组扁（数组里面嵌套数组）平化为一个数组（与嵌套数组意思相反）"><a href="#使用reduce方法也可以将嵌套数组扁（数组里面嵌套数组）平化为一个数组（与嵌套数组意思相反）" class="headerlink" title="使用reduce方法也可以将嵌套数组扁（数组里面嵌套数组）平化为一个数组（与嵌套数组意思相反）"></a>使用reduce方法也可以将嵌套数组扁（数组里面嵌套数组）平化为一个数组（与嵌套数组意思相反）</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> data = [[<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>],[<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>],[<span class="number">11</span>,<span class="number">22</span>,<span class="number">33</span>,<span class="number">44</span>]];</div><div class="line"><span class="keyword">const</span> flat = data.reduce(<span class="function">(<span class="params">total,amount</span>)=&gt;</span>&#123;</div><div class="line">    <span class="keyword">return</span> total.concat(amount);</div><div class="line">&#125;,[]);</div><div class="line"><span class="built_in">console</span>.log(flat);</div></pre></td></tr></table></figure>
-<p>有时候数据嵌套太深，我们该如何处理,获得data数组中每个对象的中的颜色<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> data = [&#123;</div><div class="line">                <span class="attr">a</span>: <span class="string">'happy'</span>,</div><div class="line">                <span class="attr">b</span>: <span class="string">'robin'</span>,</div><div class="line">                <span class="attr">c</span>: [<span class="string">'blue'</span>,<span class="string">'green'</span>] </div><div class="line">            &#125;,</div><div class="line">            &#123;</div><div class="line">                <span class="attr">a</span>: <span class="string">'tired'</span>,</div><div class="line">                <span class="attr">b</span>: <span class="string">'panther'</span>,</div><div class="line">                <span class="attr">c</span>: [<span class="string">'blue'</span>,<span class="string">'green'</span>,<span class="string">'black'</span>,<span class="string">'blue'</span>] </div><div class="line">            &#125;,</div><div class="line">            &#123;</div><div class="line">                <span class="attr">a</span>: <span class="string">'sad'</span>,</div><div class="line">                <span class="attr">b</span>: <span class="string">'gold'</span>,</div><div class="line">                <span class="attr">c</span>: [<span class="string">'blue'</span>,<span class="string">'red'</span>] </div><div class="line">            &#125;,</div><div class="line">        ];</div><div class="line"><span class="keyword">const</span> colors = data.reduce(<span class="function">(<span class="params">total,amount</span>)=&gt;</span>&#123;</div><div class="line">    amount.c.forEach(<span class="function"><span class="params">color</span>=&gt;</span>&#123;</div><div class="line">        total.push(color);    </div><div class="line">    &#125;);</div><div class="line">    <span class="keyword">return</span> total;</div><div class="line">&#125;,[]);</div></pre></td></tr></table></figure></p>
-<p>那我们如何获取颜色种类呢（去掉重复的颜色，只保留一个）<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> data = [&#123;</div><div class="line">                <span class="attr">a</span>: <span class="string">'happy'</span>,</div><div class="line">                <span class="attr">b</span>: <span class="string">'robin'</span>,</div><div class="line">                <span class="attr">c</span>: [<span class="string">'blue'</span>,<span class="string">'green'</span>] </div><div class="line">            &#125;,</div><div class="line">            &#123;</div><div class="line">                <span class="attr">a</span>: <span class="string">'tired'</span>,</div><div class="line">                <span class="attr">b</span>: <span class="string">'panther'</span>,</div><div class="line">                <span class="attr">c</span>: [<span class="string">'blue'</span>,<span class="string">'green'</span>,<span class="string">'black'</span>,<span class="string">'blue'</span>] </div><div class="line">            &#125;,</div><div class="line">            &#123;</div><div class="line">                <span class="attr">a</span>: <span class="string">'sad'</span>,</div><div class="line">                <span class="attr">b</span>: <span class="string">'gold'</span>,</div><div class="line">                <span class="attr">c</span>: [<span class="string">'blue'</span>,<span class="string">'red'</span>] </div><div class="line">            &#125;,</div><div class="line">        ];</div><div class="line"><span class="keyword">const</span> colors = data.reduce(<span class="function">(<span class="params">total,amount</span>)=&gt;</span>&#123;</div><div class="line">    amount.c.forEach(<span class="function"><span class="params">color</span>=&gt;</span>&#123;</div><div class="line">        <span class="keyword">if</span>(total.indexOf(amount)===<span class="number">-1</span>)&#123;</div><div class="line">            total.push(color);</div><div class="line">        &#125;</div><div class="line">    &#125;);</div><div class="line">    <span class="keyword">return</span> total;</div><div class="line">&#125;,[]);</div></pre></td></tr></table></figure></p>
-<h3 id="reduce的另一个强大之处是他可以处理函数"><a href="#reduce的另一个强大之处是他可以处理函数" class="headerlink" title="reduce的另一个强大之处是他可以处理函数"></a>reduce的另一个强大之处是他可以处理函数</h3><p>假设我们有一个函数集合，这些函数可以允许我们增加，减少，相乘，折半某一个数字<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">increment</span>(<span class="params">input</span>)</span>&#123;</div><div class="line">    <span class="keyword">return</span> input+<span class="number">1</span>;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">decrement</span>(<span class="params">input</span>)</span>&#123;</div><div class="line">    <span class="keyword">return</span> input<span class="number">-1</span>;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">double</span>(<span class="params">input</span>)</span>&#123;</div><div class="line">    <span class="keyword">return</span> input*<span class="number">2</span>;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">half</span>(<span class="params">input</span>)</span>&#123;</div><div class="line">    <span class="keyword">return</span> input/<span class="number">2</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>在某种情况下，我们需要对某一个数进行增加，减少，相乘，折半。我们需要写一个函数，返回((input+1)*2-1)/2,我们可以利用reduce函数创造一个管道来解决。</p>
-<blockquote>
-<p>管道是一系列函数把一个初始值转化为最终值的过程</p>
-</blockquote>
-<p>代码如下：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> pipeline = [increment,double,decrement,half];</div><div class="line"><span class="keyword">const</span> result = pipeline.reduce(<span class="function">(<span class="params">total,fun</span>)=&gt;</span>&#123;</div><div class="line">    <span class="keyword">return</span> fun(total);</div><div class="line">&#125;,<span class="number">2</span>);</div><div class="line"><span class="built_in">console</span>.log(result);</div></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;blockquote class=&quot;blockquote-center&quot;&gt;&lt;p&gt;JavaScript的reduce如何工作&lt;/p&gt;
-&lt;/blockquote&gt;
-    
-    </summary>
-    
-      <category term="JavaScript" scheme="https://muleimulei.github.io/categories/JavaScript/"/>
-    
-    
-      <category term="JavaScript内置函数" scheme="https://muleimulei.github.io/tags/JavaScript%E5%86%85%E7%BD%AE%E5%87%BD%E6%95%B0/"/>
     
   </entry>
   

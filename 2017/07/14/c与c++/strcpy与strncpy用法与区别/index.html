@@ -95,7 +95,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="程序员，web开发" />
+  <meta name="keywords" content="c++拷贝函数解析," />
 
 
 
@@ -113,37 +113,16 @@
 
 
 
-<meta name="description" content="div.wrapper{
-		display: -webkit-box;
-		display: -ms-flexbox;
-		display: flex;
-	    -ms-flex-pack: distribute;
-	        justify-content: space-around;
-		margin-bottom: 10px;
-		-ms-flex-wrap: wrap;">
-<meta property="og:type" content="website">
-<meta property="og:title" content="风的影子">
-<meta property="og:url" content="https://muleimulei.github.io/categories/index.html">
+<meta name="description" content="strcpy与strncpy用法与区别">
+<meta property="og:type" content="article">
+<meta property="og:title" content="strcpy与strncpy用法与区别">
+<meta property="og:url" content="https://muleimulei.github.io/2017/07/14/c与c++/strcpy与strncpy用法与区别/index.html">
 <meta property="og:site_name" content="风的影子">
-<meta property="og:description" content="div.wrapper{
-		display: -webkit-box;
-		display: -ms-flexbox;
-		display: flex;
-	    -ms-flex-pack: distribute;
-	        justify-content: space-around;
-		margin-bottom: 10px;
-		-ms-flex-wrap: wrap;">
-<meta property="og:updated_time" content="2017-07-14T14:14:02.141Z">
+<meta property="og:description" content="strcpy与strncpy用法与区别">
+<meta property="og:updated_time" content="2017-07-14T14:58:07.797Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="风的影子">
-<meta name="twitter:description" content="div.wrapper{
-		display: -webkit-box;
-		display: -ms-flexbox;
-		display: flex;
-	    -ms-flex-pack: distribute;
-	        justify-content: space-around;
-		margin-bottom: 10px;
-		-ms-flex-wrap: wrap;">
+<meta name="twitter:title" content="strcpy与strncpy用法与区别">
+<meta name="twitter:description" content="strcpy与strncpy用法与区别">
 
 
 
@@ -171,19 +150,13 @@
 
 
 
-  <link rel="canonical" href="https://muleimulei.github.io/categories/"/>
+  <link rel="canonical" href="https://muleimulei.github.io/2017/07/14/c与c++/strcpy与strncpy用法与区别/"/>
 
 
 
 
 
-  <title>
-  
-
-  
-     | 风的影子
-  
-</title>
+  <title> strcpy与strncpy用法与区别 | 风的影子 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -208,7 +181,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left  ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -367,129 +340,227 @@
             
 
   <div id="posts" class="posts-expand">
-  <header class="post-header">
+    
 
-	<h1 class="post-title" itemprop="name headline"></h1>
+  
 
+  
+  
+  
 
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://muleimulei.github.io/2017/07/14/c与c++/strcpy与strncpy用法与区别/">
 
-</header>
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="穆蕾">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="风的影子">
+    </span>
 
     
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                strcpy与strncpy用法与区别
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-14T22:03:11+08:00">
+                2017-07-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/C/" itemprop="url" rel="index">
+                    <span itemprop="name">C++</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
     
-      <style type="text/css">
-	div.wrapper{
-		display: -webkit-box;
-		display: -ms-flexbox;
-		display: flex;
-	    -ms-flex-pack: distribute;
-	        justify-content: space-around;
-		margin-bottom: 10px;
-		-ms-flex-wrap: wrap;
-		    flex-wrap: wrap;
-	}
-	div.wrapper div.item{
-		width: 100px;
-		height: 100px;
-		background-color: rgba(14, 21, 46, 0.56);
-		border-radius: 50%;
-		position: relative;
-		margin: 1px;
-	}
-	h5  {
-		color: white;
-		margin: 0;
-		color: rgb(72, 35, 24);
-		position: absolute;
-		margin-top: 50%;
-		margin-left: 50%;
-		-webkit-transform: translate(-50%,-50%);
-		        transform: translate(-50%,-50%);
-		border:0;
-		width: 100%;
-		text-align: center;
-		font-family: Courier New;
-		font-size: 18px;
-	}
-	h5 a{
-		border:0;
-		color: white;
-		font-weight: 500;
-	}
 
-	@-webkit-keyframes shave{
-		0%{
-			-webkit-transform: scale(0) rotateZ(360deg);
-			        transform: scale(0) rotateZ(360deg);
-		}
-		100%{
-			-webkit-transform: scale(1) rotateZ(0);
-			        transform: scale(1) rotateZ(0);
-		}
-	}
 
-	@keyframes shave{
-		0%{
-			-webkit-transform: scale(0) rotateZ(360deg);
-			        transform: scale(0) rotateZ(360deg);
-		}
-		100%{
-			-webkit-transform: scale(1) rotateZ(0);
-			        transform: scale(1) rotateZ(0);
-		}
-	}
-	@-webkit-keyframes bigger{
-		0%{
-			-webkit-transform: scale(0);
-			        transform: scale(0);
-		}
-		100%{
-			-webkit-transform: scale(1);
-			        transform: scale(1);
-		}
-	}
-	@keyframes bigger{
-		0%{
-			-webkit-transform: scale(0);
-			        transform: scale(0);
-		}
-		100%{
-			-webkit-transform: scale(1);
-			        transform: scale(1);
-		}
-	}
-	iframe{
-		-webkit-transform-origin: center center;
-		        transform-origin: center center; 
-		-webkit-animation: bigger 1s ease-in; 
-		        animation: bigger 1s ease-in;
-	}
-</style>
+    <div class="post-body" itemprop="articleBody">
 
-<div class="wrapper">
+      
+      
+
+      
+        <blockquote class="blockquote-center"><p>strcpy与strncpy用法与区别</p>
+</blockquote>
+<a id="more"></a>
+<ul>
+<li>strcpy函数：把从src地址开始含有NULL结束符的字符串复制到以dest开始的地址空间，返回dest。要求：src和dest所指的内存区域不可以重叠且dest必须有足够的空间来容纳src字符串。函数原型为：    extern char <em> strcpy(char </em>dest, char <em>src</em>);</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">char</span> *<span class="title">strcpy</span><span class="params">( <span class="keyword">char</span>* strDest, <span class="keyword">const</span> <span class="keyword">char</span> *strSrc)</span></span>&#123;</div><div class="line">    <span class="keyword">char</span> *strDestCopy = strDest;</div><div class="line">    <span class="keyword">if</span>((strDest==<span class="literal">NULL</span>)||(strSrc==<span class="literal">NULL</span>))</div><div class="line">        <span class="keyword">throw</span> <span class="string">"Invalid arguments"</span>;</div><div class="line">    <span class="keyword">while</span>((*strDest++ = *strSrc++)!=<span class="string">'\0'</span>);</div><div class="line">    <span class="keyword">return</span> strDestCopy;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>该函数的参数是字符指针，也就是可以是字符串变量和字符数组，因为它们的变量名代表字符地址。字符串默认有一个以null的结束符，字符数组没有。所以此处需要注意：因为src要求有null结束符，所以字符数组的长度必须大于等于src包含null结束符的总长度。例如，char *src=”abcd”；char dest[5] ；这里的dest的长度至少为5；</p>
+</blockquote>
+<ul>
+<li><p>strncpy函数：n代表可以指定字符个数进行赋值。原型：char <em>strncpy(char </em>dest, char *src, size_t n)；功能：将字符串src最多n个字符复制到字符数组dest中（它并不像strcpy一样遇到NULL才停止复制，而是等凑够n个字符才开始复制），返回指向dest的指针。要求：如果n &gt; dest串长度，dest栈空间溢出产生崩溃异常。</p>
+<ol>
+<li><p>src串长度 &lt;= dest串长度（这里的串长度包含串尾NULL字符）<br>如果 n = (0, src串长度)，src的前n个字符复制到dest中。但是由于没有NULL字符，所以直接访问dest会发生乱码。这时，一般建议采用memset将dest的全部元素用null填充，如memset(dest, 0, 7)</p>
+<p>如果n=src串长度,与strcpy一致。<br>如果n=dest串长度，[0, src串长度]处存放src字符串，（src串长度，dest串长度]处存放NULL。</p>
+</li>
+<li><p>src串长度 &gt; des串长度<br>如果n = dest串长度，则dest串没有null字符，会导致输出有乱码。如果不考虑src串复制完整性，可以将dest最后一个字符置为NULL。</p>
+</li>
+</ol>
+</li>
+</ul>
+<blockquote>
+<p>所以，一般把n设为dest（含null）的长度,当n=dest串长度时，定义dest为字符数组，因为这时没有null字符拷贝。</p>
+</blockquote>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/c-拷贝函数解析/" rel="tag"># c++拷贝函数解析</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/07/11/DataBase/数据库语言分类/" rel="next" title="数据库语言分类">
+                <i class="fa fa-chevron-left"></i> 数据库语言分类
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
 </div>
-
-<iframe src="/assets/monster.html" width="100%" height="300" frameborder="0" allowfullscreen></iframe>
-
-<script type="text/javascript">
-	var list = ['/categories/JavaScript/jquery','/categories/canvas','/categories/os','/categories/JavaScript','/categories/Node','Git','/categories/docker','/categories/DataStructure',
-		'/categories/DataBase',"/categories/C"];
-	var wrap = document.querySelector('.wrapper');
-	list.forEach(function(item,index){
-		var d = document.createElement('div');
-		d.className='item';
-		d.style.animation = `shave 1s ease`;
-		var h5 = document.createElement('h5');
-		d.appendChild(h5);
-		var s = document.createElement('a');
-		var r = item.split('/');
-		s.innerText = r[r.length-1];
-		s.setAttribute('href',item);
-		h5.appendChild(s);
-		wrap.appendChild(d);
-	});
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
 </script>
-    
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
   </div>
 
           
@@ -799,6 +870,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
 
   
 

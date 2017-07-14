@@ -3,6 +3,13 @@
   
     
     <entry>
+      <title><![CDATA[strcpy与strncpy用法与区别]]></title>
+      <url>%2F2017%2F07%2F14%2Fc%E4%B8%8Ec%2B%2B%2Fstrcpy%E4%B8%8Estrncpy%E7%94%A8%E6%B3%95%E4%B8%8E%E5%8C%BA%E5%88%AB%2F</url>
+      <content type="text"><![CDATA[strcpy与strncpy用法与区别 strcpy函数：把从src地址开始含有NULL结束符的字符串复制到以dest开始的地址空间，返回dest。要求：src和dest所指的内存区域不可以重叠且dest必须有足够的空间来容纳src字符串。函数原型为： extern char strcpy(char dest, char src); 1234567char *strcpy( char* strDest, const char *strSrc)&#123; char *strDestCopy = strDest; if((strDest==NULL)||(strSrc==NULL)) throw "Invalid arguments"; while((*strDest++ = *strSrc++)!='\0'); return strDestCopy;&#125; 该函数的参数是字符指针，也就是可以是字符串变量和字符数组，因为它们的变量名代表字符地址。字符串默认有一个以null的结束符，字符数组没有。所以此处需要注意：因为src要求有null结束符，所以字符数组的长度必须大于等于src包含null结束符的总长度。例如，char *src=”abcd”；char dest[5] ；这里的dest的长度至少为5； strncpy函数：n代表可以指定字符个数进行赋值。原型：char strncpy(char dest, char *src, size_t n)；功能：将字符串src最多n个字符复制到字符数组dest中（它并不像strcpy一样遇到NULL才停止复制，而是等凑够n个字符才开始复制），返回指向dest的指针。要求：如果n &gt; dest串长度，dest栈空间溢出产生崩溃异常。 src串长度 &lt;= dest串长度（这里的串长度包含串尾NULL字符）如果 n = (0, src串长度)，src的前n个字符复制到dest中。但是由于没有NULL字符，所以直接访问dest会发生乱码。这时，一般建议采用memset将dest的全部元素用null填充，如memset(dest, 0, 7) 如果n=src串长度,与strcpy一致。如果n=dest串长度，[0, src串长度]处存放src字符串，（src串长度，dest串长度]处存放NULL。 src串长度 &gt; des串长度如果n = dest串长度，则dest串没有null字符，会导致输出有乱码。如果不考虑src串复制完整性，可以将dest最后一个字符置为NULL。 所以，一般把n设为dest（含null）的长度,当n=dest串长度时，定义dest为字符数组，因为这时没有null字符拷贝。]]></content>
+    </entry>
+
+    
+    <entry>
       <title><![CDATA[数据库语言分类]]></title>
       <url>%2F2017%2F07%2F11%2FDataBase%2F%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AF%AD%E8%A8%80%E5%88%86%E7%B1%BB%2F</url>
       <content type="text"><![CDATA[数据库语言分类 SQL语言共分为四大类：数据查询语言DQL，数据操纵语言DML，数据定义语言DDL，数据控制语言DCL。 数据查询语言DQL数据查询语言DQL基本结构是由SELECT子句，FROM子句，WHERE 子句组成的查询块： SELECT &lt;字段名表&gt; FROM &lt;表或视图名&gt; WHERE &lt;查询条件&gt; 数据操纵语言DML数据操纵语言DML主要有三种形式： 1) 插入：INSERT 2) 更新：UPDATE 3) 删除：DELETE 数据定义语言DDL数据定义语言DDL用来创建数据库中的各种对象—–表、视图、 索引、同义词、聚簇等如： CREATE TABLE/VIEW/INDEX/SYN/CLUSTER 表 视图 索引 同义词 簇 DDL操作是隐性提交的！不能rollback 数据控制语言DCL 数据控制语言DCL用来授予或回收访问数据库的某种特权，并控制 数据库操纵事务发生的时间及效果，对数据库实行监视等。如： 1) GRANT：授权。 2) ROLLBACK [WORK] TO [SAVEPOINT]：回退到某一点。 回滚—ROLLBACK 回滚命令使数据库状态回到上次最后提交的状态。其格式为： SQL&gt;ROLLBACK; 3) COMMIT [WORK]：提交。 在数据库的插入、删除和修改操作时，只有当事务在提交到数据 库时才算完成。在事务提交前，只有操作数据库的这个人才能有权看 到所做的事情，别人只有在最后提交完成后才可以看到。 提交数据有三种类型：显式提交、隐式提交及自动提交。下面分 别说明这三种类型。 (1) 显式提交 用COMMIT命令直接完成的提交为显式提交。其格式为： SQL&gt;COMMIT； (2) 隐式提交 用SQL命令间接完成的提交为隐式提交。这些命令是： ALTER，AUDIT，COMMENT，CONNECT，CREATE，DISCONNECT，DROP， EXIT，GRANT，NOAUDIT，QUIT，REVOKE，RENAME。 (3) 自动提交 若把AUTOCOMMIT设置为ON，则在插入、修改、删除语句执行后， 系统将自动进行提交，这就是自动提交。其格式为： SQL&gt;SET AUTOCOMMIT ON；]]></content>
