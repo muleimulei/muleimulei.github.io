@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://muleimulei.github.io/"/>
-  <updated>2017-07-14T14:58:07.797Z</updated>
+  <updated>2017-07-17T09:39:02.981Z</updated>
   <id>https://muleimulei.github.io/</id>
   
   <author>
@@ -16,11 +16,159 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>javaScript获取css样式</title>
+    <link href="https://muleimulei.github.io/2017/07/17/JavaScript/javaScript%E8%8E%B7%E5%8F%96css%E6%A0%B7%E5%BC%8F/"/>
+    <id>https://muleimulei.github.io/2017/07/17/JavaScript/javaScript获取css样式/</id>
+    <published>2017-07-17T09:19:31.150Z</published>
+    <updated>2017-07-17T09:39:02.981Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote class="blockquote-center"><p>javaScript获取css样式</p>
+</blockquote>
+<a id="more"></a>
+<h2 id="css样式分为行内样式与外部样式"><a href="#css样式分为行内样式与外部样式" class="headerlink" title="css样式分为行内样式与外部样式"></a>css样式分为行内样式与外部样式</h2><ol>
+<li>javaScript获得行内样式<br> 可以使用<code>ele.style.属性名称</code>(如果遇到属性名称带有‘-’，需要使用驼峰方法，例如background-color改为backgroundColor)；</li>
+<li>javaScript获得外部样式(getComputedStyle可以获得style的值也可以获得外部样式表的css)<br> 获得外部样式可以使用浏览器提供的<code>window.getComputedStyle(ele,null)</code>，这里的ele就是需要操作的对象，第二个参数是指定一个伪元素匹配，常规的元素用不上，直接使用null。但这个getComputedStyle并不支持IE9以下的浏览器，但是ie有它自己支持的方法：ele.currentStyle;</li>
+<li>ele.style.属性名和ele.cssText以及getComputedStyle(obj,null)有什么区别？<ul>
+<li>ele.style.属性名：这里获得的style可以获得属性值，也可以进行修改</li>
+<li>ele.cssText: 其实跟style差不多，只不过它是获得多个css样式，也是生成在行内样式中。</li>
+<li>getComputedStyle(obj,null)： 只能获取不能修改，并且返回的css是一个CSSStyleDecoration对象集合。</li>
+</ul>
+</li>
+</ol>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote class=&quot;blockquote-center&quot;&gt;&lt;p&gt;javaScript获取css样式&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="JavaScript" scheme="https://muleimulei.github.io/categories/JavaScript/"/>
+    
+    
+      <category term="JavaScript" scheme="https://muleimulei.github.io/tags/JavaScript/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>javascript事件解读</title>
+    <link href="https://muleimulei.github.io/2017/07/16/JavaScript/javaScript%E4%BA%8B%E4%BB%B6%E8%A7%A3%E8%AF%BB/"/>
+    <id>https://muleimulei.github.io/2017/07/16/JavaScript/javaScript事件解读/</id>
+    <published>2017-07-16T13:24:42.982Z</published>
+    <updated>2017-07-17T09:18:24.989Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote class="blockquote-center"><p>javascript事件解读</p>
+</blockquote>
+<a id="more"></a>
+<p>与浏览器进行交互的时候浏览器会触发各种事件。这样，我们就可以编写javascript，通过监听某一个事件，来实现某些功能扩展。例如监听load事件，显示欢迎信息，</p>
+<h2 id="基础事件操作"><a href="#基础事件操作" class="headerlink" title="基础事件操作"></a>基础事件操作</h2><ol>
+<li><p>监听事件<br> 浏览器会根据某些操作触发对应事件，如果我们需要针对某些事件进行处理，则需要监听这个事件。监听事件主要有以下几种方法：</p>
+<ul>
+<li><p><strong>HTML内联属性</strong><br>  HTML元素里面直接填写事件有关属性，属性值为javascript代码，即可在触发该事件的时候，执行属性值的内容。<br>  例如：<code>&lt;button onclick=&quot;alert(&#39;click&#39;)&quot;&gt;&lt;/button&gt;</code>,onclick属性表示触发click，属性值的内容会在单击该HTML节点时执行。显而易见，使用这种方法，javascript代码与HTML代码耦合在了一起，不便于维护与开发。所以除非在必须使用的情况下（例如统计连接点击数据）下，尽量避免使用这种方法。</p>
+</li>
+<li><p><strong>DOM属性绑定</strong><br>  也可以直接设置DOM属性来指定某个事件对应的处理函数，这个方法比较简单：<code>element.onclick = function(){alert(&#39;click&#39;);}</code>，上面代码就是监听element节点的click事件。他比较简单易懂，而且有较好的兼容性。但是也有缺陷，因为直接赋值给对应属性，如果你在后面代码中再次为element绑定一个回调函数，会覆盖掉之前回调函数的内容。<br>  虽然也可以用一些方法实现多个绑定，但还是推荐下面的标准事件监听函数。</p>
+</li>
+<li><p><strong>使用事件监听函数</strong><br>  标准的事件监听函数如下： <code>element.addEventListener(&lt;event-name&gt;, &lt;callback&gt;, &lt;use-capture&gt;)</code>。表示在element这个对象上面添加一个事件监听器，当监听到有<event-name>事件发生的时候，调用<callback>这个回调函数。至于<use-capture>这个参数，表示该事件监听是在“捕获”阶段中监听（设置为true）还是在“冒泡”阶段中监听（设置为false）。关于捕获与冒泡，会在下面讲解。<br>  用标准事件监听函数改写上面的例子：<code>var btn = document.querySelector(&#39;button);btn.addEventListener(&#39;click&#39;,function(){alert(&#39;click&#39;);},false);</code>。</use-capture></callback></event-name></p>
+</li>
+</ul>
+</li>
+<li><p>移除事件监听<br> 当我们为某个元素绑定了一个事件，每次触发这个事件的时候，都会执行事件绑定的回调函数。如果我们想解除绑定，需要使用removeEventListener方法：<code>element.removeEventListener(&lt;event-name&gt;,&lt;callback&gt;,&lt;use-capture&gt;)</code>,需要注意的是，绑定事件时的回调函数不能是匿名函数，必须是一个声明的函数，因为解除事件绑定时需要传递这个回调函数的引用，才可以断开绑定。例如：<code>var fun = function(){};element.addEventListener(&#39;click&#39;,fun,false);    element.removeEventListener(&#39;click&#39;,fun,false);</code>。</p>
+</li>
+<li><p>事件触发过程</p>
+<img src="/assets/segment/7.jpg">
+ <iframe src="/assets/event.html" width="600" height="550" frameborder="0" allowfullscreen></iframe>
+<ul>
+<li><strong>捕获阶段</strong><br>  当我们在DOM树的某个节点发生了一些操作(例如单击，鼠标移动上去)，就会有一个事件发射过去。这个事件从window发出，不断经过下级节点直到目标节点。在到达目标节点之前的过程，就是捕获阶段。所有经过的节点，都会触发这个事件。捕获阶段的任务就是建立这个事件传递路线，以便后面冒泡阶段顺着这条路线返回Window。监听某个在捕获阶段触发的事件，需要在事件监听函数传递第三个参数true。<code>element.addEventListener(&lt;event-name&gt;, &lt;callback&gt;,true)</code>，但一般我们使用false，会在后面说明。</li>
+<li><strong>目标阶段</strong><br>  当事件传递到触发目标节点那里，最终在目标节点上触发这个事件，就是目标阶段。需要注意的是，事件触发的目标总是在最底层的节点。</li>
+<li><strong>冒泡阶段</strong><br>  当事件到达目标节点之后，就会沿着原路返回，由于这个过程类似于水泡从底部浮动到顶部，所以称之为冒泡阶段。<br>  **在实际使用中，你并不需要把事件监听函数准确绑定到最底层的节点也可以正常工作。比如在上例，你想为<div>绑定单击时的回调函数，你无须为这个<div>下面的所有子节点全部绑定单击事件，只需要为<div>这一节点绑定即可。因为发生它子节点的单击事件，都会冒泡上去，发生在<div>上面。</div></div></div></div></li>
+</ul>
+</li>
+<li><p>为什么不用第三个参数true？<br> 这时因为IE浏览器不支持在捕获阶段监听事件，为了统一而设置的，毕竟IE浏览器的份额是不可忽略的。</p>
+</li>
+<li><p>使用事件代理提升性能<br> 因为事件有冒泡机制，所有子节点的事件都会顺着父级节点跑回去，所以我们可以通过监听父级节点来实现监听子节点的功能，这就是事件代理。</p>
+<p> 使用事件代理的优势：</p>
+<ul>
+<li>减少了事件绑定，提升性能。之前你需要绑定一堆子节点，而现在你只需要绑定一个父节点即可。减少了绑定事件监听函数的数量。</li>
+<li>动态变化的DOM结构，任然可以监听。当一个DOM动态创建之后，不会带有任何事件监听，除非你重新执行监听事件函数，而使用事件监听无需担忧这个问题。为了简单，使用jquery来实现普通事件绑定和事件处理。目标是监听所有a连接的单击事件。1. 常规的事件绑定方法，jquery会循环每一个a结构并绑定事件监听函数。 2. 事件监听的方法，jquery只为父元素绑定事件监听函数，因为父元素下面会有很多无关节点也会触发click事件，所以在on函数里传递了第二个参数，表示只监听a子节点的事件。<em>*他们都可以正常工作，但是当我动态创建新DOM结构的时候，第一个方法问题出现了，新创建的结构没有绑定事件，所以无法执行回调函数。而第二个方法工作很好，因为点击新建的DOM，它的事件会冒泡到父级节点进行处理</em>。*如果使用原生的方法实现事件代理，需要注意过滤非目标节点，可以通过id，class或者tagname等等，例如：<code>ele.addEventListener(&#39;click&#39;,function(event){ //判断是否为a节点 if(event.target.tagName==&#39;A&#39;){ // 执行a的交互}}，false)</code>。</li>
+</ul>
+</li>
+<li><p>停止事件冒泡<br> 所有的事情都会有对立面，事件的冒泡阶段虽然看起来很好，也会有不适用的场所。比较复杂的应用，由于事件监听比较复杂，可能会希望只监听发生在具体节点的事件。这个时候就需要停止事件冒泡。停止事件冒泡要使用事件对象的stopPropagation方法，具体代码如下：<code>ele.addEventListener(&#39;click&#39;,function(e){ e.stopPropagation(); },false)</code>。</p>
+</li>
+<li><p>事件Event对象<br> 事件对象包括很多有用的信息，比如事件触发时，鼠标在屏幕上的坐标，被触发的DOM的详细信息，以及一些常用方法与属性。</p>
+<ul>
+<li>type: String<br>  事件的名称，比如’click’</li>
+<li>target: Node<br>  事件要触发的目标节点</li>
+<li>bubbles: Boolean<br>  表示该事件是否在冒泡阶段触发的</li>
+<li>preventDefault: function<br>  这个方法可以禁止一切默认的行为，例如点击a标签时，会打开一个新的页面，如果为a标签监听事件click同时调用该方法，则不会打开新的页面。</li>
+<li>stopPropagation: function<br>  停止冒泡</li>
+<li>cancelable: Boolean<br>  这个属性表明该事件是否可以通过event.preventDefault()方法来禁用默认行为。</li>
+<li><strong>eventPhase: Number</strong><br>  这个属性的数字表示当前事件触发在什么阶段。none: 0，捕获：1，目标：2，冒泡：3。</li>
+<li>isTrusted: Boolean<br>  表明该事件是浏览器触发（用户真实操作触发）。</li>
+</ul>
+</li>
+<li><p>常用事件和技巧<br> 用户的操作有很多种，所以有很多事件。为了开发方便，浏览器又提供了一些事件，所以有很多的事件。这里只介绍几种常用的事件和使用技巧。</p>
+<ul>
+<li>load: load事件在资源加载完成时触发。这个资源可以是图片，css文件，js文件，视屏，document和window等等。比较常用的就是监听window的load事件，当页面内所有资源加载完成之后就会触发。比如用javaScript对图片以及其它资源处理，我们在load事件中触发，可以保证javaScript不会在资源未加载完成就开始处理资源导致报错。同样的，也可以监听图片等其它资源加载情况。</li>
+<li>beforeunload: 当浏览者在页面的输入框输入一些内容时，未保存，误操作关掉网页会导致输入信息丢失。</li>
+</ul>
+</li>
+</ol>
+<ol>
+<li><p>利用javaScript模拟触发内置事件。<br> 内置的事件也可以被javaScript模拟触发，比如下面函数模拟触发单击事件<br> <code></code></p>
+<pre><code>function simulate(){
+    var event = new MouseEvent(&apos;click&apos;,{
+        &apos;view&apos;: window,
+        &apos;bubbles&apos;:true,
+        &apos;cancelable&apos;: true
+    });
+}
+var cb = document.getElementById(&apos;checkbox&apos;);
+var canceled = !cb.dispatchEvent(event);
+if(canceled){
+    alert(&apos;canceled&apos;); // A handle called preventDefault
+}else{
+    alert(&apos;not canceled&apos;); //None of the handles called preventDefault
+}
+</code></pre><p> </p>
+</li>
+<li><p>自定义事件<br>我们可以自定义事件来实现更灵活的开发，事件用好了可以是一个强大的工具。与自定义相关的函数有Event，CustomEvent和dispatchEvent。直接自定义事件，使用event构造函数。</p>
+<p><code></code></p>
+<pre><code>// Create the event.
+var event = document.createEvent(&apos;Event&apos;);
+// Define that the event name is &apos;build&apos;.
+event.initEvent(&apos;build&apos;, true, true);
+// Listen for the event.
+elem.addEventListener(&apos;build&apos;, function (e) {
+// e.target matches elem
+}, false);
+// target can be any Element or other EventTarget.
+elem.dispatchEvent(event);
+</code></pre><p></p>
+</li>
+</ol>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote class=&quot;blockquote-center&quot;&gt;&lt;p&gt;javascript事件解读&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="JavaScript" scheme="https://muleimulei.github.io/categories/JavaScript/"/>
+    
+    
+      <category term="JavaScript" scheme="https://muleimulei.github.io/tags/JavaScript/"/>
+    
+  </entry>
+  
+  <entry>
     <title>strcpy与strncpy用法与区别</title>
     <link href="https://muleimulei.github.io/2017/07/14/c%E4%B8%8Ec++/strcpy%E4%B8%8Estrncpy%E7%94%A8%E6%B3%95%E4%B8%8E%E5%8C%BA%E5%88%AB/"/>
     <id>https://muleimulei.github.io/2017/07/14/c与c++/strcpy与strncpy用法与区别/</id>
     <published>2017-07-14T14:03:11.444Z</published>
-    <updated>2017-07-14T14:58:07.797Z</updated>
+    <updated>2017-07-14T15:05:21.468Z</updated>
     
     <content type="html"><![CDATA[<blockquote class="blockquote-center"><p>strcpy与strncpy用法与区别</p>
 </blockquote>
@@ -1354,138 +1502,6 @@
     <summary type="html">
     
       &lt;blockquote class=&quot;blockquote-center&quot;&gt;&lt;p&gt;canvas学习第三章&lt;/p&gt;
-&lt;/blockquote&gt;
-    
-    </summary>
-    
-      <category term="canvas" scheme="https://muleimulei.github.io/categories/canvas/"/>
-    
-    
-      <category term="JavaScript" scheme="https://muleimulei.github.io/tags/JavaScript/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>canvas学习第二章</title>
-    <link href="https://muleimulei.github.io/2017/04/07/canvas/cancas%E5%AD%A6%E4%B9%A0%E7%AC%AC%E4%BA%8C%E7%AB%A0/"/>
-    <id>https://muleimulei.github.io/2017/04/07/canvas/cancas学习第二章/</id>
-    <published>2017-04-07T11:07:25.077Z</published>
-    <updated>2017-07-14T13:58:46.323Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote class="blockquote-center"><p>canvas学习第二章</p>
-</blockquote>
-<a id="more"></a>
-<h2 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h2><ul>
-<li>ctx.fillRect(x,y,width,height) 在位置(x,y)处以宽为width，高为height绘制一个矩形</li>
-<li>ctx.strokeRect(x,y,width,height) 在位置(x,y)处以宽为width，高为height绘制一个矩形边框，他需要strokeStyle,lineWidth,lineJoin和miterLimit设置<ul>
-<li>lineCap: 线段末端的形状<ul>
-<li>butt: 默认值，端点是垂直于线段边缘的平直边缘</li>
-<li>round: 端点是在线段边缘处以线宽为直径的半圆</li>
-<li>square: 端点是在选段边缘处以线宽为长，以一半线宽为宽的矩形</li>
-</ul>
-</li>
-<li>lineJoin: 定义两条线相交产生的拐角，可将其称为连接<ul>
-<li>miter: 默认值，在连接外边缘延长相接</li>
-<li>bevel: 连接处是一个对角线斜角</li>
-<li>round: 连接处是一个圆</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>ctx.clearRect(x,y,width,height) 在位置(x,y)处以宽为width和高为height清除指定区域并使其完全透明(使用透明黑作为颜色)</li>
-<li>当前路径和位图受canvas上下文控制，不属于保存的状态，保存当前状态到堆栈用：ctx.save()，调出最后存储的堆栈恢复画布用ctx.restore()</li>
-<li>高级路径画法<ol>
-<li>ctx.arc(x,y,radius,startAngle,endAngle,anticlockwise) antilockwise若为false，则顺时针画圆，若为true，则逆时针画圆</li>
-<li>ctx.bezierCurveTo(cp1x,cp1y,cp2x,cp2y,x,y) 三次贝塞尔曲线</li>
-<li>ctx.quadraticCurveTo(cpx,cpy,x,y) 二次贝塞尔曲线</li>
-</ol>
-</li>
-<li>canvas裁切区域<ul>
-<li>使用ctx.save(),ctx.restore(),ctx.rect(),ctx.clip()可以完成区域裁切</li>
-</ul>
-</li>
-<li>旋转变换<ul>
-<li>ctx.setTransform(1,0,0,1,0,0)和ctx.rotate() 变换在调用setTransform()或其他变换函数后立即应用到形状与路径上。</li>
-</ul>
-</li>
-<li>缩放变换<ul>
-<li>ctx.scale() 对图像进行缩放</li>
-</ul>
-</li>
-<li>填充渐变形状 ：水平渐变，垂直渐变，对角线渐变，径向渐变<ul>
-<li>水平渐变：var gr = ctx.createLinearGradient(0,0,100,0);</li>
-<li>垂直渐变：var gr = ctx.createLinearGradient(0,0,0,100);</li>
-<li>对角线渐变：var gr = ctx.createLinearGradient(0,0,100,100);</li>
-<li>径向渐变：var gr = ctx.createRadialGradient(50,50,50,50,100);</li>
-<li>给渐变添加断点：gr.addColorStop(.5,’rgb(0,255,0)’);</li>
-<li>用图案填充：<ul>
-<li>四种填充类型：repeat,repeat-x,repeat-y,no-repeat</li>
-<li>var fill = ctx.createPattern(‘fillImg’,’repeat’);</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>创建阴影<ul>
-<li>shadowOffsetX和shadowOffsetY值可以是正也可以为负，负值将会在左侧和上方创建阴影，反之，将会在底部创建阴影。shadowBlur属性用来设置阴影模糊效果的程度。这三个参数不受当前canvas变换矩阵影响，shadowColor可以是任何HTML4颜色字符串。<br>以下代码是关于划线：</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">drawScreen</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="comment">//round end. bevel join, at top left of canvas</span></div><div class="line">        context.strokeStyle = <span class="string">"black"</span>; <span class="comment">//need list of available colors</span></div><div class="line">        context.lineWidth=<span class="number">10</span>;</div><div class="line">        context.lineJoin=<span class="string">'bevel'</span>;</div><div class="line">        context.lineCap=<span class="string">'round'</span>;</div><div class="line">        context.beginPath();</div><div class="line">        context.moveTo(<span class="number">0</span>, <span class="number">0</span>);</div><div class="line">        context.lineTo(<span class="number">25</span>, <span class="number">0</span>);</div><div class="line">        context.lineTo(<span class="number">25</span>,<span class="number">25</span>);</div><div class="line">        context.stroke();</div><div class="line">        context.closePath();</div><div class="line">        </div><div class="line">        <span class="comment">//round end, bevel join, not at top or left of canvas</span></div><div class="line">        context.beginPath();</div><div class="line">        context.moveTo(<span class="number">10</span>, <span class="number">50</span>);</div><div class="line">        context.lineTo(<span class="number">35</span>, <span class="number">50</span>);</div><div class="line">        context.lineTo(<span class="number">35</span>,<span class="number">75</span>);</div><div class="line">        context.stroke();</div><div class="line">        context.closePath();</div><div class="line">        </div><div class="line">        <span class="comment">//flat end, round join, not at top or left</span></div><div class="line">        context.lineJoin=<span class="string">'round'</span>;</div><div class="line">        context.lineCap=<span class="string">'butt'</span>;</div><div class="line">        context.beginPath();</div><div class="line">        context.moveTo(<span class="number">10</span>, <span class="number">100</span>);</div><div class="line">        context.lineTo(<span class="number">35</span>, <span class="number">100</span>);</div><div class="line">        context.lineTo(<span class="number">35</span>,<span class="number">125</span>);</div><div class="line">        context.stroke();</div><div class="line">        context.closePath();</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
-<p>以下代码关于区域的裁切：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">drawScreen</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="comment">//在屏幕上绘制一个黑色的方块</span></div><div class="line">    context.fillStyle = <span class="string">"black"</span>;</div><div class="line">    context.fillRect(<span class="number">10</span>, <span class="number">10</span>, <span class="number">200</span>, <span class="number">200</span>);</div><div class="line">    <span class="comment">//保存当前上下文</span></div><div class="line">    context.save();</div><div class="line">    context.beginPath();</div><div class="line">    <span class="comment">//裁切画布从(0,0)到(50,50)的正方形</span></div><div class="line">    context.rect(<span class="number">0</span>, <span class="number">0</span>, <span class="number">50</span>, <span class="number">50</span>);</div><div class="line">    context.clip();</div><div class="line">    <span class="comment">//绘制红色圆</span></div><div class="line">    context.beginPath();</div><div class="line">    context.strokeStyle = <span class="string">"red"</span>; <span class="comment">//need list of available colors</span></div><div class="line">    context.lineWidth=<span class="number">5</span>;</div><div class="line">    context.arc(<span class="number">100</span>, <span class="number">100</span>, <span class="number">100</span>, (<span class="built_in">Math</span>.PI/<span class="number">180</span>)*<span class="number">0</span>, (<span class="built_in">Math</span>.PI/<span class="number">180</span>)*<span class="number">360</span>, <span class="literal">false</span>); <span class="comment">// full circle</span></div><div class="line">    context.stroke();</div><div class="line">    context.closePath();</div><div class="line">    context.restore();</div><div class="line">    <span class="comment">//裁切整个画布</span></div><div class="line">    context.beginPath();</div><div class="line">    context.rect(<span class="number">0</span>, <span class="number">0</span>, <span class="number">500</span>, <span class="number">500</span>);</div><div class="line">    context.clip();</div><div class="line">    <span class="comment">//蓝色圆</span></div><div class="line">    context.beginPath();</div><div class="line">    context.strokeStyle = <span class="string">"blue"</span>;</div><div class="line">    context.lineWidth=<span class="number">5</span>;</div><div class="line">    context.arc(<span class="number">100</span>, <span class="number">100</span>, <span class="number">50</span>, (<span class="built_in">Math</span>.PI/<span class="number">180</span>)*<span class="number">0</span>, (<span class="built_in">Math</span>.PI/<span class="number">180</span>)*<span class="number">360</span>, <span class="literal">false</span>);</div><div class="line">    context.stroke();</div><div class="line">    context.closePath();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>也可将其它canvas方法配合裁切区域使用，最常见的是arc()函数</p>
-</blockquote>
-<p>以下代码是关于旋转：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">drawScreen</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="comment">//绘制黑色正方形</span></div><div class="line">    ctx.fillStyle = <span class="string">'black'</span>;</div><div class="line">    ctx.fillRect(<span class="number">20</span>,<span class="number">20</span>,<span class="number">25</span>,<span class="number">25</span>);</div><div class="line">    <span class="comment">//绘制红色正方形</span></div><div class="line">    ctx.setTransform(<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>);</div><div class="line">    <span class="keyword">var</span> angle = <span class="number">45</span>*<span class="built_in">Math</span>.PI/<span class="number">180</span>,</div><div class="line">        x = <span class="number">100</span>,y=<span class="number">100</span>,width=<span class="number">50</span>,height=<span class="number">50</span>;</div><div class="line">    ctx.translate(x+<span class="number">.5</span>*width,y+<span class="number">.5</span>*height);</div><div class="line">    ctx.rotate(angle);</div><div class="line">    ctx.fillStyle = <span class="string">'red'</span>;</div><div class="line">    ctx.fillRect(<span class="number">-0.5</span>*width,<span class="number">-0.5</span>*height,width,height);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>缩放变换代码如下：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">drawScreen</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="comment">//绘制一个红色区域</span></div><div class="line">    ctx.setTransform(<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>);</div><div class="line">    <span class="keyword">var</span> angle = <span class="number">45</span>*<span class="built_in">Math</span>.PI/<span class="number">180</span>,</div><div class="line">        x = <span class="number">100</span>,y=<span class="number">100</span>,width=<span class="number">50</span>,height=<span class="number">50</span>;</div><div class="line">    ctx.translate(x+<span class="number">.5</span>*width,y+<span class="number">.5</span>*height);</div><div class="line">    ctx.scale(<span class="number">2</span>,<span class="number">2</span>);</div><div class="line">    ctx.fillStyle = <span class="string">'red'</span>;</div><div class="line">    ctx.fillRect(<span class="number">-0.5</span>*width,<span class="number">-0.5</span>*height,width,height);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>渐变代码如下：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//径向渐变</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">drawScreen</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> gr = ctx.createRadialGradient(<span class="number">100</span>,<span class="number">100</span>,<span class="number">50</span>,<span class="number">100</span>,<span class="number">100</span>,<span class="number">100</span>);</div><div class="line">    <span class="comment">//添加颜色断点</span></div><div class="line">    gr.addColorStop(<span class="number">0</span>,<span class="string">'rgb(255,0,0)'</span>);</div><div class="line">    gr.addColorStop(<span class="number">0.5</span>,<span class="string">'rgb(0,255,0)'</span>);</div><div class="line">    gr.addColorStop(<span class="number">1</span>,<span class="string">'rgb(0,0,255)'</span>);</div><div class="line">    <span class="comment">//使用fillStyle生成渐变</span></div><div class="line">    ctx.fillStyle = gr;</div><div class="line">    ctx.arc(<span class="number">100</span>,<span class="number">100</span>,<span class="number">100</span>,<span class="number">0</span>,<span class="number">2</span>*<span class="built_in">Math</span>.PI,<span class="literal">false</span>);</div><div class="line">    ctx.fill();</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//图案填充</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">drawScreen</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> img = <span class="keyword">new</span> Image();</div><div class="line">    img.src = <span class="string">'fill.gif'</span>;</div><div class="line">    img.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        <span class="keyword">var</span> gr = ctx.createPattern(img,<span class="string">'repeat'</span>);</div><div class="line">        ctx.fillStyle = gr;</div><div class="line">        ctx.fillRect(<span class="number">0</span>,<span class="number">0</span>,<span class="number">200</span>,<span class="number">200</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>阴影代码如下：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">drawScreen</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    context.fillStyle = <span class="string">'red'</span>; <span class="comment">//设置填充颜色</span></div><div class="line">    context.shadowOffsetX=<span class="number">4</span>;</div><div class="line">    context.shadowOffsetY=<span class="number">4</span>;</div><div class="line">    context.shadowColor=<span class="string">'black'</span>;</div><div class="line">    context.shadowBlur=<span class="number">4</span>; <span class="comment">//模糊度</span></div><div class="line">    context.fillRect(<span class="number">10</span>,<span class="number">10</span>,<span class="number">100</span>,<span class="number">100</span>);  </div><div class="line">    context.shadowOffsetX=<span class="number">-4</span>;</div><div class="line">    context.shadowOffsetY=<span class="number">-4</span>;</div><div class="line">    context.shadowColor=<span class="string">'black'</span>;</div><div class="line">    context.shadowBlur=<span class="number">4</span>;</div><div class="line">    context.fillRect(<span class="number">150</span>,<span class="number">10</span>,<span class="number">100</span>,<span class="number">100</span>);  </div><div class="line">    context.shadowOffsetX=<span class="number">10</span>;</div><div class="line">    context.shadowOffsetY=<span class="number">10</span>;</div><div class="line">    context.shadowColor=<span class="string">'rgb(100,100,100)'</span>;</div><div class="line">    context.shadowBlur=<span class="number">8</span>;</div><div class="line">    context.arc(<span class="number">200</span>, <span class="number">300</span>, <span class="number">100</span>, (<span class="built_in">Math</span>.PI/<span class="number">180</span>)*<span class="number">0</span>, (<span class="built_in">Math</span>.PI/<span class="number">180</span>)*<span class="number">360</span>, <span class="literal">false</span>);</div><div class="line">    context.fill();</div><div class="line">&#125;</div></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;blockquote class=&quot;blockquote-center&quot;&gt;&lt;p&gt;canvas学习第二章&lt;/p&gt;
-&lt;/blockquote&gt;
-    
-    </summary>
-    
-      <category term="canvas" scheme="https://muleimulei.github.io/categories/canvas/"/>
-    
-    
-      <category term="JavaScript" scheme="https://muleimulei.github.io/tags/JavaScript/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>canvas学习第一章</title>
-    <link href="https://muleimulei.github.io/2017/04/07/canvas/canvas%E5%AD%A6%E4%B9%A0%E7%AC%AC%E4%B8%80%E7%AB%A0/"/>
-    <id>https://muleimulei.github.io/2017/04/07/canvas/canvas学习第一章/</id>
-    <published>2017-04-07T10:28:34.438Z</published>
-    <updated>2017-04-07T16:36:46.578Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote class="blockquote-center"><p>canvas学习第一章</p>
-</blockquote>
-<a id="more"></a>
-<h2 id="基本知识"><a href="#基本知识" class="headerlink" title="基本知识"></a>基本知识</h2><ul>
-<li>ctx.fillStyle = ‘#000000’ 设置文本颜色</li>
-<li>ctx.font = ‘20px _sans’ 设置字体大小与字号</li>
-<li>ctx.textBaseline = ‘top’ 设置字体垂直对齐方式</li>
-<li>ctx.fillText(‘Hello World’,195,80) 将测试文本输出到屏幕上</li>
-<li>ctx.strokeStyle = ‘#000000’ 用于方块边框的颜色</li>
-<li>ctx.strokeRect(5,5,490,290) 绘制矩形边框</li>
-<li>ctx.fillRect(0,0,500,300) 填充矩形</li>
-<li>canvas.toDataURL() 这个方法返回的数据是代表当前canvas对象产生的位图字符串，就像屏幕的一个快照，通过提供一个不同MIME类型作为参数，可以返回不同的数据格式。基本的格式是image/png，但也可以获取image/jpeg和其它格式。</li>
-<li>绘制图片 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> image = <span class="keyword">new</span> Image();</div><div class="line">image.src = <span class="string">'hello.gif'</span>;</div><div class="line">image.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; <span class="comment">//回调函数在image加载成功时触发</span></div><div class="line">    ctx.drawImage(image,<span class="number">160</span>,<span class="number">130</span>); <span class="comment">//图像对象，与坐标</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<h2 id="我们利用以上知识来制作一个猜字母小游戏"><a href="#我们利用以上知识来制作一个猜字母小游戏" class="headerlink" title="我们利用以上知识来制作一个猜字母小游戏"></a>我们利用以上知识来制作一个猜字母小游戏</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div></pre></td><td class="code"><pre><div class="line">&lt;!doctype html&gt;</div><div class="line">&lt;html lang=&quot;en&quot;&gt;</div><div class="line">&lt;head&gt;</div><div class="line">&lt;meta charset=&quot;UTF-8&quot;&gt;</div><div class="line">&lt;title&gt;CH1Ex4: Guesss The Letter Game &lt;/title&gt;</div><div class="line">&lt;script src=&quot;modernizr-1.6.min.js&quot;&gt;&lt;/script&gt;</div><div class="line">&lt;script type=&quot;text/javascript&quot;&gt;</div><div class="line">//当页面加载完成时触发eventWindowLoaded方法</div><div class="line">window.addEventListener(&apos;load&apos;, eventWindowLoaded, false);</div><div class="line">var Debugger = function () &#123; &#125;;</div><div class="line">Debugger.log = function (message) &#123;</div><div class="line">    try &#123;</div><div class="line">        console.log(message);</div><div class="line">    &#125; catch (exception) &#123;</div><div class="line">        return;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">function eventWindowLoaded() &#123;</div><div class="line">    canvasApp();</div><div class="line">&#125;</div><div class="line">function canvasSupport () &#123;</div><div class="line">    return Modernizr.canvas;</div><div class="line">&#125;</div><div class="line">function eventWindowLoaded() &#123;</div><div class="line">    canvasApp();</div><div class="line">&#125;</div><div class="line">function canvasApp() &#123;</div><div class="line">    var guesses = 0; //猜的次数</div><div class="line">    var message = &quot;Guess The Letter From a (lower) to z (higher)&quot;;</div><div class="line">    var letters = [&quot;a&quot;,&quot;b&quot;,&quot;c&quot;,&quot;d&quot;,&quot;e&quot;,&quot;f&quot;,&quot;g&quot;,&quot;h&quot;,&quot;i&quot;,&quot;j&quot;,&quot;k&quot;,&quot;l&quot;,&quot;m&quot;,&quot;n&quot;,&quot;o&quot;,&quot;p&quot;,&quot;q&quot;,&quot;r&quot;,&quot;s&quot;,&quot;t&quot;,&quot;u&quot;,&quot;v&quot;,&quot;w&quot;,&quot;x&quot;,&quot;y&quot;,&quot;z&quot;];</div><div class="line">    var today = new Date();</div><div class="line">    var letterToGuess = &quot;&quot;; //要猜的字母</div><div class="line">    var higherOrLower = &quot;&quot;; //键盘按下的字母是大还是小</div><div class="line">    var lettersGuessed; //键盘按下的字母</div><div class="line">    var gameOver = false;</div><div class="line">    </div><div class="line">    if (!canvasSupport()) &#123;</div><div class="line">             return;</div><div class="line">    &#125;</div><div class="line">    var theCanvas = document.getElementById(&quot;canvasOne&quot;);</div><div class="line">    var context = theCanvas.getContext(&quot;2d&quot;);  //获得canvas的上下文</div><div class="line">    initGame(); //初始化游戏</div><div class="line">    function initGame() &#123;</div><div class="line">        var letterIndex = Math.floor(Math.random() * letters.length);</div><div class="line">        letterToGuess = letters[letterIndex]; //随机生成一个字母</div><div class="line">        guesses = 0;</div><div class="line">        lettersGuessed = []; //存储已经猜的字母</div><div class="line">        gameOver = false; //游戏成功与否标注位</div><div class="line">        window.addEventListener(&quot;keyup&quot;,eventKeyPressed,true); //监听键盘事件</div><div class="line">        var formElement = document.getElementById(&quot;createImageData&quot;); //生成快照</div><div class="line">        formElement.addEventListener(&apos;click&apos;, createImageDataPressed, false);       </div><div class="line">        drawScreen();</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    function eventKeyPressed(e) &#123;</div><div class="line">        if (!gameOver) &#123;</div><div class="line">            var letterPressed = String.fromCharCode(e.keyCode); //获得键入的字母</div><div class="line">            letterPressed = letterPressed.toLowerCase(); //转换成小写</div><div class="line">            guesses++; //猜测次数加一</div><div class="line">            lettersGuessed.push(letterPressed); //存储到数组中</div><div class="line">            if (letterPressed == letterToGuess) &#123; //如果猜对了</div><div class="line">                gameOver = true; //标志位置true</div><div class="line">            &#125; else &#123;</div><div class="line">                letterIndex = letters.indexOf(letterToGuess); //被猜的字母在数组中的位置</div><div class="line">                guessIndex = letters.indexOf(letterPressed); //键入的字母在数组中的位置</div><div class="line">                Debugger.log(guessIndex);//控制台调试</div><div class="line">                if (guessIndex &lt; 0) &#123; //如果输入的不是字母，返回-1</div><div class="line">                    higherOrLower = &quot;That is not a letter&quot;;</div><div class="line">                &#125; else if (guessIndex &gt; letterIndex) &#123; //输入偏大</div><div class="line">                    higherOrLower = &quot;Lower&quot;;</div><div class="line">                &#125; else &#123;</div><div class="line">                    higherOrLower = &quot;Higher&quot;; //输入偏小</div><div class="line">                &#125;                    </div><div class="line">            &#125;</div><div class="line">            drawScreen();</div><div class="line">          &#125;</div><div class="line">    &#125;</div><div class="line">    function drawScreen() &#123;</div><div class="line">        //绘制背景</div><div class="line">        context.fillStyle = &quot;#ffffaa&quot;;</div><div class="line">        context.fillRect(0, 0, 500, 300);</div><div class="line">        //绘制边框</div><div class="line">        context.strokeStyle = &quot;#000000&quot;; </div><div class="line">        context.strokeRect(5,  5, 490, 290);</div><div class="line">        context.textBaseline = &quot;top&quot;;</div><div class="line">        //绘制日期</div><div class="line">        context.fillStyle    = &quot;#000000&quot;;</div><div class="line">        context.font         = &quot;10px _san&quot;;</div><div class="line">        context.fillText  (today, 150 ,10);</div><div class="line">        //绘制消息</div><div class="line">        context.fillStyle    = &quot;#FF0000&quot;;</div><div class="line">        context.font         = &quot;14px _sans&quot;;</div><div class="line">        context.fillText  (message, 125, 30);</div><div class="line">        //绘制猜测次数</div><div class="line">        context.fillStyle    = &quot;#109910&quot;;</div><div class="line">        context.font         = &quot;16px _sans&quot;;</div><div class="line">        context.fillText  (&apos;Guesses: &apos; + guesses, 215, 50);</div><div class="line">        //输入是大还是小</div><div class="line">        context.fillStyle    = &quot;#000000&quot;;</div><div class="line">        context.font         = &quot;16px _sans&quot;;</div><div class="line">        context.fillText  (&quot;Higher Or Lower: &quot; + higherOrLower, 150,125);</div><div class="line">        //Letters Guessed</div><div class="line">        context.fillStyle    = &quot;#FF0000&quot;;</div><div class="line">        context.font         = &quot;16px _sans&quot;;</div><div class="line">        context.fillText  (&quot;Letters Guessed: &quot; + lettersGuessed.toString(), 10, 260);</div><div class="line">        if (gameOver) &#123;</div><div class="line">            context.fillStyle    = &quot;#FF0000&quot;;</div><div class="line">            context.font         = &quot;40px _sans&quot;;</div><div class="line">            context.fillText  ( &quot;You Got it!&quot;, 150, 180);</div><div class="line">        &#125;   </div><div class="line">    &#125;</div><div class="line">    function createImageDataPressed(e) &#123;</div><div class="line">        window.open(theCanvas.toDataURL(),&quot;canavsImage&quot;,&quot;left=0,top=0,width=&quot; + theCanvas.width + &quot;,height=&quot; + theCanvas.height +&quot;,toolbar=0,resizable=0&quot;);   </div><div class="line">    &#125;       </div><div class="line">&#125;</div><div class="line">&lt;/script&gt; </div><div class="line">&lt;/head&gt;</div><div class="line">&lt;body&gt;</div><div class="line">&lt;div style=&quot;position: absolute; top: 50px; left: 50px;&quot;&gt;</div><div class="line">&lt;canvas id=&quot;canvasOne&quot; width=&quot;500&quot; height=&quot;300&quot;&gt;</div><div class="line"> Your browser does not support HTML 5 Canvas. </div><div class="line">&lt;/canvas&gt;</div><div class="line">&lt;form&gt;</div><div class="line">&lt;input type=&quot;button&quot; id=&quot;createImageData&quot; value=&quot;Export Canvas Image&quot;&gt;</div><div class="line">&lt;/form&gt;</div><div class="line">&lt;/div&gt;</div><div class="line">&lt;/body&gt;</div><div class="line">&lt;/html&gt;</div></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;blockquote class=&quot;blockquote-center&quot;&gt;&lt;p&gt;canvas学习第一章&lt;/p&gt;
 &lt;/blockquote&gt;
     
     </summary>

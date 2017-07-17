@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style type="text/css">
+	*{
+		margin: 0;
+		padding: 0;
+		box-sizing: border-box;	
+	}
+	#one{
+		width: 500px;
+		height: 500px;
+		background: red;
+		margin: 0 auto; 
+		padding-top: 50px;
+	}
+	#two{
+		width: 400px;
+		height: 400px;
+		margin-top: 50%;
+		background: green;
+		margin: 0 auto;
+		padding-top: 50px;
+	}
+	#three{
+		width: 300px;
+		background: #000;
+		margin: 0 auto;
+		height: 300px;
+		padding-top: 50px;
+	}
+	#four{
+		width: 200px;
+		background: #ccc;
+		margin: 0 auto;
+		height: 200px;
+	}
+</style>
+
+<body>
+	<div id="one">
+		<div id="two">
+			<div id="three">
+				<div id="four"></div>
+			</div>
+		</div>
+	</div>
+<script type="text/javascript">
+	let one = document.querySelector('#one'),
+		two = document.querySelector('#two'),
+		three = document.querySelector('#three'),
+		four = document.querySelector('#four');
+	one.addEventListener('click',function(){
+		let bg = window.getComputedStyle(this,null).backgroundColor;
+		this.style.backgroundColor = '#2d2c34';
+		console.log('in one '+this.style.backgroundColor);
+		setTimeout(function(ele){
+			ele.style.backgroundColor = bg;
+			console.log('in one 恢复  '+ele.style.backgroundColor);
+		},100,this);
+	},true);
+	one.addEventListener('click',function(){
+		let bg = this.style.backgroundColor;
+		this.style.backgroundColor = '#2d2c34';
+		setTimeout(function(ele){
+			ele.style.backgroundColor = bg;
+		},1400,this);
+	},false);
+
+	two.addEventListener('click',function(){
+		let bg = window.getComputedStyle(this,null).backgroundColor;
+		this.style.backgroundColor = '#2d2c34';
+		console.log('in two '+this.style.backgroundColor);
+		setTimeout(function(ele){
+			ele.style.backgroundColor = bg;
+			console.log('in two 恢复  '+ele.style.backgroundColor);
+		},200,this);
+	},true);
+	two.addEventListener('click',function(){
+		let bg = window.getComputedStyle(this,null).backgroundColor;
+		this.style.backgroundColor = '#2d2c34';
+		setTimeout(function(ele){
+			ele.style.backgroundColor = bg;
+		},1200,this);
+	},false);
+
+	three.addEventListener('click',function(){
+		let bg = window.getComputedStyle(this,null).backgroundColor;
+		this.style.backgroundColor = '#2d2c34';
+		console.log('in three '+this.style.backgroundColor);
+		setTimeout(function(ele){
+			ele.style.backgroundColor = bg;
+			console.log('in three 恢复  '+ele.style.backgroundColor);
+		},400,this);
+	},true);
+	three.addEventListener('click',function(){
+		let bg = window.getComputedStyle(this,null).backgroundColor;
+		this.style.backgroundColor = '#2d2c34';
+		setTimeout(function(ele){
+			ele.style.backgroundColor = bg;
+		},1000,this);
+	},false);
+
+	four.addEventListener('click',function(){
+		let bg = window.getComputedStyle(this,null).backgroundColor;
+		this.style.backgroundColor = '#2d2c34';
+		console.log('in four '+this.style.backgroundColor);
+		setTimeout(function(ele){
+			ele.style.backgroundColor = bg;
+			console.log('in four 恢复  '+ele.style.backgroundColor);
+		},600,this);
+	},true);
+	four.addEventListener('click',function(){
+		let bg = window.getComputedStyle(this,null).backgroundColor;
+		this.style.backgroundColor = '#2d2c34';
+		console.log('out four '+this.style.backgroundColor);
+		setTimeout(function(ele){
+			ele.style.backgroundColor = bg;
+			console.log('out four 恢复  '+ele.style.backgroundColor);
+		},800,this);
+	},false);
+</script>
+</body>
+</html>
