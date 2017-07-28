@@ -113,15 +113,16 @@
 
 
 
-<meta name="description" content="个人学习总结">
-<meta property="og:type" content="website">
-<meta property="og:title" content="风的影子">
-<meta property="og:url" content="https://muleimulei.github.io/tags/Deferred/index.html">
+<meta name="description" content="自制滚动条">
+<meta property="og:type" content="article">
+<meta property="og:title" content="自制滚动条">
+<meta property="og:url" content="https://muleimulei.github.io/2017/07/28/CSS3/自制滚动条/index.html">
 <meta property="og:site_name" content="风的影子">
-<meta property="og:description" content="个人学习总结">
+<meta property="og:description" content="自制滚动条">
+<meta property="og:updated_time" content="2017-07-28T14:05:44.343Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="风的影子">
-<meta name="twitter:description" content="个人学习总结">
+<meta name="twitter:title" content="自制滚动条">
+<meta name="twitter:description" content="自制滚动条">
 
 
 
@@ -149,13 +150,13 @@
 
 
 
-  <link rel="canonical" href="https://muleimulei.github.io/tags/Deferred/"/>
+  <link rel="canonical" href="https://muleimulei.github.io/2017/07/28/CSS3/自制滚动条/"/>
 
 
 
 
 
-  <title> 标签: Deferred | 风的影子 </title>
+  <title> 自制滚动条 | 风的影子 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -180,7 +181,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left  ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -338,46 +339,218 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-collapse">
-    <div class="collection-title">
-      <h2 >
-        Deferred
-        <small>标签</small>
-      </h2>
-    </div>
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://muleimulei.github.io/2017/07/28/CSS3/自制滚动条/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="穆蕾">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="风的影子">
+    </span>
 
     
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                自制滚动条
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-28T21:16:39+08:00">
+                2017-07-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CSS3/" itemprop="url" rel="index">
+                    <span itemprop="name">CSS3</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
       
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+      
+        <blockquote class="blockquote-center"><p>自制滚动条</p>
+</blockquote>
+<a id="more"></a>
+<h2 id="前沿"><a href="#前沿" class="headerlink" title="前沿"></a>前沿</h2><p>webkit支持拥有overflow属性的区域，列表框，下拉菜单，textarea的滚动条的自定义样式。</p>
+<h2 id="滚动条的组成"><a href="#滚动条的组成" class="headerlink" title="滚动条的组成"></a>滚动条的组成</h2><ul>
+<li>::-webkit-scrollbar  滚动条整体部分</li>
+<li>::-webkit-scrollbar-thumb 滚动条里面的小方块，能向上向下移动</li>
+<li>::-webkit-scrollbar-track 滚动条的轨道</li>
+<li>::-webkit-scrollbar-button 滚动条的轨道的两端按钮，允许通过点击微调小方块的位置</li>
+<li>::-webkit-scrollbar-track-piece 内层轨道，滚动条中间部分除去</li>
+<li>::-webkit-scrollbar-corner边角，即两个滚动条的交汇处</li>
+<li>::-webkit-resizer 两个滚动条的交汇处上用于通过拖到调整元素大小的控件  <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">/*定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸*/  </div><div class="line">::-webkit-scrollbar  </div><div class="line">&#123;  </div><div class="line">    width: 16px;  </div><div class="line">    height: 16px;  </div><div class="line">    background-color: #F5F5F5;  </div><div class="line">&#125;  </div><div class="line">  </div><div class="line">/*定义滚动条轨道 内阴影+圆角*/  </div><div class="line">::-webkit-scrollbar-track  </div><div class="line">&#123;  </div><div class="line">    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);  </div><div class="line">    border-radius: 10px;  </div><div class="line">    background-color: #F5F5F5;  </div><div class="line">&#125;  </div><div class="line">  </div><div class="line">/*定义滑块 内阴影+圆角*/  </div><div class="line">::-webkit-scrollbar-thumb  </div><div class="line">&#123;  </div><div class="line">    border-radius: 10px;  </div><div class="line">    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);  </div><div class="line">    background-color: #555;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="详细设置"><a href="#详细设置" class="headerlink" title="详细设置"></a>详细设置</h2><p>定义滚动条就是利用伪元素与伪类，那什么是伪元素与伪类呢？<br>伪类如:link，:focus，:hover，此外，css3中又增加了许多伪类选择器，如:nth-child，:last-child，:nth-last-of-type等。</p>
+<p>CSS中的伪元素大家以前看过，:first-line，:first-letter，:before，:after。那么在CSS3中，伪元素进行了调整，在以前的基础上增加了一个 “:”，也就是变成了 “::first-line，::first-letter，::before，::after”，另外，CSS3还增加了一个”::selection”。两个”:”和一个”::”，在CSS3中主要用来区分伪类和伪类选择器。</p>
+<p>webkit的伪类和伪元素的实现很强，可以把滚动条当成一个页面元素来定义，再结合一些高级的CSS3属性，比如渐变，圆角，RGBA等等。如果有些地方要用图片，可以把图片转换成Base64，不然每次都得加载那个图片，增加请求数。</p>
+<p>任何对象都可以设置：边框，阴影，背景图片等等，创建的滚动条任然会按照操作系统本身的设置来完成其交互的行为。下面的伪类可以应用到上面的伪元素中。</p>
+<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">:horizontal  </div><div class="line">//horizontal伪类适用于任何水平方向上的滚动条  </div><div class="line">:vertical  </div><div class="line">//vertical伪类适用于任何垂直方向的滚动条  </div><div class="line">:decrement  </div><div class="line">//decrement伪类适用于按钮和轨道碎片。表示递减的按钮或轨道碎片，例如可以使区域向上或者向右移动的区域和按钮  </div><div class="line">:increment  </div><div class="line">//increment伪类适用于按钮和轨道碎片。表示递增的按钮或轨道碎片，例如可以使区域向下或者向左移动的区域和按钮  </div><div class="line">:start  </div><div class="line">//start伪类适用于按钮和轨道碎片。表示对象（按钮 轨道碎片）是否放在滑块的前面  </div><div class="line">:end  </div><div class="line">//end伪类适用于按钮和轨道碎片。表示对象（按钮 轨道碎片）是否放在滑块的后面  </div><div class="line">:double-button  </div><div class="line">//double-button伪类适用于按钮和轨道碎片。判断轨道结束的位置是否是一对按钮。也就是轨道碎片紧挨着一对在一起的按钮。  </div><div class="line">:single-button  </div><div class="line">//single-button伪类适用于按钮和轨道碎片。判断轨道结束的位置是否是一个按钮。也就是轨道碎片紧挨着一个单独的按钮。  </div><div class="line">:no-button  </div><div class="line">no-button伪类表示轨道结束的位置没有按钮。  </div><div class="line">:corner-present  </div><div class="line">//corner-present伪类表示滚动条的角落是否存在。  </div><div class="line">:window-inactive  </div><div class="line">//适用于所有滚动条，表示包含滚动条的区域，焦点不在该窗口的时候。  </div><div class="line">::-webkit-scrollbar-track-piece:start &#123;  </div><div class="line">/*滚动条上半边或左半边*/  </div><div class="line">&#125;  </div><div class="line">::-webkit-scrollbar-thumb:window-inactive &#123;  </div><div class="line">/*当焦点不在当前区域滑块的状态*/  </div><div class="line">&#125;  </div><div class="line">::-webkit-scrollbar-button:horizontal:decrement:hover &#123;  </div><div class="line">/*当鼠标在水平滚动条下面的按钮上的状态*/  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</code></pre>
+      
+    </div>
 
-      <h1 class="post-title">
+    <div>
+      
         
-            <a class="post-title-link" href="/2017/04/02/JavaScript/jquery的Deferred对象详解/" itemprop="url">
-              
-                <span itemprop="name">JQuery的Deferred对象详解</span>
-              
-            </a>
+
+      
+    </div>
+
+    <div>
+      
         
-      </h1>
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-04-02T18:24:29+08:00"
-              content="2017-04-02" >
-          04-02
-        </time>
-      </div>
+      
+    </div>
 
-    </header>
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/07/28/Vue/Vue实例与生命周期/" rel="next" title="Vue实例与生命周期">
+                <i class="fa fa-chevron-left"></i> Vue实例与生命周期
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </article>
 
 
-    
-  </div>
 
-  
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
 
           
           </div>
@@ -385,6 +558,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -404,8 +581,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <div>
           <img class="site-author-image" itemprop="image"
@@ -548,6 +734,22 @@
       </section>
 
       
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前沿"><span class="nav-number">1.</span> <span class="nav-text">前沿</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#滚动条的组成"><span class="nav-number">2.</span> <span class="nav-text">滚动条的组成</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#详细设置"><span class="nav-number">3.</span> <span class="nav-text">详细设置</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
 
       
 
@@ -682,6 +884,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
 
   
 
@@ -851,26 +1057,6 @@
 
 
   
-  
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({
-        tex2jax: {
-          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-          processEscapes: true,
-          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-        }
-      });
-    </script>
-
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for (i=0; i < all.length; i += 1) {
-          all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-      });
-    </script>
-    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
   
 
 

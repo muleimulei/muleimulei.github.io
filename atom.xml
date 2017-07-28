@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://muleimulei.github.io/"/>
-  <updated>2017-07-28T07:03:47.514Z</updated>
+  <updated>2017-07-28T14:05:44.343Z</updated>
   <id>https://muleimulei.github.io/</id>
   
   <author>
@@ -14,6 +14,46 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>自制滚动条</title>
+    <link href="https://muleimulei.github.io/2017/07/28/CSS3/%E8%87%AA%E5%88%B6%E6%BB%9A%E5%8A%A8%E6%9D%A1/"/>
+    <id>https://muleimulei.github.io/2017/07/28/CSS3/自制滚动条/</id>
+    <published>2017-07-28T13:16:39.590Z</published>
+    <updated>2017-07-28T14:05:44.343Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote class="blockquote-center"><p>自制滚动条</p>
+</blockquote>
+<a id="more"></a>
+<h2 id="前沿"><a href="#前沿" class="headerlink" title="前沿"></a>前沿</h2><p>webkit支持拥有overflow属性的区域，列表框，下拉菜单，textarea的滚动条的自定义样式。</p>
+<h2 id="滚动条的组成"><a href="#滚动条的组成" class="headerlink" title="滚动条的组成"></a>滚动条的组成</h2><ul>
+<li>::-webkit-scrollbar  滚动条整体部分</li>
+<li>::-webkit-scrollbar-thumb 滚动条里面的小方块，能向上向下移动</li>
+<li>::-webkit-scrollbar-track 滚动条的轨道</li>
+<li>::-webkit-scrollbar-button 滚动条的轨道的两端按钮，允许通过点击微调小方块的位置</li>
+<li>::-webkit-scrollbar-track-piece 内层轨道，滚动条中间部分除去</li>
+<li>::-webkit-scrollbar-corner边角，即两个滚动条的交汇处</li>
+<li>::-webkit-resizer 两个滚动条的交汇处上用于通过拖到调整元素大小的控件  <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">/*定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸*/  </div><div class="line">::-webkit-scrollbar  </div><div class="line">&#123;  </div><div class="line">    width: 16px;  </div><div class="line">    height: 16px;  </div><div class="line">    background-color: #F5F5F5;  </div><div class="line">&#125;  </div><div class="line">  </div><div class="line">/*定义滚动条轨道 内阴影+圆角*/  </div><div class="line">::-webkit-scrollbar-track  </div><div class="line">&#123;  </div><div class="line">    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);  </div><div class="line">    border-radius: 10px;  </div><div class="line">    background-color: #F5F5F5;  </div><div class="line">&#125;  </div><div class="line">  </div><div class="line">/*定义滑块 内阴影+圆角*/  </div><div class="line">::-webkit-scrollbar-thumb  </div><div class="line">&#123;  </div><div class="line">    border-radius: 10px;  </div><div class="line">    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);  </div><div class="line">    background-color: #555;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="详细设置"><a href="#详细设置" class="headerlink" title="详细设置"></a>详细设置</h2><p>定义滚动条就是利用伪元素与伪类，那什么是伪元素与伪类呢？<br>伪类如:link，:focus，:hover，此外，css3中又增加了许多伪类选择器，如:nth-child，:last-child，:nth-last-of-type等。</p>
+<p>CSS中的伪元素大家以前看过，:first-line，:first-letter，:before，:after。那么在CSS3中，伪元素进行了调整，在以前的基础上增加了一个 “:”，也就是变成了 “::first-line，::first-letter，::before，::after”，另外，CSS3还增加了一个”::selection”。两个”:”和一个”::”，在CSS3中主要用来区分伪类和伪类选择器。</p>
+<p>webkit的伪类和伪元素的实现很强，可以把滚动条当成一个页面元素来定义，再结合一些高级的CSS3属性，比如渐变，圆角，RGBA等等。如果有些地方要用图片，可以把图片转换成Base64，不然每次都得加载那个图片，增加请求数。</p>
+<p>任何对象都可以设置：边框，阴影，背景图片等等，创建的滚动条任然会按照操作系统本身的设置来完成其交互的行为。下面的伪类可以应用到上面的伪元素中。</p>
+<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">:horizontal  </div><div class="line">//horizontal伪类适用于任何水平方向上的滚动条  </div><div class="line">:vertical  </div><div class="line">//vertical伪类适用于任何垂直方向的滚动条  </div><div class="line">:decrement  </div><div class="line">//decrement伪类适用于按钮和轨道碎片。表示递减的按钮或轨道碎片，例如可以使区域向上或者向右移动的区域和按钮  </div><div class="line">:increment  </div><div class="line">//increment伪类适用于按钮和轨道碎片。表示递增的按钮或轨道碎片，例如可以使区域向下或者向左移动的区域和按钮  </div><div class="line">:start  </div><div class="line">//start伪类适用于按钮和轨道碎片。表示对象（按钮 轨道碎片）是否放在滑块的前面  </div><div class="line">:end  </div><div class="line">//end伪类适用于按钮和轨道碎片。表示对象（按钮 轨道碎片）是否放在滑块的后面  </div><div class="line">:double-button  </div><div class="line">//double-button伪类适用于按钮和轨道碎片。判断轨道结束的位置是否是一对按钮。也就是轨道碎片紧挨着一对在一起的按钮。  </div><div class="line">:single-button  </div><div class="line">//single-button伪类适用于按钮和轨道碎片。判断轨道结束的位置是否是一个按钮。也就是轨道碎片紧挨着一个单独的按钮。  </div><div class="line">:no-button  </div><div class="line">no-button伪类表示轨道结束的位置没有按钮。  </div><div class="line">:corner-present  </div><div class="line">//corner-present伪类表示滚动条的角落是否存在。  </div><div class="line">:window-inactive  </div><div class="line">//适用于所有滚动条，表示包含滚动条的区域，焦点不在该窗口的时候。  </div><div class="line">::-webkit-scrollbar-track-piece:start &#123;  </div><div class="line">/*滚动条上半边或左半边*/  </div><div class="line">&#125;  </div><div class="line">::-webkit-scrollbar-thumb:window-inactive &#123;  </div><div class="line">/*当焦点不在当前区域滑块的状态*/  </div><div class="line">&#125;  </div><div class="line">::-webkit-scrollbar-button:horizontal:decrement:hover &#123;  </div><div class="line">/*当鼠标在水平滚动条下面的按钮上的状态*/  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote class=&quot;blockquote-center&quot;&gt;&lt;p&gt;自制滚动条&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="CSS3" scheme="https://muleimulei.github.io/categories/CSS3/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>Vue实例与生命周期</title>
@@ -1542,64 +1582,6 @@ elem.dispatchEvent(event);
     <summary type="html">
     
       &lt;blockquote class=&quot;blockquote-center&quot;&gt;&lt;p&gt;jquery基本方法&lt;/p&gt;
-&lt;/blockquote&gt;
-    
-    </summary>
-    
-      <category term="JavaScript" scheme="https://muleimulei.github.io/categories/JavaScript/"/>
-    
-      <category term="jquery" scheme="https://muleimulei.github.io/categories/JavaScript/jquery/"/>
-    
-    
-      <category term="jquery" scheme="https://muleimulei.github.io/tags/jquery/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>jquery选择器</title>
-    <link href="https://muleimulei.github.io/2017/04/08/jquery/jquery%E9%80%89%E6%8B%A9%E5%99%A8/"/>
-    <id>https://muleimulei.github.io/2017/04/08/jquery/jquery选择器/</id>
-    <published>2017-04-08T06:24:54.484Z</published>
-    <updated>2017-04-08T10:22:32.992Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote class="blockquote-center"><p>jquery选择器使用</p>
-</blockquote>
-<a id="more"></a>
-<h1 id="jquery选择器"><a href="#jquery选择器" class="headerlink" title="jquery选择器"></a>jquery选择器</h1><ol>
-<li>#id选择器<br> jquery能够使用css选择器来操作网页中的标签元素。如果你想要通过一个ID号去查找一个元素，<code>$(&#39;#my_id&#39;)</code>，其中#my_id表示根据ID选择器获取页面中的指定标签元素，且返回唯一一个元素。</li>
-<li>element选择器<br> 其中element就是元素的名称</li>
-<li>.class选择器<br> <code>$(&#39;.class&#39;)</code> 其中, .class参数表示元素的css类别(类选择器名称)</li>
-<li>sele1,sele2,…,seleN选择器<br> 有时需要精确的选择任意多个指定的元素。<code>$(&#39;sele1,sele2,...seleN&#39;)</code> ,其中sele1，sele2到seleN为有效选择器，每个选择器之间用逗号来隔开。它们可以是之前提及的各种类型选择器，如<code>$(&#39;#id&#39;),$(&#39;.class&#39;),$(&#39;selector&#39;)</code> 选择器等。</li>
-<li>ance , desc 选择器<br> <code>$(&#39;ance desc&#39;)</code>,其中ance,desc是使用空格隔开的两个参数,ance表示父元素,desc表示后代元素，包括子元素，孙元素等。两个元素都可以通过选择器来获取。</li>
-<li>parent &gt; child<br> <code>$(&#39;parent &gt; child&#39;)</code>，它所选择的目标是子集元素，相当于一个家庭中的子辈们，但不包括孙辈。</li>
-<li>prev + next 选择器<br> <code>$(&#39;prev + next&#39;)</code>,查找与”prev”元素紧邻的下一个”next”元素，并且只返回唯一一个元素。</li>
-<li>prev ~ siblings选择器<br> <code>$(&#39;prev ~ siblings&#39;)</code> 获取prev元素后边全部紧邻的元素。</li>
-<li>:first 过滤选择器<br> <code>$(&#39;li:first&#39;)</code> 得到一组相同标签中的第一个元素。</li>
-<li>:eq(index)过滤选择器<br><code>$(&#39;li:eq(3)&#39;)</code>在一组标签元素数组中，灵活选择任意一个标签元素。</li>
-<li>:contains(text)过滤选择器<br>希望按照文本内容来查找一个或多个元素，功能是选择包含指定字符串的全部元素。</li>
-<li>:has(selector)过滤选择器<br><code>$(&#39;li:has(&#39;p&#39;)&#39;)</code>是获取选择器中包含指定元素名称的全部字符。</li>
-<li>:hidden过滤选择器<br>获取全部不可见的元素，这些不可见的元素包括type属性值为hidden的元素，如<code>$(&#39;p:hidden&#39;)</code>。</li>
-<li>:visible过滤选择器<br>获取全部的可见元素，也就是说，只要不将元素的display属性值设置为none,那么都可以获取该标签。</li>
-<li>[attribute]包含属性选择器<br>用于选择包含给定属性的所有元素</li>
-<li>[attribute=value]属性等于选择器<br>获取与属性名和属性值完全相同的全部元素，其中[]是专用于属性选择器的括号符。</li>
-<li>[attribute!=’value’]属性不等于选择器<br>获取不包含属性名，或者与属性名和属性值不相同的全部元素</li>
-<li>[attribute|=’value’]属性选择器<br>获取指定属性值等于给定字符串或以字符串为前缀(该字符串后跟一个连字符‘-’)的元素</li>
-<li>[attribute*=’value’]属性包含过滤器<br>用于选择指定属性值包含给定字符串的所有元素</li>
-<li>[attribute~=’value’]属性包含单词过滤器<br>用于选择指定属性值中包含给定单词(由空格分隔)的元素</li>
-<li>[attribute^=’value’]属性开始过滤器<br>用于选择给定属性是以特定值开始的所有元素</li>
-<li>[attribute$=’value’]属性结尾过滤器<br>用于选择给定属性是以某特定值结尾的所有元素</li>
-<li>:first-child 获取属于其父元素和所有兄弟元素的第一个元素</li>
-<li>:last-child 获取每个父元素中返回的最后一个子元素</li>
-<li>:img图像域选择器<br>当一个input元素的type属性值设为”image”时，该元素就是一个图像域，```$(‘#form :img’)</li>
-<li>:button表单按钮选择器<br>获取’type’值为button的input和button这两类普通元素</li>
-<li>:checked选择状态选择器(复选框，单选按钮)<br>获取处于选重状态的全部元素</li>
-<li>:select 选中状态选择器<br>只能获取select下拉列表框中全部处于选中状态的option选项元素。</li>
-</ol>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;blockquote class=&quot;blockquote-center&quot;&gt;&lt;p&gt;jquery选择器使用&lt;/p&gt;
 &lt;/blockquote&gt;
     
     </summary>
