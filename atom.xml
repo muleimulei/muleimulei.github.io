@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://muleimulei.github.io/"/>
-  <updated>2017-07-28T14:05:44.343Z</updated>
+  <updated>2017-07-29T06:26:48.618Z</updated>
   <id>https://muleimulei.github.io/</id>
   
   <author>
@@ -14,6 +14,82 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Git的reset与checkout的区别</title>
+    <link href="https://muleimulei.github.io/2017/07/29/git/git%E7%9A%84reset%E4%B8%8Echeckout%E7%9A%84%E5%8C%BA%E5%88%AB/"/>
+    <id>https://muleimulei.github.io/2017/07/29/git/git的reset与checkout的区别/</id>
+    <published>2017-07-29T04:12:25.099Z</published>
+    <updated>2017-07-29T06:26:48.618Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote class="blockquote-center"><p>Git的reset与checkout的区别</p>
+</blockquote>
+<a id="more"></a>
+<h2 id="Head，Index，Working-Director"><a href="#Head，Index，Working-Director" class="headerlink" title="Head，Index，Working Director"></a>Head，Index，Working Director</h2><ol>
+<li><p>Git里面的三个重要区域</p>
+<ul>
+<li>HEAD指向最近一次commit里的所以snapshot</li>
+<li>Index 缓存区域，只有Index区域里的东西才可以被commit</li>
+<li><p>Working Directory 用户操作区域</p>
+<img src="/assets/segment/git1.png">
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="初始状态"><a href="#初始状态" class="headerlink" title="初始状态"></a>初始状态</h2><p>当你checkout分支的时候，git做了这么三件事情</p>
+<pre><code>&gt; 将HEAD指向那个分支的最后一次commit
+&gt; 将HEAD指向的commit里所有的文件的snapshot替换掉Index区域里面的内容
+&gt; 将Index区域里面的内容填充到Working Directory里
+</code></pre><p>所以你可以发现，HEAD，Index，Working Directory这个时候里的内容都是一摸一样的。<br><strong> 注意：一般会误解为，Index中的内容是空的，只有git add后才会有东西。实际上不是，Index里一直是有东西的。 </strong>，所以，git里的所有操作就是对这三个区域的状态的操作。</p>
+<h2 id="Changed"><a href="#Changed" class="headerlink" title="Changed"></a>Changed</h2><p>如果你在Working Directory里修改了文件，git会发现Working Directory里面的内容与Index区域里面的内容不一致了。这个时候<code>git status</code>的结果就是：<br><code>Changes not staged for commit</code></p>
+<h2 id="Staged"><a href="#Staged" class="headerlink" title="Staged"></a>Staged</h2><p>一个文件仅仅changed是不能够被commit的，git要求只能提交Index里的东西。所以需要git add，这个命令的意思是，把changed的文件的内容同步到Index区域里。这样Working Directory和Index区域的内容就一致了，这个过程称之为stage，这个时候<code>git status</code>的结果是：<code>Changes to be commited</code></p>
+<h2 id="Commited"><a href="#Commited" class="headerlink" title="Commited"></a>Commited</h2><p>最后，就可以提交了<code>git commit</code>，这样，就把HEAD的状态和Index以及Working Directory就形成了一致了。</p>
+<h2 id="reset"><a href="#reset" class="headerlink" title="reset"></a>reset</h2><p>reset是用来修改提交历史的，想象这种情况，如果你在2天前提交了一个东西，突然发现这个提交是有问题的。这个时候你有两个选择，要么使用<code>git revert</code>（推荐），要么使用<code>git reset</code>。</p>
+<img src="/assets/segment/git2.png">
+<p>上图可以看到git reset是会修改版本历史的，他会丢弃掉一些版本历史。而git revert是根据那个commit逆向生成一个新的commit，版本历史是不会破会的。</p>
+<h1 id="已经push到远程仓库的commit不允许reset"><a href="#已经push到远程仓库的commit不允许reset" class="headerlink" title="已经push到远程仓库的commit不允许reset"></a>已经push到远程仓库的commit不允许reset</h1><p>上面已经讲了，<code>git reset</code>是会丢弃掉commit的。如果commit已经被push到远程仓库上了，也就意味着其它开发人员就可能基于这个commit形成了新的commit，这时你去reset，就会造成其它开发人员的提交历史莫名其妙的丢失，或者其它灾难性的后果。</p>
+<p><strong> 因此，一旦commit已经被push到远程仓库，那么是坚决不允许去reset它的。 </strong></p>
+<h1 id="不带文件参数的reset"><a href="#不带文件参数的reset" class="headerlink" title="不带文件参数的reset"></a>不带文件参数的reset</h1><p>前面章节已经说到Git有三个区域，Git的所有操作实际上是在操作这三个区域的状态（或内容）。<br>git reset配合不同的参数，对这三个区域会产生不同的影响。reset实际上有三个步骤，根据不同的参数可以决定执行哪个步骤(<code>–soft,–mixed,–hard</code>)。</p>
+<pre><code>1. 改变HEAD所指向的commit(--soft)
+2. 执行第一步，将Index区域更新为HEAD所指向的commit里包含的内容(--mixed)
+3. 执行第1,2步，将Working Directory区域更新为HEAD所指向的commit里包含的内容(--hard)
+</code></pre><h1 id="带文件参数的reset"><a href="#带文件参数的reset" class="headerlink" title="带文件参数的reset"></a>带文件参数的reset</h1><p>上面讲到的git reset实际上不带参数的，那带上文件参数呢？</p>
+<ol>
+<li>HEAD不会动</li>
+<li>将那个commit的snapshot里的文件放到Index区域中</li>
+</ol>
+<p><strong> 需要注意的是带文件参数的git reset没有–hard, –soft这两个参数。只有–mixed参数。 </strong></p>
+<h1 id="unstage"><a href="#unstage" class="headerlink" title="unstage"></a>unstage</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git reset file.txt</div><div class="line">git reset --mixed HEAD file.txt</div></pre></td></tr></table></figure>
+<p>上面这两条命令是一样的，都是reset到HEAD上，这个例子的意义在于，unstage file，当你把一个文件stage到Index区域后悔了，那么只需把Index区域里的这个文件恢复到最近一次commit的状态（也就是HEAD），那就相当于unstage。</p>
+<h1 id="恢复到历史版本"><a href="#恢复到历史版本" class="headerlink" title="恢复到历史版本"></a>恢复到历史版本</h1><p>下面这个命令就是将某个文件恢复到历史版本上。<br><code>git reset eb23er file.txt</code><br>这个例子的意思在于，把某个文件恢复到Index区域里，然后直接commit，这样就等于把这个文件恢复到历史版本了，这样依赖你都不需要改动working Directory了。</p>
+<h2 id="checkout"><a href="#checkout" class="headerlink" title="checkout"></a>checkout</h2><p>前面讲到的checkout是会修改HEAD的指向，变更Index区域的内容，修改Working Directory里的内容。<br>这看上去很像reset –hard，但两者有两个重要的差别</p>
+<ol>
+<li>reset会把working directory里面所有的内容都更新掉，checkout不会去修改你在working Directory里修改过的文件。</li>
+<li>reset把branch移动到HEAD指向的地方，checkout则把HEAD移动到另一个分支。</li>
+</ol>
+<p>第二个区别可能有点那以理解，举例来说：假若你有两个分支master和develop，这两个分支指向不一样的commit，我们现在在develop分支上（HEAD指向的地方）</p>
+<p>如果我们<code>git reset master</code>，那么develop就会指向master所指向的那个commit。<br>如果我们<code>git checkout master</code>，那么develop不会动，只有HEAD会移动。HEAD会指向master。看图：</p>
+<img src="/assets/segment/git3.png">
+<h1 id="带文件参数"><a href="#带文件参数" class="headerlink" title="带文件参数"></a>带文件参数</h1><p>当执行git checkout [branch] file，checkout干了这件事情：</p>
+<ol>
+<li>更新了index区域里面的file文件的内容</li>
+<li>更新了working directory里file文件的内容</li>
+</ol>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote class=&quot;blockquote-center&quot;&gt;&lt;p&gt;Git的reset与checkout的区别&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="Git" scheme="https://muleimulei.github.io/categories/Git/"/>
+    
+    
+      <category term="Git" scheme="https://muleimulei.github.io/tags/Git/"/>
+    
+  </entry>
   
   <entry>
     <title>自制滚动条</title>
@@ -1508,80 +1584,6 @@ elem.dispatchEvent(event);
     <summary type="html">
     
       &lt;blockquote class=&quot;blockquote-center&quot;&gt;&lt;p&gt;jquery基本事件&lt;/p&gt;
-&lt;/blockquote&gt;
-    
-    </summary>
-    
-      <category term="JavaScript" scheme="https://muleimulei.github.io/categories/JavaScript/"/>
-    
-      <category term="jquery" scheme="https://muleimulei.github.io/categories/JavaScript/jquery/"/>
-    
-    
-      <category term="jquery" scheme="https://muleimulei.github.io/tags/jquery/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>jquery基本方法</title>
-    <link href="https://muleimulei.github.io/2017/04/08/jquery/jquery%E5%9F%BA%E6%9C%AC%E6%96%B9%E6%B3%95/"/>
-    <id>https://muleimulei.github.io/2017/04/08/jquery/jquery基本方法/</id>
-    <published>2017-04-08T10:23:12.383Z</published>
-    <updated>2017-04-08T11:10:39.434Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote class="blockquote-center"><p>jquery基本方法</p>
-</blockquote>
-<a id="more"></a>
-<h1 id="jquery基本方法"><a href="#jquery基本方法" class="headerlink" title="jquery基本方法"></a>jquery基本方法</h1><ol>
-<li>使用attr()方法来控制元素的属性<blockquote>
-<p>attr()方法的作用是设置或者返回元素的属性，其中attr(属性名)格式是获取元素属性的值，attr(属性名，属性值)是设置元素属性的值。</p>
-</blockquote>
-</li>
-<li>操作元素的内容<blockquote>
-<p>使用html()和text()方法操作元素的内容，当两个方法的参数为空时，表示获取该元素的内容。而如果方法中包含参数，则表示将参数值设置为元素内容。html()方法可以获取元素的HTML文本。因此，原文中的格式代码也被一起获取，而text()方法只是获取元素中的文本内容，并不包含HTML格式代码。</p>
-</blockquote>
-</li>
-<li>操作元素内容<blockquote>
-<p>通过addClass()和css()方法可以方便的操作元素的样式，前者括号中的参数为增加元素的样式名称，后者直接将样式内容写入到括号里。使用removeAttr(name)和removeClass(class)分别可以实现移除元素的属性和样式的功能，前者方法中的参数表示移除属性名，后者方法中的参数则表示样式名。</p>
-</blockquote>
-</li>
-<li>使用append()方法向元素<strong>内</strong>追加内容<blockquote>
-<p>append(content)方法的功能是向指定的元素内追加内容，被追加的content参数可以表示字符，HTML标记，还可以是一个返回字符串内容的函数。</p>
-</blockquote>
-</li>
-<li>使用appendTo()方法向被选元素内插入内容<blockquote>
-<p><code>$(content).appendTo(selector)</code>，参数content表示要插入的内容，参数select表示被选的元素，即把content内容插入到selector元素内，默认在尾部。</p>
-</blockquote>
-</li>
-<li>使用before()和after()在元素前后插入内容<blockquote>
-<p><code>$(selector).before(content)</code>和<code>$(selector).after(content)</code>。</p>
-</blockquote>
-</li>
-<li>使用clone()方法复制元素<blockquote>
-<p>调用clone()方法可以生成一个被选元素的副本，即复制了一个被选元素，包含它的节点，文本，属性。 <code>$(selector).clone()</code>。</p>
-</blockquote>
-</li>
-<li>replaceWith()和replaceAll()替换内容<blockquote>
-<p>它们在使用时，内容和被替换元素所在的位置不同，<code>$(selector).replaceWith(content)</code>,<code>$(content).replaceAll(selector)</code>。</p>
-</blockquote>
-</li>
-<li>使用wrap()和wrapInner()方法包裹元素的内容<blockquote>
-<p>前者用于包裹元素本身，后者用于包裹元素的内容，调用格式为<code>$(selector).wrap(wrapper)</code>,<code>$(selector).wrapInner(wrapper)</code>。</p>
-</blockquote>
-</li>
-<li>使用each方法遍历元素<blockquote>
-<p>使用时，通过回调函数返回遍历元素的序列号。<code>$(&#39;span&#39;).each(function(index){if(index==2){$(this).addClass(&#39;focus&#39;);}});</code>。</p>
-</blockquote>
-</li>
-<li>使用remove()和empty()方法删除元素<blockquote>
-<p>remove()方法删除所选元素本身和子元素，该方法可以添加过滤参数指定要删除的某些元素，而empty()方法则只删除所选元素的子元素。</p>
-</blockquote>
-</li>
-</ol>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;blockquote class=&quot;blockquote-center&quot;&gt;&lt;p&gt;jquery基本方法&lt;/p&gt;
 &lt;/blockquote&gt;
     
     </summary>
