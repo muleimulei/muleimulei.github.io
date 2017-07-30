@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://muleimulei.github.io/"/>
-  <updated>2017-07-29T06:26:48.618Z</updated>
+  <updated>2017-07-30T14:32:18.098Z</updated>
   <id>https://muleimulei.github.io/</id>
   
   <author>
@@ -14,6 +14,40 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Vue的非父子组件通信</title>
+    <link href="https://muleimulei.github.io/2017/07/30/Vue/%E9%9D%9E%E7%88%B6%E5%AD%90%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1/"/>
+    <id>https://muleimulei.github.io/2017/07/30/Vue/非父子组件通信/</id>
+    <published>2017-07-30T14:12:52.333Z</published>
+    <updated>2017-07-30T14:32:18.098Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote class="blockquote-center"><p>Vue的非父子组件通信</p>
+</blockquote>
+<a id="more"></a>
+<blockquote>
+<p>可以通过vuex和event bus来解决</p>
+</blockquote>
+<h2 id="Demo"><a href="#Demo" class="headerlink" title="Demo"></a>Demo</h2><p>我们要实现的效果是：</p>
+<img src="/assets/segment/vue1.jpg">
+<p>上下分别为foo组件和bar组件，他们之间是非父子关系，分别点击各自的button，另一个组件的count对应增加。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>非父子组件通信<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">foo</span>&gt;</span><span class="tag">&lt;/<span class="name">foo</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">hr</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">bar</span>&gt;</span><span class="tag">&lt;/<span class="name">bar</span>&gt;</span>  </div><div class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>JavaScript的实现是：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//注册一个空的Vue实例，作为“中转站”</span></div><div class="line"><span class="keyword">var</span> eventBus = <span class="keyword">new</span> Vue(&#123;&#125;)</div><div class="line"><span class="comment">//foo组件</span></div><div class="line"><span class="keyword">var</span> foo = &#123;</div><div class="line">    <span class="attr">template</span>: <span class="string">`&lt;div&gt;&lt;p&gt;the count of foo is &#123;&#123;fooCount&#125;&#125;&lt;/p&gt;</span></div><div class="line">                &lt;button @click="addBar"&gt;add bar's count&lt;/button&gt;</div><div class="line">            &lt;/div&gt;`,</div><div class="line">    data () &#123;</div><div class="line">        <span class="keyword">return</span> &#123;</div><div class="line">            <span class="attr">fooCount</span>: <span class="number">0</span></div><div class="line">        &#125;</div><div class="line">    &#125;,</div><div class="line">    <span class="attr">methods</span>: &#123;</div><div class="line">        addBar () &#123;</div><div class="line">            eventBus.$emit(<span class="string">'addBar'</span>,<span class="number">1</span>)</div><div class="line">        &#125;</div><div class="line">    &#125;,</div><div class="line">    mounted () &#123;</div><div class="line">        eventBus.$on(<span class="string">'addFoo'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">num</span>) </span>&#123;</div><div class="line">            <span class="keyword">this</span>.fooCount += num    </div><div class="line">        &#125;.bind(<span class="keyword">this</span>)) <span class="comment">//这里必须将this绑定到组件实例上，如果不使用bind，也可以使用箭头函数。</span></div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//bar组件</span></div><div class="line"><span class="keyword">var</span> bar = &#123;</div><div class="line">    <span class="attr">template</span>: <span class="string">`&lt;div&gt;&lt;p&gt;the count of bar is &#123;&#123;fooCount&#125;&#125;&lt;/p&gt;</span></div><div class="line">                &lt;button @click="addBar"&gt;add foo's count&lt;/button&gt;</div><div class="line">            &lt;/div&gt;`,</div><div class="line">    data () &#123;</div><div class="line">        <span class="keyword">return</span> &#123;</div><div class="line">            <span class="attr">barCount</span>: <span class="number">0</span></div><div class="line">        &#125;</div><div class="line">    &#125;,</div><div class="line">    <span class="attr">methods</span>: &#123;</div><div class="line">        addFoo () &#123;</div><div class="line">            eventBus.$emit(<span class="string">'addFoo'</span>,<span class="number">1</span>)</div><div class="line">        &#125;</div><div class="line">    &#125;,</div><div class="line">    mounted () &#123;</div><div class="line">        eventBus.$on(<span class="string">'addBar'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">num</span>) </span>&#123;</div><div class="line">            <span class="keyword">this</span>.barCount += num</div><div class="line">        &#125;.bind(<span class="keyword">this</span>)) <span class="comment">//这里必须将this绑定到组件实例上，如果不使用bind，也可以使用箭头函数。</span></div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> vm = <span class="keyword">new</span> Vue (&#123;</div><div class="line">    <span class="attr">el</span>: <span class="string">'#app'</span>,</div><div class="line">    <span class="attr">components</span>: &#123;</div><div class="line">        foo,</div><div class="line">        bar</div><div class="line">    &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>以上就实现了一个简易的非父子组件之间的通信方式。通过event bus，在一个组件创建时的钩子函数中监听某个事件，而在需要与其进行通信的组件中触发这个函数，同时交换数据。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote class=&quot;blockquote-center&quot;&gt;&lt;p&gt;Vue的非父子组件通信&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="Vue" scheme="https://muleimulei.github.io/categories/Vue/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>Git的reset与checkout的区别</title>
@@ -1479,121 +1513,6 @@ elem.dispatchEvent(event);
     
       <category term="os" scheme="https://muleimulei.github.io/categories/os/"/>
     
-    
-  </entry>
-  
-  <entry>
-    <title>jquery基本事件</title>
-    <link href="https://muleimulei.github.io/2017/04/08/jquery/jquery%E5%9F%BA%E6%9C%AC%E4%BA%8B%E4%BB%B6/"/>
-    <id>https://muleimulei.github.io/2017/04/08/jquery/jquery基本事件/</id>
-    <published>2017-04-08T11:11:06.074Z</published>
-    <updated>2017-04-09T07:48:46.421Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote class="blockquote-center"><p>jquery基本事件</p>
-</blockquote>
-<a id="more"></a>
-<h1 id="jquery基本事件"><a href="#jquery基本事件" class="headerlink" title="jquery基本事件"></a>jquery基本事件</h1><ol>
-<li><p>页面加载时触发ready()事件</p>
-<blockquote>
-<p>ready()方法类似于onload()事件，但前者只要页面的dom结构加载后触发，而后者需要页面全部元素加载成功才触发，ready可以写多个，其按顺序执行。<code>$(document).ready(function(){$(&#39;#tip&#39;).html(&#39;加载完毕&#39;);});</code>。</p>
-</blockquote>
-</li>
-<li><p>使用hover方法切换事件</p>
-<blockquote>
-<p>hover方法的功能是当鼠标移到所选元素上时，执行方法中的第一个函数，鼠标移出时，执行方法中的第二个函数，实现事件的切换效果。<code>$(selector).hover(over,out)</code>。</p>
-</blockquote>
-</li>
-<li><p>使用toggle()方法绑定多个函数</p>
-<blockquote>
-<p>toggle()方法可以在元素的click事件中绑定两个或两个以上的函数，同时，它还可以实现元素的隐藏与显示的切换，绑定多个函数的调用格式<code>$(selector).toggle(fun1,fun2,······funN)</code>。</p>
-</blockquote>
-</li>
-<li><p>使用unbind()方法移除移除元素绑定事件</p>
-<blockquote>
-<p><code>$(selector).unbind(event,fun)</code>,其中参数event表示需要移除的事件名称，多个事件用空格隔开，fun参数为事件执行时调用的函数名称，如果没有规定参数，unbind()方法会删除指定元素的所有事件处理程序。</p>
-</blockquote>
-</li>
-<li><p>使用one()方法绑定元素的一次性事件</p>
-<blockquote>
-<p>one()方法可以绑定元素任何有效的事件，但这种方法的绑定事件只会触发一次。<code>$(selector).one(event,[data],fun)</code>，参数event为事件名称,dada为触发事件时携带的数据，fun为触发该事件时执行的函数。</p>
-</blockquote>
-</li>
-<li><p>调用trigger方法手动触发指定事件。</p>
-<blockquote>
-<p>trigger方法可以直接手动触发元素指定的事件，这些事件可以是元素自带事件，也可以是自定义事件。总之，该事件必须能执行。</p>
-</blockquote>
-</li>
-<li><p>文本框的focus和blur事件</p>
-<blockquote>
-<p>focus事件在元素获取焦点时触发，如点击文本框时触发该事件；而blur事件则在元素失去焦点时触发。</p>
-</blockquote>
-</li>
-<li><p>下拉列表框的change事件</p>
-<blockquote>
-<p>当一个元素的值发生变化时，将会触发change事件。</p>
-</blockquote>
-</li>
-<li><p>调用live()方法绑定事件</p>
-<blockquote>
-<p>与bind相同，live可以绑定元素的可执行事件，除此之外，live方法还可以绑定动态元素，即是使用代码添加的元素事件。</p>
-</blockquote>
-</li>
-<li><p>调用show()和hide()方法显示和隐藏元素</p>
-<blockquote>
-<p><code>$(selector).hide(speed,[callback])</code>和<code>$(selector).show(speed,[callback])</code>,参数speed设置隐藏或显示的速度值，可为’slow’,’fast’或毫秒数值。可选参数callback为隐藏或显示动作执行完成后调用的函数。</p>
-</blockquote>
-</li>
-<li><p>使用slideUp和slideDown方法的滑动效果</p>
-<blockquote>
-<p>前者用于向上滑动元素，后者用于向下滑动元素，调用方法为<code>$(selector).slideUp(speed,[callback])</code>和<code>$(selector).slideDown(speed,[callback])</code>,其中speed为滑动时的速度，单位是毫秒，可选参数是滑动成功后的回调函数。</p>
-</blockquote>
-</li>
-<li><p>使用slideToggle方法</p>
-<blockquote>
-<p>该方法可以切换slideUp和slideDown，即调用该方法时，如果元素已向上滑动，则元素自动向下滑动，反之，向下滑动。<code>$(selector).slideToggle(speed,[callback])</code>。</p>
-</blockquote>
-</li>
-<li><p>使用fadeIn()和fadeOut()实现淡入与淡出</p>
-<blockquote>
-<p><code>$(selector).fadeIn(speed,[callback])</code>和<code>$(selector).fadeOut(speed,[callback])</code>。</p>
-</blockquote>
-</li>
-<li><p>使用fadeTo()方法设置淡入淡出效果的不透明度</p>
-<blockquote>
-<p>调用fadeTo()方法，可以将所选元素的不透明度以淡入淡出的效果调整为指定的值。<code>$(selector).fadeTo(speed,opacity,[callback])</code>，其中speed参数为效果的速度，opacity参数为指定的不透明度，取值为0~1，可选参数callback为效果完成后回调的函数。</p>
-</blockquote>
-</li>
-<li><p>调用animate()方法制作简单的动画效果</p>
-<blockquote>
-<p>格式为<code>$(selector).animate({params},speed,[callback])</code>。其中，params参数为制作动画效果的css属性名与值，speed参数为动画的效果速度，单位为毫秒，可选项callback参数为动画效果完成后执行的回调函数。<code>$(&#39;img&#39;).animate({left: &#39;+=90px&#39;,3000,function(){$(this).animate({width:&#39;+=30px&#39;,height:&#39;+=30px&#39;},3000,function(){$(&#39;#tip&#39;).html(&#39;done!&#39;);});});</code>。</p>
-</blockquote>
-</li>
-<li><p>调用stop方法停止当前动画效果</p>
-<blockquote>
-<p>stop()方法的功能是在动画完成前，停止当前正在执行的动画效果，这些效果包括滑动，淡入淡出和自定义动画。<code>$(selector).stop([clearQueue],[goToEnd])</code>。</p>
-</blockquote>
-</li>
-<li><p>调用delay()方法延迟执行动画效果</p>
-<blockquote>
-<p><code>$(selector).delay(duration)</code>，其中duration为延时值，单位是毫秒，当超过延时值时，动画开始执行。</p>
-</blockquote>
-</li>
-</ol>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;blockquote class=&quot;blockquote-center&quot;&gt;&lt;p&gt;jquery基本事件&lt;/p&gt;
-&lt;/blockquote&gt;
-    
-    </summary>
-    
-      <category term="JavaScript" scheme="https://muleimulei.github.io/categories/JavaScript/"/>
-    
-      <category term="jquery" scheme="https://muleimulei.github.io/categories/JavaScript/jquery/"/>
-    
-    
-      <category term="jquery" scheme="https://muleimulei.github.io/tags/jquery/"/>
     
   </entry>
   
