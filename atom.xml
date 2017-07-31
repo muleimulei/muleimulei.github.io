@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://muleimulei.github.io/"/>
-  <updated>2017-07-30T14:32:18.098Z</updated>
+  <updated>2017-07-31T09:18:47.556Z</updated>
   <id>https://muleimulei.github.io/</id>
   
   <author>
@@ -14,6 +14,89 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>module的加载实现</title>
+    <link href="https://muleimulei.github.io/2017/07/31/JavaScript/module%E7%9A%84%E5%8A%A0%E8%BD%BD%E5%AE%9E%E7%8E%B0/"/>
+    <id>https://muleimulei.github.io/2017/07/31/JavaScript/module的加载实现/</id>
+    <published>2017-07-31T07:37:28.196Z</published>
+    <updated>2017-07-31T09:18:47.556Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote class="blockquote-center"><p>module的加载实现</p>
+</blockquote>
+<h2 id="浏览器加载"><a href="#浏览器加载" class="headerlink" title="浏览器加载"></a>浏览器加载</h2><ol>
+<li>传统方法</li>
+</ol>
+<p>在HTML网页中，浏览器通过<code>script</code>标签加载JavaScript脚本<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- 页面内嵌的脚本 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"application/javascript"</span>&gt;</span><span class="javascript"></span></div><div class="line">    <span class="comment">//module code</span></div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"></div><div class="line"><span class="comment">&lt;!-- 外部脚本 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"application/JavaScript"</span> <span class="attr">src</span>=<span class="string">"path/to/Module.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>上面代码中，由于浏览器的脚本的默认语言是JavaScript，因此<code> type=”application/javascript” </code>可以省略。</p>
+<p>默认情况下，浏览器同步加载JavaScript脚本，即渲染引擎遇到script标签就会停下来，等到执行完脚本，再继续向下渲染。如果是外部脚本，还必须加入脚本下载的时间。</p>
+<p>下面有两种异步加载的方法</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&lt;script src=<span class="string">"mymodule.js"</span> defer&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></div><div class="line">&lt;script src=<span class="string">"mymodule.js"</span> <span class="keyword">async</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></div></pre></td></tr></table></figure>
+<p>上面代码中，script标签打开defer或async属性，脚本就会异步加载。渲染引擎遇到这一命令，就会开始下载外部脚本，但不会等他下载和执行，而是直接执行后面的命令。</p>
+<blockquote>
+<p>defer与async的区别是：前者要等到整个页面正常渲染结束，才会执行；后者一旦下载完，渲染引擎就会中断渲染，执行这个脚本以后，再继续渲染。另外，如果有多个defer脚本，会按照它们在页面出现的顺序加载，而多个async脚本是不能保证加载顺序的。</p>
+</blockquote>
+<ol>
+<li>加载规则</li>
+</ol>
+<p>浏览器加载ES6模块，也使用script标签，但要加入type=”module”属性。<br><code> <script type="module" src="foo.js"></script> </code>上面代码在网页插入foo.js，由于type属性设为module，所以浏览器知道这是一个ES6模块。</p>
+<p>浏览器对于带有type=”module”的script，都是异步加载，不会造成堵塞浏览器，即等到整个页面渲染完，在执行模块脚本，等同于打开了script标签的defer属性。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;script type=<span class="string">"module"</span> src=<span class="string">"foo.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></div><div class="line">&lt;!-- 等同于 --&gt;</div><div class="line"><span class="xml"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"module"</span> <span class="attr">src</span>=<span class="string">"foo.js"</span> <span class="attr">defer</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></div></pre></td></tr></table></figure>
+<p>script标签的async属性也可以打开，这时只要加载完成，渲染引擎就会中断渲染立即执行。执行完成后，在恢复渲染。<br><code> <script type="module" src="foo.js" async></script> </code><br>ES6模块也允许内嵌在网页中，语法行为与加载外部脚本完全一致。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;script type=<span class="string">"module"</span>&gt;</div><div class="line">    <span class="keyword">import</span> utils <span class="keyword">from</span> <span class="string">'./util.js'</span></div><div class="line">    <span class="comment">// other code</span></div><div class="line">&lt;<span class="regexp">/script&gt;</span></div></pre></td></tr></table></figure>
+<p>对于外部的模块的脚本，有几点注意。</p>
+<blockquote>
+<ol>
+<li>代码是在模块作用域之中运行，而不是在全局作用域运行。模块内部的顶层变量，外部不可见。</li>
+<li>模块脚本自动采用严格模式，不管有没有声明<code>use strict</code></li>
+<li>模块之中，可以使用import命令加载其它模块(<strong> .js后缀不可省略，需要提供绝对url与相对url </strong>)，也可以使用export命令输出绝对接口。</li>
+<li>模块之中，顶层的this关键字返回undefined，而不是window。也就是说，在模块顶层使用this关键字，是无意义的。</li>
+<li>同一个模块如果加载多次，将只执行一次</li>
+</ol>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> utils <span class="keyword">from</span> <span class="string">'https://example.com/js/utils.js'</span>;</div><div class="line"></div><div class="line"><span class="keyword">const</span> x = <span class="number">1</span>;</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(x === <span class="built_in">window</span>.x); <span class="comment">//false</span></div><div class="line"><span class="built_in">console</span>.log(<span class="keyword">this</span> === <span class="literal">undefined</span>); <span class="comment">// true</span></div><div class="line"></div><div class="line"><span class="keyword">delete</span> x; <span class="comment">// 句法错误，严格模式禁止删除变量</span></div></pre></td></tr></table></figure>
+<p><strong> 利用顶层的this等于undefined这个语法点，可以侦测当前代码是否在es6模块之中 </strong></p>
+<p><code>const isNotModuleScript = this !== undefined</code></p>
+<ol>
+<li>ES6模块与CommonJs模块的差异</li>
+</ol>
+<p>它们有两个重大差异</p>
+<ul>
+<li>CommonJs 模块输出的是一个值的拷贝，ES6模块输出的是一个值的引用。</li>
+<li>CommonJs 模块是运行时加载，ES6模块是编译时输出接口</li>
+</ul>
+<p>第二个差异是因为CommonJs加载的是一个对象（即module.exports属性），该对象只有在脚本运行完才会生成。而ES6模块不是对象，它的对外接口只是一种静态定义，在代码静态解析阶段就会生成。</p>
+<p>下面重点解释第一个差异。</p>
+<p>CommonJS 模块输出的是值的拷贝，也就是说，一旦输出一个值，模块内部的变化就影响不到这个值。请看下面这个模块文件lib.js的例子。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// lib.js</span></div><div class="line"><span class="keyword">var</span> counter = <span class="number">3</span>;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">incCounter</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  counter++;</div><div class="line">&#125;</div><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">  <span class="attr">counter</span>: counter,</div><div class="line">  <span class="attr">incCounter</span>: incCounter,</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p>上面代码输出内部变量counter和改写这个变量的内部方法incCounter。然后，在main.js里面加载这个模块。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// main.js</span></div><div class="line"><span class="keyword">var</span> mod = <span class="built_in">require</span>(<span class="string">'./lib'</span>);</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(mod.counter);  <span class="comment">// 3</span></div><div class="line">mod.incCounter();</div><div class="line"><span class="built_in">console</span>.log(mod.counter); <span class="comment">// 3</span></div><div class="line">上面代码说明，lib.js模块加载以后，它的内部变化就影响不到输出的mod.counter了。这是因为mod.counter是一个原始类型的值，会被缓存。除非写成一个函数，才能得到内部变动后的值。</div><div class="line"></div><div class="line"><span class="comment">// lib.js</span></div><div class="line"><span class="keyword">var</span> counter = <span class="number">3</span>;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">incCounter</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  counter++;</div><div class="line">&#125;</div><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">  get counter() &#123;</div><div class="line">    <span class="keyword">return</span> counter</div><div class="line">  &#125;,</div><div class="line">  <span class="attr">incCounter</span>: incCounter,</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>上面代码中，输出的counter属性实际上是一个取值器函数。现在再执行main.js，就可以正确读取内部变量counter的变动了。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ node main.js</div><div class="line"><span class="number">3</span></div><div class="line"><span class="number">4</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>ES6 模块的运行机制与 CommonJS 不一样。JS 引擎对脚本静态分析的时候，遇到模块加载命令import，就会生成一个只读引用。等到脚本真正执行时，再根据这个只读引用，到被加载的那个模块里面去取值。换句话说，ES6 的import有点像 Unix 系统的“符号连接”，原始值变了，import加载的值也会跟着变。因此，ES6 模块是动态引用，并且不会缓存值，模块里面的变量绑定其所在的模块。</p>
+</blockquote>
+<p>export通过接口，输出的是同一个值。不同的脚本加载这个接口，得到的都是同样的实例。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// mod.js</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">C</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">this</span>.sum = <span class="number">0</span>;</div><div class="line">  <span class="keyword">this</span>.add = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.sum += <span class="number">1</span>;</div><div class="line">  &#125;;</div><div class="line">  <span class="keyword">this</span>.show = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.sum);</div><div class="line">  &#125;;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">let</span> c = <span class="keyword">new</span> C();</div></pre></td></tr></table></figure></p>
+<p>上面的脚本mod.js，输出的是一个C的实例。不同的脚本加载这个模块，得到的都是同一个实例。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">// x.js</div><div class="line">import &#123;c&#125; from &apos;./mod&apos;;</div><div class="line">c.add();</div><div class="line"></div><div class="line">// y.js</div><div class="line">import &#123;c&#125; from &apos;./mod&apos;;</div><div class="line">c.show();</div><div class="line"></div><div class="line">// main.js</div><div class="line">import &apos;./x&apos;;</div><div class="line">import &apos;./y&apos;;</div><div class="line">现在执行main.js，输出的是1。</div><div class="line"></div><div class="line">$ babel-node main.js</div><div class="line">1</div></pre></td></tr></table></figure>
+<p>这就证明了x.js和y.js加载的都是C的同一个实例。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote class=&quot;blockquote-center&quot;&gt;&lt;p&gt;module的加载实现&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&quot;浏览器加载&quot;&gt;&lt;a href=&quot;#浏览器加载&quot; class=&quot;headerlink&quot; title=&quot;浏览器加载&quot;&gt;&lt;/a&gt;
+    
+    </summary>
+    
+      <category term="JavaScript" scheme="https://muleimulei.github.io/categories/JavaScript/"/>
+    
+    
+      <category term="JavaScript" scheme="https://muleimulei.github.io/tags/JavaScript/"/>
+    
+      <category term="HTML5" scheme="https://muleimulei.github.io/tags/HTML5/"/>
+    
+  </entry>
   
   <entry>
     <title>Vue的非父子组件通信</title>
@@ -1474,44 +1557,6 @@ elem.dispatchEvent(event);
     </summary>
     
       <category term="Node" scheme="https://muleimulei.github.io/categories/Node/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>页面置换算法的实现</title>
-    <link href="https://muleimulei.github.io/2017/04/13/OS/%E9%A1%B5%E9%9D%A2%E7%BD%AE%E6%8D%A2%E7%AE%97%E6%B3%95/"/>
-    <id>https://muleimulei.github.io/2017/04/13/OS/页面置换算法/</id>
-    <published>2017-04-13T14:57:18.498Z</published>
-    <updated>2017-04-14T15:13:35.567Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote class="blockquote-center"><p>页面置换算法的实现</p>
-</blockquote>
-<a id="more"></a>
-<h2 id="页面置换算法的实现"><a href="#页面置换算法的实现" class="headerlink" title="页面置换算法的实现"></a>页面置换算法的实现</h2><p>在进程运行过程中，若其所要访问的页面不在内存，而需把它们调入内存，但内存已无空闲空间时，但为了保证该进程能正常运行，系统必须从内存中调出一页程序或数据送到磁盘的对换区中。但应将哪个页面调出。需根据一定的算法来确定。通常，把选择换出页面的算法称为页面置换算法。</p>
-<blockquote>
-<p>一个好的页面置换算法应具有较低的页面置换频率。从理论上上讲，应将那些以后不再会访问的页面换出，或把那些在较长时间内不会再访问的页面换出。</p>
-</blockquote>
-<h2 id="常用算法介绍"><a href="#常用算法介绍" class="headerlink" title="常用算法介绍"></a>常用算法介绍</h2><ol>
-<li>最佳置换算法<br> 最佳置换算法是由Belady与1966年提出的一种理论上的算法。其所选择的被淘汰页面将是以后永不使用的，或许是在最长时间内不再被访问的页面。采用最佳置换算法通常可保证获得最低的缺页率。但由于人们目前还无法预知，一个进程在内存的若干个页面中，哪一个页面是未来最长时间内不再被访问的。因而该算法是无法实现的。</li>
-<li>先进先出页面置换算法<br> FIFO算法是最早出现的置换算法。该算法总是淘汰最先进入内存的页面，即选择在内存中驻留时间最久的页面予以淘汰。该算法实现简单，只需把一个进程已调入内存的页面按先后次序连接成一个队列，并设置一个指针，称为替换指针，使它总是指向最老的页面。但该算法与进程实际运行的规律不相适应，因为在进程中，有些页面经常被访问，比如，含有全局变量，常用函数，例程等的页面，FIFO算法并不能保证这些页面不被淘汰。</li>
-<li>最近最久未使用算法<br> 最近最久未使用(LRU)的页面置换算法是根据页面调入内存后的使用情况作出决策的。由于无法预测各页面将来的使用情况，只能利用”最近的过去”作为”最近的将来”的近似，因此，LRU置换算法是选择最近最久未使用的页面予以淘汰。该算法赋予每个页面一个访问字段，用来记录一个页面自上次被访问以来所经历的时间t。当需淘汰一个页面时，选择现有页面中其t值最大的，即最近最久未使用的页面予以淘汰。</li>
-</ol>
-<h2 id="LRU置换算法的硬件支持"><a href="#LRU置换算法的硬件支持" class="headerlink" title="LRU置换算法的硬件支持"></a>LRU置换算法的硬件支持</h2><ol>
-<li>寄存器<br>为了记录某进程在内存中各页的使用情况，须为每个在内存中的页面配置一个移位寄存器，可表示为：R=R<sub>n-1</sub>R<sub>n-2</sub>R<sub>n-3</sub>·····R<sub>1</sub>R<sub>0</sub><br>当某进程访问某物理块时，要将相应寄存器的R<sub>n-1</sub>位置成1。此时，定时信号将每隔一定时间(列如 100ms)将寄存器右移一位。如果我们把n位寄存器的数看做一个整数，那么，具有最小数值的寄存器所对应的页面，就是最久未使用的页面。</li>
-<li>栈<br>可利用一个特殊的栈来保存当前使用的各个页面的页面号。每当进程访问页面时，便将该页面的页面号从栈中移除，将它压入栈顶。因此，栈顶始终是最新被访问的页面的编号，而栈底则是最近最久未使用页面的编号。</li>
-</ol>
-<p>FIFO与LRU使用栈数据结构代码效果如下(源码可按F12查看)：</p>
-<iframe src="/assets/操作系统.html" width="100%" height="700px" frameborder="0" allowfullscreen></iframe>]]></content>
-    
-    <summary type="html">
-    
-      &lt;blockquote class=&quot;blockquote-center&quot;&gt;&lt;p&gt;页面置换算法的实现&lt;/p&gt;
-&lt;/blockquote&gt;
-    
-    </summary>
-    
-      <category term="os" scheme="https://muleimulei.github.io/categories/os/"/>
     
     
   </entry>
