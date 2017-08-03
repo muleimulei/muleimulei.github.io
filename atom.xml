@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://muleimulei.github.io/"/>
-  <updated>2017-07-31T09:18:47.556Z</updated>
+  <updated>2017-08-03T08:07:16.765Z</updated>
   <id>https://muleimulei.github.io/</id>
   
   <author>
@@ -16,11 +16,63 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>关系的完整性</title>
+    <link href="https://muleimulei.github.io/2017/08/03/DataBase/%E5%85%B3%E7%B3%BB%E7%9A%84%E5%AE%8C%E6%95%B4%E6%80%A7/"/>
+    <id>https://muleimulei.github.io/2017/08/03/DataBase/关系的完整性/</id>
+    <published>2017-08-03T07:11:26.020Z</published>
+    <updated>2017-08-03T08:07:16.765Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote class="blockquote-center"><p>关系的完整性</p>
+</blockquote>
+<a id="more"></a>
+<p>关系模型的完整性规则是对关系的某种约束条件。也就是说关系的值随着时间变化时因该满足一些约束条件。这些约束条件实际上是现实世界的要求。任何关系在任何时刻都要满足这些语义约束。</p>
+<p><strong> 关系模型中有三类完整性约束：实体完整性，参照完整性和用户定义的完整性 </strong>。其中实体完整性和参照完整性是关系模型必须满足的完整性约束条件，被称为关系的两个不变性，应该由关系系统自动支持。用户定义的完整性是应用领域需要遵循的约束条件，体现了具体领域中的语义约束。</p>
+<ol>
+<li><p>实体完整性<br>实体完整性规则：若属性（指一个或一组属性）A是基本关系R的主属性，则A不能取空值（null value）。所谓空值就是“不知道”或“不存在”或“无意义”的值。</p>
+<p>实体完整性规则说明如下：</p>
+<ol>
+<li>实体完整性规则是针对基本关系而言的。一个基本表通常对应现实世界的一个实体集。</li>
+<li>现实世界中的实体是可区分的，即他们具有某种唯一性标识。</li>
+<li>相应的，关系模型中以主码作为唯一性标识。</li>
+<li>主码中的属性即主属性不能取空值。如果主属性取空值，就说明存在某个不可标识的主体，即存在不可区分的实体，这与第2点相矛盾，因此这个规则称为实体完整性。</li>
+</ol>
+</li>
+</ol>
+<blockquote>
+<p>设F是基本关系R的一个或一组属性，但不是关系R的码，Ks是基本关系S的主码。如果F与Ks相对应，则称F是R的外码，并称基本关系R为参照关系，基本关系S为被参照关系或目标关系。关系R和S不一定是不同的关系。</p>
+</blockquote>
+<ol>
+<li>参照完整性<br>若属性（属性组）F是基本关系R的外码，它与基本关系S的主码Ks相对应（基本关系R与S不一定是不同的关系），则对于R中的每个元组在F上的值必须：<ul>
+<li>或者取空值（F的每个属性值均为空值）</li>
+<li>或者等于S中某个元组的主码值。</li>
+</ul>
+</li>
+</ol>
+<ol>
+<li>用户定义的完整性<br> 任何关系数据库系统都应该支持实体完整性和参照完整性。这是关系模型所要求的。除此之外，不同的关系数据库系统根据其应用环境的不同，往往还需要一些特殊的约束条件。用户定义的完整性就是针对某一具体关系数据库的约束条件，它反应某一具体应用所涉及的数据必须满足的语义要求。<strong> 关系模型应提供定义和检验这类完整性的机制，以便用统一的系统的方法处理它们，而不需要由应用程序承担这一功能 </strong></li>
+</ol>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote class=&quot;blockquote-center&quot;&gt;&lt;p&gt;关系的完整性&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="DataBase" scheme="https://muleimulei.github.io/categories/DataBase/"/>
+    
+    
+      <category term="关系的完整性" scheme="https://muleimulei.github.io/tags/%E5%85%B3%E7%B3%BB%E7%9A%84%E5%AE%8C%E6%95%B4%E6%80%A7/"/>
+    
+  </entry>
+  
+  <entry>
     <title>module的加载实现</title>
     <link href="https://muleimulei.github.io/2017/07/31/JavaScript/module%E7%9A%84%E5%8A%A0%E8%BD%BD%E5%AE%9E%E7%8E%B0/"/>
     <id>https://muleimulei.github.io/2017/07/31/JavaScript/module的加载实现/</id>
     <published>2017-07-31T07:37:28.196Z</published>
-    <updated>2017-07-31T09:18:47.556Z</updated>
+    <updated>2017-08-03T07:10:50.649Z</updated>
     
     <content type="html"><![CDATA[<blockquote class="blockquote-center"><p>module的加载实现</p>
 </blockquote>
@@ -92,9 +144,9 @@
       <category term="JavaScript" scheme="https://muleimulei.github.io/categories/JavaScript/"/>
     
     
-      <category term="JavaScript" scheme="https://muleimulei.github.io/tags/JavaScript/"/>
-    
       <category term="HTML5" scheme="https://muleimulei.github.io/tags/HTML5/"/>
+    
+      <category term="JavaScript" scheme="https://muleimulei.github.io/tags/JavaScript/"/>
     
   </entry>
   
@@ -613,12 +665,20 @@ elem.dispatchEvent(event);
     <link href="https://muleimulei.github.io/2017/07/11/DataBase/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AF%AD%E8%A8%80%E5%88%86%E7%B1%BB/"/>
     <id>https://muleimulei.github.io/2017/07/11/DataBase/数据库语言分类/</id>
     <published>2017-07-11T15:16:12.527Z</published>
-    <updated>2017-07-11T15:20:49.329Z</updated>
+    <updated>2017-08-03T07:08:35.640Z</updated>
     
-    <content type="html"><![CDATA[<blockquote class="blockquote-center"><p>数据库语言分类</p>
+    <content type="html"><![CDATA[<blockquote class="blockquote-center"><p>关系数据语言分类</p>
 </blockquote>
 <a id="more"></a>
-<p>SQL语言共分为四大类：数据查询语言DQL，数据操纵语言DML，数据定义语言DDL，数据控制语言DCL。</p>
+<p>早期的关系操作能力通常用代数方式或逻辑方式来表示，分别称为 <strong> 关系代数 </strong> 和 <strong> 关系演算 </strong>。<br>关系代数用对关系的运算来表达查询要求，关系演算则用谓词来表达查询要求。关系演算又可按谓词变元的基本对象是元组变量还是域变量分为 <strong> 元组关系演算 </strong> 和 <strong> 域关系演算 </strong>。一个关系数据语言能够表示关系代数可以表示的查询，称为具有完备的表达能力，简称关系完备性。已经证明关系代数，元组关系演算和域关系演算三种语言在表达能力上是等价的，都具有完备的表达能力。<br>另外，还有一种介于关系代数和关系演算之间的<strong>结构化查询语言</strong>，sql不仅具有丰富的查询功能，而且具有数据定义和数据控制功能，是<strong>集查询，数据定义语言，数据操纵语言和数据控制语言于一体的关系数据语言</strong>，他充分体现了关系数据语言的特点和优点，是关系数据库的标准语言。</p>
+<p>因此，关系数据语言可以分为三类：</p>
+<p>关系数据语言：</p>
+<pre><code>1. 关系代数语言（例如：ISBL）
+2. 关系演算语言
+    1. 元组关系演算语言（例如ALPHA，QUEL）
+    2. 域关系演算语言（例如QBE）
+3. 具有关系代数和关系演算双重特点的语言（例如SQL）
+</code></pre><p>SQL语言共分为四大类：数据查询语言DQL，数据操纵语言DML，数据定义语言DDL，数据控制语言DCL。</p>
 <h2 id="数据查询语言DQL"><a href="#数据查询语言DQL" class="headerlink" title="数据查询语言DQL"></a>数据查询语言DQL</h2><p>数据查询语言DQL基本结构是由SELECT子句，FROM子句，WHERE</p>
 <p>子句组成的查询块：</p>
 <p>SELECT &lt;字段名表&gt;</p>
@@ -664,7 +724,7 @@ elem.dispatchEvent(event);
     
     <summary type="html">
     
-      &lt;blockquote class=&quot;blockquote-center&quot;&gt;&lt;p&gt;数据库语言分类&lt;/p&gt;
+      &lt;blockquote class=&quot;blockquote-center&quot;&gt;&lt;p&gt;关系数据语言分类&lt;/p&gt;
 &lt;/blockquote&gt;
     
     </summary>
@@ -1521,43 +1581,6 @@ elem.dispatchEvent(event);
     
     
       <category term="tools" scheme="https://muleimulei.github.io/tags/tools/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>爬取网易云音乐</title>
-    <link href="https://muleimulei.github.io/2017/04/14/nodejs/%E7%88%AC%E5%8F%96%E7%BD%91%E6%98%93%E4%BA%91%E9%9F%B3%E4%B9%90/"/>
-    <id>https://muleimulei.github.io/2017/04/14/nodejs/爬取网易云音乐/</id>
-    <published>2017-04-14T15:07:13.645Z</published>
-    <updated>2017-04-15T14:00:25.987Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote class="blockquote-center"><p>爬取网易云音乐</p>
-</blockquote>
-<a id="more"></a>
-<blockquote>
-<p>该爬虫使用PhantomJS,cheerio,bluebird以及Node.js内置模块来实现</p>
-</blockquote>
-<p>首先，我们需要认识到利用普通爬取静态网页的方式是爬取不到源码的，你只会拿到源码的模板，数据根本没有被填充，所以我们需要使用PhantomJS这个工具。它的功能，就是提供一个浏览器环境的命令行接口，你可以把它看做一个虚拟的浏览器，除了不能浏览，其它与正常浏览器一样。它的内核是wenkit引擎，不提供图形界面，只能在命令行下使用。其次，我们使用cheerio模块，其提供了类似于jquery的方法来解析爬取到的HTML代码，另外，我们使用blueBird来异步爬取。(这些模块可以使用npm来下载安装)</p>
-<ol>
-<li>官网下载到的phantomJS是一个可执行程序，下载完成后配置其环境变量。然后利用Node.js的child_process新起进程来调用此命令。具体代码如下：</li>
-</ol>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//1.js文件</span></div><div class="line"></div><div class="line"><span class="keyword">var</span> page = <span class="built_in">require</span>(<span class="string">'webpage'</span>).create();</div><div class="line">page.onConsoleMessage = <span class="function"><span class="keyword">function</span>(<span class="params">msg</span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'Page title is '</span> + msg);</div><div class="line">&#125;;</div><div class="line">page.settings.userAgent = <span class="string">"Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36"</span>;</div><div class="line">page.open(<span class="string">'url'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">status</span>) </span>&#123;<span class="comment">//open方法的第一个参数是需要爬去的网址</span></div><div class="line">    <span class="keyword">if</span> (status !== <span class="string">'success'</span>) &#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">'Unable to access network'</span>);</div><div class="line">    &#125;<span class="keyword">else</span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">'正在爬取请稍后'</span>);</div><div class="line">        setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">            <span class="keyword">var</span> result = page.evaluate(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">                <span class="keyword">return</span> <span class="built_in">document</span>.getElementById(<span class="string">"g_iframe"</span>).contentDocument.documentElement.innerHTML;</div><div class="line">            &#125;);</div><div class="line">            <span class="built_in">console</span>.log(result);</div><div class="line">            phantom.exit();</div><div class="line">        &#125;, <span class="number">7000</span>); <span class="comment">//需进行延迟等待，带页面渲染完毕再进行爬取</span></div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<ol>
-<li>主程序代码如下：<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> cp = <span class="built_in">require</span>(<span class="string">'child_process'</span>);</div><div class="line"><span class="keyword">var</span> http = <span class="built_in">require</span>(<span class="string">'http'</span>);</div><div class="line"><span class="keyword">var</span> cheerio = <span class="built_in">require</span>(<span class="string">'cheerio'</span>);</div><div class="line"><span class="keyword">var</span> <span class="built_in">Promise</span> = <span class="built_in">require</span>(<span class="string">"bluebird"</span>);</div><div class="line"><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>);</div><div class="line"><span class="keyword">var</span> ids = []; <span class="comment">//存取歌曲ID</span></div><div class="line"><span class="keyword">var</span> list=[]; <span class="comment">//存取所有promise对象</span></div><div class="line"><span class="keyword">var</span> details = []; <span class="comment">//存取歌曲信息</span></div><div class="line"><span class="keyword">var</span> url = <span class="string">'http://music.163.com/api/song/detail/?id=425137664&amp;ids=[425137664]&amp;csrf_token='</span>;</div><div class="line"><span class="keyword">var</span> urls = []; <span class="comment">//存取歌曲json文件信息</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">getJson</span>(<span class="params">u</span>)</span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve,reject</span>)</span>&#123;</div><div class="line">        http.get(u, <span class="function"><span class="keyword">function</span>(<span class="params">res</span>) </span>&#123;</div><div class="line">            <span class="keyword">var</span> html = <span class="string">""</span>;</div><div class="line">            res.on(<span class="string">"data"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">data</span>) </span>&#123;</div><div class="line">                html += data;</div><div class="line">            &#125;);</div><div class="line">            res.on(<span class="string">"end"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">                resolve(html);</div><div class="line">            &#125;);</div><div class="line">        &#125;).on(<span class="string">"error"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;</div><div class="line">            reject(e);</div><div class="line">            <span class="built_in">console</span>.log(<span class="string">"获取信息出错!"</span>);</div><div class="line">        &#125;);</div><div class="line">    &#125;);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * 解析网页</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">parseContent</span>(<span class="params">$</span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> tr = $(<span class="string">'tbody'</span>).find(<span class="string">'tr'</span>);</div><div class="line">    tr.each(<span class="function"><span class="keyword">function</span>(<span class="params">i,t</span>)</span>&#123;</div><div class="line">        <span class="keyword">var</span> td = $(t).find(<span class="string">'td'</span>).eq(<span class="number">1</span>);</div><div class="line">        <span class="keyword">var</span> id = $(td).find(<span class="string">'a'</span>).attr(<span class="string">'href'</span>).split(<span class="string">'='</span>)[<span class="number">1</span>];</div><div class="line">        ids.push(id); <span class="comment">//获取到歌曲id</span></div><div class="line">    &#125;);</div><div class="line">    <span class="comment">//拼接URL,获取到歌曲的json文件</span></div><div class="line">    ids.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">num</span>)</span>&#123;</div><div class="line">        <span class="keyword">var</span> u = url.replace(<span class="regexp">/\d&#123;4,&#125;/g</span>,num);</div><div class="line">        urls.push(u);</div><div class="line">    &#125;);</div><div class="line">    urls.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">url</span>)</span>&#123;</div><div class="line">        list.push(getJson(url));</div><div class="line">    &#125;);</div><div class="line"></div><div class="line">    <span class="built_in">Promise</span>.all(list).then(<span class="function"><span class="keyword">function</span>(<span class="params">jsons</span>)</span>&#123;<span class="comment">//解析获取到的json文件</span></div><div class="line">        jsons.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">json</span>)</span>&#123;</div><div class="line">            <span class="keyword">var</span> json = <span class="built_in">JSON</span>.parse(json);</div><div class="line">            <span class="comment">//获取到歌曲的基本信息</span></div><div class="line">            <span class="keyword">var</span> name = json.songs[<span class="number">0</span>].name; </div><div class="line">            <span class="keyword">var</span> singer = json.songs[<span class="number">0</span>].artists[<span class="number">0</span>].name;</div><div class="line">            <span class="keyword">var</span> picUrl = json.songs[<span class="number">0</span>].album.picUrl;</div><div class="line">            <span class="keyword">var</span> src = json.songs[<span class="number">0</span>].mp3Url;</div><div class="line">            details.push(&#123;</div><div class="line">                <span class="string">"name"</span>: name,</div><div class="line">                <span class="string">"singer"</span>:singer,</div><div class="line">                <span class="string">"picUrl"</span>:picUrl,</div><div class="line">                <span class="string">"src"</span> : src</div><div class="line">            &#125;);</div><div class="line">        &#125;);</div><div class="line">        fs.writeFile(<span class="string">'music.json'</span>,<span class="built_in">JSON</span>.stringify(details)); <span class="comment">//将获取到的数据以json格式写入到文件中</span></div><div class="line">    &#125;);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//新建进程利用phantomJS来运行1.js文件</span></div><div class="line">cp.exec(<span class="string">'phantomjs.exe 1.js'</span>,&#123;</div><div class="line">    <span class="attr">timeout</span>: <span class="number">20000000</span>, <span class="comment">//超时时间</span></div><div class="line">&#125;,<span class="function"><span class="keyword">function</span>(<span class="params">error,stdout,stderr</span>)</span>&#123; <span class="comment">//传给回调的 stdout 和 stderr 参数会包含子进程的 stdout 和 stderr 的输出</span></div><div class="line">    <span class="keyword">if</span>(error)&#123;</div><div class="line">        <span class="built_in">console</span>.error(<span class="string">`exec error <span class="subst">$&#123;error&#125;</span>`</span>);</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">let</span> $ = cheerio.load(stdout); <span class="comment">//利用cheerio来解析爬取到的HTML</span></div><div class="line">    parseContent($);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>然后，你就可以在music.json中看到自己需要爬去的歌曲信息了 。</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;blockquote class=&quot;blockquote-center&quot;&gt;&lt;p&gt;爬取网易云音乐&lt;/p&gt;
-&lt;/blockquote&gt;
-    
-    </summary>
-    
-      <category term="Node" scheme="https://muleimulei.github.io/categories/Node/"/>
-    
     
   </entry>
   

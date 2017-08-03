@@ -113,16 +113,16 @@
 
 
 
-<meta name="description" content="数据库语言分类">
+<meta name="description" content="关系数据语言分类">
 <meta property="og:type" content="article">
 <meta property="og:title" content="数据库语言分类">
 <meta property="og:url" content="https://muleimulei.github.io/2017/07/11/DataBase/数据库语言分类/index.html">
 <meta property="og:site_name" content="风的影子">
-<meta property="og:description" content="数据库语言分类">
-<meta property="og:updated_time" content="2017-07-11T15:20:49.329Z">
+<meta property="og:description" content="关系数据语言分类">
+<meta property="og:updated_time" content="2017-08-03T07:08:35.640Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据库语言分类">
-<meta name="twitter:description" content="数据库语言分类">
+<meta name="twitter:description" content="关系数据语言分类">
 
 
 
@@ -448,10 +448,18 @@
       
 
       
-        <blockquote class="blockquote-center"><p>数据库语言分类</p>
+        <blockquote class="blockquote-center"><p>关系数据语言分类</p>
 </blockquote>
 <a id="more"></a>
-<p>SQL语言共分为四大类：数据查询语言DQL，数据操纵语言DML，数据定义语言DDL，数据控制语言DCL。</p>
+<p>早期的关系操作能力通常用代数方式或逻辑方式来表示，分别称为 <strong> 关系代数 </strong> 和 <strong> 关系演算 </strong>。<br>关系代数用对关系的运算来表达查询要求，关系演算则用谓词来表达查询要求。关系演算又可按谓词变元的基本对象是元组变量还是域变量分为 <strong> 元组关系演算 </strong> 和 <strong> 域关系演算 </strong>。一个关系数据语言能够表示关系代数可以表示的查询，称为具有完备的表达能力，简称关系完备性。已经证明关系代数，元组关系演算和域关系演算三种语言在表达能力上是等价的，都具有完备的表达能力。<br>另外，还有一种介于关系代数和关系演算之间的<strong>结构化查询语言</strong>，sql不仅具有丰富的查询功能，而且具有数据定义和数据控制功能，是<strong>集查询，数据定义语言，数据操纵语言和数据控制语言于一体的关系数据语言</strong>，他充分体现了关系数据语言的特点和优点，是关系数据库的标准语言。</p>
+<p>因此，关系数据语言可以分为三类：</p>
+<p>关系数据语言：</p>
+<pre><code>1. 关系代数语言（例如：ISBL）
+2. 关系演算语言
+    1. 元组关系演算语言（例如ALPHA，QUEL）
+    2. 域关系演算语言（例如QBE）
+3. 具有关系代数和关系演算双重特点的语言（例如SQL）
+</code></pre><p>SQL语言共分为四大类：数据查询语言DQL，数据操纵语言DML，数据定义语言DDL，数据控制语言DCL。</p>
 <h2 id="数据查询语言DQL"><a href="#数据查询语言DQL" class="headerlink" title="数据查询语言DQL"></a>数据查询语言DQL</h2><p>数据查询语言DQL基本结构是由SELECT子句，FROM子句，WHERE</p>
 <p>子句组成的查询块：</p>
 <p>SELECT &lt;字段名表&gt;</p>
@@ -645,7 +653,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">32</span>
+                <span class="site-state-item-count">33</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -667,7 +675,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-count">16</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

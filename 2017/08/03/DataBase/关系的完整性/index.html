@@ -95,7 +95,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="程序员，web开发" />
+  <meta name="keywords" content="关系的完整性," />
 
 
 
@@ -113,16 +113,16 @@
 
 
 
-<meta name="description" content="commonJS,AMD与CMD的区别与联系">
+<meta name="description" content="关系的完整性">
 <meta property="og:type" content="article">
-<meta property="og:title" content="commonJS,AMD与CMD的区别与联系">
-<meta property="og:url" content="https://muleimulei.github.io/2017/04/16/JavaScript/commonJs_AMD_CMD比较/index.html">
+<meta property="og:title" content="关系的完整性">
+<meta property="og:url" content="https://muleimulei.github.io/2017/08/03/DataBase/关系的完整性/index.html">
 <meta property="og:site_name" content="风的影子">
-<meta property="og:description" content="commonJS,AMD与CMD的区别与联系">
-<meta property="og:updated_time" content="2017-04-16T07:13:21.624Z">
+<meta property="og:description" content="关系的完整性">
+<meta property="og:updated_time" content="2017-08-03T08:07:16.765Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="commonJS,AMD与CMD的区别与联系">
-<meta name="twitter:description" content="commonJS,AMD与CMD的区别与联系">
+<meta name="twitter:title" content="关系的完整性">
+<meta name="twitter:description" content="关系的完整性">
 
 
 
@@ -150,13 +150,13 @@
 
 
 
-  <link rel="canonical" href="https://muleimulei.github.io/2017/04/16/JavaScript/commonJs_AMD_CMD比较/"/>
+  <link rel="canonical" href="https://muleimulei.github.io/2017/08/03/DataBase/关系的完整性/"/>
 
 
 
 
 
-  <title> commonJS,AMD与CMD的区别与联系 | 风的影子 </title>
+  <title> 关系的完整性 | 风的影子 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -349,7 +349,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://muleimulei.github.io/2017/04/16/JavaScript/commonJs_AMD_CMD比较/">
+    <link itemprop="mainEntityOfPage" href="https://muleimulei.github.io/2017/08/03/DataBase/关系的完整性/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="穆蕾">
@@ -370,7 +370,7 @@
             
             
               
-                commonJS,AMD与CMD的区别与联系
+                关系的完整性
               
             
           </h1>
@@ -385,8 +385,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-16T12:33:06+08:00">
-                2017-04-16
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-03T15:11:26+08:00">
+                2017-08-03
               </time>
             
 
@@ -408,8 +408,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JavaScript/" itemprop="url" rel="index">
-                    <span itemprop="name">JavaScript</span>
+                  <a href="/categories/DataBase/" itemprop="url" rel="index">
+                    <span itemprop="name">DataBase</span>
                   </a>
                 </span>
 
@@ -448,63 +448,36 @@
       
 
       
-        <blockquote class="blockquote-center"><p>commonJS,AMD与CMD的区别与联系</p>
+        <blockquote class="blockquote-center"><p>关系的完整性</p>
 </blockquote>
 <a id="more"></a>
-<p><strong>1. CommonJS</strong>原本叫serverJS，是以在浏览器环境之外构建JavaScript生态环境为目标而产生的项目，比如在服务器和桌面环境中。</p>
+<p>关系模型的完整性规则是对关系的某种约束条件。也就是说关系的值随着时间变化时因该满足一些约束条件。这些约束条件实际上是现实世界的要求。任何关系在任何时刻都要满足这些语义约束。</p>
+<p><strong> 关系模型中有三类完整性约束：实体完整性，参照完整性和用户定义的完整性 </strong>。其中实体完整性和参照完整性是关系模型必须满足的完整性约束条件，被称为关系的两个不变性，应该由关系系统自动支持。用户定义的完整性是应用领域需要遵循的约束条件，体现了具体领域中的语义约束。</p>
+<ol>
+<li><p>实体完整性<br>实体完整性规则：若属性（指一个或一组属性）A是基本关系R的主属性，则A不能取空值（null value）。所谓空值就是“不知道”或“不存在”或“无意义”的值。</p>
+<p>实体完整性规则说明如下：</p>
+<ol>
+<li>实体完整性规则是针对基本关系而言的。一个基本表通常对应现实世界的一个实体集。</li>
+<li>现实世界中的实体是可区分的，即他们具有某种唯一性标识。</li>
+<li>相应的，关系模型中以主码作为唯一性标识。</li>
+<li>主码中的属性即主属性不能取空值。如果主属性取空值，就说明存在某个不可标识的主体，即存在不可区分的实体，这与第2点相矛盾，因此这个规则称为实体完整性。</li>
+</ol>
+</li>
+</ol>
 <blockquote>
-<p>commonJS规范是为了解决JavaScript的作用于问题而定义的模块形式，可以使每个模块在它自身的命名空间中执行。</p>
+<p>设F是基本关系R的一个或一组属性，但不是关系R的码，Ks是基本关系S的主码。如果F与Ks相对应，则称F是R的外码，并称基本关系R为参照关系，基本关系S为被参照关系或目标关系。关系R和S不一定是不同的关系。</p>
 </blockquote>
-<p>该规范的主要内容是，模块必须通过module.exports导出对外的变量或接口，通过require()来导入其它模块的输出到当前模块作用域中。<strong>Node.js</strong>就是采用commonJS规范。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//moduleA.js</span></div><div class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'hello'</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//moduleB.js</span></div><div class="line"><span class="keyword">var</span> moduleA = <span class="built_in">require</span>(<span class="string">'./moduleA'</span>);</div><div class="line">moduleA();</div></pre></td></tr></table></figure>
-<p><strong>2.AMD</strong>(Asynchronous Module Definition)(异步模块定义)是为了浏览器环境设计的，因为CommonJS模块系统是同步加载的，当前浏览器环境是异步的。</p>
-<blockquote>
-<p>AMD定义了一套JavaScript模块依赖异步加载标准，来解决同步加载问题。</p>
-</blockquote>
-<p>模块通过define函数定义在闭包中，格式如下</p>
-<p><code>define(id? String, dependencies? String[], factory: Function|Object)</code></p>
-<ul>
-<li><p>id是模块名字，它是可选参数</p>
-</li>
-<li><p>dependencies 指定了所要依赖的模块列表，他是一个数组，也是可选的参数，每个依赖的模块的输出将作为参数一次传入factory中。如果没有指定dependencies，那么他的默认值是<strong>[‘require’,’exports’,’module’]</strong>。</p>
-</li>
-<li><p>factory 是最后一个参数，它包裹了模块的具体实现，他是一个函数或是一个对象。如果是函数，那么它的返回值就是模块的的输出接口或值。</p>
-</li>
+<ol>
+<li>参照完整性<br>若属性（属性组）F是基本关系R的外码，它与基本关系S的主码Ks相对应（基本关系R与S不一定是不同的关系），则对于R中的每个元组在F上的值必须：<ul>
+<li>或者取空值（F的每个属性值均为空值）</li>
+<li>或者等于S中某个元组的主码值。</li>
 </ul>
-<p>定义一个moduleA，它依赖jQuery模块</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">define(<span class="string">'moduleA'</span>,[<span class="string">'jquery'</span>],<span class="function"><span class="keyword">function</span>(<span class="params">$</span>)</span>&#123;</div><div class="line">    <span class="comment">//$是jquery模块输出</span></div><div class="line">    $(<span class="string">'body'</span>).text(<span class="string">'hello'</span>);</div><div class="line">&#125;);</div><div class="line"><span class="comment">//使用</span></div><div class="line">define([<span class="string">'moduleA'</span>],<span class="function"><span class="keyword">function</span>(<span class="params">moduleA</span>)</span>&#123;&#125;);</div></pre></td></tr></table></figure>
-<p>require.js就是采用AMD模块</p>
-<p><strong>3.CMD</strong>(Common Module Defination)</p>
-<blockquote>
-<p>在cmd规范中，一个模块就是一个文件。代码的书写格式如下：<strong>define(factory)</strong><br>define是全局函数，用来定义模块。define接受factory参数，factory可以是函数，对象或字符串。</p>
-</blockquote>
-<ul>
-<li><p>当factory为对象或字符串时，表示该模块的接口就是该对象或字符串，比如要定义一个json数据模块<br><code>define({‘key’,’value’})</code></p>
 </li>
-<li><p>也可以通过字符串定义模板模块 <code>define(‘Hello ‘)</code></p>
-</li>
-<li><p>factory是函数时，表示是模块的构造方法。执行该构造方法，可以得到模块对外提供的接口，factory方法在执行时，默认会传入三个参数，require，exports，module</p>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">define(function(require,exports,module)&#123;</div><div class="line">    //需要导出的模块</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<p>require是方法，接收模板标识作为唯一参数，用来获取其它模块提供的接口</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">define(function(require, exports)&#123;</div><div class="line">    const a = require(&apos;./a&apos;);</div><div class="line">    a.doSomething();</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<ul>
-<li>require是同步往下执行的，require.async(id,callback?)用来在模块内部异步加载模块，并在加载完后执行回调函数。</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">define(function(require, exports)&#123;</div><div class="line">    require.async([&apos;./a,&apos;./b], function(c ,d )&#123;</div><div class="line">        c.doSomething();    </div><div class="line">        d.doSomething();    </div><div class="line">    &#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<ul>
-<li>factory是函数时的第二个参数是exports，exports是一个对象，用来对外提供模块接口</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">define(function(require, exports)&#123;</div><div class="line">    exports.str = &apos;xxxxxxxxx&apos;;</div><div class="line">    exports.doSomething = function()&#123; //对外提供doSomething方法</div><div class="line"></div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<p>除了exports外，还可以用return直接对外提供对象接口</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">define(function(require, exports)&#123;</div><div class="line">   return&#123;</div><div class="line">        str: &apos;xxxxxxx&apos;,</div><div class="line">        doSomething: function()&#123;</div><div class="line"></div><div class="line">        &#125;</div><div class="line">   &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<p>exports是module.exports对象的一个引用，很多时候exports都无法满足需求，列如对外提供一个实例对象</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">define(function(require, exports,module)&#123;</div><div class="line">    function Person(name, age)&#123;</div><div class="line">        this.name = name;</div><div class="line">        this.age = age;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    module.exports = new Person(&apos;lily&apos;,34);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<h1 id="AMD与CMD比较"><a href="#AMD与CMD比较" class="headerlink" title=" AMD与CMD比较"></a> AMD与CMD比较</h1><p>AMD默认是依赖前置，在一开始就将需要依赖的文件配置并加载好</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">define(&apos;moduleA&apos;,[&apos;jquery&apos;],function($)&#123;</div><div class="line">    //依赖的配置文件已经配置并加载好了</div><div class="line">    $(&apos;body&apos;).text(&apos;hello world&apos;);    </div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<p>CMD是依赖就近，需要使用的时候才会去配置加载</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">define(function(require, exports)&#123;</div><div class="line">    var a = require(&apos;./a.js&apos;); //配置并加载，同步</div><div class="line">    if(false)&#123;</div><div class="line">        var b = require(&apos;./b.js&apos;); //配置的文件永远不会被加载</div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+</ol>
+<ol>
+<li>用户定义的完整性<br> 任何关系数据库系统都应该支持实体完整性和参照完整性。这是关系模型所要求的。除此之外，不同的关系数据库系统根据其应用环境的不同，往往还需要一些特殊的约束条件。用户定义的完整性就是针对某一具体关系数据库的约束条件，它反应某一具体应用所涉及的数据必须满足的语义要求。<strong> 关系模型应提供定义和检验这类完整性的机制，以便用统一的系统的方法处理它们，而不需要由应用程序承担这一功能 </strong></li>
+</ol>
+
       
     </div>
 
@@ -531,6 +504,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/关系的完整性/" rel="tag"># 关系的完整性</a>
+          
+        </div>
+      
 
       
         
@@ -540,8 +519,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/04/14/nodejs/PhantomJS/" rel="next" title="phantomJS简单使用方法">
-                <i class="fa fa-chevron-left"></i> phantomJS简单使用方法
+              <a href="/2017/07/31/JavaScript/module的加载实现/" rel="next" title="module的加载实现">
+                <i class="fa fa-chevron-left"></i> module的加载实现
               </a>
             
           </div>
@@ -549,10 +528,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/04/20/jquery/jquery获取数据/" rel="prev" title="jquery异步获取数据">
-                jquery异步获取数据 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -622,17 +597,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview sidebar-panel">
+      <section class="site-overview sidebar-panel sidebar-panel-active">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <div>
           <img class="site-author-image" itemprop="image"
@@ -774,22 +740,6 @@
 
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#AMD与CMD比较"><span class="nav-number">1.</span> <span class="nav-text"> AMD与CMD比较</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
