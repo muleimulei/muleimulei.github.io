@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://muleimulei.github.io/"/>
-  <updated>2017-08-03T08:07:16.765Z</updated>
+  <updated>2017-08-04T12:30:03.354Z</updated>
   <id>https://muleimulei.github.io/</id>
   
   <author>
@@ -14,6 +14,137 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>SQL数据定义语句</title>
+    <link href="https://muleimulei.github.io/2017/08/04/DataBase/sql%E6%95%B0%E6%8D%AE%E5%AE%9A%E4%B9%89%E8%AF%AD%E5%8F%A5/"/>
+    <id>https://muleimulei.github.io/2017/08/04/DataBase/sql数据定义语句/</id>
+    <published>2017-08-04T10:35:17.613Z</published>
+    <updated>2017-08-04T12:30:03.354Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote class="blockquote-center"><p>SQL数据定义语句</p>
+</blockquote>
+<a id="more"></a>
+<p>关系数据库系统支持三级模式结构，其模式，外模式和内模式中的基本对象有模式，视图和索引等。因此SQL的数据定义功能包括模式定义，表定义，视图和索引的定义。</p>
+<h2 id="sql的数据定义语句"><a href="#sql的数据定义语句" class="headerlink" title="sql的数据定义语句"></a>sql的数据定义语句</h2><ol>
+<li>模式<ul>
+<li>创建：<code>CREATE SCHEMA</code></li>
+<li>删除：<code>DROP SCHEMA</code></li>
+</ul>
+</li>
+<li>表<ul>
+<li>创建：<code>CREATE TABLE</code></li>
+<li>删除：<code>DROP TABLE</code></li>
+<li>修改：<code>ALTER TABLE</code></li>
+</ul>
+</li>
+<li>视图<ul>
+<li>创建：<code>CREATE VIEW</code></li>
+<li>删除：<code>DROP VIEW</code></li>
+</ul>
+</li>
+<li>索引<ul>
+<li>创建：<code>CREATE INDEX</code></li>
+<li>删除：<code>DROP INDEX</code></li>
+<li>修改：<code>ALTER INDEX</code></li>
+</ul>
+</li>
+</ol>
+<p><strong>一个关系数据库管理系统的实例中可以建立多个数据库，一个数据库中可以建立多个模式，一个模式下通常包括多个表，视图和索引等数据库对象。</strong></p>
+<h1 id="模式的定义与删除"><a href="#模式的定义与删除" class="headerlink" title="模式的定义与删除"></a>模式的定义与删除</h1><ol>
+<li><p>定义模式<br> <code>CREATE SCHEMA &lt;模式名&gt; AUTHORIZATION &lt;用户名&gt;<code>，如果没有指定&lt;模式名&gt;，那么&lt;模式名&gt;隐含为&lt;用户名&gt;。要创建模式，调用该命令的用户必须拥有数据库管理员权限，或者获得了数据库管理员授予的<code>CREATE SCHEMA<code>的权限。目前，在<code>CREATE SCHEMA<code>中可以接受<code>CREATE TABLE<code>，<code>CREATE VIEW<code>和<code>GRANT<code>，也就是说用户可以在创建模式的同时在这个模式定义中进一步创建基本表，视图，定义授权。即：<code>CREATE SCHEMA &lt;模式名&gt; AUTHORIZATION &lt;用户名&gt; [ &lt;表定义子句&gt;|&lt;视图定义子句&gt;|&lt;授权定义子句&gt; ]<code>;</code></code></code></code></code></code></code></code></code></code></code></code></code></code></p>
+</li>
+<li><p>删除模式<br> <code>DROP SCHEMA &lt;模式名&gt; <cascade |="" rrestrict=""></cascade></code>，其中cascade和restrict两者必选其一。选择了cascade（级联），表示在删除模式的同时把该模式中所有的数据库对象全部删除；选择了restrict（限制），表示如果该模式中已经定义了下属的数据库对象（如表，视图等），则拒绝该删除语句的执行。只有当该模式中没有任何下属的对象时才能执行drop schema语句。</p>
+</li>
+</ol>
+<h1 id="基本表的定义，删除与修改"><a href="#基本表的定义，删除与修改" class="headerlink" title="基本表的定义，删除与修改"></a>基本表的定义，删除与修改</h1><ol>
+<li><p>定义基本表<br> 创建了一个模式就建立了一个数据库的命名空间，一个框架。在这个空间中首先要定义的是该模式包含的数据库基本表。SQL语句使用<code>CREATE TABLE</code>语句定义基本表，其基本格式为：</p>
+<p> <code></code></p>
+<pre><code>CREATE TABLE &lt;表名&gt; (&lt;列名&gt;&lt;数据类型&gt; [列级完整性约束条件]
+                    [,&lt;列名&gt;&lt;数据类型&gt;[列级完整性约束条件]])
+                    ...........
+                    [,&lt;表级完整性约束条件&gt;]
+</code></pre><p> </p>
+<p> 建表的同时通常还可以定义与该表有关的完整性约束条件，这些完整性约束条件被存入系统的数据字典中，当用户操作表中数据时由关系数据库管理系统自动检查该操作是否违背这些完整性约束条件。<strong> 如果完整性约束条件涉及该表的多个属性列，则必须定义在表级上，否则既可以定义在列级也可以定义在表级 </strong></p>
+<p> <code></code></p>
+<pre><code>CREATE TABLE SC
+(
+    Sno CHAR(9),
+    Cno CHAR(4),
+    Grade SMALLINT,
+    PRIMARY KEY (Sno, Cno),  /* 主码由两个属性构成，必须作为表级完整性进行定义 */
+    FOREIGN KEY (Sno) REFERENCES Student (Sno), /* 表级完整性约束条件，Sno是外码，被参照表是Student */
+    FOREIGN KEY (Cno) REFERENCES Course (Cno) /* 表级完整性约束条件，Cno是外码，被参照表是Course */
+)
+</code></pre><p> </p>
+</li>
+<li><p>数据类型</p>
+<ul>
+<li>CHAR(N)，CHARACTER(N)：长度为n的定长字符串</li>
+<li>VARCHAR(N)：最大长度为n的变长字符串</li>
+<li>CLOB：字符串大对象</li>
+<li>BLOB：二进制大对象</li>
+<li>INT，INTEGER：长整数（4字节）</li>
+<li>SMALLINT：短整形（2字节）</li>
+<li>BIGINT：大整形(8整数)</li>
+<li>NUMERIC(p,d)：定点数，由p位数字（不包括符号，小数点）组成，小数点后面有d位数字</li>
+<li>DECIMAL(p,d)：同NUMERIC</li>
+<li>REAL：取决于机器精度的单精度浮点数</li>
+<li>DOUBLE PRECISION：取决于机器精度的双精度浮点数</li>
+<li>FLOAT(n)：可选精度的浮点数，精度至少为n位数字</li>
+<li>BOOLEAN：逻辑布尔值</li>
+<li>DATE：日期，包含年，月，日，格式为yyyy-mm-dd</li>
+<li>TIME：时间，包含一日的时，分，秒，格式为HH:MM:SS</li>
+<li>TIMESTAMP：时间戳类型</li>
+<li>INTERVAL：时间间隔类型</li>
+</ul>
+</li>
+<li><p>修改基本表<br> <code></code></p>
+<pre><code>ALTER TABLE &lt;表名&gt;
+[ADD [COLUMN] &lt;新列名&gt; &lt;数据类型&gt; [完整性约束]]
+[ADD &lt;表级完整性约束&gt;]
+[DROP [COLUMN] &lt;列名&gt; [CASCADE | RESTRICT]]
+[DROP CONSTRAINT &lt;完整性约束名&gt; [RESTRICT|CASCADE]]
+[ALTER COLUMN &lt;列名&gt;&lt;数据类型&gt;]
+</code></pre><p> </p>
+</li>
+<li><p>删除基本表<br> <code>DROP TABLE &lt;表名&gt; [RESTRICT|CASCADE]</code>。</p>
+</li>
+</ol>
+<h1 id="索引的建立与删除"><a href="#索引的建立与删除" class="headerlink" title="索引的建立与删除"></a>索引的建立与删除</h1><ol>
+<li><p>建立索引<br> <code></code></p>
+<pre><code>CREATE [UNIQUE] [CLUSTER] INDEX &lt;索引名&gt;
+ON &lt;表名&gt;(&lt;列名&gt; [&lt;次序&gt;] [,&lt;列名&gt; [&lt;次序&gt;]] ...)
+</code></pre><p> </p>
+<ul>
+<li>UNIQUE：表明此索引的每一个索引值只对应唯一的数据记录</li>
+<li>CLUSTER：表示要建立的索引是聚簇索引</li>
+</ul>
+</li>
+<li><p>修改索引<br> <code> ALTER INDEX &lt;旧索引名&gt; RENAME TO &lt;新索引名&gt;</code></p>
+</li>
+<li><p>删除索引<br> <code>DROP INDEX &lt;索引名&gt;</code></p>
+</li>
+</ol>
+<h1 id="数据查询"><a href="#数据查询" class="headerlink" title="数据查询"></a>数据查询</h1><p><code><br>    SELECT [ALL|DISTINCT] &lt;目标列表达式&gt; [, &lt;目标列表达式&gt;] …<br>    FROM &lt;表名或视图名&gt; [,&lt;表名或视图名&gt;] | (<select 语句="">) [AS] &lt;别名&gt;<br>    [WHERE &lt;条件表达式&gt;]<br>    [GROUP BY &lt;列名 1&gt; [HAVING &lt;条件表达式&gt;]]<br>    [ORDER BY &lt;列名 2&gt; [ASC|DESC]]<br></select></code></p>
+<blockquote>
+<p>%（百分号）：代表任意长度（长度可以为0）的字符串。<br>_(下横线)：代表任意单个字符</p>
+</blockquote>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote class=&quot;blockquote-center&quot;&gt;&lt;p&gt;SQL数据定义语句&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="DataBase" scheme="https://muleimulei.github.io/categories/DataBase/"/>
+    
+    
+      <category term="SQL数据定义语句" scheme="https://muleimulei.github.io/tags/SQL%E6%95%B0%E6%8D%AE%E5%AE%9A%E4%B9%89%E8%AF%AD%E5%8F%A5/"/>
+    
+  </entry>
   
   <entry>
     <title>关系的完整性</title>
@@ -1501,86 +1632,6 @@ elem.dispatchEvent(event);
     
       <category term="JavaScript" scheme="https://muleimulei.github.io/categories/JavaScript/"/>
     
-    
-  </entry>
-  
-  <entry>
-    <title>phantomJS简单使用方法</title>
-    <link href="https://muleimulei.github.io/2017/04/14/nodejs/PhantomJS/"/>
-    <id>https://muleimulei.github.io/2017/04/14/nodejs/PhantomJS/</id>
-    <published>2017-04-14T15:57:33.168Z</published>
-    <updated>2017-04-16T04:31:41.058Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote class="blockquote-center"><p>phantomJS简单使用方法</p>
-</blockquote>
-<a id="more"></a>
-<ol>
-<li><p>概述<br>有时，我们需要浏览器处理网页，但并不需要浏览，比如生成网页的截图，抓取网页数据等操作。PhantomJS的功能，就是提供一个浏览器环境的命令行接口，你可以把它看做一个“虚拟浏览器”，除了不能浏览，其它与正常浏览器一样。它的内核是webkit引擎，不提供图形界面，只能在命令行中使用。</p>
-</li>
-<li><p>webpage模块<br>webpage模块是PhantomJS的核心模块，用于网页操作。</p>
-</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">var webpage = require(&apos;webpage&apos;);</div><div class="line">var page = webpage.create();</div></pre></td></tr></table></figure>
-<p>上面代码表示加载PhantomJS的webpage模块，并创建一个实例。</p>
-<ul>
-<li>open()方法<blockquote>
-<p>该方法用于打开具体的网页</p>
-</blockquote>
-</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> page = <span class="built_in">require</span>(<span class="string">'webpage'</span>).create();</div><div class="line">page.open(url,<span class="function"><span class="keyword">function</span>(<span class="params">s</span>)</span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(s);</div><div class="line">    phantom.exit();  </div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<p>上述代码中，open()方法，用于打开具体的网页。他接受两个参数。第一个参数是网页的网址，第二个参数是回调函数，网页打开后该函数将会运行，它的参数是一个表示状态的字符串，如果打开成功就是success，否则就是fail。</p>
-<blockquote>
-<p>只要接受到服务器返回的结果，PhantomJS就会报告网页打开成功，而不管服务器是否返回404或者500错误。</p>
-</blockquote>
-<p>open方法默认使用GET方法，与服务器通信，但是也可以使用其它方法。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> webpage = <span class="built_in">require</span>(<span class="string">'webpage'</span>);</div><div class="line"><span class="keyword">var</span> page = webpage.create();</div><div class="line"><span class="keyword">var</span> postbody = <span class="string">'user=user&amp;password=password'</span>;</div><div class="line">page.open(url,<span class="string">'POST'</span>,postbody,<span class="function"><span class="keyword">function</span>(<span class="params">status</span>)</span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'Status: '</span>+status);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<p>上面代码中，使用post方法向服务器发送数据。open方法的第二个参数来指定http方法，第三个参数用来指定该方法所要使用的数据。</p>
-<p>open方法还允许提供配置对象，对HTTP请求进行更详细的配置。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> webpage = <span class="built_in">require</span>(<span class="string">'webpage'</span>);</div><div class="line"><span class="keyword">var</span> page = webpage.create();</div><div class="line"><span class="keyword">var</span> settings = &#123;</div><div class="line">    <span class="attr">operation</span>: <span class="string">'POST'</span>,</div><div class="line">    <span class="attr">encoding</span>: <span class="string">'utf-8'</span>,</div><div class="line">    <span class="attr">headers</span>: &#123;</div><div class="line">        <span class="string">'Content-Type'</span>: <span class="string">'application/json'</span></div><div class="line">    &#125;,</div><div class="line">    <span class="attr">data</span>: <span class="built_in">JSON</span>.stringfy(&#123;</div><div class="line">        <span class="attr">some</span>: <span class="string">'data'</span>,</div><div class="line">        <span class="attr">another</span>: [<span class="string">'customer'</span>,<span class="string">'data'</span>]</div><div class="line">    &#125;);</div><div class="line">&#125;;</div><div class="line"></div><div class="line">page.open(url,settings,<span class="function"><span class="keyword">function</span>(<span class="params">status</span>)</span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'Status'</span>+status);</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
-<ul>
-<li>evalute()方法<blockquote>
-<p>evalute方法用于打开网页后，在页面中执行JavaScript代码。</p>
-</blockquote>
-</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> page = <span class="built_in">require</span>(<span class="string">'webpage'</span>).create();</div><div class="line">page.open(url,<span class="function"><span class="keyword">function</span>(<span class="params">status</span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> title = page.evalute(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="built_in">document</span>.title;    </div><div class="line">    &#125;);</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'Page title is'</span>+ title);</div><div class="line">    phantom.exit();</div><div class="line">    </div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<p>网页内部的console语句，以及evalute方法内部的console语句，默认不会显示在命令行。这时,可以用onConsoleMessage方法监听这个事件，进行处理。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> page = <span class="built_in">require</span>(<span class="string">'webpage'</span>).create();</div><div class="line">page.onConsoleMessage = <span class="function"><span class="keyword">function</span>(<span class="params">msg</span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'Page title is '</span> + msg);</div><div class="line">&#125;;</div><div class="line">page.open(url, <span class="function"><span class="keyword">function</span>(<span class="params">status</span>) </span>&#123;</div><div class="line">  page.evaluate(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="built_in">document</span>.title);</div><div class="line">  &#125;);</div><div class="line">  phantom.exit();</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<ul>
-<li>includeJs()<blockquote>
-<p>includeJs方法用于页面加载外部脚本，加载结束后就调用指定的回调函数。</p>
-</blockquote>
-</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> page = <span class="built_in">require</span>(<span class="string">'webpage'</span>).create();</div><div class="line">page.open(url,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    page.includeJs(<span class="string">'jquery.min.js'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        page.evalute(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">            $(<span class="string">'button'</span>).click();</div><div class="line">        &#125;);</div><div class="line">    &#125;);</div><div class="line">    phantom.exit();</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<p>上面的例子在页面中注入jquery脚本，然后点击所有的按钮。需要注意的是，由于是异步加载，所以Phantom.exit()语句要放在page.includeJs()方法的回调函数之中，否则页面会过早移除。</p>
-<ul>
-<li>render()方法</li>
-</ul>
-<p>render方法用于将网页保存成图片，参数就是指定的文件名。该方法根据后缀名，将网页保存成不同的格式，目前支持PNG,GIF,JPEG和PDF。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> webpage = <span class="built_in">require</span>(<span class="string">'webpage'</span>);</div><div class="line"><span class="keyword">var</span> page = webpage.create();</div><div class="line">page.viewportSize = &#123;<span class="attr">width</span>: <span class="number">1920</span>, <span class="attr">height</span>: <span class="number">1080</span>&#125;;</div><div class="line">page.open(url,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    page.render(<span class="string">'main.jpeg'</span>,&#123;<span class="attr">format</span>: <span class="string">'jpeg'</span>,<span class="attr">quality</span>: <span class="string">'100'</span>&#125;);</div><div class="line">    phantom.exit();</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<p>该方法还可以接受一个配置对象，format字段用于指定图片格式，quality字段用于指定图片质量，最小为0，最大为100。</p>
-<ul>
-<li>viewportSize,zoomFactor</li>
-</ul>
-<p>viewportSize属性指定浏览器视口的大小,即网页加载的初始浏览器窗口大小。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> webpage = <span class="built_in">require</span>(<span class="string">'webpage'</span>);</div><div class="line"><span class="keyword">var</span> page = webpage.create();</div><div class="line">page.viewportSize = &#123;</div><div class="line">    <span class="attr">width</span>: <span class="number">480</span>,</div><div class="line">    <span class="attr">height</span>: <span class="number">800</span></div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<p>viewportSize的height字段必须指定，不可省略。</p>
-<p>zoomFactor属性用来指定渲染时页面的放大系数，默认是1。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> webpage = <span class="built_in">require</span>(<span class="string">'webpage'</span>);</div><div class="line"><span class="keyword">var</span> page = webpage.create();</div><div class="line">page.zoomFactor = <span class="number">0.25</span>;</div><div class="line">page.render(<span class="string">'capture.png'</span>);</div></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;blockquote class=&quot;blockquote-center&quot;&gt;&lt;p&gt;phantomJS简单使用方法&lt;/p&gt;
-&lt;/blockquote&gt;
-    
-    </summary>
-    
-      <category term="Node" scheme="https://muleimulei.github.io/categories/Node/"/>
-    
-    
-      <category term="tools" scheme="https://muleimulei.github.io/tags/tools/"/>
     
   </entry>
   
