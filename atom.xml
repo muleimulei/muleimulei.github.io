@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://muleimulei.github.io/"/>
-  <updated>2017-08-05T09:40:56.344Z</updated>
+  <updated>2017-08-05T14:38:54.201Z</updated>
   <id>https://muleimulei.github.io/</id>
   
   <author>
@@ -14,6 +14,61 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>数据库视图</title>
+    <link href="https://muleimulei.github.io/2017/08/05/DataBase/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%A7%86%E5%9B%BE/"/>
+    <id>https://muleimulei.github.io/2017/08/05/DataBase/数据库视图/</id>
+    <published>2017-08-05T12:27:14.469Z</published>
+    <updated>2017-08-05T14:38:54.201Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote class="blockquote-center"><p>数据库视图</p>
+</blockquote>
+<a id="more"></a>
+<p>视图是从一个或几个基本表（或视图）导出的表。它与基本表不同，是一个虚表。数据库中只存放视图的定义，而不存放视图对应的数据，这些数据仍存放在原来的基本表中。</p>
+<ol>
+<li><p>建立视图<br> sql语言用CREATE VIEW命令建立视图，其一般格式为：</p>
+ <figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">CREATE</span> <span class="keyword">VIEW</span> &lt;视图名&gt; [(&lt;列名&gt;[,&lt;列名&gt;]...)]</div><div class="line"><span class="keyword">AS</span> &lt;子查询&gt;</div><div class="line">[<span class="keyword">WITH</span> <span class="keyword">CHECK</span> <span class="keyword">OPTION</span>]</div></pre></td></tr></table></figure>
+<p> 其中，子查询可以是任意的SELECT语句，是否可以含有ORDER BY子句和DISTINCT短语，取决于具体系统的实现。<strong>WITH CHECK OPTION表示对视图进行UPDATE, INSERT,和DELETE操作时要保证更新，插入或删除的行满足视图定义中的谓词条件（即子查询中的条件表达式）</strong>，组成视图的属性列名或者全部省略或者全部指定，没有第三种选择。如果省略了视图的各个列名，则隐含该视图由子查询中SELECT子句目标列中的诸字段组成，但在下列情况下必须明确指定组成视图的所有列名。</p>
+<p> 1) 某个目标列不是单纯的属性名，而是聚集函数或列表达式<br> 2) 多表连接时选出了几个同名列作为视图的字段<br> 3) 需要在视图中为某个列启用新的更合适的名字</p>
+</li>
+</ol>
+<blockquote>
+<p>若一个视图是从单个基本表导出的，并且只是去掉了基本表的某些行和某些列，但保留了主码，则称这类视图为<strong>行列子集视图</strong><br>还可以用带有聚集函数和group by 子句的查询来定义视图，这种视图称为<strong>分组视图</strong><br>    <figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">CREATE</span> <span class="keyword">VIEW</span> S_G(Sno Gavg)</div><div class="line"><span class="keyword">AS</span></div><div class="line"><span class="keyword">SELECT</span> Sno,<span class="keyword">AVG</span>(Grade)</div><div class="line"><span class="keyword">FROM</span> SC</div><div class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> Sno;</div></pre></td></tr></table></figure></p>
+</blockquote>
+<ol>
+<li><p>删除视图<br> 语句为  <code>DROP VIEW &lt;视图名&gt; [CASCADE]</code> ，视图删除后视图的定义将从数据字典中删除。如果该视图上还导出了其它视图，则使用CASCADE级联删除语句把该视图和由它导出的所有视图一起删除。</p>
+ <figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">DROP</span> <span class="keyword">VIEW</span> BT_S <span class="keyword">CASCADE</span>;</div></pre></td></tr></table></figure>
+</li>
+<li><p>查询视图<br> 关系数据库管理系统执行对视图的查询时，首先进行有效性检查，检查查询中涉及的表，视图等是否存在。如果存在，则从<strong>数据字典中取出视图的定义，把定义中的子查询和用户的查询结合起来，转化成等价的对基本表的查询，然后再执行修正了的查询。这一转换过程称为视图消解</strong></p>
+</li>
+<li><p>更新视图<br> 更新视图是通过视图来插入（insert），删除（delete）和修改（update）数据。由于视图是不实际存储数据的虚表，因此对视图的更新最终要转化为对基本表的更新。像查询视图一样，对视图的更新操作也是通过视图消解，转化为对基本表的更新操作。<br> 为防止用户通过视图对数据进行增加，删除，修改时，有意无意地对不属于视图范围的基本表数据进行操作，可在定义视图时加上WITH CHECK OPTION子句，这样在视图上增，删，改数据时，关系数据库管理系统会检查视图定义中的条件，若不满足条件则拒绝执行该操作。</p>
+</li>
+<li><p>视图的作用</p>
+<ul>
+<li>视图能够简化用户的操作</li>
+<li>视图使用户能以多种角度看待同一数据</li>
+<li>视图对重构数据库提供了一定程度的逻辑独立性</li>
+<li>视图能够对机密数据提供安全保护</li>
+<li>适当利用视图可以更清晰地表达查询</li>
+</ul>
+</li>
+</ol>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote class=&quot;blockquote-center&quot;&gt;&lt;p&gt;数据库视图&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="DataBase" scheme="https://muleimulei.github.io/categories/DataBase/"/>
+    
+    
+      <category term="数据库视图" scheme="https://muleimulei.github.io/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%A7%86%E5%9B%BE/"/>
+    
+  </entry>
   
   <entry>
     <title>string与stringstream</title>
@@ -1472,126 +1527,6 @@ elem.dispatchEvent(event);
     
     
       <category term="Git" scheme="https://muleimulei.github.io/tags/Git/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>websocket入门</title>
-    <link href="https://muleimulei.github.io/2017/04/22/HTML5/websocket%E5%85%A5%E9%97%A8/"/>
-    <id>https://muleimulei.github.io/2017/04/22/HTML5/websocket入门/</id>
-    <published>2017-04-22T14:37:34.733Z</published>
-    <updated>2017-04-28T14:18:57.626Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote class="blockquote-center"><p>websocket基础</p>
-</blockquote>
-<a id="more"></a>
-<p>websocket API使你可以通过web，在客户端应用程序和服务器端进程进行之间建立全双工通信。</p>
-<ol>
-<li>websocket构造函数<br> 为了建立到服务器的websocket连接，使用websocket接口，通过指向一个代表所要连接端点的URL，实例化一个websocket对象。websocket协议定义了两种方案—ws和wss，分别用于客户端和服务器之间的非加密和加密流量。ws(websocket)方案与http URI方案类似。wss(websocket secure)URI方案表示使用传输层安全性(TLS,也叫SSL)的websocket连接,使用https采用的安全机制来保证http连接安全。<br> websocket构造函数有一个必须的参数URL(指向连接目标的URL)和一个可选参数protocols(为了建立连接，服务器必须在其响应中包含的一个或一组协议名称)。在protocols参数中可以使用的协议包括xmpp(eXtensible Messaging and Presence Protocol,可拓展消息处理现场协议)，soap(Simple Object Access Protocol,简单对象访问协议)或者自定义协议。</li>
-</ol>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> echoSocket = <span class="keyword">new</span> WebSocket(<span class="string">'ws://echo.websocket.org'</span>,[<span class="string">'com.kaazing.echo'</span>,<span class="string">'example.imaginary.protocol'</span>]);</div><div class="line">echoSocket.onopen = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(echoSocket.protocol);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ol>
-<li><p>websocket事件<br> websocket API是纯事件驱动的。应用程序代码监听websocket对象上的事件，以便处理输入数据和连接状态的改变。websocket协议也是事件驱动的。客户端应用程序不需要轮询服务器来得到更新的数据。消息和事件将在服务器发送它们的时候异步到达</p>
-<ul>
-<li><p>websocket事件：open</p>
-<ul>
-<li><p>一旦服务器响应了websocket连接，open事件触发并建立一个连接。open事件对应的回调函数称为onopen。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">ws.onopen = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'Connection open ....'</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>到open事件触发时，协议握手已经完成，websocket已经准备好发送和接收数据。如果应用程序接收到一个open事件，那么可以确定websocket服务器成功的处理了连接请求，并且同意与应用程序通信。</p>
-</li>
-</ul>
-</li>
-<li><p>websocket事件：message</p>
-<ul>
-<li><p>websocket消息包含来自服务器的数据。message事件在接收到消息时触发，对应于该事件的回调函数是onmessage。除了文本，websocket消息还可以处理二进制数据，这种数据作为BLOB消息或者ArrayBuffer消息来处理。因为设置websocket消息二进制数据类型的应用程序会影响二进制消息，所以必须在读取数据之前决定用于客户端二进制输入数据的类型。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">ws.onmessage = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">if</span>(<span class="keyword">typeof</span> e.data ===<span class="string">'string'</span>)&#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">'String message received'</span>,e,e.data);</div><div class="line">    &#125;<span class="keyword">else</span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">'String message received'</span>,e,e.data);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">       </div><div class="line"></div><div class="line"><span class="comment">//接受Blob消息</span></div><div class="line">ws.binaryType = <span class="string">'blob'</span>;</div><div class="line">ws.onmessage = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">if</span>(e.data <span class="keyword">instanceof</span> Blob)&#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">'Blob message received'</span>,e.data);</div><div class="line">        <span class="keyword">var</span> blob = <span class="keyword">new</span> Blob(e.data);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">    </div><div class="line"><span class="comment">//接受ArrayBuffer消息    </span></div><div class="line">ws.binaryType = <span class="string">'arraybuffer'</span>;</div><div class="line">ws.onmessage = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">if</span>(e.data <span class="keyword">instanceof</span> <span class="built_in">ArrayBuffer</span>)&#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">'ArrayBuffer message received'</span>,e.data);</div><div class="line">        <span class="keyword">var</span> blob = <span class="keyword">new</span> <span class="built_in">Uint8Array</span>(e.data);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>websocket事件：error</p>
-<ul>
-<li><p>error事件在响应意外故障的时候触发。与该事件对应的回调函数为onerror。错误还会导致websocket连接关闭。如果你接受一个error事件，可以预期很快就会触发close事件。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">ws.onerror = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'error'</span>,e);</div><div class="line">    handle(e);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>websocket事件：close</p>
-<ul>
-<li><p>close事件在websocket连接关闭时触发。对应于close事件的回调函数是onclose。一旦连接关闭，客户端与服务器不再接受或者发送消息。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">ws.onclose = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'close'</span>,e);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>close事件有三个有用的属性(property),可以用于错误处理和恢复：wasClean,code和error。wasClean属性是一个布尔属性，表示连接是否顺利关闭连接。如果websocket的关闭是对来自服务器的close帧的响应，则该属性为true。如果连接因为其它原因（列如，因为底层TCP连接关闭），则该属性为false。code和reason属性表示服务器发送的关闭握手状态。这些属性和websocket.close()方法中的code和reason参数一致。</p>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>websocket方法：send()方法和close()方法</p>
-<ul>
-<li><p>send()方法<br>  使用websocket在客户端和服务器之间建立双全工双向连接后，就可以在连接打开时(在调用onopen监听器之后，调用onclose监听器之前)调用send方法。使用send方法可以从客户端向服务器发送消息。在发送一条或者多条消息之后，可以保持连接打开，或者调用close方法关闭。<code>ws.send(‘hello’)</code></p>
-  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> ws = <span class="keyword">new</span> WebSocket(<span class="string">'ws://echo.websocket.org'</span>);</div><div class="line">ws.onopen = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    ws.send(<span class="string">'hello'</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-<li><p>close()方法<br>  使用close方法，可以关闭websocket连接或者终止连接尝试。如果连接已经关闭，该方法什么也不做。<code>ws.close()</code>可以向close方法传递两个可选参数：code(数字型的状态代码)和reason(一个文本字符串)。传递这些参数能够向服务器传递关于客户连接原因的信息。</p>
-</li>
-</ul>
-</li>
-<li><p>websocket对象特性</p>
-</li>
-</ol>
-<ul>
-<li>readyState：<br>  websocket对象通过只读属性readyState报告其连接状态。</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>特性常量</th>
-<th style="text-align:center">取值</th>
-<th style="text-align:center">状态</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>WebSocket.CONNECTING</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">连接正在进行中，但还未建立</td>
-</tr>
-<tr>
-<td>WebSocket.OPEN</td>
-<td style="text-align:center">1</td>
-<td style="text-align:center">连接已经建立。消息可以在客户端和服务器之间通信</td>
-</tr>
-<tr>
-<td>WebSocket.CLOSING</td>
-<td style="text-align:center">2</td>
-<td style="text-align:center">连接正在进行关闭握手</td>
-</tr>
-<tr>
-<td>WebSocket.CLOSED</td>
-<td style="text-align:center">3</td>
-<td style="text-align:center">连接已经关闭，不能打开</td>
-</tr>
-</tbody>
-</table>
-<ul>
-<li><p>bufferedAmount:<br>  设计应用程序时，你可能想要检查发往服务器的缓存数据量，特别是在客户端应用程序向服务器发送大量数据时。尽管调用send是立即生效的，但是数据在互联网上的传输却不是如此。浏览器将为你的客户端应用程序缓存出站数据，从而使你可以随时调用send()，发送任意数量的数据。你可以使用bufferedAmount特性检查已经进入队列，但是尚未发送到服务器的字节数。这个特性报告的值不包括协议组帧开销或者操作系统，网络硬件所进行的的缓存。</p>
-  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> THRESHOLD = <span class="number">10240</span>;</div><div class="line"><span class="keyword">var</span> ws = <span class="keyword">new</span> WebSocket(<span class="string">'ws://echo.websocket.org/updates'</span>);</div><div class="line">ws.onopen = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    setInterval(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        <span class="keyword">if</span>(ws.bufferedAmount&lt;THRESHOLD)&#123;</div><div class="line">            ws.send(getApplicationState());</div><div class="line">        &#125;    </div><div class="line">    &#125;,<span class="number">1000</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-<li><p>protocol<br>  在前面关于websocket构造函数的讨论中，我们提到了protocol参数，它让服务器知道客户端理解并可在websocket上使用的协议。websocket对象的protocol特性提供了另一条关于websocket实例的有用信息。客户端和服务器协议协商的结果可以在websocket对象上看到。protocol特性包含在打开握手期间websocket服务器选择的协议名，换句话说，protocol特性告诉你特定websocket上使用的协议。protocol特性在最初的握手完成之前为空，如果服务器没有选择客户端提供的某个协议，该特性保持控制。</p>
-</li>
-</ul>
-<h2 id="完整客户端代码如下："><a href="#完整客户端代码如下：" class="headerlink" title="完整客户端代码如下："></a>完整客户端代码如下：</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Websocket Echo Client<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"output"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="javascript"></span></div><div class="line">        <span class="function"><span class="keyword">function</span> <span class="title">setup</span>(<span class="params"></span>)</span>&#123;</div><div class="line">            output = <span class="built_in">document</span>.getElementById(<span class="string">'output'</span>);</div><div class="line">            ws = <span class="keyword">new</span> Websocket(<span class="string">'ws://echo.websocket.org/echo'</span>);</div><div class="line">            <span class="function"><span class="keyword">function</span> <span class="title">log</span>(<span class="params">s</span>)</span>&#123;</div><div class="line">                <span class="keyword">var</span> p = <span class="built_in">document</span>.createElement(<span class="string">'p'</span>);</div><div class="line">                p.style.wordWrap = <span class="string">'break-word'</span>;</div><div class="line">                p.textContent = s;</div><div class="line">                output.appendChild(p);</div><div class="line">                <span class="built_in">console</span>.log(s);</div><div class="line">            &#125;</div><div class="line">            <span class="function"><span class="keyword">function</span> <span class="title">sendMessage</span>(<span class="params">msg</span>)</span>&#123;</div><div class="line">                ws.send(msg);</div><div class="line">                log(<span class="string">'Message send'</span>);</div><div class="line">            &#125;</div><div class="line">            ws.onopen = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;</div><div class="line">                log(<span class="string">'Connected'</span>);</div><div class="line">                sendMessage(<span class="string">'Hello Websocket'</span>);</div><div class="line">            &#125;</div><div class="line">            ws.onclose = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;</div><div class="line">                log(<span class="string">'Disconnected:'</span>+e.reason);</div><div class="line">            &#125;</div><div class="line">            ws.onerror = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;</div><div class="line">                log(<span class="string">'Error '</span>);</div><div class="line">            &#125;</div><div class="line">            ws.onmessage = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;</div><div class="line">                log(<span class="string">'Message received'</span>+e.data);</div><div class="line">                ws.close();</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        setup();</div><div class="line">    <span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
-<h2 id="结合websocket使用HTML5媒体的完整客户端应用程序"><a href="#结合websocket使用HTML5媒体的完整客户端应用程序" class="headerlink" title="结合websocket使用HTML5媒体的完整客户端应用程序"></a>结合websocket使用HTML5媒体的完整客户端应用程序</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Drop Image Here<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="javascript"></span></div><div class="line">        <span class="keyword">var</span> ws = <span class="keyword">new</span> Websocket(<span class="string">'ws://echo.websocket.org/echo'</span>);</div><div class="line">        ws.onopen = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">            <span class="built_in">console</span>.log(<span class="string">'open'</span>);</div><div class="line">        &#125;</div><div class="line">        <span class="comment">//处理二进制数据</span></div><div class="line">        ws.onmessage = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;</div><div class="line">            <span class="keyword">var</span> blob = e.data;</div><div class="line">            <span class="built_in">console</span>.log(<span class="string">'message :'</span>+blob.size +<span class="string">'bytes'</span>);</div><div class="line">            <span class="keyword">if</span>(<span class="built_in">window</span>.webkitURL)&#123;</div><div class="line">                URL = webkitURL;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">var</span> uri = URL.createObjectURL(blob);</div><div class="line">            <span class="keyword">var</span> img = <span class="built_in">document</span>.createElement(<span class="string">'img'</span>);</div><div class="line">            img.src = uri;</div><div class="line">            <span class="built_in">document</span>.body.appendChild(img);</div><div class="line">        &#125;</div><div class="line">        <span class="built_in">document</span>.ondrop = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;</div><div class="line">            <span class="built_in">document</span>.body.style.backgroundColor = <span class="string">'#fff'</span>;</div><div class="line">            <span class="keyword">try</span>&#123;</div><div class="line">                e.preventDefault();</div><div class="line">                handleFileDrop(e.dataTransfer.files[<span class="number">0</span>]);</div><div class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">            &#125;<span class="keyword">catch</span>(e)&#123;</div><div class="line">                <span class="built_in">console</span>.log(e);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="built_in">document</span>.ondragover = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;</div><div class="line">            e.preventDefault();</div><div class="line">            <span class="built_in">document</span>.body.style.backgroundColor = <span class="string">'#6fff41'</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="built_in">document</span>.ondragleave = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;</div><div class="line">            e.preventDefault();</div><div class="line">            <span class="built_in">document</span>.body.style.backgroundColor = <span class="string">'#fff'</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="function"><span class="keyword">function</span> <span class="title">handleFileDrop</span>(<span class="params">file</span>)</span>&#123;</div><div class="line">            <span class="keyword">var</span> reader = <span class="keyword">new</span> FileReader();</div><div class="line">            reader.readAsArrayBuffer(file);</div><div class="line">            reader.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">                <span class="built_in">console</span>.log(<span class="string">'sending: '</span>+file.name);</div><div class="line">                ws.send(reader.result);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    <span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;blockquote class=&quot;blockquote-center&quot;&gt;&lt;p&gt;websocket基础&lt;/p&gt;
-&lt;/blockquote&gt;
-    
-    </summary>
-    
-      <category term="JavaScript" scheme="https://muleimulei.github.io/categories/JavaScript/"/>
-    
-    
-      <category term="HTML5" scheme="https://muleimulei.github.io/tags/HTML5/"/>
     
   </entry>
   
