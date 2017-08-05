@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://muleimulei.github.io/"/>
-  <updated>2017-08-04T12:30:03.354Z</updated>
+  <updated>2017-08-05T09:40:56.344Z</updated>
   <id>https://muleimulei.github.io/</id>
   
   <author>
@@ -14,6 +14,104 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>string与stringstream</title>
+    <link href="https://muleimulei.github.io/2017/08/05/c%E4%B8%8Ec++/string%E4%B8%8Estringstream/"/>
+    <id>https://muleimulei.github.io/2017/08/05/c与c++/string与stringstream/</id>
+    <published>2017-08-05T08:05:11.302Z</published>
+    <updated>2017-08-05T09:40:56.344Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote class="blockquote-center"><p>string与stringstream</p>
+</blockquote>
+<a id="more"></a>
+<h2 id="string"><a href="#string" class="headerlink" title="string"></a>string</h2><p>string是c++提供的字符串型，和c的字符串相比，除了有不限长度的优点外，还有其它许多方便的功能。</p>
+<p>首先加入<code>#include\<string\> </string\></code>，声明变量可以写成<code>string s;s=”hello”</code>，也可以直接设置其值<code>string s = “TCGS”</code>，如果要取得其中一个字符，和传统的c语言一样是用s[i]取得。比较不一样的是如果s有三个字符，传统c的字符s[3]是0字元，但是c++的string则是只到s[2]这个字符而已。</p>
+<p>操作：</p>
+<pre><code>- 声明：
+    + string：string s
+    + 字符阵列：char s[100]
+- 取得第i个字符
+    + string：s[i]
+    + 字符阵列：s[i]
+- 字符串长度
+    + string：s.length()
+    + 字符阵列：strlen(s)
+- 读取一行
+    + string：getline(cin, s)
+    + 字符阵列：gets(s)
+- 设成某字符串
+    + string：s=&quot;TSS&quot;
+    + 字符阵列：strcpy(s, &apos;TSS&apos;)
+- 字符串相加
+    + string：s = s + &apos;TSS&apos;
+    + 字符阵列：strcat(s, &apos;TSS&apos;)
+- 字符比较
+    + string：s==&apos;TSS&apos;
+    + 字符阵列：strcmp(s, &apos;TSS&apos;)
+</code></pre><h2 id="stringstream"><a href="#stringstream" class="headerlink" title="stringstream"></a>stringstream</h2><p>stringstream是c++提供的另一个字符串型的串流物件，要使用stringstream，必须先加入这一行：<code>#include<sstream></sstream></code>，stringstream主要是用在将一个字符串分割，可以先用clear()以及str()将指定字符串设定成一开始的内容，再用&gt;&gt;把个别的资料输出，例如：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">string</span> s;</div><div class="line"><span class="built_in">stringstream</span> ss;</div><div class="line"><span class="keyword">int</span> a,b,c;</div><div class="line">getline(<span class="built_in">cin</span>, s);</div><div class="line">ss.clear();</div><div class="line">ss.str(s);</div><div class="line">ss&gt;&gt;a&gt;&gt;b&gt;&gt;c;</div></pre></td></tr></table></figure>
+<p>题目：输入的第一行有一个数字N代表接下来N行资料，每一行资料里有不固定个数的整数（最多20个，每行最大200个字符），请你写一个算法将每行的总和打印出来<br>輸入：</p>
+<p>3<br>1 2 3<br>20 17 23 54 77 60<br>111 222 333 444 555 666 777 888 999</p>
+<p>輸出：</p>
+<p>6<br>251<br>4995</p>
+<p>程序：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">string</span> s;</div><div class="line"><span class="built_in">stringstream</span> ss;</div><div class="line"><span class="keyword">int</span> n, i, sum, a;</div><div class="line"><span class="built_in">cin</span> &gt;&gt; n;</div><div class="line">getline(<span class="built_in">cin</span>, s); <span class="comment">// 讀取換行</span></div><div class="line"><span class="keyword">for</span> (i=<span class="number">0</span>; i&lt;n; i++)</div><div class="line">&#123;</div><div class="line">    getline(<span class="built_in">cin</span>, s);</div><div class="line">    ss.clear();</div><div class="line">    ss.str(s);</div><div class="line">    sum=<span class="number">0</span>;</div><div class="line">    <span class="keyword">while</span> (<span class="number">1</span>)</div><div class="line">    &#123;</div><div class="line">        ss &gt;&gt; a;</div><div class="line">        <span class="keyword">if</span> ( ss.fail() ) <span class="keyword">break</span>;</div><div class="line">        sum+=a;</div><div class="line">    &#125;</div><div class="line">    <span class="built_in">cout</span> &lt;&lt; sum &lt;&lt; <span class="built_in">endl</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">string</span>常用的方法有size()，find()，substr()方法：</div><div class="line"><span class="built_in">string</span> str = <span class="string">"yutyuyuyussdfas"</span>;</div><div class="line"><span class="keyword">size_t</span> pos = str.find(<span class="string">"ssdf"</span>, <span class="number">3</span>);   <span class="comment">//用if(pos==string::npos)用来判断是否找到字符串</span></div><div class="line"><span class="built_in">string</span> str2 = str.substr(pos, <span class="number">5</span>);</div><div class="line"></div><div class="line"><span class="comment">//find函数从str的第三个位置查起，找到sddf这个字符串后，返回字符串的位置。而substr函数从pos位置开始，截取5个字符，赋给str2</span></div></pre></td></tr></table></figure>
+<p>stringstream是字符串流，可以用来数据切分或者类型转化。<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="built_in">string</span> <span class="title">i2s</span> <span class="params">(<span class="keyword">int</span> i, <span class="keyword">int</span> len = <span class="number">0</span>)</span></span>&#123;</div><div class="line">    <span class="built_in">stringstream</span> ss;</div><div class="line">    ss &lt;&lt; setw(len) &lt;&lt; setfill(<span class="string">'0'</span>) &lt;&lt; i;</div><div class="line">    <span class="keyword">return</span> ss.str();</div><div class="line">&#125;</div><div class="line"><span class="comment">//以i2s(7, 3)形式调用这个函数，返回的结果是字符串007</span></div></pre></td></tr></table></figure></p>
+<p>string到int的转换<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">string</span> res = <span class="string">"1000"</span>;</div><div class="line"><span class="keyword">int</span> n = <span class="number">0</span>;</div><div class="line">stream&lt;&lt;result;</div><div class="line">stream&gt;&gt;n;</div></pre></td></tr></table></figure></p>
+<p>在类型转化中使用模板。to_string()函数将t转化为字符串并写入result中。使用str()成员函数来获取流内部缓存的一份拷贝：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">template</span> &lt;<span class="keyword">class</span> T&gt;</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">to_string</span><span class="params">(<span class="built_in">string</span> &amp;result, <span class="keyword">const</span> T &amp;l)</span></span>&#123;</div><div class="line">    <span class="built_in">ostringstream</span> oss; <span class="comment">//创建一个流</span></div><div class="line">    oss&lt;&lt;t; <span class="comment">//把值传递到流中</span></div><div class="line">    result = oss.str(); <span class="comment">//获取转换后的字符并将其写入result</span></div><div class="line">&#125;</div><div class="line"></div><div class="line">to_string(s1, <span class="number">10.5</span>); <span class="comment">//double到string</span></div><div class="line">to_string(s1, <span class="number">123</span>); <span class="comment">//int到string</span></div></pre></td></tr></table></figure>
+<p>可以更进一步定义一个通用的转化模板，用于任意类型之间的转换。函数模板convert()含有两个模板参数out_type和in_type，功能是将in_value值转换成out_type类型：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">template</span> &lt;<span class="keyword">class</span> out_type, <span class="keyword">class</span> in_value&gt;</div><div class="line"><span class="function">out_type <span class="title">convert</span> <span class="params">(<span class="keyword">const</span> in_value &amp;t)</span></span>&#123;</div><div class="line">    <span class="built_in">stringstream</span> stream;</div><div class="line">    stream &lt;&lt; t; <span class="comment">//向流中传值</span></div><div class="line">    out_type result; <span class="comment">//这里存储转换结果</span></div><div class="line">    stream&gt;&gt;result; <span class="comment">//向result中写入值</span></div><div class="line">    <span class="keyword">return</span> result;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">double</span> d;</div><div class="line"><span class="built_in">string</span> salary;</div><div class="line"><span class="built_in">string</span> s = <span class="string">"23.323"</span>;</div><div class="line">s = convert&lt;<span class="keyword">double</span>&gt;(s);</div><div class="line">salary = convert&lt;<span class="built_in">string</span>&gt;(<span class="number">9000.0</span>);</div></pre></td></tr></table></figure>
+<p>在进行多次转换的时候，必须调用stringstream的成员函数clear()函数<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sstream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">    <span class="built_in">std</span>::<span class="built_in">stringstream</span> stream;</div><div class="line">    <span class="keyword">int</span> first, second;</div><div class="line">    stream&lt;&lt; <span class="string">"456"</span>; <span class="comment">//插入字符串</span></div><div class="line">    stream &gt;&gt; first; <span class="comment">//转换成int</span></div><div class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; first &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</div><div class="line">    stream.clear(); <span class="comment">//在进行多次转换前，必须清除stream</span></div><div class="line">    stream &lt;&lt; <span class="literal">true</span>; <span class="comment">//插入bool值</span></div><div class="line">    stream &gt;&gt; second; <span class="comment">//提取出int</span></div><div class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; second &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote class=&quot;blockquote-center&quot;&gt;&lt;p&gt;string与stringstream&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="C++" scheme="https://muleimulei.github.io/categories/C/"/>
+    
+    
+      <category term="string与stringstream" scheme="https://muleimulei.github.io/tags/string%E4%B8%8Estringstream/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>C++的find函数</title>
+    <link href="https://muleimulei.github.io/2017/08/05/c%E4%B8%8Ec++/C++%E7%9A%84find/"/>
+    <id>https://muleimulei.github.io/2017/08/05/c与c++/C++的find/</id>
+    <published>2017-08-05T07:43:47.952Z</published>
+    <updated>2017-08-05T08:04:50.759Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote class="blockquote-center"><p>C++的find函数</p>
+</blockquote>
+<a id="more"></a>
+<h1 id="头文件"><a href="#头文件" class="headerlink" title="头文件"></a>头文件</h1><p>#include<algorithm></algorithm></p>
+<p>函数实现<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">template</span> &lt;<span class="keyword">class</span> InputIterator, <span class="keyword">class</span> T&gt;</div><div class="line"><span class="function">InputIterator <span class="title">find</span> <span class="params">(InputIterator first, InputIterator last, <span class="keyword">const</span> T&amp;val)</span></span>&#123;</div><div class="line">    <span class="keyword">while</span> (first!=last)&#123;</div><div class="line">        <span class="keyword">if</span>(*first==val) <span class="keyword">return</span> first;</div><div class="line">        ++first;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> last;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>例1<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; m;</div><div class="line">    m.push_back(<span class="string">"hello"</span>);</div><div class="line">    m.push_back(<span class="string">"hello2"</span>);</div><div class="line">    m.push_back(<span class="string">"hello3"</span>);</div><div class="line">    <span class="keyword">if</span> (find(m.begin(), m.end(), <span class="string">"hello"</span>) == m.end())</div><div class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"no"</span> &lt;&lt; <span class="built_in">endl</span>;</div><div class="line">    <span class="keyword">else</span></div><div class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"yes"</span> &lt;&lt; <span class="built_in">endl</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>例2<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;set&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">    <span class="built_in">set</span>&lt;<span class="built_in">string</span>&gt; m;</div><div class="line">    m.insert(<span class="string">"hello"</span>);</div><div class="line">    m.insert(<span class="string">"hello2"</span>);</div><div class="line">    m.insert(<span class="string">"hello3"</span>);</div><div class="line">    <span class="keyword">if</span> (find(m.begin(), m.end(), <span class="string">"hello"</span>) == m.end())</div><div class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"no"</span> &lt;&lt; <span class="built_in">endl</span>;</div><div class="line">    <span class="keyword">else</span></div><div class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"yes"</span> &lt;&lt; <span class="built_in">endl</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<blockquote>
+<p>set，string自身有个find()函数</p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;set&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">    <span class="built_in">set</span>&lt;<span class="built_in">string</span>&gt; m;</div><div class="line">    m.insert(<span class="string">"hello"</span>);</div><div class="line">    m.insert(<span class="string">"hello2"</span>);</div><div class="line">    m.insert(<span class="string">"hello3"</span>);</div><div class="line">    <span class="keyword">if</span> (find(m.begin(), m.end(), <span class="string">"hello"</span>) == m.end())</div><div class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"no"</span> &lt;&lt; <span class="built_in">endl</span>;</div><div class="line">    <span class="keyword">else</span></div><div class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"yes"</span> &lt;&lt; <span class="built_in">endl</span>;</div><div class="line"></div><div class="line">    <span class="comment">//find函数返回类型 size_type</span></div><div class="line">    <span class="function"><span class="built_in">string</span> <span class="title">s</span><span class="params">(<span class="string">"1a2b3c4d5e6f7g8h9i1a2b3c4d5e6f7g8ha9i"</span>)</span></span>;  </div><div class="line">    <span class="built_in">string</span> flag;</div><div class="line">    <span class="built_in">string</span>::size_type position;</div><div class="line">    <span class="comment">//find 函数 返回jk 在s 中的下标位置   </span></div><div class="line">    position = s.find(<span class="string">"jk"</span>);  </div><div class="line">    <span class="keyword">if</span> (position != s.npos)  <span class="comment">//如果没找到，返回一个特别的标志c++中用npos表示，我这里npos取值是4294967295，  </span></div><div class="line">     &#123;  </div><div class="line">      <span class="built_in">cout</span> &lt;&lt; <span class="string">"position is : "</span> &lt;&lt; position &lt;&lt; <span class="built_in">endl</span>;  </div><div class="line">     &#125;  </div><div class="line">    <span class="keyword">else</span>  </div><div class="line">     &#123;  </div><div class="line">      <span class="built_in">cout</span> &lt;&lt; <span class="string">"Not found the flag"</span> + flag;  </div><div class="line">     &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote class=&quot;blockquote-center&quot;&gt;&lt;p&gt;C++的find函数&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="C++" scheme="https://muleimulei.github.io/categories/C/"/>
+    
+    
+      <category term="C++的find函数" scheme="https://muleimulei.github.io/tags/C-%E7%9A%84find%E5%87%BD%E6%95%B0/"/>
+    
+  </entry>
   
   <entry>
     <title>SQL数据定义语句</title>
@@ -1494,144 +1592,6 @@ elem.dispatchEvent(event);
     
     
       <category term="HTML5" scheme="https://muleimulei.github.io/tags/HTML5/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>jquery异步获取数据</title>
-    <link href="https://muleimulei.github.io/2017/04/20/jquery/jquery%E8%8E%B7%E5%8F%96%E6%95%B0%E6%8D%AE/"/>
-    <id>https://muleimulei.github.io/2017/04/20/jquery/jquery获取数据/</id>
-    <published>2017-04-20T07:47:08.896Z</published>
-    <updated>2017-04-20T09:10:01.066Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote class="blockquote-center"><p>jquery异步获取数据</p>
-</blockquote>
-<a id="more"></a>
-<h1 id="jquery异步获取数据"><a href="#jquery异步获取数据" class="headerlink" title="jquery异步获取数据"></a>jquery异步获取数据</h1><ul>
-<li>使用load()方法异步请求数据<br>  使用load()方法通过ajax请求加载服务器的数据，并把返回的数据放置到指定的元素中。load(url,[data],[callback])，参数URL为加载服务器地址，可选项data参数为请求时发送的数据，callback参数为数据请求成功后执行的回调函数。</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">$(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    $(<span class="string">'#btn'</span>).on(<span class="string">'click'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        <span class="keyword">var</span> <span class="keyword">this</span> = $(<span class="keyword">this</span>);</div><div class="line">        $(<span class="string">'.content'</span>).html(<span class="string">'&lt;img src='</span>loading.gif<span class="string">'/&gt;'</span>)</div><div class="line">                     .load(<span class="string">'fruit.html'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">                        $<span class="keyword">this</span>.attr(<span class="string">'disabled'</span>,<span class="literal">true</span>);</div><div class="line">                      &#125;);</div><div class="line">    &#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<ul>
-<li>使用getJSON()方法异步加载json格式数据<br>  使用getJSON()方法可以通过ajax异步请求的方式获取服务器中的数据，并对获取到的数据进行解析，显示在页面中。<code>$.getJSON(url,[data],[callback])</code>，其中，URL参数为请求加载json格式文件的服务器地址，可选项data参数为请求时发送的数据，callback参数为数据请求成功后，执行的回调函数。</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">'#btn'</span>).on(<span class="string">'click'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> <span class="keyword">this</span> = $(<span class="keyword">this</span>);</div><div class="line">    $.getJSON(<span class="string">'sport.json'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</div><div class="line">        <span class="keyword">this</span>.attr(<span class="string">'disabled'</span>,<span class="literal">true</span>);</div><div class="line">        $.each(data,<span class="function"><span class="keyword">function</span>(<span class="params">index,sport</span>)</span>&#123;</div><div class="line">            $(<span class="string">'ul'</span>).append(<span class="string">`&lt;li&gt;sport["name"]&lt;/li&gt;`</span>);</div><div class="line">        &#125;);</div><div class="line">    &#125;);    </div><div class="line">&#125;)</div></pre></td></tr></table></figure>
-<ul>
-<li>使用getScript()方法异步加载并执行js文件，<code>$.getScript(url,[callback])</code></li>
-<li>使用get()方法以GET方式从服务器获取数据，通过方法中中的回调函数的参数返回请求的数据。</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">'#btn'</span>).on(<span class="string">'click'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> <span class="keyword">this</span> = $(<span class="keyword">this</span>);</div><div class="line">    $.get(<span class="string">'info.php'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</div><div class="line">        <span class="keyword">this</span>.attr(<span class="string">'disabled'</span>,<span class="literal">false</span>);</div><div class="line">        $(<span class="string">'ul'</span>).append(data.name);</div><div class="line">        $(<span class="string">'ul'</span>).append(data.say);</div><div class="line">    &#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<ul>
-<li>使用post方法以post方式向服务器发送数据<br>  post()方法多用于以post方式向服务器发送数据，服务器接受到数据后，进行处理，并将处理结果返回给页面，<code>$.post(url,[data],[callback])</code>，参数URL为加载服务器地址，可选项data参数为请求时发送的数据，callback参数为数据请求成功后执行的回调函数。</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">$(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    $(<span class="string">'#btn'</span>).on(<span class="string">'click'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        $.post(<span class="string">'check.php'</span>,&#123;</div><div class="line">            <span class="attr">num</span>: $(<span class="string">'#number'</span>).val()    </div><div class="line">        &#125;,</div><div class="line">        <span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</div><div class="line">            $(<span class="string">'ul'</span>).append(<span class="string">`&lt;li&gt;你输入的<span class="subst">$&#123;$(<span class="string">'#number'</span>),val()&#125;</span>是&lt;b&gt;<span class="subst">$&#123;data&#125;</span>&lt;/b&gt;&lt;/li&gt;`</span>);</div><div class="line">        &#125;);</div><div class="line">    &#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<p>后台代码如下：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$num = $_POST[<span class="string">'num'</span>];</div><div class="line"><span class="keyword">if</span>($num%<span class="number">2</span>==<span class="number">0</span>)&#123;</div><div class="line">    <span class="keyword">echo</span> <span class="string">'偶数'</span>;</div><div class="line">&#125;<span class="keyword">else</span>&#123;</div><div class="line">    <span class="keyword">echo</span> <span class="string">'奇数'</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
-<li><p>使用serialize()方法序列化表单元素值<br>  使用serialize()方法可以将表单中有name属性的元素值进行序列化，生成标准的URL编码文本字符串，直接用于ajax请求，调用格式如下：<code>$(selector).serialize()</code></p>
-</li>
-<li><p>使用ajax方法加载服务器数据<br>  ajax方法是最底层，功能最强大的请求服务器数据的方式，它不仅仅可以获取服务器返回的数据，还可以向服务器发送并传递数值。$.ajas([settings])，其中参数setting为发送ajax请求时的配置对象，在该对像中，dada为请求时传递的数据，dataType为服务器返回的数据类型，success为请求成功时的回调函数，type为发送数据请求的方式，默认为get。</p>
-</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">$(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    $(<span class="string">'#btn'</span>).on(<span class="string">'click'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        <span class="keyword">var</span> <span class="keyword">this</span> = $(<span class="keyword">this</span>);</div><div class="line">        $.ajax(&#123;</div><div class="line">            <span class="attr">url</span>: <span class="string">'article.php'</span>,</div><div class="line">            <span class="attr">dataType</span>: <span class="string">'text'</span>,</div><div class="line">            <span class="attr">success</span>: <span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</div><div class="line">                <span class="keyword">this</span>.attr(<span class="string">'disabled'</span>,<span class="literal">false</span>);</div><div class="line">                $(<span class="string">'ul'</span>).append(data);</div><div class="line">            &#125;    </div><div class="line">        &#125;);    </div><div class="line">    &#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<ul>
-<li>使用ajaxSetup方法设置全局ajax默认选项<br>  使用ajaxSetup()方法可以设置，ajax请求的一些全局变量，设置完成后，后面的ajax请求不需要添加这些选项值。<code>$.ajaxSetup([options])</code></li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">$(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    $.ajaxSetup(&#123;</div><div class="line">        <span class="attr">dataType</span>: <span class="string">'text'</span>,</div><div class="line">        <span class="attr">success</span>: <span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</div><div class="line">            $(<span class="string">'ul'</span>).empty().append(data);</div><div class="line">        &#125;    </div><div class="line">    &#125;);</div><div class="line">&#125;);</div><div class="line"></div><div class="line">$(<span class="string">'#btn1'</span>).on(<span class="string">'click'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    $.ajax(&#123;</div><div class="line">        <span class="attr">url</span>: <span class="string">'a1.txt'</span>    </div><div class="line">    &#125;);</div><div class="line">&#125;); </div><div class="line"></div><div class="line"></div><div class="line">$(<span class="string">'#btn2'</span>).on(<span class="string">'click'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    $.ajax(&#123;</div><div class="line">        <span class="attr">url</span>: <span class="string">'a2.txt'</span>    </div><div class="line">    &#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<ul>
-<li>使用ajaxStart()和ajaxStop()方法<br>  两者绑定ajax时间。ajaxStart()方法用于在ajax请求发出前触发函数，ajaxStop()方法在ajax请求完成后触发函数。</li>
-</ul>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;blockquote class=&quot;blockquote-center&quot;&gt;&lt;p&gt;jquery异步获取数据&lt;/p&gt;
-&lt;/blockquote&gt;
-    
-    </summary>
-    
-      <category term="JavaScript" scheme="https://muleimulei.github.io/categories/JavaScript/"/>
-    
-      <category term="jquery" scheme="https://muleimulei.github.io/categories/JavaScript/jquery/"/>
-    
-    
-      <category term="jquery" scheme="https://muleimulei.github.io/tags/jquery/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>commonJS,AMD与CMD的区别与联系</title>
-    <link href="https://muleimulei.github.io/2017/04/16/JavaScript/commonJs_AMD_CMD%E6%AF%94%E8%BE%83/"/>
-    <id>https://muleimulei.github.io/2017/04/16/JavaScript/commonJs_AMD_CMD比较/</id>
-    <published>2017-04-16T04:33:06.370Z</published>
-    <updated>2017-04-16T07:13:21.624Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote class="blockquote-center"><p>commonJS,AMD与CMD的区别与联系</p>
-</blockquote>
-<a id="more"></a>
-<p><strong>1. CommonJS</strong>原本叫serverJS，是以在浏览器环境之外构建JavaScript生态环境为目标而产生的项目，比如在服务器和桌面环境中。</p>
-<blockquote>
-<p>commonJS规范是为了解决JavaScript的作用于问题而定义的模块形式，可以使每个模块在它自身的命名空间中执行。</p>
-</blockquote>
-<p>该规范的主要内容是，模块必须通过module.exports导出对外的变量或接口，通过require()来导入其它模块的输出到当前模块作用域中。<strong>Node.js</strong>就是采用commonJS规范。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//moduleA.js</span></div><div class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'hello'</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//moduleB.js</span></div><div class="line"><span class="keyword">var</span> moduleA = <span class="built_in">require</span>(<span class="string">'./moduleA'</span>);</div><div class="line">moduleA();</div></pre></td></tr></table></figure>
-<p><strong>2.AMD</strong>(Asynchronous Module Definition)(异步模块定义)是为了浏览器环境设计的，因为CommonJS模块系统是同步加载的，当前浏览器环境是异步的。</p>
-<blockquote>
-<p>AMD定义了一套JavaScript模块依赖异步加载标准，来解决同步加载问题。</p>
-</blockquote>
-<p>模块通过define函数定义在闭包中，格式如下</p>
-<p><code>define(id? String, dependencies? String[], factory: Function|Object)</code></p>
-<ul>
-<li><p>id是模块名字，它是可选参数</p>
-</li>
-<li><p>dependencies 指定了所要依赖的模块列表，他是一个数组，也是可选的参数，每个依赖的模块的输出将作为参数一次传入factory中。如果没有指定dependencies，那么他的默认值是<strong>[‘require’,’exports’,’module’]</strong>。</p>
-</li>
-<li><p>factory 是最后一个参数，它包裹了模块的具体实现，他是一个函数或是一个对象。如果是函数，那么它的返回值就是模块的的输出接口或值。</p>
-</li>
-</ul>
-<p>定义一个moduleA，它依赖jQuery模块</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">define(<span class="string">'moduleA'</span>,[<span class="string">'jquery'</span>],<span class="function"><span class="keyword">function</span>(<span class="params">$</span>)</span>&#123;</div><div class="line">    <span class="comment">//$是jquery模块输出</span></div><div class="line">    $(<span class="string">'body'</span>).text(<span class="string">'hello'</span>);</div><div class="line">&#125;);</div><div class="line"><span class="comment">//使用</span></div><div class="line">define([<span class="string">'moduleA'</span>],<span class="function"><span class="keyword">function</span>(<span class="params">moduleA</span>)</span>&#123;&#125;);</div></pre></td></tr></table></figure>
-<p>require.js就是采用AMD模块</p>
-<p><strong>3.CMD</strong>(Common Module Defination)</p>
-<blockquote>
-<p>在cmd规范中，一个模块就是一个文件。代码的书写格式如下：<strong>define(factory)</strong><br>define是全局函数，用来定义模块。define接受factory参数，factory可以是函数，对象或字符串。</p>
-</blockquote>
-<ul>
-<li><p>当factory为对象或字符串时，表示该模块的接口就是该对象或字符串，比如要定义一个json数据模块<br><code>define({‘key’,’value’})</code></p>
-</li>
-<li><p>也可以通过字符串定义模板模块 <code>define(‘Hello ‘)</code></p>
-</li>
-<li><p>factory是函数时，表示是模块的构造方法。执行该构造方法，可以得到模块对外提供的接口，factory方法在执行时，默认会传入三个参数，require，exports，module</p>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">define(function(require,exports,module)&#123;</div><div class="line">    //需要导出的模块</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<p>require是方法，接收模板标识作为唯一参数，用来获取其它模块提供的接口</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">define(function(require, exports)&#123;</div><div class="line">    const a = require(&apos;./a&apos;);</div><div class="line">    a.doSomething();</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<ul>
-<li>require是同步往下执行的，require.async(id,callback?)用来在模块内部异步加载模块，并在加载完后执行回调函数。</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">define(function(require, exports)&#123;</div><div class="line">    require.async([&apos;./a,&apos;./b], function(c ,d )&#123;</div><div class="line">        c.doSomething();    </div><div class="line">        d.doSomething();    </div><div class="line">    &#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<ul>
-<li>factory是函数时的第二个参数是exports，exports是一个对象，用来对外提供模块接口</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">define(function(require, exports)&#123;</div><div class="line">    exports.str = &apos;xxxxxxxxx&apos;;</div><div class="line">    exports.doSomething = function()&#123; //对外提供doSomething方法</div><div class="line"></div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<p>除了exports外，还可以用return直接对外提供对象接口</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">define(function(require, exports)&#123;</div><div class="line">   return&#123;</div><div class="line">        str: &apos;xxxxxxx&apos;,</div><div class="line">        doSomething: function()&#123;</div><div class="line"></div><div class="line">        &#125;</div><div class="line">   &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<p>exports是module.exports对象的一个引用，很多时候exports都无法满足需求，列如对外提供一个实例对象</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">define(function(require, exports,module)&#123;</div><div class="line">    function Person(name, age)&#123;</div><div class="line">        this.name = name;</div><div class="line">        this.age = age;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    module.exports = new Person(&apos;lily&apos;,34);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<h1 id="AMD与CMD比较"><a href="#AMD与CMD比较" class="headerlink" title=" AMD与CMD比较"></a> AMD与CMD比较</h1><p>AMD默认是依赖前置，在一开始就将需要依赖的文件配置并加载好</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">define(&apos;moduleA&apos;,[&apos;jquery&apos;],function($)&#123;</div><div class="line">    //依赖的配置文件已经配置并加载好了</div><div class="line">    $(&apos;body&apos;).text(&apos;hello world&apos;);    </div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<p>CMD是依赖就近，需要使用的时候才会去配置加载</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">define(function(require, exports)&#123;</div><div class="line">    var a = require(&apos;./a.js&apos;); //配置并加载，同步</div><div class="line">    if(false)&#123;</div><div class="line">        var b = require(&apos;./b.js&apos;); //配置的文件永远不会被加载</div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;blockquote class=&quot;blockquote-center&quot;&gt;&lt;p&gt;commonJS,AMD与CMD的区别与联系&lt;/p&gt;
-&lt;/blockquote&gt;
-    
-    </summary>
-    
-      <category term="JavaScript" scheme="https://muleimulei.github.io/categories/JavaScript/"/>
-    
     
   </entry>
   
