@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://muleimulei.github.io/"/>
-  <updated>2017-08-05T14:38:54.201Z</updated>
+  <updated>2017-08-06T10:26:04.452Z</updated>
   <id>https://muleimulei.github.io/</id>
   
   <author>
@@ -14,6 +14,57 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>百度音乐API</title>
+    <link href="https://muleimulei.github.io/2017/08/06/nodejs/%E7%99%BE%E5%BA%A6%E9%9F%B3%E4%B9%90API/"/>
+    <id>https://muleimulei.github.io/2017/08/06/nodejs/百度音乐API/</id>
+    <published>2017-08-06T10:22:31.277Z</published>
+    <updated>2017-08-06T10:26:04.452Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote class="blockquote-center"><p>百度音乐API</p>
+</blockquote>
+<a id="more"></a>
+<h2 id="百度音乐全接口-会利用使用接口找歌简单又快捷-http-tingapi-ting-baidu-com-v1-restserver-ting"><a href="#百度音乐全接口-会利用使用接口找歌简单又快捷-http-tingapi-ting-baidu-com-v1-restserver-ting" class="headerlink" title="百度音乐全接口 会利用使用接口找歌简单又快捷  http://tingapi.ting.baidu.com/v1/restserver/ting "></a>百度音乐全接口 会利用使用接口找歌简单又快捷 <code> <a href="http://tingapi.ting.baidu.com/v1/restserver/ting" target="_blank" rel="external">http://tingapi.ting.baidu.com/v1/restserver/ting</a> </code></h2><p>获取方式：GET<br>参数：format=json或xml&amp;calback=&amp;from=webapp_music&amp;method=以下不同的参数获得不同的数据<br>PS：format根据开发需要可选择json或xmml，其他参数对应填入，calback是等于空的。</p>
+<h1 id="一、获取列表"><a href="#一、获取列表" class="headerlink" title="一、获取列表"></a>一、获取列表</h1><p>例：method=baidu.ting.billboard.billList&amp;type=1&amp;size=10&amp;offset=0 </p>
+<p>参数： type = 1-新歌榜,2-热歌榜,11-摇滚榜,12-爵士,16-流行,21-欧美金曲榜,22-经典老歌榜,23-情歌对唱榜,24-影视金曲榜,25-网络歌曲榜</p>
+<p>size = 10 //返回条目数量</p>
+<p>offset = 0 //获取偏移</p>
+<h1 id="二、貌似是推广（无用）"><a href="#二、貌似是推广（无用）" class="headerlink" title="二、貌似是推广（无用）"></a>二、貌似是推广（无用）</h1><p>例：method=baidu.ting.adv.showlist&amp;_=1430215999</p>
+<p>参数：_ = 1430215999//时间戳</p>
+<h1 id="三、搜索"><a href="#三、搜索" class="headerlink" title="三、搜索"></a>三、搜索</h1><p>例：method=baidu.ting.search.catalogSug&amp;query=海阔天空</p>
+<p>参数：query = ‘’ //搜索关键字</p>
+<h1 id="四、播放"><a href="#四、播放" class="headerlink" title="四、播放"></a>四、播放</h1><p>例：method=baidu.ting.song.play&amp;songid=877578</p>
+<p>例：method=baidu.ting.song.playAAC&amp;songid=877578</p>
+<p>参数：songid = 877578 //歌曲id</p>
+<h1 id="五、LRC歌词"><a href="#五、LRC歌词" class="headerlink" title="五、LRC歌词"></a>五、LRC歌词</h1><p>例：method=baidu.ting.song.lry&amp;songid=877578</p>
+<p>参数：songid = 877578 //歌曲id</p>
+<h1 id="六、推荐列表"><a href="#六、推荐列表" class="headerlink" title="六、推荐列表"></a>六、推荐列表</h1><p>例：method=baidu.ting.song.getRecommandSongList&amp;song_id=877578&amp;num=5</p>
+<p>参数： song_id = 877578</p>
+<p>num = 5//返回条目数量</p>
+<h1 id="七、下载"><a href="#七、下载" class="headerlink" title="七、下载"></a>七、下载</h1><p>例：method=baidu.ting.song.downWeb&amp;songid=877578&amp;bit=24&amp;_t=1393123213</p>
+<p>参数： songid = 877578//歌曲id</p>
+<p>bit = 24, 64, 128, 192, 256, 320 ,flac//码率</p>
+<p>_t = 1430215999,, //时间戳</p>
+<h1 id="八、获取歌手信息"><a href="#八、获取歌手信息" class="headerlink" title="八、获取歌手信息"></a>八、获取歌手信息</h1><p>例：method=baidu.ting.artist.getInfo&amp;tinguid=877578</p>
+<p>参数： tinguid = 877578 //歌手ting id</p>
+<h1 id="九、获取歌手歌曲列表"><a href="#九、获取歌手歌曲列表" class="headerlink" title="九、获取歌手歌曲列表"></a>九、获取歌手歌曲列表</h1><p>例：method=baidu.ting.artist.getSongList&amp;tinguid=877578&amp;limits=6&amp;use_cluster=1&amp;order=2</p>
+<p>参数： tinguid = 877578//歌手ting id</p>
+<p>limits = 6//返回条目数量</p>
+<p>其他就不用管了</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote class=&quot;blockquote-center&quot;&gt;&lt;p&gt;百度音乐API&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="Node" scheme="https://muleimulei.github.io/categories/Node/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>数据库视图</title>
@@ -428,9 +479,9 @@ ON &lt;表名&gt;(&lt;列名&gt; [&lt;次序&gt;] [,&lt;列名&gt; [&lt;次序&g
       <category term="JavaScript" scheme="https://muleimulei.github.io/categories/JavaScript/"/>
     
     
-      <category term="HTML5" scheme="https://muleimulei.github.io/tags/HTML5/"/>
-    
       <category term="JavaScript" scheme="https://muleimulei.github.io/tags/JavaScript/"/>
+    
+      <category term="HTML5" scheme="https://muleimulei.github.io/tags/HTML5/"/>
     
   </entry>
   
@@ -1453,80 +1504,6 @@ elem.dispatchEvent(event);
     
       <category term="docker" scheme="https://muleimulei.github.io/categories/docker/"/>
     
-    
-  </entry>
-  
-  <entry>
-    <title>Git分支操作</title>
-    <link href="https://muleimulei.github.io/2017/04/24/git/git%E5%88%86%E6%94%AF/"/>
-    <id>https://muleimulei.github.io/2017/04/24/git/git分支/</id>
-    <published>2017-04-24T15:31:51.684Z</published>
-    <updated>2017-04-26T12:38:09.769Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote class="blockquote-center"><p>Git分支操作</p>
-</blockquote>
-<a id="more"></a>
-<p>这篇文章主要说明如何使用分支使我们的开发工作更加顺滑。</p>
-<h2 id="git-branch-用法"><a href="#git-branch-用法" class="headerlink" title="git branch 用法"></a>git branch 用法</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">git branch //列出所有分支</div><div class="line">git branch <span class="tag">&lt;<span class="name">branch</span>&gt;</span> //创建名为<span class="tag">&lt;<span class="name">branch</span>&gt;</span>的分支，但是不会切换过去</div><div class="line">git branch -d <span class="tag">&lt;<span class="name">branch</span>&gt;</span> //删除指定分支，这是一个安全操作，git会阻止你删除包含未合并更改的分支</div><div class="line">git branch -D <span class="tag">&lt;<span class="name">branch</span>&gt;</span> //强制删除分支</div><div class="line">git branch -m <span class="tag">&lt;<span class="name">branch</span>&gt;</span> //重新命名当前分支</div></pre></td></tr></table></figure>
-<blockquote>
-<p>在日常开发中，无论是修复一个我们不稳定bug或者是添加一个功能，我们都应该新建一个分支来封装我们的修改。这样可以保证我们不稳定的代码永远不会提交到主分支上。</p>
-</blockquote>
-<ol>
-<li><p>创建分支<br> 分支只是指向提交的指针，当你创建新分支，实际上只是创建了一个新的指针，仓库本身不会受到影响，一开始你的仓库只有一条分支：</p>
-<p> <img src="http://upload-images.jianshu.io/upload_images/272719-b965174b6cab013a.PNG?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="git branch"></p>
-<p> 然后你执行下面的命令创建一个分支，用于加一个新的feature：</p>
-<p> <img src="http://upload-images.jianshu.io/upload_images/272719-ce3367855cc86818.PNG?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="git branch"></p>
-<p> 当然执行后，你只是创建了这个分支，还需要执行<code>git checkout new-feature</code>切换到<code>new-feature</code>分支，然后在使用<code>git add,git commit</code></p>
-</li>
-</ol>
-<ol>
-<li><p>删除分支<br> 假如你已经开发完了new-feature ,并且已经commit代码了，你就可以自由的删除这个分支了。<code>git branch -d new-feature</code><br> 如果分支没有合入master，会报下面的错误：</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">error: The branch &apos;new feature&apos; is not fully merged.</div><div class="line">If you are sure you want to delete it, run &apos;git branch -D crazy-experiment&apos;.</div></pre></td></tr></table></figure>
-<p> 这时候你就可以合并分支，如果你真的确定要删除分支，可以使用<strong>-D</strong>执行强制删除：<code>git branch -D new-feature</code></p>
-</li>
-<li><p>切换分支（git checkout）</p>
-<p> <code>git checkout</code>命令允许你切换到用<code>git branch</code>创建的分支。切换分支会更新当前工作目录中的文件，还可以使用<code>git log</code>查看当前分支的历史。</p>
- <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">git checkout <span class="tag">&lt;<span class="name">existing-branch</span>&gt;</span> //切换到一个已有分支上</div><div class="line">git checkout -b <span class="tag">&lt;<span class="name">new-branch</span>&gt;</span> //创建时进行直接切换</div><div class="line">git checkout -b <span class="tag">&lt;<span class="name">new-branch</span>&gt;</span> <span class="tag">&lt;<span class="name">existing-branch</span>&gt;</span> //在已有的分支上创建分支，原来的分支是新分支的基</div></pre></td></tr></table></figure>
-<p> <code>git branch</code>和<code>git checkout</code>是一对兄弟，你可以使用<code>git checkout</code>在不同的分支或者bug分支之间切换，而不产生影响。</p>
-</li>
-<li><p>合并(git merge)<br> 合并是git将被fork的历史放回到一起的方式。<code>git merge</code>命令允许你将<code>git branch</code>创建的多条分支合并成一个。</p>
- <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git merge <span class="tag">&lt;<span class="name">branch</span>&gt;</span> //将指定分支并入当前分支</div><div class="line">git merge --no-ff <span class="tag">&lt;<span class="name">branch</span>&gt;</span> //经指定分支并入当前分支，但总是生成一个合并提交(即是快速向前合并)。这可以用来记录仓库中发生的所有合并。</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<blockquote>
-<p>一旦在分支上完成开发，我们需要把新分支的提交合并到主分支，git会根据目前分支之间的结构信息，选择不同的算法来完成合并。</p>
-</blockquote>
-<ul>
-<li>快速向前合并</li>
-<li>三路合并</li>
-</ul>
-<h2 id="快速向前合并"><a href="#快速向前合并" class="headerlink" title="快速向前合并"></a>快速向前合并</h2><p>当new-feature的分支与原有的master分支呈现线性关系时，执行快速向前合并，git将当前的HEAD指针快速移到目前分支的顶端，master分支也就拥有了new-feature分支的历史了，</p>
-<p>来看一个快速向前合并的实例</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"># 开始新功能</div><div class="line">git checkout -b new-branch master</div><div class="line"></div><div class="line"># 编辑文件</div><div class="line">git add <span class="tag">&lt;<span class="name">file</span>&gt;</span></div><div class="line">git commit -m '开始新功能'</div><div class="line"></div><div class="line"># 编辑文件</div><div class="line">git add <span class="tag">&lt;<span class="name">file</span>&gt;</span></div><div class="line">git commit -m '完成功能'</div><div class="line"></div><div class="line"># 合并new-feature分支</div><div class="line">git checkout master</div><div class="line">git merge new-feature</div><div class="line">git branch -d new-feature</div></pre></td></tr></table></figure>
-<p> <img src="http://upload-images.jianshu.io/upload_images/272719-6d2a2fdb236db48d.PNG?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="git branch"></p>
-<p>对于合作开发的人少的项目，这是一种主要的工作流，合作开发的人多的话，主master分支经常会有新提交，如果你的new-feature耗时比较久，再提交时，master分支就可能过去几个版本了，这时候就需要下面的三路合并了。</p>
-<h2 id="三路合并"><a href="#三路合并" class="headerlink" title="三路合并"></a>三路合并</h2><p>如果master分支在new-feature分离后，又有了新的提交，即开始分叉了，git只能执行三路合并，三路合并使用一个专门的提交来合并两个分支的历史。</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/272719-9f23d7fc6aff8a45.PNG?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="git branch"></p>
-<p>所谓的三路也就是：两个分支的顶端以及他们共同的祖先。在执行三路合并后：</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/272719-9f23d7fc6aff8a45.PNG?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="git branch"></p>
-<p>使用三路合并产生的合并提交作为两个分支的连接标志。</p>
-<h2 id="解决冲突"><a href="#解决冲突" class="headerlink" title="解决冲突"></a>解决冲突</h2><p>如果两个分支对同一个文件的同一部分均有修改时，git将无法判断应该使用哪个，这时候合并提交会停止，需要你手动解决这些冲突。你可以使用<code>git status</code>来查看哪里存在冲突，也可以在目录下执行<code>grep -rn HEAD</code>来查看哪些文件里有这个标记，有这个的地方都是有冲突的。</p>
-<p>当修改完所有的冲突后，<code>git add</code>所有的冲突文件，运行<code>git commit</code>生成一个合并提交，这和提交一个普通快照的流程相同。<strong>提交冲突只会存在三路合并中，快速向前合并中不可能出现针对同一文件同一部分的不一样的修改</strong>。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"># 开始新功能</div><div class="line">git checkout -b new-feature master</div><div class="line"></div><div class="line"># 编辑文件</div><div class="line">git add <span class="tag">&lt;<span class="name">file</span>&gt;</span></div><div class="line">git commit -m '开始新功能'</div><div class="line"></div><div class="line"># 编辑文件</div><div class="line">git add <span class="tag">&lt;<span class="name">file</span>&gt;</span></div><div class="line">git commit -m '完成功能'</div><div class="line"></div><div class="line"># 在master分支上开发</div><div class="line">git checkout master</div><div class="line"></div><div class="line"># 编辑文件</div><div class="line">git add <span class="tag">&lt;<span class="name">file</span>&gt;</span></div><div class="line">git commit -m '在master上添加了一些及其稳定的功能'</div><div class="line"></div><div class="line"># 合并new-feature分支</div><div class="line">git merge new-feature</div><div class="line">git branch -d new-feature</div></pre></td></tr></table></figure>
-<p>这时候，merge会停止，因为无法将master直接移动到new-feature。所有需要你手动合并冲突后在提交。</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;blockquote class=&quot;blockquote-center&quot;&gt;&lt;p&gt;Git分支操作&lt;/p&gt;
-&lt;/blockquote&gt;
-    
-    </summary>
-    
-      <category term="Git" scheme="https://muleimulei.github.io/categories/Git/"/>
-    
-    
-      <category term="Git" scheme="https://muleimulei.github.io/tags/Git/"/>
     
   </entry>
   
