@@ -95,7 +95,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Git," />
+  <meta name="keywords" content="JavaScript,类型化数组," />
 
 
 
@@ -113,20 +113,16 @@
 
 
 
-<meta name="description" content="Git的reset与checkout的区别">
+<meta name="description" content="类型化数组">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Git的reset与checkout的区别">
-<meta property="og:url" content="https://muleimulei.github.io/2017/07/29/git/git的reset与checkout的区别/index.html">
+<meta property="og:title" content="类型化数组">
+<meta property="og:url" content="https://muleimulei.github.io/2017/08/07/JavaScript/类型化数组/index.html">
 <meta property="og:site_name" content="风的影子">
-<meta property="og:description" content="Git的reset与checkout的区别">
-<meta property="og:image" content="https://muleimulei.github.io/assets/segment/git1.png">
-<meta property="og:image" content="https://muleimulei.github.io/assets/segment/git2.png">
-<meta property="og:image" content="https://muleimulei.github.io/assets/segment/git3.png">
-<meta property="og:updated_time" content="2017-07-29T06:26:48.618Z">
+<meta property="og:description" content="类型化数组">
+<meta property="og:updated_time" content="2017-08-07T15:45:38.682Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Git的reset与checkout的区别">
-<meta name="twitter:description" content="Git的reset与checkout的区别">
-<meta name="twitter:image" content="https://muleimulei.github.io/assets/segment/git1.png">
+<meta name="twitter:title" content="类型化数组">
+<meta name="twitter:description" content="类型化数组">
 
 
 
@@ -154,13 +150,13 @@
 
 
 
-  <link rel="canonical" href="https://muleimulei.github.io/2017/07/29/git/git的reset与checkout的区别/"/>
+  <link rel="canonical" href="https://muleimulei.github.io/2017/08/07/JavaScript/类型化数组/"/>
 
 
 
 
 
-  <title> Git的reset与checkout的区别 | 风的影子 </title>
+  <title> 类型化数组 | 风的影子 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -353,7 +349,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://muleimulei.github.io/2017/07/29/git/git的reset与checkout的区别/">
+    <link itemprop="mainEntityOfPage" href="https://muleimulei.github.io/2017/08/07/JavaScript/类型化数组/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="穆蕾">
@@ -374,7 +370,7 @@
             
             
               
-                Git的reset与checkout的区别
+                类型化数组
               
             
           </h1>
@@ -389,8 +385,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-29T12:12:25+08:00">
-                2017-07-29
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-07T22:41:10+08:00">
+                2017-08-07
               </time>
             
 
@@ -412,8 +408,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Git/" itemprop="url" rel="index">
-                    <span itemprop="name">Git</span>
+                  <a href="/categories/JavaScript/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaScript</span>
                   </a>
                 </span>
 
@@ -452,58 +448,53 @@
       
 
       
-        <blockquote class="blockquote-center"><p>Git的reset与checkout的区别</p>
+        <blockquote class="blockquote-center"><p>类型化数组</p>
 </blockquote>
 <a id="more"></a>
-<h2 id="Head，Index，Working-Director"><a href="#Head，Index，Working-Director" class="headerlink" title="Head，Index，Working Director"></a>Head，Index，Working Director</h2><ol>
-<li><p>Git里面的三个重要区域</p>
+<h2 id="类型化数组是JavaScript操作二进制数据的一个接口"><a href="#类型化数组是JavaScript操作二进制数据的一个接口" class="headerlink" title="类型化数组是JavaScript操作二进制数据的一个接口"></a>类型化数组是JavaScript操作二进制数据的一个接口</h2><p>类型化数组是建立在ArrayBuffer对象的基础上的。它的作用是，分配一段可以存放数据的连续内存区域。<br><code>var buf = new ArrayBuffer(32)</code>，这段代码生成了一段32字节的内存区域。ArrayBuffer对象的<strong>byteLength属性</strong>，返回所分配的区域区域的字节长度。<code>var buffer = new ArrayBuffer(32); buffer.byteLength</code>,如果分配的内存区域很大，有可能分配失败，所以有必要检查是否分配成功。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span>(buffer.byteLength===n)&#123;</div><div class="line">    <span class="comment">//success</span></div><div class="line">&#125;<span class="keyword">else</span>&#123;</div><div class="line">    <span class="comment">//fail</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>ArrayBuffer对象有一个slice方法，允许将内存区域的一部分拷贝生成一个新的ArrayBuffer对象。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> buffer = <span class="keyword">new</span> <span class="built_in">ArrayBuffer</span>(<span class="number">8</span>);</div><div class="line"><span class="keyword">var</span> newBuffer = buffer.slice(<span class="number">0</span>, <span class="number">3</span>);</div></pre></td></tr></table></figure></p>
+<p>上面代码拷贝buffer对象的前3个字节，生成一个新的ArrayBuffer对象。slice方法包含两步：第一步先分配一段新内存，第二部是将原来那个ArrayBuffer对象拷贝过去。<br>slice方法接受两个参数，第一个参数表示拷贝开始的字节序号，第二个参数表示拷贝截至的字节序号。如果省略第二个参数，则默认到原ArrayBuffer对象的结尾。<br>除了slice方法，ArrayBuffer对象不提供任何直接读取内存的方法，只允许再其上方建立视图，然后通过视图读写。</p>
+<h1 id="视图"><a href="#视图" class="headerlink" title="视图"></a>视图</h1><ol>
+<li>视图的生成<br>ArrayBuffer作为内存区域，可以存放多种类型的数据。不同数据有不同的存取方式，这就叫做”视图”。目前，JavaScript提供以下类型的视图：</li>
+</ol>
+<blockquote>
+<p>Int8Array：8位有符号整数，长度1个字节。<br>  Uint8Array：8位无符号整数，长度1个字节。<br>  Int16Array：16位有符号整数，长度2个字节。<br>  Uint16Array：16位无符号整数，长度2个字节。<br>  Int32Array：32位有符号整数，长度4个字节。<br>  Uint32Array：32位无符号整数，长度4个字节。<br>  Float32Array：32位浮点数，长度4个字节。<br>  Float64Array：64位浮点数，长度8个字节。</p>
+</blockquote>
+<p>每一种视图都有一个BYTE_PER_ELEMENT常数，表示这种数据类型占据的字节数。</p>
+<blockquote>
+<p>Int8Array.BYTES_PER_ELEMENT // 1<br>  Uint8Array.BYTES_PER_ELEMENT // 1<br>  Int16Array.BYTES_PER_ELEMENT // 2<br>  Uint16Array.BYTES_PER_ELEMENT // 2<br>  Int32Array.BYTES_PER_ELEMENT // 4<br>  Uint32Array.BYTES_PER_ELEMENT // 4<br>  Float32Array.BYTES_PER_ELEMENT // 4<br>  Float64Array.BYTES_PER_ELEMENT // 8</p>
+</blockquote>
+<ol>
+<li>在ArrayBuffer对象之上生成视图<br>同一个ArrayBuffer对象之上，可以根据不同的数据类型，建立多个视图。<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 创建一个8字节的ArrayBuffer</span></div><div class="line"><span class="keyword">var</span> b = <span class="keyword">new</span> <span class="built_in">ArrayBuffer</span>(<span class="number">8</span>);</div><div class="line"></div><div class="line"><span class="comment">// 创建一个指向b的Int32视图，开始于字节0，直到缓冲区的末尾</span></div><div class="line"><span class="keyword">var</span> v1 = <span class="keyword">new</span> <span class="built_in">Int32Array</span>(b);</div><div class="line"></div><div class="line"><span class="comment">// 创建一个指向b的Uint8视图，开始于字节2，直到缓冲区的末尾</span></div><div class="line"><span class="keyword">var</span> v2 = <span class="keyword">new</span> <span class="built_in">Uint8Array</span>(b, <span class="number">2</span>);</div><div class="line"></div><div class="line"><span class="comment">// 创建一个指向b的Int16视图，开始于字节2，长度为2</span></div><div class="line"><span class="keyword">var</span> v3 = <span class="keyword">new</span> <span class="built_in">Int16Array</span>(b, <span class="number">2</span>, <span class="number">2</span>);</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>上面代码在一段长度为8个字节的内存之上，生成了三个视图：v1，v2，v3。视图的构造函数可以接受三个参数：</p>
+<blockquote>
+<p>第一个参数：视图对应的底层ArrayBuffer对象，该参数是必需的。<br>  第二个参数：视图开始的字节序号，默认从0开始。<br>  第三个参数：视图包含的数据个数，默认直到本段内存区域结束。</p>
+</blockquote>
+<p>因此，v1、v2和v3是重叠：v1[0]是一个32位整数，指向字节0～字节3；v2[0]是一个8位无符号整数，指向字节2；v3[0]是一个16位整数，指向字节2～字节3。只要任何一个视图对内存有所修改，就会在另外两个视图上反应出来。</p>
+<ol>
+<li><p>直接生成<br>视图还可以不通过ArrayBuffer对象，直接分配内存而生成。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> f64a = <span class="keyword">new</span> <span class="built_in">Float64Array</span>(<span class="number">8</span>);</div><div class="line">f64a[<span class="number">0</span>] = <span class="number">10</span>;</div><div class="line">f64a[<span class="number">1</span>] = <span class="number">20</span>;</div><div class="line">f64a[<span class="number">2</span>] = f64a[<span class="number">0</span>] + f64a[<span class="number">1</span>];</div></pre></td></tr></table></figure>
+<p>上面代码生成一个8个成员的Float64Array数组（共64字节），然后依次对每个成员赋值。这时，视图构造函数的参数就是成员的个数。可以看到，视图数组的赋值操作与普通数组的操作毫无两样。</p>
+</li>
+<li><p>将普通数组转为视图数组<br>将一个数据类型符合要求的普通数组，传入构造函数，也能直接生成视图。<code>var typedArray = new Uint8Array( [ 1, 2, 3, 4 ] );</code>，代码将一个普通的数组，赋值给一个新生成的8位无符号整数的视图数组。视图数组也可以转换回普通数组。<code>var normalArray = Array.apply( [], typedArray );</code></p>
+</li>
+<li><p>视图的操作<br>建立了视图以后，就可以进行各种操作了。这里需要明确的是，视图其实就是普通数组，语法完全没有什么不同，只不过它直接针对内存进行操作，而且每个成员都有确定的数据类型。所以，视图就被叫做“类型化数组”。</p>
 <ul>
-<li>HEAD指向最近一次commit里的所以snapshot</li>
-<li>Index 缓存区域，只有Index区域里的东西才可以被commit</li>
-<li><p>Working Directory 用户操作区域</p>
-<img src="/assets/segment/git1.png">
+<li><p>数组操作<br>普通数组的操作方法和属性，对类型化数组完全适用。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> buffer = <span class="keyword">new</span> <span class="built_in">ArrayBuffer</span>(<span class="number">16</span>);</div><div class="line"><span class="keyword">var</span> int32View = <span class="keyword">new</span> <span class="built_in">Int32Array</span>(buffer);</div><div class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i=<span class="number">0</span>; i&lt;int32View.length; i++) &#123;</div><div class="line">  int32View[i] = i*<span class="number">2</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>上面代码生成一个16字节的ArrayBuffer对象，然后在它的基础上，建立了一个32位整数的视图。由于每个32位整数占据4个字节，所以一共可以写入4个整数，依次为0，2，4，6。如果在这段数据上接着建立一个16位整数的视图，则可以读出完全不一样的结果。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> int16View = <span class="keyword">new</span> <span class="built_in">Int16Array</span>(buffer);</div><div class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i=<span class="number">0</span>; i&lt;int16View.length; i++) &#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">"Entry "</span> + i + <span class="string">": "</span> + int16View[i]);</div><div class="line">&#125;</div><div class="line"><span class="comment">// Entry 0: 0</span></div><div class="line"><span class="comment">// Entry 1: 0</span></div><div class="line"><span class="comment">// Entry 2: 2</span></div><div class="line"><span class="comment">// Entry 3: 0</span></div><div class="line"><span class="comment">// Entry 4: 4</span></div><div class="line"><span class="comment">// Entry 5: 0</span></div><div class="line"><span class="comment">// Entry 6: 6</span></div><div class="line"><span class="comment">// Entry 7: 0</span></div></pre></td></tr></table></figure>
+<p>由于每个16位整数占据2个字节，所以整个ArrayBuffer对象现在分成8段。然后，由于x86体系的计算机都采用小端字节序（little endian），相对重要的字节排在后面的内存地址，相对不重要字节排在前面的内存地址，所以就得到了上面的结果。<br>比如，一个占据四个字节的16进制数0x12345678，决定其大小的最重要的字节是“12”，最不重要的是“78”。小端字节序将最不重要的字节排在前面，储存顺序就是78563412；大端字节序则完全相反，将最重要的字节排在前面，储存顺序就是12345678。目前，所有个人电脑几乎都是小端字节序，所以类型化数组内部也采用小端字节序读写数据，或者更准确的说，按照本机操作系统设定的字节序读写数据。<br>这并不意味大端字节序不重要，事实上，很多网络设备和特定的操作系统采用的是大端字节序。这就带来一个严重的问题：如果一段数据是大端字节序，类型化数组将无法正确解析，因为它只能处理小端字节序！为了解决这个问题，JavaScript引入DataView对象，可以设定字节序，下文会详细介绍。</p>
+<p>下面是另一个例子。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 假定某段buffer包含如下字节 [0x02, 0x01, 0x03, 0x07]</span></div><div class="line"><span class="comment">// 计算机采用小端字节序</span></div><div class="line"><span class="keyword">var</span> uInt16View = <span class="keyword">new</span> <span class="built_in">Uint16Array</span>(buffer);</div><div class="line"><span class="comment">// 比较运算 </span></div><div class="line"><span class="keyword">if</span> (bufView[<span class="number">0</span>]===<span class="number">258</span>) &#123;</div><div class="line">     <span class="built_in">console</span>.log(<span class="string">"ok"</span>);</div><div class="line">&#125;</div><div class="line"><span class="comment">// 赋值运算</span></div><div class="line">uInt16View[<span class="number">0</span>] = <span class="number">255</span>;    <span class="comment">// 字节变为[0xFF, 0x00, 0x03, 0x07]</span></div><div class="line">uInt16View[<span class="number">0</span>] = <span class="number">0xff05</span>; <span class="comment">// 字节变为[0x05, 0xFF, 0x03, 0x07]</span></div><div class="line">uInt16View[<span class="number">1</span>] = <span class="number">0x0210</span>; <span class="comment">// 字节变为[0x05, 0xFF, 0x10, 0x02]</span></div></pre></td></tr></table></figure>
+<p>总之，与普通数组相比，类型化数组的最大优点就是可以直接操作内存，不需要数据类型转换，所以速度快得多。</p>
+</li>
+<li><p>buffer属性<br>类型化数组的buffer属性，返回整段内存区域对应的ArrayBuffer对象。该属性为只读属性。<br>var a = new Float32Array(64);<br>var b = new Uint8Array(a.buffer);<br>上面代码的a对象和b对象，对应同一个ArrayBuffer对象，即同一段内存。</p>
 </li>
 </ul>
 </li>
-</ol>
-<h2 id="初始状态"><a href="#初始状态" class="headerlink" title="初始状态"></a>初始状态</h2><p>当你checkout分支的时候，git做了这么三件事情</p>
-<pre><code>&gt; 将HEAD指向那个分支的最后一次commit
-&gt; 将HEAD指向的commit里所有的文件的snapshot替换掉Index区域里面的内容
-&gt; 将Index区域里面的内容填充到Working Directory里
-</code></pre><p>所以你可以发现，HEAD，Index，Working Directory这个时候里的内容都是一摸一样的。<br><strong> 注意：一般会误解为，Index中的内容是空的，只有git add后才会有东西。实际上不是，Index里一直是有东西的。 </strong>，所以，git里的所有操作就是对这三个区域的状态的操作。</p>
-<h2 id="Changed"><a href="#Changed" class="headerlink" title="Changed"></a>Changed</h2><p>如果你在Working Directory里修改了文件，git会发现Working Directory里面的内容与Index区域里面的内容不一致了。这个时候<code>git status</code>的结果就是：<br><code>Changes not staged for commit</code></p>
-<h2 id="Staged"><a href="#Staged" class="headerlink" title="Staged"></a>Staged</h2><p>一个文件仅仅changed是不能够被commit的，git要求只能提交Index里的东西。所以需要git add，这个命令的意思是，把changed的文件的内容同步到Index区域里。这样Working Directory和Index区域的内容就一致了，这个过程称之为stage，这个时候<code>git status</code>的结果是：<code>Changes to be commited</code></p>
-<h2 id="Commited"><a href="#Commited" class="headerlink" title="Commited"></a>Commited</h2><p>最后，就可以提交了<code>git commit</code>，这样，就把HEAD的状态和Index以及Working Directory就形成了一致了。</p>
-<h2 id="reset"><a href="#reset" class="headerlink" title="reset"></a>reset</h2><p>reset是用来修改提交历史的，想象这种情况，如果你在2天前提交了一个东西，突然发现这个提交是有问题的。这个时候你有两个选择，要么使用<code>git revert</code>（推荐），要么使用<code>git reset</code>。</p>
-<img src="/assets/segment/git2.png">
-<p>上图可以看到git reset是会修改版本历史的，他会丢弃掉一些版本历史。而git revert是根据那个commit逆向生成一个新的commit，版本历史是不会破会的。</p>
-<h1 id="已经push到远程仓库的commit不允许reset"><a href="#已经push到远程仓库的commit不允许reset" class="headerlink" title="已经push到远程仓库的commit不允许reset"></a>已经push到远程仓库的commit不允许reset</h1><p>上面已经讲了，<code>git reset</code>是会丢弃掉commit的。如果commit已经被push到远程仓库上了，也就意味着其它开发人员就可能基于这个commit形成了新的commit，这时你去reset，就会造成其它开发人员的提交历史莫名其妙的丢失，或者其它灾难性的后果。</p>
-<p><strong> 因此，一旦commit已经被push到远程仓库，那么是坚决不允许去reset它的。 </strong></p>
-<h1 id="不带文件参数的reset"><a href="#不带文件参数的reset" class="headerlink" title="不带文件参数的reset"></a>不带文件参数的reset</h1><p>前面章节已经说到Git有三个区域，Git的所有操作实际上是在操作这三个区域的状态（或内容）。<br>git reset配合不同的参数，对这三个区域会产生不同的影响。reset实际上有三个步骤，根据不同的参数可以决定执行哪个步骤(<code>–soft,–mixed,–hard</code>)。</p>
-<pre><code>1. 改变HEAD所指向的commit(--soft)
-2. 执行第一步，将Index区域更新为HEAD所指向的commit里包含的内容(--mixed)
-3. 执行第1,2步，将Working Directory区域更新为HEAD所指向的commit里包含的内容(--hard)
-</code></pre><h1 id="带文件参数的reset"><a href="#带文件参数的reset" class="headerlink" title="带文件参数的reset"></a>带文件参数的reset</h1><p>上面讲到的git reset实际上不带参数的，那带上文件参数呢？</p>
-<ol>
-<li>HEAD不会动</li>
-<li>将那个commit的snapshot里的文件放到Index区域中</li>
-</ol>
-<p><strong> 需要注意的是带文件参数的git reset没有–hard, –soft这两个参数。只有–mixed参数。 </strong></p>
-<h1 id="unstage"><a href="#unstage" class="headerlink" title="unstage"></a>unstage</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git reset file.txt</div><div class="line">git reset --mixed HEAD file.txt</div></pre></td></tr></table></figure>
-<p>上面这两条命令是一样的，都是reset到HEAD上，这个例子的意义在于，unstage file，当你把一个文件stage到Index区域后悔了，那么只需把Index区域里的这个文件恢复到最近一次commit的状态（也就是HEAD），那就相当于unstage。</p>
-<h1 id="恢复到历史版本"><a href="#恢复到历史版本" class="headerlink" title="恢复到历史版本"></a>恢复到历史版本</h1><p>下面这个命令就是将某个文件恢复到历史版本上。<br><code>git reset eb23er file.txt</code><br>这个例子的意思在于，把某个文件恢复到Index区域里，然后直接commit，这样就等于把这个文件恢复到历史版本了，这样依赖你都不需要改动working Directory了。</p>
-<h2 id="checkout"><a href="#checkout" class="headerlink" title="checkout"></a>checkout</h2><p>前面讲到的checkout是会修改HEAD的指向，变更Index区域的内容，修改Working Directory里的内容。<br>这看上去很像reset –hard，但两者有两个重要的差别</p>
-<ol>
-<li>reset会把working directory里面所有的内容都更新掉，checkout不会去修改你在working Directory里修改过的文件。</li>
-<li>reset把branch移动到HEAD指向的地方，checkout则把HEAD移动到另一个分支。</li>
-</ol>
-<p>第二个区别可能有点那以理解，举例来说：假若你有两个分支master和develop，这两个分支指向不一样的commit，我们现在在develop分支上（HEAD指向的地方）</p>
-<p>如果我们<code>git reset master</code>，那么develop就会指向master所指向的那个commit。<br>如果我们<code>git checkout master</code>，那么develop不会动，只有HEAD会移动。HEAD会指向master。看图：</p>
-<img src="/assets/segment/git3.png">
-<h1 id="带文件参数"><a href="#带文件参数" class="headerlink" title="带文件参数"></a>带文件参数</h1><p>当执行git checkout [branch] file，checkout干了这件事情：</p>
-<ol>
-<li>更新了index区域里面的file文件的内容</li>
-<li>更新了working directory里file文件的内容</li>
 </ol>
 
       
@@ -534,7 +525,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Git/" rel="tag"># Git</a>
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+            <a href="/tags/类型化数组/" rel="tag"># 类型化数组</a>
           
         </div>
       
@@ -547,8 +540,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/07/28/CSS3/自制滚动条/" rel="next" title="自制滚动条">
-                <i class="fa fa-chevron-left"></i> 自制滚动条
+              <a href="/2017/08/07/DataBase/数据库安全性/" rel="next" title="数据库安全性">
+                <i class="fa fa-chevron-left"></i> 数据库安全性
               </a>
             
           </div>
@@ -556,10 +549,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/07/30/Vue/非父子组件通信/" rel="prev" title="Vue的非父子组件通信">
-                Vue的非父子组件通信 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -791,7 +780,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Head，Index，Working-Director"><span class="nav-number">1.</span> <span class="nav-text">Head，Index，Working Director</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#初始状态"><span class="nav-number">2.</span> <span class="nav-text">初始状态</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Changed"><span class="nav-number">3.</span> <span class="nav-text">Changed</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Staged"><span class="nav-number">4.</span> <span class="nav-text">Staged</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Commited"><span class="nav-number">5.</span> <span class="nav-text">Commited</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#reset"><span class="nav-number">6.</span> <span class="nav-text">reset</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#已经push到远程仓库的commit不允许reset"><span class="nav-number"></span> <span class="nav-text">已经push到远程仓库的commit不允许reset</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#不带文件参数的reset"><span class="nav-number"></span> <span class="nav-text">不带文件参数的reset</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#带文件参数的reset"><span class="nav-number"></span> <span class="nav-text">带文件参数的reset</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#unstage"><span class="nav-number"></span> <span class="nav-text">unstage</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#恢复到历史版本"><span class="nav-number"></span> <span class="nav-text">恢复到历史版本</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#checkout"><span class="nav-number">1.</span> <span class="nav-text">checkout</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#带文件参数"><span class="nav-number"></span> <span class="nav-text">带文件参数</span></a></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#类型化数组是JavaScript操作二进制数据的一个接口"><span class="nav-number">1.</span> <span class="nav-text">类型化数组是JavaScript操作二进制数据的一个接口</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#视图"><span class="nav-number"></span> <span class="nav-text">视图</span></a></div>
             
 
           </div>
