@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://muleimulei.github.io/"/>
-  <updated>2017-08-07T15:45:38.682Z</updated>
+  <updated>2017-08-10T04:38:17.396Z</updated>
   <id>https://muleimulei.github.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="https://muleimulei.github.io/2017/08/07/JavaScript/%E7%B1%BB%E5%9E%8B%E5%8C%96%E6%95%B0%E7%BB%84/"/>
     <id>https://muleimulei.github.io/2017/08/07/JavaScript/类型化数组/</id>
     <published>2017-08-07T14:41:10.392Z</published>
-    <updated>2017-08-07T15:45:38.682Z</updated>
+    <updated>2017-08-10T04:38:17.396Z</updated>
     
     <content type="html"><![CDATA[<blockquote class="blockquote-center"><p>类型化数组</p>
 </blockquote>
@@ -67,9 +67,44 @@
 </li>
 <li><p>buffer属性<br>类型化数组的buffer属性，返回整段内存区域对应的ArrayBuffer对象。该属性为只读属性。<br>var a = new Float32Array(64);<br>var b = new Uint8Array(a.buffer);<br>上面代码的a对象和b对象，对应同一个ArrayBuffer对象，即同一段内存。</p>
 </li>
+<li>byteLength属性和byteOffset属性<br>byteLength属性返回类型化数组占据的内存长度，单位为字节。byteOffset属性返回类型化数组从底层ArrayBuffer对象的哪个字节开始。这两个属性都是只读属性。<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> b = <span class="keyword">new</span> <span class="built_in">ArrayBuffer</span>(<span class="number">8</span>);</div><div class="line"></div><div class="line"><span class="keyword">var</span> v1 = <span class="keyword">new</span> <span class="built_in">Int32Array</span>(b);</div><div class="line"><span class="keyword">var</span> v2 = <span class="keyword">new</span> <span class="built_in">Uint8Array</span>(b, <span class="number">2</span>);</div><div class="line"><span class="keyword">var</span> v3 = <span class="keyword">new</span> <span class="built_in">Int16Array</span>(b, <span class="number">2</span>, <span class="number">2</span>);</div><div class="line"></div><div class="line">v1.byteLength <span class="comment">// 8</span></div><div class="line">v2.byteLength <span class="comment">// 6</span></div><div class="line">v3.byteLength <span class="comment">// 4</span></div><div class="line"></div><div class="line">v1.byteOffset <span class="comment">// 0</span></div><div class="line">v2.byteOffset <span class="comment">// 2</span></div><div class="line">v3.byteOffset <span class="comment">// 2</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>注意将byteLength属性和length属性区分，前者是字节长度，后者是成员长度。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = <span class="keyword">new</span> <span class="built_in">Int16Array</span>(<span class="number">8</span>);</div><div class="line">a.length <span class="comment">// 8</span></div><div class="line">a.byteLength <span class="comment">// 16</span></div></pre></td></tr></table></figure>
+<ul>
+<li>set方法<br>类型化数组的set方法用于复制数组，也就是将一段内容完全复制到另一段内存。<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = <span class="keyword">new</span> <span class="built_in">Uint8Array</span>(<span class="number">8</span>);</div><div class="line"><span class="keyword">var</span> b = <span class="keyword">new</span> <span class="built_in">Uint8Array</span>(<span class="number">8</span>);</div><div class="line">b.set(a);</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>上面代码复制a数组的内容到b数组，它是整段内存的复制，比一个个拷贝成员的那种复制快得多。set方法还可以接受第二个参数，表示从b对象哪一个成员开始复制a对象。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = <span class="keyword">new</span> <span class="built_in">Uint16Array</span>(<span class="number">8</span>);</div><div class="line"><span class="keyword">var</span> b = <span class="keyword">new</span> <span class="built_in">Uint16Array</span>(<span class="number">10</span>);</div><div class="line">b.set(a,<span class="number">2</span>)</div></pre></td></tr></table></figure>
+<p>上面代码的b数组比a数组多两个成员，所以从b[2]开始复制。</p>
+<ul>
+<li>subarray方法<br>subarray方法是对于类型化数组的一部分，再建立一个新的视图。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = <span class="keyword">new</span> <span class="built_in">Uint16Array</span>(<span class="number">8</span>);</div><div class="line"><span class="keyword">var</span> b = a.subarray(<span class="number">2</span>,<span class="number">3</span>);</div><div class="line">a.byteLength <span class="comment">// 16</span></div><div class="line">b.byteLength</div></pre></td></tr></table></figure>
+<p>subarray方法的第一个参数是起始的成员序号，第二个参数是结束的成员序号（不含该成员），如果省略则包含剩余的全部成员。所以，上面代码的a.subarray(2,3)，意味着b只包含a[2]一个成员，字节长度为2。</p>
+<ul>
+<li>ArrayBuffer与字符串的互相转换<br>ArrayBuffer转为字符串，或者字符串转为ArrayBuffer，有一个前提，即字符串的编码方法是确定的。假定字符串采用UTF-16编码（JavaScript的内部编码方式），可以自己编写转换函数。<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// ArrayBuffer转为字符串，参数为ArrayBuffer对象</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">ab2str</span>(<span class="params">buf</span>) </span>&#123;</div><div class="line">   <span class="keyword">return</span> <span class="built_in">String</span>.fromCharCode.apply(<span class="literal">null</span>, <span class="keyword">new</span> <span class="built_in">Uint16Array</span>(buf));</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 字符串转为ArrayBuffer对象，参数为字符串</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">str2ab</span>(<span class="params">str</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> buf = <span class="keyword">new</span> <span class="built_in">ArrayBuffer</span>(str.length*<span class="number">2</span>); <span class="comment">// 每个字符占用2个字节</span></div><div class="line">    <span class="keyword">var</span> bufView = <span class="keyword">new</span> <span class="built_in">Uint16Array</span>(buf);</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i=<span class="number">0</span>, strLen=str.length; i&lt;strLen; i++) &#123;</div><div class="line">         bufView[i] = str.charCodeAt(i);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> buf;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
 </ul>
 </li>
 </ol>
+<h1 id="DataView"><a href="#DataView" class="headerlink" title="DataView"></a>DataView</h1><p>如果一段数据包括多种类型（比如服务器传来的HTTP数据），这时除了建立ArrayBuffer对象的复合视图以外，还可以通过DataView视图进行操作。<br>DataView视图提供更多操作选项，而且支持设定字节序。本来，在设计目的上，ArrayBuffer对象的各种类型化视图，是用来向网卡、声卡之类的本机设备传送数据，所以使用本机的字节序就可以了；而DataView的设计目的，是用来处理网络设备传来的数据，所以大端字节序或小端字节序是可以自行设定的。<br>DataView本身也是构造函数，接受一个ArrayBuffer对象作为参数，生成视图。<br><code>DataView(ArrayBuffer buffer [, 字节起始位置 [, 长度]]);</code></p>
+<blockquote>
+<p>getInt8：读取1个字节，返回一个8位整数。<br>  getUint8：读取1个字节，返回一个无符号的8位整数。<br>  getInt16：读取2个字节，返回一个16位整数。<br>  getUint16：读取2个字节，返回一个无符号的16位整数。<br>  getInt32：读取4个字节，返回一个32位整数。<br>  getUint32：读取4个字节，返回一个无符号的32位整数。<br>  getFloat32：读取4个字节，返回一个32位浮点数。<br>  getFloat64：读取8个字节，返回一个64位浮点数。</p>
+</blockquote>
+<p>这一系列get方法的参数都是一个字节序号，表示从哪个字节开始读取。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> buffer = <span class="keyword">new</span> <span class="built_in">ArrayBuffer</span>(<span class="number">24</span>);</div><div class="line"><span class="keyword">var</span> dv = <span class="keyword">new</span> <span class="built_in">DataView</span>(buffer);</div><div class="line"></div><div class="line"><span class="comment">// 从第1个字节读取一个8位无符号整数</span></div><div class="line"><span class="keyword">var</span> v1 = dv.getUint8(<span class="number">0</span>);</div><div class="line"></div><div class="line"><span class="comment">// 从第2个字节读取一个16位无符号整数</span></div><div class="line"><span class="keyword">var</span> v2 = dv.getUint16(<span class="number">1</span>); </div><div class="line"></div><div class="line"><span class="comment">// 从第4个字节读取一个16位无符号整数</span></div><div class="line"><span class="keyword">var</span> v3 = dv.getUint16(<span class="number">3</span>);</div></pre></td></tr></table></figure></p>
+<p>上面代码读取了ArrayBuffer对象的前5个字节，其中有一个8位整数和两个十六位整数。<br>如果一次读取两个或两个以上字节，就必须明确数据的存储方式，到底是小端字节序还是大端字节序。默认情况下，DataView的get方法使用大端字节序解读数据，如果需要使用小端字节序解读，必须在get方法的第二个参数指定true。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 小端字节序</span></div><div class="line"><span class="keyword">var</span> v1 = dv.getUint16(<span class="number">1</span>, <span class="literal">true</span>);</div><div class="line"></div><div class="line"><span class="comment">// 大端字节序</span></div><div class="line"><span class="keyword">var</span> v2 = dv.getUint16(<span class="number">3</span>, <span class="literal">false</span>);</div><div class="line"></div><div class="line"><span class="comment">// 大端字节序</span></div><div class="line"><span class="keyword">var</span> v3 = dv.getUint16(<span class="number">3</span>);</div></pre></td></tr></table></figure>
+<p>DataView视图提供以下方法写入内存：</p>
+<blockquote>
+<p>setInt8：写入1个字节的8位整数。<br>setUint8：写入1个字节的8位无符号整数。<br>setInt16：写入2个字节的16位整数。<br>setUint16：写入2个字节的16位无符号整数。<br>setInt32：写入4个字节的32位整数。<br>setUint32：写入4个字节的32位无符号整数。<br>setFloat32：写入4个字节的32位浮点数。<br>setFloat64：写入8个字节的64位浮点数。</p>
+</blockquote>
+<p>这一系列set方法，接受两个参数，第一个参数是字节序号，表示从哪个字节开始写入，第二个参数为写入的数据。对于那些写入两个或两个以上字节的方法，需要指定第三个参数，false或者undefined表示使用大端字节序写入，true表示使用小端字节序写入。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 在第1个字节，以大端字节序写入值为25的32位整数</span></div><div class="line">dv.setInt32(<span class="number">0</span>, <span class="number">25</span>, <span class="literal">false</span>); </div><div class="line"></div><div class="line"><span class="comment">// 在第5个字节，以大端字节序写入值为25的32位整数</span></div><div class="line">dv.setInt32(<span class="number">4</span>, <span class="number">25</span>); </div><div class="line"></div><div class="line"><span class="comment">// 在第9个字节，以小端字节序写入值为2.5的32位浮点数</span></div><div class="line">dv.setFloat32(<span class="number">8</span>, <span class="number">2.5</span>, <span class="literal">true</span>);</div></pre></td></tr></table></figure>
+<p>如果不确定正在使用的计算机的字节序，可以采用下面的判断方式。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> littleEndian = (<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> buffer = <span class="keyword">new</span> <span class="built_in">ArrayBuffer</span>(<span class="number">2</span>);</div><div class="line">  <span class="keyword">new</span> <span class="built_in">DataView</span>(buffer).setInt16(<span class="number">0</span>, <span class="number">256</span>, <span class="literal">true</span>);</div><div class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Int16Array</span>(buffer)[<span class="number">0</span>] === <span class="number">256</span>;</div><div class="line">&#125;)();</div></pre></td></tr></table></figure></p>
+<p>如果返回true，就是小端字节序；如果返回false，就是大端字节序。</p>
 ]]></content>
     
     <summary type="html">
@@ -660,9 +695,9 @@ ON &lt;表名&gt;(&lt;列名&gt; [&lt;次序&gt;] [,&lt;列名&gt; [&lt;次序&g
       <category term="JavaScript" scheme="https://muleimulei.github.io/categories/JavaScript/"/>
     
     
-      <category term="HTML5" scheme="https://muleimulei.github.io/tags/HTML5/"/>
-    
       <category term="JavaScript" scheme="https://muleimulei.github.io/tags/JavaScript/"/>
+    
+      <category term="HTML5" scheme="https://muleimulei.github.io/tags/HTML5/"/>
     
   </entry>
   
