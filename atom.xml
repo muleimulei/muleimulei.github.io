@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://muleimulei.github.io/"/>
-  <updated>2017-08-11T14:39:21.050Z</updated>
+  <updated>2017-08-12T09:47:04.486Z</updated>
   <id>https://muleimulei.github.io/</id>
   
   <author>
@@ -14,6 +14,109 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>STL的map常用操作</title>
+    <link href="https://muleimulei.github.io/2017/08/12/c%E4%B8%8Ec++/STL%E7%9A%84map%E5%87%BD%E6%95%B0/"/>
+    <id>https://muleimulei.github.io/2017/08/12/c与c++/STL的map函数/</id>
+    <published>2017-08-12T09:06:56.447Z</published>
+    <updated>2017-08-12T09:47:04.486Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote class="blockquote-center"><p>STL的map常用操作</p>
+</blockquote>
+<a id="more"></a>
+<ol>
+<li><p>map中的构造函数</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">map</span>(); <span class="comment">// 默认构造函数</span></div><div class="line"></div><div class="line"><span class="built_in">map</span>(<span class="keyword">const</span> <span class="built_in">map</span>&amp; m) <span class="comment">// 拷贝构造函数</span></div><div class="line"></div><div class="line"><span class="built_in">map</span>(iterator begin, iterator end ); <span class="comment">//区间构造函数</span></div><div class="line"></div><div class="line"><span class="built_in">map</span>(iterator begin, iterator end, <span class="keyword">const</span> traits&amp; _compare) <span class="comment">//带比较谓词的构造函数</span></div><div class="line"></div><div class="line"><span class="built_in">map</span>(iterator begin, iterator end, <span class="keyword">const</span> traits&amp; _compare, <span class="keyword">const</span> allocator&amp; all) <span class="comment">//带分配器</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>数据的插入</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;map&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">       <span class="built_in">map</span>&lt;<span class="keyword">int</span>, <span class="built_in">string</span>&gt; mapStudent;</div><div class="line">       mapStudent.insert(pair&lt;<span class="keyword">int</span>, <span class="built_in">string</span>&gt;(<span class="number">1</span>, <span class="string">"student_one"</span>));</div><div class="line">       mapStudent.insert(pair&lt;<span class="keyword">int</span>, <span class="built_in">string</span>&gt;(<span class="number">2</span>, <span class="string">"student_two"</span>));</div><div class="line">       mapStudent.insert(pair&lt;<span class="keyword">int</span>, <span class="built_in">string</span>&gt;(<span class="number">3</span>, <span class="string">"student_three"</span>));</div><div class="line">       <span class="built_in">map</span>&lt;<span class="keyword">int</span>, <span class="built_in">string</span>&gt;::iterator  iter;</div><div class="line">       <span class="keyword">for</span>(iter = mapStudent.begin(); iter != mapStudent.end(); iter++)</div><div class="line">        &#123;</div><div class="line">            <span class="built_in">cout</span>&lt;&lt;iter-&gt;first&lt;&lt;”   ”&lt;&lt;iter-&gt;second&lt;&lt;end;</div><div class="line">        &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>第二种插入value_type数据<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;map&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">       Map&lt;<span class="keyword">int</span>, <span class="built_in">string</span>&gt; mapStudent;</div><div class="line">       mapStudent.insert(<span class="built_in">map</span>&lt;<span class="keyword">int</span>, <span class="built_in">string</span>&gt;::value_type (<span class="number">1</span>, <span class="string">"student_one"</span>));</div><div class="line">       mapStudent.insert(<span class="built_in">map</span>&lt;<span class="keyword">int</span>, <span class="built_in">string</span>&gt;::value_type (<span class="number">2</span>, <span class="string">"student_two"</span>));</div><div class="line">       mapStudent.insert(<span class="built_in">map</span>&lt;<span class="keyword">int</span>, <span class="built_in">string</span>&gt;::value_type (<span class="number">3</span>, <span class="string">"student_three"</span>));</div><div class="line">       <span class="built_in">map</span>&lt;<span class="keyword">int</span>, <span class="built_in">string</span>&gt;::iterator  iter;</div><div class="line">       <span class="keyword">for</span>(iter = mapStudent.begin(); iter != mapStudent.end(); iter++)</div><div class="line">        &#123;</div><div class="line">            <span class="built_in">cout</span>&lt;&lt;iter-&gt;first&lt;&lt;”   ”&lt;&lt;iter-&gt;second&lt;&lt;end;</div><div class="line">        &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>第三种：用数组方式插入数据，下面举例说明<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;map&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">       Map&lt;<span class="keyword">int</span>, <span class="built_in">string</span>&gt; mapStudent;</div><div class="line">       mapStudent[<span class="number">1</span>] =  “student_one”;</div><div class="line">       mapStudent[<span class="number">2</span>] =  “student_two”;</div><div class="line">       mapStudent[<span class="number">3</span>] =  “student_three”;</div><div class="line">       <span class="built_in">map</span>&lt;<span class="keyword">int</span>, <span class="built_in">string</span>&gt;::iterator  iter;</div><div class="line">       <span class="keyword">for</span>(iter = mapStudent.begin(); iter != mapStudent.end(); iter++)</div><div class="line">        &#123;</div><div class="line">            <span class="built_in">cout</span>&lt;&lt;iter-&gt;first&lt;&lt;”   ”&lt;&lt;iter-&gt;second&lt;&lt;end;</div><div class="line">        &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>我们可以用pair来获得是否插入成功：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;map&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line">Using <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="function">Int <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">       Map&lt;<span class="keyword">int</span>, <span class="built_in">string</span>&gt; mapStudent;</div><div class="line">Pair&lt;<span class="built_in">map</span>&lt;<span class="keyword">int</span>, <span class="built_in">string</span>&gt;::iterator, <span class="keyword">bool</span>&gt; Insert_Pair;</div><div class="line">       Insert_Pair＝mapStudent.insert(pair&lt;<span class="keyword">int</span>, <span class="built_in">string</span>&gt;(<span class="number">1</span>, “student_one”));</div><div class="line">       If(Insert_Pair.second == <span class="literal">true</span>)</div><div class="line">       &#123;</div><div class="line">              Cout&lt;&lt;”Insert Successfully”&lt;&lt;<span class="built_in">endl</span>;</div><div class="line">       &#125;</div><div class="line">       Else</div><div class="line">       &#123;</div><div class="line">              Cout&lt;&lt;”Insert Failure”&lt;&lt;<span class="built_in">endl</span>;</div><div class="line">       &#125;</div><div class="line">       Insert_Pair＝mapStudent.insert(pair&lt;<span class="keyword">int</span>, <span class="built_in">string</span>&gt;(<span class="number">1</span>, “student_two”));</div><div class="line">       If(Insert_Pair.second == <span class="literal">true</span>)</div><div class="line">       &#123;</div><div class="line">              Cout&lt;&lt;”Insert Successfully”&lt;&lt;<span class="built_in">endl</span>;</div><div class="line">       &#125;</div><div class="line">       Else</div><div class="line">       &#123;</div><div class="line">              Cout&lt;&lt;”Insert Failure”&lt;&lt;<span class="built_in">endl</span>;</div><div class="line">       &#125;</div><div class="line">       <span class="built_in">map</span>&lt;<span class="keyword">int</span>, <span class="built_in">string</span>&gt;::iterator  iter;</div><div class="line">       <span class="keyword">for</span>(iter = mapStudent.begin(); iter != mapStudent.end(); iter++)</div><div class="line">&#123;</div><div class="line">       Cout&lt;&lt;iter-&gt;first&lt;&lt;”   ”&lt;&lt;iter-&gt;second&lt;&lt;end;</div><div class="line">&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<ol>
+<li><p>数据的查找（包括判定这个关键字是否在map中出现）<br>在这里我们将体会，map在数据插入时保证有序的好处。<br>要判定一个数据（关键字）是否在map中出现的方法比较多，这里标题虽然是数据的查找，在这里将穿插着大量的<br>map基本用法。<br>这里给出两种数据查找方法<br>第一种：用count函数来判定关键字是否出现，其缺点是无法定位数据出现位置,由于map的特性，一对一的映射关系<br>，就决定了count函数的返回值只有两个，要么是0，要么是1，出现的情况，当然是返回1了<br>第二种：用find函数来定位数据出现位置，它返回的一个迭代器，当数据出现时，它返回数据所在位置的迭代器，<br>如果map中没有要查找的数据，它返回的迭代器等于end函数返回的迭代器，程序说明</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;map&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">       <span class="built_in">map</span>&lt;<span class="keyword">int</span>, <span class="built_in">string</span>&gt; mapStudent;</div><div class="line">       mapStudent.insert(pair&lt;<span class="keyword">int</span>, <span class="built_in">string</span>&gt;(<span class="number">1</span>, “student_one”));</div><div class="line">       mapStudent.insert(pair&lt;<span class="keyword">int</span>, <span class="built_in">string</span>&gt;(<span class="number">2</span>, “student_two”));</div><div class="line">       mapStudent.insert(pair&lt;<span class="keyword">int</span>, <span class="built_in">string</span>&gt;(<span class="number">3</span>, “student_three”));</div><div class="line">       <span class="built_in">map</span>&lt;<span class="keyword">int</span>, <span class="built_in">string</span>&gt;::iterator iter;</div><div class="line">       iter = mapStudent.find(<span class="number">1</span>);</div><div class="line">        <span class="keyword">if</span>(iter != mapStudent.end())</div><div class="line">        &#123;</div><div class="line">               Cout&lt;&lt;”Find, the value is ”&lt;&lt;iter-&gt;second&lt;&lt;<span class="built_in">endl</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">else</span></div><div class="line">        &#123;</div><div class="line">               Cout&lt;&lt;”Do not Find”&lt;&lt;<span class="built_in">endl</span>;</div><div class="line">        &#125;</div><div class="line">        &#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>数据的删除</p>
+</li>
+</ol>
+<p>这里要用到erase函数，它有三个重载了的函数，下面在例子中详细说明它们的用法<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;map&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line">Using <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="function">Int <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">       Map&lt;<span class="keyword">int</span>, <span class="built_in">string</span>&gt; mapStudent;</div><div class="line">       mapStudent.insert(pair&lt;<span class="keyword">int</span>, <span class="built_in">string</span>&gt;(<span class="number">1</span>, “student_one”));</div><div class="line">       mapStudent.insert(pair&lt;<span class="keyword">int</span>, <span class="built_in">string</span>&gt;(<span class="number">2</span>, “student_two”));</div><div class="line">       mapStudent.insert(pair&lt;<span class="keyword">int</span>, <span class="built_in">string</span>&gt;(<span class="number">3</span>, “student_three”));</div><div class="line"><span class="comment">//如果你要演示输出效果，请选择以下的一种，你看到的效果会比较好</span></div><div class="line">       <span class="comment">//如果要删除1,用迭代器删除</span></div><div class="line">       <span class="built_in">map</span>&lt;<span class="keyword">int</span>, <span class="built_in">string</span>&gt;::iterator iter;</div><div class="line">       iter = mapStudent.find(<span class="number">1</span>);</div><div class="line">       mapStudent.erase(iter);</div><div class="line">       <span class="comment">//如果要删除1，用关键字删除</span></div><div class="line">       Int n = mapStudent.erase(<span class="number">1</span>);<span class="comment">//如果删除了会返回1，否则返回0</span></div><div class="line">       <span class="comment">//用迭代器，成片的删除</span></div><div class="line">       <span class="comment">//一下代码把整个map清空</span></div><div class="line">       mapStudent.earse(mapStudent.begin(), mapStudent.end());</div><div class="line">       <span class="comment">//成片删除要注意的是，也是STL的特性，删除区间是一个前闭后开的集合</span></div><div class="line">       <span class="comment">//自个加上遍历代码，打印输出吧</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<ol>
+<li>排序<br>这里要讲的是一点比较高深的用法了,排序问题，STL中默认是采用小于号来排序的，以上代码在排序上是不存在任<br>何问题的，因为上面的关键字是int型，它本身支持小于号运算，在一些特殊情况，比如关键字是一个结构体，涉及<br>到排序就会出现问题，因为它没有小于号操作，insert等函数在编译的时候过不去。<br>第一种：小于号重载，程序举例<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;map&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></div><div class="line">Using <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line">Typedef <span class="keyword">struct</span> tagStudentInfo</div><div class="line">&#123;</div><div class="line">       Int      nID;</div><div class="line">       String   strName;</div><div class="line">        Bool <span class="keyword">operator</span> &lt; (tagStudentInfo <span class="keyword">const</span>&amp; _A) <span class="keyword">const</span></div><div class="line">       &#123;</div><div class="line">              <span class="comment">//这个函数指定排序策略，按nID排序，如果nID相等的话，按strName排序</span></div><div class="line">              If(nID &lt; _A.nID)  <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">              If(nID == _A.nID) <span class="keyword">return</span> strName.compare(_A.strName) &lt; <span class="number">0</span>;</div><div class="line">              Return <span class="literal">false</span>;</div><div class="line">       &#125;</div><div class="line">&#125;StudentInfo, *PStudentInfo;  <span class="comment">//学生信息</span></div><div class="line"><span class="function">Int <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">int</span> nSize;</div><div class="line">       <span class="comment">//用学生信息映射分数</span></div><div class="line">       <span class="built_in">map</span>&lt;StudentInfo, <span class="keyword">int</span>&gt;mapStudent;</div><div class="line">    <span class="built_in">map</span>&lt;StudentInfo, <span class="keyword">int</span>&gt;::iterator iter;</div><div class="line">       StudentInfo studentInfo;</div><div class="line">       studentInfo.nID = <span class="number">1</span>;</div><div class="line">       studentInfo.strName = “student_one”;</div><div class="line">       mapStudent.insert(pair&lt;StudentInfo, <span class="keyword">int</span>&gt;(studentInfo, <span class="number">90</span>));</div><div class="line">       studentInfo.nID = <span class="number">2</span>;</div><div class="line">       studentInfo.strName = “student_two”;</div><div class="line">mapStudent.insert(pair&lt;StudentInfo, <span class="keyword">int</span>&gt;(studentInfo, <span class="number">80</span>));</div><div class="line"><span class="keyword">for</span> (iter=mapStudent.begin(); iter!=mapStudent.end(); iter++)</div><div class="line">    <span class="built_in">cout</span>&lt;&lt;iter-&gt;first.nID&lt;&lt;<span class="built_in">endl</span>&lt;&lt;iter-&gt;first.strName&lt;&lt;<span class="built_in">endl</span>&lt;&lt;iter-&gt;second&lt;&lt;<span class="built_in">endl</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></li>
+</ol>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote class=&quot;blockquote-center&quot;&gt;&lt;p&gt;STL的map常用操作&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="C++" scheme="https://muleimulei.github.io/categories/C/"/>
+    
+    
+      <category term="STL的map常用操作" scheme="https://muleimulei.github.io/tags/STL%E7%9A%84map%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>STL的vector初始化</title>
+    <link href="https://muleimulei.github.io/2017/08/12/c%E4%B8%8Ec++/STL%E7%9A%84vector%E5%88%9D%E5%A7%8B%E5%8C%96/"/>
+    <id>https://muleimulei.github.io/2017/08/12/c与c++/STL的vector初始化/</id>
+    <published>2017-08-12T07:47:20.239Z</published>
+    <updated>2017-08-12T08:58:32.365Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote class="blockquote-center"><p>STL的vector初始化</p>
+</blockquote>
+<a id="more"></a>
+<p>vector是连续内存容器，所以对于插入与删除的时间复杂度是很高的，因为删除或者插入的时候，需要元素的移动，即元素复制拷贝。</p>
+<h1 id="使用原则："><a href="#使用原则：" class="headerlink" title="使用原则："></a>使用原则：</h1><ol>
+<li>尽量使用vector代替C风格的数组或者CArray；</li>
+<li>尽量使用算法代替手工写的循环；</li>
+<li>尽量使用vector本身的函数代替其它泛型算法；</li>
+</ol>
+<h1 id="初始化vector"><a href="#初始化vector" class="headerlink" title="初始化vector"></a>初始化vector</h1><p>填充vector，如果我们想使用原始数组的内容填充vector，例如我们有数组<code>int v[10] = {0,1,1,10,0,0,0,0,3,5}</code></p>
+<ul>
+<li><p>初始化方式1：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; v2(<span class="number">10</span>); <span class="comment">//  初始化size为10可以避免数组动态增长的时候不断的分配内存</span></div><div class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i&lt;<span class="number">10</span>; i++) &#123;</div><div class="line">    v2.push_back(v2[i]);    <span class="comment">//  增加一个元素</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>初始化方式2：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; v3(&amp;v[<span class="number">0</span>], &amp;v[<span class="number">9</span>]);   <span class="comment">//  原始数组的元素指针可以作为迭代器来使用</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>初始化方式3</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; v4;</div><div class="line">v4.resize(<span class="number">10</span>);</div><div class="line">v4.insert(v4.begin(), &amp;v[<span class="number">0</span>], &amp;v[<span class="number">9</span>]);</div></pre></td></tr></table></figure>
+</li>
+<li><p>初始化方式4</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; v5(<span class="number">10</span>);</div><div class="line">copy(&amp;v[<span class="number">0</span>], &amp;v[<span class="number">9</span>], v5.begin());</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<blockquote>
+<p>原始数组的元素指针可以作为迭代器来使用,</p>
+</blockquote>
+<ul>
+<li>原则：尽量使用resize来减少不必要的内存分配次数。</li>
+<li>原则：尽量使用empty而不是size()==0来判断容器是否为空</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">int</span> a[] = &#123;<span class="number">23</span>,<span class="number">23</span>,<span class="number">12</span>,<span class="number">23</span>,<span class="number">546</span>,<span class="number">76</span>&#125;;</div><div class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; v;</div><div class="line">v.resize(<span class="number">6</span>);</div><div class="line">copy(&amp;a[<span class="number">0</span>], &amp;a[<span class="number">6</span>], v.begin());  <span class="comment">//  将a数组复制到v</span></div><div class="line">v.insert(v.begin(), <span class="number">4</span>);</div><div class="line"></div><div class="line"><span class="comment">//  找到所有的23</span></div><div class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::iterator pos = find(v.begin(), v.end(), <span class="number">23</span>);</div><div class="line"><span class="keyword">while</span>(pos!=v.end())&#123;</div><div class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="string">"**"</span>&lt;&lt;*pos&lt;&lt;<span class="built_in">endl</span>;</div><div class="line">    pos = find(pos+<span class="number">1</span>, v.end(), <span class="number">23</span>);</div><div class="line">&#125;</div><div class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt; v.size();i++)&#123;</div><div class="line">    <span class="built_in">cout</span>&lt;&lt; v[i]&lt;&lt;<span class="string">" "</span>;</div><div class="line">&#125;</div><div class="line"><span class="keyword">return</span> <span class="number">0</span>;</div></pre></td></tr></table></figure>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote class=&quot;blockquote-center&quot;&gt;&lt;p&gt;STL的vector初始化&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="C++" scheme="https://muleimulei.github.io/categories/C/"/>
+    
+    
+      <category term="STL的vector初始化" scheme="https://muleimulei.github.io/tags/STL%E7%9A%84vector%E5%88%9D%E5%A7%8B%E5%8C%96/"/>
+    
+  </entry>
   
   <entry>
     <title>Vuex讲解</title>
@@ -790,9 +893,9 @@ ON &lt;表名&gt;(&lt;列名&gt; [&lt;次序&gt;] [,&lt;列名&gt; [&lt;次序&g
       <category term="JavaScript" scheme="https://muleimulei.github.io/categories/JavaScript/"/>
     
     
-      <category term="HTML5" scheme="https://muleimulei.github.io/tags/HTML5/"/>
-    
       <category term="JavaScript" scheme="https://muleimulei.github.io/tags/JavaScript/"/>
+    
+      <category term="HTML5" scheme="https://muleimulei.github.io/tags/HTML5/"/>
     
   </entry>
   
@@ -1379,292 +1482,6 @@ elem.dispatchEvent(event);
     
     
       <category term="数据库语言分类" scheme="https://muleimulei.github.io/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AF%AD%E8%A8%80%E5%88%86%E7%B1%BB/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Proc/C++开发</title>
-    <link href="https://muleimulei.github.io/2017/07/11/DataBase/Proc/"/>
-    <id>https://muleimulei.github.io/2017/07/11/DataBase/Proc/</id>
-    <published>2017-07-11T12:29:25.054Z</published>
-    <updated>2017-07-11T15:14:51.486Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote class="blockquote-center"><p>Proc/C++开发</p>
-</blockquote>
-<a id="more"></a>
-<h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><ul>
-<li>SQL<blockquote>
-<p>结构化查询语言，简称SQL，是一种数据库查询和程序设计语言，用于存取数据以及查询，更新和管理关系数据库系统；同时，也是数据库脚本文件的扩展名。</p>
-</blockquote>
-</li>
-<li>Pro*C/C++<blockquote>
-<p>在C/C++程序中嵌入SQL语句操作数据库，得到的应用程序叫做Proc*C/C++程序。</p>
-</blockquote>
-</li>
-<li>嵌入式SQL<blockquote>
-<p>能在其它编程语言中混合使用的SQL语句，叫做嵌入式SQL语句！但是各个厂商对嵌入式SQL的具体实现不一样，但是具体的混合语法不一样，各厂商有自己的预编译工具。</p>
-</blockquote>
-</li>
-<li>宿主语言<blockquote>
-<p>嵌入式SQL的载体是宿主语言，比如这里说的就是C/C++。</p>
-</blockquote>
-</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>宿主语言</th>
-<th style="text-align:right">Pro程序</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>C/C++</td>
-<td style="text-align:right">Pro*C/C++</td>
-</tr>
-<tr>
-<td>FORTRAN</td>
-<td style="text-align:right">Pro*FORTRAN</td>
-</tr>
-<tr>
-<td>PASCAL</td>
-<td style="text-align:right">Pro*PASCAL</td>
-</tr>
-<tr>
-<td>COBOL</td>
-<td style="text-align:right">Pro*COBOL</td>
-</tr>
-<tr>
-<td>PL/I</td>
-<td style="text-align:right">Pro*PL/I</td>
-</tr>
-<tr>
-<td>Ada</td>
-<td style="text-align:right">Pro*Ada</td>
-</tr>
-</tbody>
-</table>
-<h2 id="程序结构"><a href="#程序结构" class="headerlink" title="程序结构"></a>程序结构</h2><blockquote>
-<ol>
-<li>Include 头文件(c/c++ and Pro*c/c++)</li>
-<li>定义变量</li>
-<li>定义函数</li>
-<li>main<br>4.1 连接数据库 ：connect<br>4.2 SQL操作语句：EXEC SQL …..<br>4.3 exception handle<br>4.4 断开连接<br>4.5 EXEC SQL COMMIT / ROLLBACK WORK release</li>
-</ol>
-</blockquote>
-<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"sqlca.h"</span></span></div><div class="line"></div><div class="line">EXEC SQL BEGIN DECLARE SECTION</div><div class="line">    <span class="keyword">char</span> username[<span class="number">32</span>];</div><div class="line">    <span class="keyword">char</span> passwd[<span class="number">32</span>];</div><div class="line">    <span class="keyword">char</span> dname[<span class="number">25</span>];</div><div class="line">EXEC SQL END DECLARE SECTION</div><div class="line"></div><div class="line">EXEC SQL INCLUDE sqlca;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">sqlerror</span><span class="params">()</span></span>;</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line">    <span class="function">EXEC SQL WHENEVER SQLERROR DO <span class="title">sqlerror</span><span class="params">()</span></span>;</div><div class="line">    <span class="built_in">strcpy</span>(username, <span class="string">"scott"</span>);</div><div class="line">    <span class="built_in">strcpy</span>(passwd, <span class="string">"XXXXX"</span>);</div><div class="line">    EXEC SQL CONNECT :username IDENTIFIED BY :passwd;</div><div class="line">    EXEC SQL select dname from dept where id=<span class="number">10</span>;</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"dname: %s\n"</span>,dname);</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">sqlerror</span><span class="params">()</span></span>&#123;</div><div class="line">    EXEC SQL WHENEVER SQLERROR CONTINUE;</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"\n oracle error detected\n"</span>);</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"%.70s\n"</span>,sqlca.sqlerrm.sqlerrmc);</div><div class="line">    EXEC SQL ROLLBACK WORK RELEASE;</div><div class="line">    <span class="built_in">exit</span>(<span class="number">1</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="开发流程"><a href="#开发流程" class="headerlink" title="开发流程"></a>开发流程</h2><ol>
-<li><p>一般应用程序c开发运行标准流程</p>
-<img src="/assets/segment/5.png">
-</li>
-<li><p>一般应用程序c++开发运行标准流程</p>
-<img src="/assets/segment/6.png">
-</li>
-</ol>
-<blockquote>
-<p>Pro*C/C++ 应用程序的开发多了一个预编译的过程：pc转换成c或cpp文件</p>
-</blockquote>
-<h2 id="关于预编译工具（Proc）"><a href="#关于预编译工具（Proc）" class="headerlink" title="关于预编译工具（Proc）"></a>关于预编译工具（Proc）</h2><ol>
-<li>位置：$ORACLE_HOME/bin 目录下拥有数据库访问权限的用户可以直接在终端使用，不需要绝对路径。</li>
-<li>配置文件：$ORACLE_HOME/precomp/admin/pcscfg.cfg 头文件，库文件路径。</li>
-<li>基本命令格式：<code>proc iname=filename oname=outname [OptionName1=value1]…[OptionNameN=valueN]</code></li>
-<li>基本选项：</li>
-</ol>
-<table>
-<thead>
-<tr>
-<th>选项</th>
-<th style="text-align:right">说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>INAME</td>
-<td style="text-align:right">path and filename (name of input file) 1.pc</td>
-</tr>
-<tr>
-<td>ONAME</td>
-<td style="text-align:right">path and filename (name of output file) 1.c</td>
-</tr>
-<tr>
-<td>INCLUDE</td>
-<td style="text-align:right">path (头文件所在路径) -INCLUDE 路径名 或 INCLUDE= (路径名1，路径名2)</td>
-</tr>
-<tr>
-<td>PARSE</td>
-<td style="text-align:right">FULL 、PARTIA、NONE (DEFAULT FULL for C，Others for C++)</td>
-</tr>
-<tr>
-<td>CODE</td>
-<td style="text-align:right">ANSI_C、CPP (default ansi_c)</td>
-</tr>
-<tr>
-<td>USERID</td>
-<td style="text-align:right">username/password</td>
-</tr>
-</tbody>
-</table>
-<blockquote>
-<p>默认预编译得到的是C文件，使用下列选项得到C++文件<br>parse=none     告诉proc编译器，按照C++规范解析 dm02_hello.pc<br>code = cpp     告诉proc编译器，按照C++规范生成文件<br>proc dm02_hello.pc parse=none code=cpp oname=dm02_hello.cpp</p>
-</blockquote>
-<h2 id="相关操作"><a href="#相关操作" class="headerlink" title="相关操作"></a>相关操作</h2><ol>
-<li><p>连接数据库</p>
-<ul>
-<li>方法一<br><code>EXEC SQL CONNECT :usr_pwd</code></li>
-<li>方法二<br><code>EXEC SQL CONNECT :username IDENTIFIED BY :passwd</code></li>
-<li>方法三<br>通过db_name连接没有限定名字的数据库–可以修改数据库的名字–at选项<br><code>EXEC SQL CONNECT :username IDENTIFIED BY :passwd AT :db_name USING :db_string</code></li>
-</ul>
-</li>
-<li><p>代码里写死了用户名和密码</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"sqlca.h"</span></span></div><div class="line"><span class="comment">//定义宿主变量（SQL变量）</span></div><div class="line"><span class="comment">//C语言可以直接使用</span></div><div class="line"><span class="comment">//嵌入式SQL语句里面使用的话需要加上EXEC SQL前缀</span></div><div class="line">EXEC SQL BEGIN DECLARE SECTION;</div><div class="line"><span class="keyword">char</span> * serverid = <span class="string">"scott/lzj123529"</span>;</div><div class="line">EXEC SQL END DECLARE SECTION;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">int</span> ret = <span class="number">0</span>;</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"HelloWorld\n"</span>);</div><div class="line">    EXEC SQL connect:serverid;</div><div class="line">    <span class="keyword">if</span>(sqlca.sqlcode != <span class="number">0</span>)</div><div class="line">    &#123;</div><div class="line">        ret = sqlca.sqlcode ;</div><div class="line">        <span class="built_in">printf</span>(<span class="string">"ret :%d\n"</span>,ret);</div><div class="line">        <span class="keyword">return</span> ret;</div><div class="line">    &#125;</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"connect OK!\n"</span>);</div><div class="line">    EXEC SQL COMMIT RELEASE;<span class="comment">//提交事务并且断开</span></div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-<li><p>交互式的连接数据库</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">EXEC SQL BEGIN DECLARE SECTION;</div><div class="line"><span class="keyword">char</span> user[<span class="number">32</span>];</div><div class="line"><span class="keyword">char</span> passwd[<span class="number">32</span>];</div><div class="line"><span class="keyword">char</span> sid[<span class="number">32</span>];</div><div class="line">EXEC SQL END DECLARE SECTION;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">int</span> ret = <span class="number">0</span>;</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"user:"</span>);</div><div class="line">    <span class="built_in">scanf</span>(<span class="string">"%s"</span>,user);</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"passwd:"</span>);</div><div class="line">    <span class="built_in">scanf</span>(<span class="string">"%s"</span>,passwd);</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"sid:"</span>);</div><div class="line">    <span class="built_in">scanf</span>(<span class="string">"%s"</span>,sid);</div><div class="line">    EXEC SQL CONNECT :user IDENTIFIED BY :passwd USING :sid;</div><div class="line">    <span class="keyword">if</span>(sqlca.sqlcode != <span class="number">0</span>)</div><div class="line">    &#123;</div><div class="line">        ret = sqlca.sqlcode ;</div><div class="line">        <span class="built_in">printf</span>(<span class="string">"ret :%d\n"</span>,ret);</div><div class="line">        <span class="keyword">return</span> ret;</div><div class="line">    &#125;</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"connect OK!\n"</span>);</div><div class="line">    EXEC SQL COMMIT RELEASE;<span class="comment">//提交事务并且断开</span></div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-<li><p>通过宿主变量指定连接名字</p>
-</li>
-</ol>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//演示通过程序连接多个数据库</span></div><div class="line">EXEC SQL BEGIN DECLARE SECTION;</div><div class="line">    <span class="keyword">char</span>        *usrname = <span class="string">"scott"</span>;</div><div class="line">    <span class="keyword">char</span>        *passwd = <span class="string">"tiger"</span>;</div><div class="line">    <span class="keyword">char</span>        *link1 = <span class="string">"link1"</span>;  <span class="comment">//通过宿主变量指定连接名字</span></div><div class="line">    <span class="keyword">char</span>        *serverid = <span class="string">"orcl"</span>;</div><div class="line"></div><div class="line">    <span class="keyword">char</span>        *usrname2 = <span class="string">"scott"</span>;</div><div class="line">    <span class="keyword">char</span>        *passwd2 = <span class="string">"tiger"</span>;</div><div class="line">    <span class="keyword">char</span>        *link2 = <span class="string">"link2"</span>;</div><div class="line">    <span class="keyword">char</span>        *serverid2 = <span class="string">"orcl"</span>;</div><div class="line">EXEC SQL END DECLARE SECTION;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">int</span> ret = <span class="number">0</span>;    </div><div class="line">    <span class="comment">//第一个用户连接数据库</span></div><div class="line">    EXEC SQL CONNECT :usrname IDENTIFIED BY :passwd AT :link1  USING :serverid  ;</div><div class="line">    <span class="keyword">if</span> (sqlca.sqlcode != <span class="number">0</span>)</div><div class="line">    &#123;</div><div class="line">        ret = sqlca.sqlcode;</div><div class="line">        <span class="built_in">printf</span>(<span class="string">"第一个用户连接数据库 失败sqlca.sqlcode: err:%d \n"</span>, sqlca.sqlcode);</div><div class="line">        <span class="keyword">return</span> ret;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">else</span></div><div class="line">    &#123;</div><div class="line">        <span class="built_in">printf</span>(<span class="string">"第一个用户连接数据库 成功connect ok...\n"</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="comment">//第二个用户连接数据库</span></div><div class="line">    EXEC SQL CONNECT:usrname2 IDENTIFIED BY:passwd2 AT:link2  USING:serverid2  ;</div><div class="line">    <span class="keyword">if</span> (sqlca.sqlcode != <span class="number">0</span>)</div><div class="line">    &#123;</div><div class="line">        ret = sqlca.sqlcode;</div><div class="line">        <span class="built_in">printf</span>(<span class="string">"第二个用户连接数据库 失败sqlca.sqlcode: err:%d \n"</span>, sqlca.sqlcode);</div><div class="line">        <span class="keyword">return</span> ret;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">else</span></div><div class="line">    &#123;</div><div class="line">        <span class="built_in">printf</span>(<span class="string">"第二个用户连接数据库 成功connect ok...\n"</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="comment">//断开连接</span></div><div class="line">    EXEC SQL AT:link1 COMMIT RELEASE;</div><div class="line">    <span class="keyword">if</span> (sqlca.sqlcode != <span class="number">0</span>)</div><div class="line">    &#123;</div><div class="line">        ret = sqlca.sqlcode;</div><div class="line">        <span class="built_in">printf</span>(<span class="string">"第1个用户断开数据库 失败sqlca.sqlcode: err:%d \n"</span>, sqlca.sqlcode);</div><div class="line">        <span class="keyword">return</span> ret;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">else</span></div><div class="line">    &#123;</div><div class="line">        <span class="built_in">printf</span>(<span class="string">"第1个用户断开数据库 成功 RELEASE ok...\n"</span>);</div><div class="line">    &#125;</div><div class="line">    EXEC SQL AT:link2 COMMIT RELEASE;</div><div class="line">    <span class="keyword">if</span> (sqlca.sqlcode != <span class="number">0</span>)</div><div class="line">    &#123;</div><div class="line">        ret = sqlca.sqlcode;</div><div class="line">        <span class="built_in">printf</span>(<span class="string">"第二个用户断开数据库 失败sqlca.sqlcode: err:%d \n"</span>, sqlca.sqlcode);</div><div class="line">        <span class="keyword">return</span> ret;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">else</span></div><div class="line">    &#123;</div><div class="line">        <span class="built_in">printf</span>(<span class="string">"第二个用户断开数据库 成功 RELEASE ok...\n"</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> ret ;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ol>
-<li>宿主变量</li>
-</ol>
-<p>C的数据类型不同于Oracle的数据类型，在数据传递时有一个数据类型转换过程。<br>在Proc*C/C++程序中，是被C和SQL语句使用的变量，位于</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">EXEC SQL BEGIN DECLARE SECTION</div><div class="line">.............</div><div class="line">EXEC SQL END DECLARE SECTION</div></pre></td></tr></table></figure>
-<p>之内。</p>
-<p>主要类型：</p>
-<table>
-<thead>
-<tr>
-<th>程序中形式</th>
-<th style="text-align:right">说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>char</td>
-<td style="text-align:right">单字符</td>
-</tr>
-<tr>
-<td>char[N]</td>
-<td style="text-align:right">N个定长字符数组</td>
-</tr>
-<tr>
-<td>short</td>
-<td style="text-align:right">短整型</td>
-</tr>
-<tr>
-<td>long</td>
-<td style="text-align:right">长整型</td>
-</tr>
-<tr>
-<td>float</td>
-<td style="text-align:right">单精度浮点数</td>
-</tr>
-<tr>
-<td>double</td>
-<td style="text-align:right">双精度浮点数</td>
-</tr>
-<tr>
-<td>VARCHAR[N]</td>
-<td style="text-align:right">变长字符串</td>
-</tr>
-</tbody>
-</table>
-<p><strong>使用场景</strong></p>
-<blockquote>
-<ul>
-<li>输入：将应用程序的数据传递到数据库中</li>
-</ul>
-</blockquote>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">int</span> salary,emp_number;</div><div class="line"><span class="built_in">cin</span>&gt;&gt;salary;</div><div class="line"><span class="built_in">cin</span>&gt;&gt;emp_number;</div><div class="line">EXEC SQL update emp <span class="built_in">set</span> sal= :salary where empno= :emp_number;</div></pre></td></tr></table></figure>
-<blockquote>
-<ul>
-<li>输出：将数据库的数据传递到应用程序中。</li>
-</ul>
-</blockquote>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">float</span> v_salary;</div><div class="line"><span class="keyword">char</span> v_job;</div><div class="line">EXEC SQL select sal,job INTO :v_salary, :v_job from emp where empno=<span class="number">90</span>;</div><div class="line"><span class="built_in">cout</span>&lt;&lt; v_salary&lt;&lt;v_job;</div></pre></td></tr></table></figure>
-<blockquote>
-<ul>
-<li>申明语法与普通C变量一致，但在CODE=CPP或MODE=ANSI时变量必须放在申明区。</li>
-<li>可使用Pointer作为宿主变量，使用前分配空间。</li>
-<li>在数据定义语言（DDL）语句中不能用宿主变量。错误例子：</li>
-</ul>
-</blockquote>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">char</span> table_name[<span class="number">30</span>];</div><div class="line"><span class="built_in">cin</span>&gt;&gt; table_name;</div><div class="line">EXEC SQL DROP TABLE :table_name</div></pre></td></tr></table></figure>
-<ol>
-<li>关于数据的增删改查</li>
-</ol>
-<p>预先定义了<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">EXEC SQL BEGIN DECLARE SECTION;</div><div class="line"><span class="keyword">int</span> deptid = <span class="number">50</span>;</div><div class="line"><span class="keyword">char</span> dname[<span class="number">32</span>] = <span class="string">"20name"</span>;</div><div class="line"><span class="keyword">char</span> loc[<span class="number">32</span>] = <span class="string">"20loc"</span>;</div><div class="line">EXEC SQL END DECLARE SECTION;</div></pre></td></tr></table></figure></p>
-<blockquote>
-<ul>
-<li>插入数据</li>
-</ul>
-</blockquote>
-<pre><code>EXEC SQL insert into dept(DEPTNO,DNAME,LOC) values(:deptid,:dname,:loc);
-</code></pre><blockquote>
-<ul>
-<li>删除数据</li>
-</ul>
-</blockquote>
-<pre><code>EXEC SQL delete from dept where deptno=:deptid;
-</code></pre><blockquote>
-<ul>
-<li>修改数据</li>
-</ul>
-</blockquote>
-<pre><code>EXEC SQL update dept set loc = :loc where deptno=:deptid;
-</code></pre><p>综合示例：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"sqlca.h"</span></span></div><div class="line"><span class="comment">//定义宿主变量（SQL变量）</span></div><div class="line"><span class="comment">//C语言可以直接使用</span></div><div class="line"><span class="comment">//嵌入式SQL语句里面使用的话需要加上EXEC SQL前缀</span></div><div class="line">EXEC SQL BEGIN DECLARE SECTION;</div><div class="line"><span class="comment">//char * serverid = "scott/lzj123529";</span></div><div class="line"><span class="keyword">char</span> user[<span class="number">32</span>];</div><div class="line"><span class="keyword">char</span> passwd[<span class="number">32</span>];</div><div class="line"><span class="keyword">char</span> sid[<span class="number">32</span>];</div><div class="line"><span class="keyword">int</span> deptid = <span class="number">50</span>;</div><div class="line"><span class="keyword">char</span> dname[<span class="number">32</span>] = <span class="string">"20name"</span>;</div><div class="line"><span class="keyword">char</span> loc[<span class="number">32</span>] = <span class="string">"20loc"</span>;</div><div class="line">EXEC SQL END DECLARE SECTION;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">int</span> ret = <span class="number">0</span>;</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"HelloWorld\n"</span>);</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"\nuser:"</span>);</div><div class="line">    <span class="built_in">scanf</span>(<span class="string">"%s"</span>,user);</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"\npasswd:"</span>);</div><div class="line">    <span class="built_in">scanf</span>(<span class="string">"%s"</span>,passwd);</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"sid:"</span>);</div><div class="line">    <span class="built_in">scanf</span>(<span class="string">"%s"</span>,sid);</div><div class="line">    EXEC SQL CONNECT:user IDENTIFIED BY:passwd USING:sid;</div><div class="line">    <span class="keyword">if</span>(sqlca.sqlcode != <span class="number">0</span>)</div><div class="line">    &#123;</div><div class="line">        ret = sqlca.sqlcode ;</div><div class="line">        <span class="built_in">printf</span>(<span class="string">"ret :%d\n"</span>,ret);</div><div class="line">        <span class="keyword">return</span> ret;</div><div class="line">    &#125;</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"connect OK!\n"</span>);</div><div class="line">    <span class="function">EXEC SQL insert into <span class="title">dept</span><span class="params">(DEPTNO,DNAME,LOC)</span> <span class="title">values</span><span class="params">(:deptid,:dname,:loc)</span></span>;</div><div class="line">    EXEC SQL COMMIT;<span class="comment">//提交事务不退出</span></div><div class="line">    sleep(<span class="number">10</span>);</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"delete ....\n"</span>);</div><div class="line">    <span class="comment">//EXEC SQL delete from dept where deptno=:deptid;</span></div><div class="line">    <span class="built_in">strcpy</span>(loc,<span class="string">"中国"</span>);</div><div class="line">    EXEC SQL update dept <span class="built_in">set</span> loc = :loc where deptno=:deptid;</div><div class="line">    EXEC SQL COMMIT RELEASE;<span class="comment">//提交事务并且断开</span></div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;blockquote class=&quot;blockquote-center&quot;&gt;&lt;p&gt;Proc/C++开发&lt;/p&gt;
-&lt;/blockquote&gt;
-    
-    </summary>
-    
-      <category term="DataBase" scheme="https://muleimulei.github.io/categories/DataBase/"/>
-    
-    
-      <category term="c++操作数据库Oracle数据库" scheme="https://muleimulei.github.io/tags/c-%E6%93%8D%E4%BD%9C%E6%95%B0%E6%8D%AE%E5%BA%93Oracle%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>数据库范式</title>
-    <link href="https://muleimulei.github.io/2017/07/01/DataBase/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%8C%83%E5%BC%8F/"/>
-    <id>https://muleimulei.github.io/2017/07/01/DataBase/数据库范式/</id>
-    <published>2017-07-01T15:04:33.099Z</published>
-    <updated>2017-07-01T15:36:49.972Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote class="blockquote-center"><p>数据库范式</p>
-</blockquote>
-<a id="more"></a>
-<blockquote>
-<p>关系数据库中的关系是要满足一定要求的，满足不同程度要求的为不同<strong>范式</strong>。它是英国人E.F.Codd在上个世纪70年代提出关系数据库模型后总结出来的。目前有迹可寻的共用8种范式，依次是<strong>1NF，2NF，3NF，BCNF，4NF，5NF，DKNF，6NF</strong>。通常所用到的只是前三个范式，即：第一范式，第二范式，第三范式。</p>
-</blockquote>
-<p>一个低一级范式的关系模式通过模式分解可以转化为若干个高一级范式的关系模式的集合，这种过程叫做<strong>规范化</strong>。</p>
-<ol>
-<li>第一范式(1NF)：强调的是列的原子性，即列不能够再分成其它几列。</li>
-<li>第二范式(2NF)：首先是1NF，另外包含两部分内容，一是表必须有一个主键，二是没有包含在主键中的列必须完全依赖于主键，而不能依赖于主键的一部分。</li>
-<li>第三范式(3NF)：首先是2NF，另外非主键列必须直接依赖于主键，不能存在传递依赖。即不能存在：非主键列A依赖于非主键列B，非主键列B依赖于主键的情况。</li>
-</ol>
-<blockquote>
-<p>第二范式和第三范式的概念很容易混淆，区分它们的关键点在于，2NF:非主键列是否完全依赖于主键，还是依赖于主键的一部分；3NF:非主键列是直接依赖于主键，还是传递依赖于主键。</p>
-</blockquote>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;blockquote class=&quot;blockquote-center&quot;&gt;&lt;p&gt;数据库范式&lt;/p&gt;
-&lt;/blockquote&gt;
-    
-    </summary>
-    
-      <category term="DataBase" scheme="https://muleimulei.github.io/categories/DataBase/"/>
-    
-    
-      <category term="数据库范式" scheme="https://muleimulei.github.io/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%8C%83%E5%BC%8F/"/>
     
   </entry>
   
