@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://muleimulei.github.io/"/>
-  <updated>2017-08-12T09:47:04.486Z</updated>
+  <updated>2017-08-13T03:31:39.846Z</updated>
   <id>https://muleimulei.github.io/</id>
   
   <author>
@@ -14,6 +14,48 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>CSS实现单行，多行文本溢出显示省略号</title>
+    <link href="https://muleimulei.github.io/2017/08/13/CSS3/css%E6%8E%A7%E5%88%B6%E6%96%87%E5%AD%97/"/>
+    <id>https://muleimulei.github.io/2017/08/13/CSS3/css控制文字/</id>
+    <published>2017-08-13T02:52:15.745Z</published>
+    <updated>2017-08-13T03:31:39.846Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote class="blockquote-center"><p>CSS实现单行，多行文本溢出显示省略号</p>
+</blockquote>
+<a id="more"></a>
+<p>实现单行文本的溢出显示省略号使用<code>text-overflow: ellipsis</code>，当然还需要加宽度width属性来兼容部分浏览。</p>
+<p>实现方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">overflow: hidden;</div><div class="line">text-overflow: ellipsis;</div><div class="line">white-space: nowrap;</div></pre></td></tr></table></figure>
+<p>但是这个属性只支持单行文本的溢出显示省略号。多行文本溢出显示省略号方法如下：<br>实现方法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">display: -webkit-box;</div><div class="line">-webkit-box-orient: vertical;</div><div class="line">-webkit-line-clamp: 3;</div><div class="line">overflow: hidden;</div></pre></td></tr></table></figure></p>
+<p>适用范围：<br>因为使用了webkit的css扩展属性，该方法适用于webkit浏览器及移动端；</p>
+<p>注：</p>
+<ol>
+<li>-webkit-line-clamp:  用来限制在一个块元素显示的文本的行数。为了实现该效果，他需要组合其它的webkit属性。常用结合属性;</li>
+<li>display: -webkit-box:    必须结合的属性，将对象作为弹性伸缩盒子模型</li>
+<li>-webkit-box-orient: 必须结合的属性，设置或检索伸缩盒对象的子元素的排列方式</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">p&#123;position: relative; line-height: 20px; max-height: 40px;overflow: hidden;&#125;</div><div class="line">p::after&#123;content: &quot;...&quot;; position: absolute; bottom: 0; right: 0; padding-left: 40px;</div><div class="line">background: -webkit-linear-gradient(left, transparent, #fff 55%);</div><div class="line">background: -o-linear-gradient(right, transparent, #fff 55%);</div><div class="line">background: -moz-linear-gradient(right, transparent, #fff 55%);</div><div class="line">background: linear-gradient(to right, transparent, #fff 55%);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>注：</p>
+<ol>
+<li>将height设置为line-height的整数倍，防止超出的文字露出</li>
+<li>给p::after添加渐变背景可避免文字只显示一半。</li>
+<li>由于ie6-7不显示content内容，所以要添加标签兼容ie6-7（如：<span></span>）；兼容ie8需要将<code>::after</code>替换成<code>:afetr</code>。</li>
+</ol>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote class=&quot;blockquote-center&quot;&gt;&lt;p&gt;CSS实现单行，多行文本溢出显示省略号&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="CSS3" scheme="https://muleimulei.github.io/categories/CSS3/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>STL的map常用操作</title>
@@ -893,9 +935,9 @@ ON &lt;表名&gt;(&lt;列名&gt; [&lt;次序&gt;] [,&lt;列名&gt; [&lt;次序&g
       <category term="JavaScript" scheme="https://muleimulei.github.io/categories/JavaScript/"/>
     
     
-      <category term="JavaScript" scheme="https://muleimulei.github.io/tags/JavaScript/"/>
-    
       <category term="HTML5" scheme="https://muleimulei.github.io/tags/HTML5/"/>
+    
+      <category term="JavaScript" scheme="https://muleimulei.github.io/tags/JavaScript/"/>
     
   </entry>
   
@@ -1406,82 +1448,6 @@ elem.dispatchEvent(event);
     
     
       <category term="c++拷贝函数解析" scheme="https://muleimulei.github.io/tags/c-%E6%8B%B7%E8%B4%9D%E5%87%BD%E6%95%B0%E8%A7%A3%E6%9E%90/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>数据库语言分类</title>
-    <link href="https://muleimulei.github.io/2017/07/11/DataBase/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AF%AD%E8%A8%80%E5%88%86%E7%B1%BB/"/>
-    <id>https://muleimulei.github.io/2017/07/11/DataBase/数据库语言分类/</id>
-    <published>2017-07-11T15:16:12.527Z</published>
-    <updated>2017-08-03T07:08:35.640Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote class="blockquote-center"><p>关系数据语言分类</p>
-</blockquote>
-<a id="more"></a>
-<p>早期的关系操作能力通常用代数方式或逻辑方式来表示，分别称为 <strong> 关系代数 </strong> 和 <strong> 关系演算 </strong>。<br>关系代数用对关系的运算来表达查询要求，关系演算则用谓词来表达查询要求。关系演算又可按谓词变元的基本对象是元组变量还是域变量分为 <strong> 元组关系演算 </strong> 和 <strong> 域关系演算 </strong>。一个关系数据语言能够表示关系代数可以表示的查询，称为具有完备的表达能力，简称关系完备性。已经证明关系代数，元组关系演算和域关系演算三种语言在表达能力上是等价的，都具有完备的表达能力。<br>另外，还有一种介于关系代数和关系演算之间的<strong>结构化查询语言</strong>，sql不仅具有丰富的查询功能，而且具有数据定义和数据控制功能，是<strong>集查询，数据定义语言，数据操纵语言和数据控制语言于一体的关系数据语言</strong>，他充分体现了关系数据语言的特点和优点，是关系数据库的标准语言。</p>
-<p>因此，关系数据语言可以分为三类：</p>
-<p>关系数据语言：</p>
-<pre><code>1. 关系代数语言（例如：ISBL）
-2. 关系演算语言
-    1. 元组关系演算语言（例如ALPHA，QUEL）
-    2. 域关系演算语言（例如QBE）
-3. 具有关系代数和关系演算双重特点的语言（例如SQL）
-</code></pre><p>SQL语言共分为四大类：数据查询语言DQL，数据操纵语言DML，数据定义语言DDL，数据控制语言DCL。</p>
-<h2 id="数据查询语言DQL"><a href="#数据查询语言DQL" class="headerlink" title="数据查询语言DQL"></a>数据查询语言DQL</h2><p>数据查询语言DQL基本结构是由SELECT子句，FROM子句，WHERE</p>
-<p>子句组成的查询块：</p>
-<p>SELECT &lt;字段名表&gt;</p>
-<p>FROM &lt;表或视图名&gt;</p>
-<p>WHERE &lt;查询条件&gt;</p>
-<h2 id="数据操纵语言DML"><a href="#数据操纵语言DML" class="headerlink" title="数据操纵语言DML"></a>数据操纵语言DML</h2><p>数据操纵语言DML主要有三种形式：</p>
-<p>1) 插入：INSERT</p>
-<p>2) 更新：UPDATE</p>
-<p>3) 删除：DELETE</p>
-<h2 id="数据定义语言DDL"><a href="#数据定义语言DDL" class="headerlink" title="数据定义语言DDL"></a>数据定义语言DDL</h2><p>数据定义语言DDL用来创建数据库中的各种对象—–表、视图、</p>
-<p>索引、同义词、聚簇等如：</p>
-<p>CREATE TABLE/VIEW/INDEX/SYN/CLUSTER</p>
-<p>表 视图 索引 同义词 簇</p>
-<p>DDL操作是隐性提交的！不能rollback</p>
-<ol>
-<li>数据控制语言DCL</li>
-</ol>
-<p>数据控制语言DCL用来授予或回收访问数据库的某种特权，并控制</p>
-<p>数据库操纵事务发生的时间及效果，对数据库实行监视等。如：</p>
-<p>1) GRANT：授权。</p>
-<p>2) ROLLBACK [WORK] TO [SAVEPOINT]：回退到某一点。</p>
-<p>回滚—ROLLBACK</p>
-<p>回滚命令使数据库状态回到上次最后提交的状态。其格式为：</p>
-<p>SQL&gt;ROLLBACK;</p>
-<p>3) COMMIT [WORK]：提交。</p>
-<p>在数据库的插入、删除和修改操作时，只有当事务在提交到数据</p>
-<p>库时才算完成。在事务提交前，只有操作数据库的这个人才能有权看</p>
-<p>到所做的事情，别人只有在最后提交完成后才可以看到。</p>
-<p>提交数据有三种类型：显式提交、隐式提交及自动提交。下面分</p>
-<p>别说明这三种类型。</p>
-<p>(1) 显式提交</p>
-<p>用COMMIT命令直接完成的提交为显式提交。其格式为：</p>
-<p>SQL&gt;COMMIT；</p>
-<p>(2) 隐式提交</p>
-<p>用SQL命令间接完成的提交为隐式提交。这些命令是：</p>
-<p>ALTER，AUDIT，COMMENT，CONNECT，CREATE，DISCONNECT，DROP，</p>
-<p>EXIT，GRANT，NOAUDIT，QUIT，REVOKE，RENAME。</p>
-<p>(3) 自动提交</p>
-<p>若把AUTOCOMMIT设置为ON，则在插入、修改、删除语句执行后，</p>
-<p>系统将自动进行提交，这就是自动提交。其格式为：</p>
-<p>SQL&gt;SET AUTOCOMMIT ON；</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;blockquote class=&quot;blockquote-center&quot;&gt;&lt;p&gt;关系数据语言分类&lt;/p&gt;
-&lt;/blockquote&gt;
-    
-    </summary>
-    
-      <category term="DataBase" scheme="https://muleimulei.github.io/categories/DataBase/"/>
-    
-    
-      <category term="数据库语言分类" scheme="https://muleimulei.github.io/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AF%AD%E8%A8%80%E5%88%86%E7%B1%BB/"/>
     
   </entry>
   
