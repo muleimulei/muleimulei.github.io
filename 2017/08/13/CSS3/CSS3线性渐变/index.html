@@ -119,7 +119,7 @@
 <meta property="og:url" content="https://muleimulei.github.io/2017/08/13/CSS3/CSS3线性渐变/index.html">
 <meta property="og:site_name" content="风的影子">
 <meta property="og:description" content="CSS3线性渐变">
-<meta property="og:updated_time" content="2017-08-13T16:05:57.665Z">
+<meta property="og:updated_time" content="2017-08-14T08:21:06.914Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CSS3线性渐变">
 <meta name="twitter:description" content="CSS3线性渐变">
@@ -482,8 +482,31 @@
 <ul>
 <li>如果第一个颜色节点没有指定位置，设置它的位置为0%，如果最后一个节点没有指定位置，设置其为100%</li>
 <li>如果一个颜色节点的位置小于了在它之前的任意一个颜色节点的位置，设置其位置等于它之前所有的颜色节点位置的最大的位置</li>
-<li>如果存在一些颜色节点没有指定位置，那么，为那些相邻的没有指定颜色节点，设置它们的位置使他们平均占据空间。</li>
+<li>如果存在一些颜色节点没有指定位置，那么，为那些相邻的没有指定颜色节点，设置它们的位置使他们平均占据空间。<ul>
+<li>如果多个颜色节点有相同的位置，它们产生一个从一个颜色到另一个颜色的急剧的转换。从效果来看，就是从一种颜色突然改变到另一种颜色。</li>
 </ul>
+</li>
+</ul>
+<p>例子：</p>
+<p><div style="margin: 0 auto;width: 200px; height:200px; background-image: linear-gradient(red, white 20%, blue)"></div><br>    css代码：<br>    <code><br>        background-image: linear-gradient(red, white 20%, blue)<br>        相当于<br>        background-image: linear-gradient(red 0%, white 20%, blue 100%)<br>    </code></p>
+<p><div style="margin: 0 auto;width: 200px; height:200px; background-image: linear-gradient(red 40%, white, black, blue)"></div><br>    css代码：<br>    <code><br>        background-image: linear-gradient(red 40%, white, black, blue)<br>        相当于<br>        background-image: linear-gradient(red 40%, white 60%, black 80%, blue 100%)<br>    </code></p>
+<p><div style="margin: 0 auto;width: 200px; height:200px; background-image: linear-gradient(red -50%, white, blue)"></div><br>    css代码：<br>    <code><br>        background-image: linear-gradient(red -50%, white, blue)<br>        相当于<br>        background-image: linear-gradient(red -50%, white 25%, blue 100%)<br>    </code></p>
+<p><div style="margin: 0 auto;width: 200px; height:200px; background-image: linear-gradient(red 80px, white 0px, black, blue 100px)"></div><br>    css代码：<br>    <code><br>        background-image: linear-gradient(red 80px, white 0px, black, blue 100px)<br>        相当于<br>        background-image: linear-gradient(red 80px, white 80px, black 90px, blue 100px)<br>    </code></p>
+<h2 id="条纹背景"><a href="#条纹背景" class="headerlink" title="条纹背景"></a>条纹背景</h2><p>在讲解颜色节点时，我们提到“如果多个颜色节点有相同的位置，它们产生一个从一种颜色到另一种颜色的急剧的转换。从效果来看，就是从一种颜色突然改变到另一种颜色。”根据这个定义，我们只需要将多个颜色节点设置到同一个位置，就可以轻易的得到条纹背景效果。</p>
+<h1 id="水平条纹背景"><a href="#水平条纹背景" class="headerlink" title="水平条纹背景"></a>水平条纹背景</h1><p>将两种颜色的颜色节点位置设置成一样就可以产生条纹背景，如下：</p>
+<p><div style="margin: 0 auto;width: 200px; height:200px; background-image: linear-gradient(#cd6600 50%, #0067cd 50%)"></div><br>    css代码：<br>    <code><br>        background-image: linear-gradient(#cd6600 50%, #0067cd 50%)<br>    </code><br>利用背景的重复机制，我们可以创造出更多的条纹</p>
+<p><div style="margin: 0 auto;width: 200px; height:200px; background-image: linear-gradient(#cd6600 50%, #0067cd 50%);background-size: 100% 20%"></div><br>    css代码：<br>    <code><br>        background-image: linear-gradient(#cd6600 50%, #0067cd 50%);<br>        background-size: 100% 20%;<br>    </code><br>这样我们就把整个背景划分为了10个条纹，但每个条纹的高度并不一定要一样，只要改变比例就可以做到：</p>
+<p><div style="margin: 0 auto;width: 200px; height:200px; background-image: linear-gradient(#cd6600 80%, #0067cd 80%);background-size: 100% 20%"></div><br>    css代码：<br>    <code><br>        background-image: linear-gradient(#cd6600 80%, #0067cd 80%);<br>        background-size: 100% 20%;<br>    </code></p>
+<p><div style="margin: 0 auto;width: 200px; height:200px; background-image: linear-gradient(#cd6600 33.3%, #0067cd 0, #0067cd 66.7%, #00cd66 0);background-size: 100% 20%"></div><br>    css代码：<br>    <code><br>        background-image: linear-gradient(#cd6600 33.3%, #0067cd 0, #0067cd 66.7%, #00cd66 0);<br>        background-size: 100% 20%;<br>    </code></p>
+<p>或者创建分割线效果：</p>
+<p><div style="margin: 0 auto;width: 200px; height:200px; background-image: linear-gradient(rgba(0, 0, 0, .5) 1px , #fff 1px);background-size: 100% 3px"></div><br>    css代码：<br>    <code><br>        background-image: linear-gradient(rgba(0, 0, 0, .5) 1px , #fff 1px);<br>        background-size: 100% 3px;<br>    </code></p>
+<h1 id="垂直条纹背景"><a href="#垂直条纹背景" class="headerlink" title="垂直条纹背景"></a>垂直条纹背景</h1><p>垂直条纹背景类似，只是需要转化一下宽和高的设置方式</p>
+<p><div style="margin: 0 auto;width: 200px; height:200px; background-image: linear-gradient(to right, #cd6600 50%, #0067cd 0);background-size: 20% 100%"></div><br>    css代码：<br>    <code><br>        background-image: linear-gradient(to right, #cd6600 50%, #0067cd 0);<br>        background-size: 20% 100%;<br>    </code></p>
+<p>对角条纹背景</p>
+<p><div style="margin: 0 auto;width: 200px; height:200px; background-image: repeating-linear-gradient(60deg, #cd6600, #cd6600 10%, #0067cd 0, #0067cd 20%);"></div><br>    css代码：<br>    <code><br>        background-image: repeating-linear-gradient(60deg, #cd6600, #0067cd 10%, #0067cd 0, #0067cd 20%);<br>    </code></p>
+<p>可以指定多种颜色:</p>
+<p><div style="margin: 0 auto;width: 200px; height:200px; background-image: repeating-linear-gradient(60deg, #cd6600, #cd6600 10%, #0067cd 0, #0067cd 0, #0067cd 20%, #00cd66 0, #00cd66 30%);"></div><br>    css代码：<br>    <code><br>        background-image: repeating-linear-gradient(60deg, #cd6600, #cd6600 10%, #0067cd 0, #0067cd 0, #0067cd 20%, #00cd66 0, #00cd66 30%);<br>    </code></p>
+<p><div style="margin: 0 auto;width: 200px; height:200px; background-image: repeating-linear-gradient(45deg, rgba(0, 103, 205, .5), rgba(0, 103, 205, .5) 10%, rgba(0, 103, 205, .3) 0, rgba(0, 103, 205, .3) 20%);"></div><br>    css代码：<br>    <code><br>        background-image: repeating-linear-gradient(60deg, #cd6600, #cd6600 10%, #0067cd 0, #0067cd 0, #0067cd 20%, #00cd66 0, #00cd66 30%);<br>    </code></p>
 
       
     </div>
@@ -760,7 +783,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#线性渐变"><span class="nav-number">1.</span> <span class="nav-text">线性渐变</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#轴线"><span class="nav-number"></span> <span class="nav-text">轴线</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#线性渐变的例子"><span class="nav-number"></span> <span class="nav-text">线性渐变的例子</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#重复线性渐变"><span class="nav-number">1.</span> <span class="nav-text">重复线性渐变</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#重复线性渐变的例子"><span class="nav-number"></span> <span class="nav-text">重复线性渐变的例子</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#颜色节点"><span class="nav-number"></span> <span class="nav-text">颜色节点</span></a></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#线性渐变"><span class="nav-number">1.</span> <span class="nav-text">线性渐变</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#轴线"><span class="nav-number"></span> <span class="nav-text">轴线</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#线性渐变的例子"><span class="nav-number"></span> <span class="nav-text">线性渐变的例子</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#重复线性渐变"><span class="nav-number">1.</span> <span class="nav-text">重复线性渐变</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#重复线性渐变的例子"><span class="nav-number"></span> <span class="nav-text">重复线性渐变的例子</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#颜色节点"><span class="nav-number"></span> <span class="nav-text">颜色节点</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#条纹背景"><span class="nav-number">1.</span> <span class="nav-text">条纹背景</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#水平条纹背景"><span class="nav-number"></span> <span class="nav-text">水平条纹背景</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#垂直条纹背景"><span class="nav-number"></span> <span class="nav-text">垂直条纹背景</span></a></div>
             
 
           </div>
