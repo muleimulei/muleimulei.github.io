@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://muleimulei.github.io/"/>
-  <updated>2017-08-14T08:21:06.914Z</updated>
+  <updated>2017-08-15T02:48:20.828Z</updated>
   <id>https://muleimulei.github.io/</id>
   
   <author>
@@ -14,6 +14,82 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>什么是机器学习</title>
+    <link href="https://muleimulei.github.io/2017/08/15/machinelearnng/%E4%BB%80%E4%B9%88%E6%98%AF%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    <id>https://muleimulei.github.io/2017/08/15/machinelearnng/什么是机器学习/</id>
+    <published>2017-08-15T00:26:42.328Z</published>
+    <updated>2017-08-15T02:48:20.828Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote class="blockquote-center"><p>什么是机器学习</p>
+</blockquote>
+<a id="more"></a>
+<h2 id="什么是机器学习"><a href="#什么是机器学习" class="headerlink" title="什么是机器学习"></a>什么是机器学习</h2><p>利用计算机从历史数据中找出规律，并把这些规律用到对未来不确定场景的决策</p>
+<p>基础知识：</p>
+<ol>
+<li>概率论</li>
+<li>数理统计</li>
+</ol>
+<h2 id="机器学习的原动力"><a href="#机器学习的原动力" class="headerlink" title="机器学习的原动力"></a>机器学习的原动力</h2><ol>
+<li>从历史数据中找出规律，把这些规律用到对未来自动做出决定</li>
+<li>用数据代替expert</li>
+<li>经济驱动，数据变现</li>
+</ol>
+<h2 id="机器学习的典型应用"><a href="#机器学习的典型应用" class="headerlink" title="机器学习的典型应用"></a>机器学习的典型应用</h2><p>购物篮分析</p>
+<ul>
+<li>关联规则<br>用户细分精准营销</li>
+<li>聚类<br>信用卡欺诈</li>
+<li>决策树<br>互联网广告</li>
+<li>ctr预估<br>推荐系统</li>
+<li>协同过滤<br>自然语言处理</li>
+<li>情感分析</li>
+<li>实体识别</li>
+</ul>
+<p>更多应用</p>
+<ul>
+<li>语音识别</li>
+<li>智慧机器人</li>
+<li>个性化医疗</li>
+<li>私人虚拟助理</li>
+<li>情感分析</li>
+<li>手势控制</li>
+<li>人脸识别</li>
+<li>视频内容自动识别</li>
+<li>自动驾驶</li>
+<li>机器实时翻译</li>
+</ul>
+<p>机器学习算法分类</p>
+<p>算法分类1：</p>
+<ul>
+<li>有监督学习：分类算法，回归算法</li>
+<li>无监督学习：聚类</li>
+<li>半监督学习：强化学习</li>
+</ul>
+<p>算法分类2：</p>
+<ul>
+<li>分类与回归</li>
+<li>聚类</li>
+<li>标注</li>
+</ul>
+<p>算法分类：</p>
+<ul>
+<li>生成模型：属于哪一类的概率</li>
+<li>判别模型：属于哪一类</li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote class=&quot;blockquote-center&quot;&gt;&lt;p&gt;什么是机器学习&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="machinelearning" scheme="https://muleimulei.github.io/categories/machinelearning/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>CSS3线性渐变</title>
@@ -1015,9 +1091,9 @@ ON &lt;表名&gt;(&lt;列名&gt; [&lt;次序&gt;] [,&lt;列名&gt; [&lt;次序&g
       <category term="JavaScript" scheme="https://muleimulei.github.io/categories/JavaScript/"/>
     
     
-      <category term="HTML5" scheme="https://muleimulei.github.io/tags/HTML5/"/>
-    
       <category term="JavaScript" scheme="https://muleimulei.github.io/tags/JavaScript/"/>
+    
+      <category term="HTML5" scheme="https://muleimulei.github.io/tags/HTML5/"/>
     
   </entry>
   
@@ -1361,118 +1437,6 @@ ON &lt;表名&gt;(&lt;列名&gt; [&lt;次序&gt;] [,&lt;列名&gt; [&lt;次序&g
     <summary type="html">
     
       &lt;blockquote class=&quot;blockquote-center&quot;&gt;&lt;p&gt;javaScript获取css样式&lt;/p&gt;
-&lt;/blockquote&gt;
-    
-    </summary>
-    
-      <category term="JavaScript" scheme="https://muleimulei.github.io/categories/JavaScript/"/>
-    
-    
-      <category term="JavaScript" scheme="https://muleimulei.github.io/tags/JavaScript/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>javascript事件解读</title>
-    <link href="https://muleimulei.github.io/2017/07/16/JavaScript/javaScript%E4%BA%8B%E4%BB%B6%E8%A7%A3%E8%AF%BB/"/>
-    <id>https://muleimulei.github.io/2017/07/16/JavaScript/javaScript事件解读/</id>
-    <published>2017-07-16T13:24:42.982Z</published>
-    <updated>2017-07-17T09:18:24.989Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote class="blockquote-center"><p>javascript事件解读</p>
-</blockquote>
-<a id="more"></a>
-<p>与浏览器进行交互的时候浏览器会触发各种事件。这样，我们就可以编写javascript，通过监听某一个事件，来实现某些功能扩展。例如监听load事件，显示欢迎信息，</p>
-<h2 id="基础事件操作"><a href="#基础事件操作" class="headerlink" title="基础事件操作"></a>基础事件操作</h2><ol>
-<li><p>监听事件<br> 浏览器会根据某些操作触发对应事件，如果我们需要针对某些事件进行处理，则需要监听这个事件。监听事件主要有以下几种方法：</p>
-<ul>
-<li><p><strong>HTML内联属性</strong><br>  HTML元素里面直接填写事件有关属性，属性值为javascript代码，即可在触发该事件的时候，执行属性值的内容。<br>  例如：<code>&lt;button onclick=&quot;alert(&#39;click&#39;)&quot;&gt;&lt;/button&gt;</code>,onclick属性表示触发click，属性值的内容会在单击该HTML节点时执行。显而易见，使用这种方法，javascript代码与HTML代码耦合在了一起，不便于维护与开发。所以除非在必须使用的情况下（例如统计连接点击数据）下，尽量避免使用这种方法。</p>
-</li>
-<li><p><strong>DOM属性绑定</strong><br>  也可以直接设置DOM属性来指定某个事件对应的处理函数，这个方法比较简单：<code>element.onclick = function(){alert(&#39;click&#39;);}</code>，上面代码就是监听element节点的click事件。他比较简单易懂，而且有较好的兼容性。但是也有缺陷，因为直接赋值给对应属性，如果你在后面代码中再次为element绑定一个回调函数，会覆盖掉之前回调函数的内容。<br>  虽然也可以用一些方法实现多个绑定，但还是推荐下面的标准事件监听函数。</p>
-</li>
-<li><p><strong>使用事件监听函数</strong><br>  标准的事件监听函数如下： <code>element.addEventListener(&lt;event-name&gt;, &lt;callback&gt;, &lt;use-capture&gt;)</code>。表示在element这个对象上面添加一个事件监听器，当监听到有<event-name>事件发生的时候，调用<callback>这个回调函数。至于<use-capture>这个参数，表示该事件监听是在“捕获”阶段中监听（设置为true）还是在“冒泡”阶段中监听（设置为false）。关于捕获与冒泡，会在下面讲解。<br>  用标准事件监听函数改写上面的例子：<code>var btn = document.querySelector(&#39;button);btn.addEventListener(&#39;click&#39;,function(){alert(&#39;click&#39;);},false);</code>。</use-capture></callback></event-name></p>
-</li>
-</ul>
-</li>
-<li><p>移除事件监听<br> 当我们为某个元素绑定了一个事件，每次触发这个事件的时候，都会执行事件绑定的回调函数。如果我们想解除绑定，需要使用removeEventListener方法：<code>element.removeEventListener(&lt;event-name&gt;,&lt;callback&gt;,&lt;use-capture&gt;)</code>,需要注意的是，绑定事件时的回调函数不能是匿名函数，必须是一个声明的函数，因为解除事件绑定时需要传递这个回调函数的引用，才可以断开绑定。例如：<code>var fun = function(){};element.addEventListener(&#39;click&#39;,fun,false);    element.removeEventListener(&#39;click&#39;,fun,false);</code>。</p>
-</li>
-<li><p>事件触发过程</p>
-<img src="/assets/segment/7.jpg">
- <iframe src="/assets/event.html" width="600" height="550" frameborder="0" allowfullscreen></iframe>
-<ul>
-<li><strong>捕获阶段</strong><br>  当我们在DOM树的某个节点发生了一些操作(例如单击，鼠标移动上去)，就会有一个事件发射过去。这个事件从window发出，不断经过下级节点直到目标节点。在到达目标节点之前的过程，就是捕获阶段。所有经过的节点，都会触发这个事件。捕获阶段的任务就是建立这个事件传递路线，以便后面冒泡阶段顺着这条路线返回Window。监听某个在捕获阶段触发的事件，需要在事件监听函数传递第三个参数true。<code>element.addEventListener(&lt;event-name&gt;, &lt;callback&gt;,true)</code>，但一般我们使用false，会在后面说明。</li>
-<li><strong>目标阶段</strong><br>  当事件传递到触发目标节点那里，最终在目标节点上触发这个事件，就是目标阶段。需要注意的是，事件触发的目标总是在最底层的节点。</li>
-<li><strong>冒泡阶段</strong><br>  当事件到达目标节点之后，就会沿着原路返回，由于这个过程类似于水泡从底部浮动到顶部，所以称之为冒泡阶段。<br>  **在实际使用中，你并不需要把事件监听函数准确绑定到最底层的节点也可以正常工作。比如在上例，你想为<div>绑定单击时的回调函数，你无须为这个<div>下面的所有子节点全部绑定单击事件，只需要为<div>这一节点绑定即可。因为发生它子节点的单击事件，都会冒泡上去，发生在<div>上面。</div></div></div></div></li>
-</ul>
-</li>
-<li><p>为什么不用第三个参数true？<br> 这时因为IE浏览器不支持在捕获阶段监听事件，为了统一而设置的，毕竟IE浏览器的份额是不可忽略的。</p>
-</li>
-<li><p>使用事件代理提升性能<br> 因为事件有冒泡机制，所有子节点的事件都会顺着父级节点跑回去，所以我们可以通过监听父级节点来实现监听子节点的功能，这就是事件代理。</p>
-<p> 使用事件代理的优势：</p>
-<ul>
-<li>减少了事件绑定，提升性能。之前你需要绑定一堆子节点，而现在你只需要绑定一个父节点即可。减少了绑定事件监听函数的数量。</li>
-<li>动态变化的DOM结构，任然可以监听。当一个DOM动态创建之后，不会带有任何事件监听，除非你重新执行监听事件函数，而使用事件监听无需担忧这个问题。为了简单，使用jquery来实现普通事件绑定和事件处理。目标是监听所有a连接的单击事件。1. 常规的事件绑定方法，jquery会循环每一个a结构并绑定事件监听函数。 2. 事件监听的方法，jquery只为父元素绑定事件监听函数，因为父元素下面会有很多无关节点也会触发click事件，所以在on函数里传递了第二个参数，表示只监听a子节点的事件。<em>*他们都可以正常工作，但是当我动态创建新DOM结构的时候，第一个方法问题出现了，新创建的结构没有绑定事件，所以无法执行回调函数。而第二个方法工作很好，因为点击新建的DOM，它的事件会冒泡到父级节点进行处理</em>。*如果使用原生的方法实现事件代理，需要注意过滤非目标节点，可以通过id，class或者tagname等等，例如：<code>ele.addEventListener(&#39;click&#39;,function(event){ //判断是否为a节点 if(event.target.tagName==&#39;A&#39;){ // 执行a的交互}}，false)</code>。</li>
-</ul>
-</li>
-<li><p>停止事件冒泡<br> 所有的事情都会有对立面，事件的冒泡阶段虽然看起来很好，也会有不适用的场所。比较复杂的应用，由于事件监听比较复杂，可能会希望只监听发生在具体节点的事件。这个时候就需要停止事件冒泡。停止事件冒泡要使用事件对象的stopPropagation方法，具体代码如下：<code>ele.addEventListener(&#39;click&#39;,function(e){ e.stopPropagation(); },false)</code>。</p>
-</li>
-<li><p>事件Event对象<br> 事件对象包括很多有用的信息，比如事件触发时，鼠标在屏幕上的坐标，被触发的DOM的详细信息，以及一些常用方法与属性。</p>
-<ul>
-<li>type: String<br>  事件的名称，比如’click’</li>
-<li>target: Node<br>  事件要触发的目标节点</li>
-<li>bubbles: Boolean<br>  表示该事件是否在冒泡阶段触发的</li>
-<li>preventDefault: function<br>  这个方法可以禁止一切默认的行为，例如点击a标签时，会打开一个新的页面，如果为a标签监听事件click同时调用该方法，则不会打开新的页面。</li>
-<li>stopPropagation: function<br>  停止冒泡</li>
-<li>cancelable: Boolean<br>  这个属性表明该事件是否可以通过event.preventDefault()方法来禁用默认行为。</li>
-<li><strong>eventPhase: Number</strong><br>  这个属性的数字表示当前事件触发在什么阶段。none: 0，捕获：1，目标：2，冒泡：3。</li>
-<li>isTrusted: Boolean<br>  表明该事件是浏览器触发（用户真实操作触发）。</li>
-</ul>
-</li>
-<li><p>常用事件和技巧<br> 用户的操作有很多种，所以有很多事件。为了开发方便，浏览器又提供了一些事件，所以有很多的事件。这里只介绍几种常用的事件和使用技巧。</p>
-<ul>
-<li>load: load事件在资源加载完成时触发。这个资源可以是图片，css文件，js文件，视屏，document和window等等。比较常用的就是监听window的load事件，当页面内所有资源加载完成之后就会触发。比如用javaScript对图片以及其它资源处理，我们在load事件中触发，可以保证javaScript不会在资源未加载完成就开始处理资源导致报错。同样的，也可以监听图片等其它资源加载情况。</li>
-<li>beforeunload: 当浏览者在页面的输入框输入一些内容时，未保存，误操作关掉网页会导致输入信息丢失。</li>
-</ul>
-</li>
-</ol>
-<ol>
-<li><p>利用javaScript模拟触发内置事件。<br> 内置的事件也可以被javaScript模拟触发，比如下面函数模拟触发单击事件<br> <code></code></p>
-<pre><code>function simulate(){
-    var event = new MouseEvent(&apos;click&apos;,{
-        &apos;view&apos;: window,
-        &apos;bubbles&apos;:true,
-        &apos;cancelable&apos;: true
-    });
-}
-var cb = document.getElementById(&apos;checkbox&apos;);
-var canceled = !cb.dispatchEvent(event);
-if(canceled){
-    alert(&apos;canceled&apos;); // A handle called preventDefault
-}else{
-    alert(&apos;not canceled&apos;); //None of the handles called preventDefault
-}
-</code></pre><p> </p>
-</li>
-<li><p>自定义事件<br>我们可以自定义事件来实现更灵活的开发，事件用好了可以是一个强大的工具。与自定义相关的函数有Event，CustomEvent和dispatchEvent。直接自定义事件，使用event构造函数。</p>
-<p><code></code></p>
-<pre><code>// Create the event.
-var event = document.createEvent(&apos;Event&apos;);
-// Define that the event name is &apos;build&apos;.
-event.initEvent(&apos;build&apos;, true, true);
-// Listen for the event.
-elem.addEventListener(&apos;build&apos;, function (e) {
-// e.target matches elem
-}, false);
-// target can be any Element or other EventTarget.
-elem.dispatchEvent(event);
-</code></pre><p></p>
-</li>
-</ol>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;blockquote class=&quot;blockquote-center&quot;&gt;&lt;p&gt;javascript事件解读&lt;/p&gt;
 &lt;/blockquote&gt;
     
     </summary>
