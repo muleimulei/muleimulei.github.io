@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://muleimulei.github.io/"/>
-  <updated>2017-08-15T02:48:20.828Z</updated>
+  <updated>2017-08-15T12:11:31.907Z</updated>
   <id>https://muleimulei.github.io/</id>
   
   <author>
@@ -14,6 +14,84 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>javascript控制伪元素的方法汇总</title>
+    <link href="https://muleimulei.github.io/2017/08/15/JavaScript/JavaScript%E6%8E%A7%E5%88%B6%E4%BC%AA%E5%85%83%E7%B4%A0%E7%9A%84%E6%96%B9%E6%B3%95%E6%B1%87%E6%80%BB/"/>
+    <id>https://muleimulei.github.io/2017/08/15/JavaScript/JavaScript控制伪元素的方法汇总/</id>
+    <published>2017-08-15T11:09:50.598Z</published>
+    <updated>2017-08-15T12:11:31.907Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote class="blockquote-center"><p>javascript控制伪元素的方法汇总</p>
+</blockquote>
+<a id="more"></a>
+<h2 id="为什么不能用JavaScript直接获取伪元素？"><a href="#为什么不能用JavaScript直接获取伪元素？" class="headerlink" title="为什么不能用JavaScript直接获取伪元素？"></a>为什么不能用JavaScript直接获取伪元素？</h2><p>比如::before和::after伪元素，用于在css渲染中向元素的头部或尾部插入内容，它们不受文档约束，也不影响文档本身，只影响最终样式。这些添加的内容不会出现在DOM中，仅仅是在css渲染层加入。事实上，伪元素可以被浏览器渲染，但本身并不是DOM元素。它不存在于文档中，所以JavaScript无法直接操作它。而Jquery的选择器都是基于DOM元素的，因此也并不能直接操作伪元素。</p>
+<h2 id="伪元素有哪些？"><a href="#伪元素有哪些？" class="headerlink" title="伪元素有哪些？"></a>伪元素有哪些？</h2><p>伪元素有六个，分别为<code>::after, ::before, ::first-line, ::first-letter, ::selection, ::backdrop</code>。在各大网页中最常用的伪元素：<code>::after, ::before</code>。</p>
+<h2 id="获取伪元素的属性值"><a href="#获取伪元素的属性值" class="headerlink" title="获取伪元素的属性值"></a>获取伪元素的属性值</h2><p>获取伪元素的属性值可以使用<code>window.getComputedStyle()</code>方法，获取伪元素的css样式声明对象，然后利用<code>getPropertyValue</code>方法或直接使用键值访问都可以获取对应的属性值。</p>
+<p><code>window.getComputedStyle(element, [,[pseudoElement]])</code></p>
+<p>参数如下：</p>
+<ul>
+<li>element:Object  : 伪元素的所在DOM元素</li>
+<li>pseudoElement:String   :伪元素类型。可选值有：<code>::after, ::before, ::first-line, ::selection, ::backdrop</code></li>
+</ul>
+<p>例子<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">// CSS代码</div><div class="line">#myId:before &#123;</div><div class="line">    content: "hello world!";</div><div class="line">    display: block;</div><div class="line">    width: 100px;</div><div class="line">    height: 100px;</div><div class="line">    background: red;</div><div class="line">&#125;</div><div class="line">// HTML代码</div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"myId"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">// JS代码</div><div class="line">var myIdElement = document.getElementById("myId");</div><div class="line">var beforeStyle = window.getComputedStyle(myIdElement, ":before");</div><div class="line">console.log(beforeStyle); // [CSSStyleDeclaration Object]</div><div class="line">console.log(beforeStyle.width); // 100px</div><div class="line">console.log(beforeStyle.getPropertyValue("width")); // 100px</div><div class="line">console.log(beforeStyle.content); // "hello world!"</div></pre></td></tr></table></figure></p>
+<p>备注：</p>
+<blockquote>
+<ol>
+<li>getPropertyValue()和直接使用键值访问，都可以访问CSSStyleDeclaration Object。它们两者的区别有：<ul>
+<li>对于float属性，如果使用键值访问，则不能直接使用getComputedStyle(ele, null).float，而应该使用cssFloat与styleFloat</li>
+<li>直接使用键值访问，则属性的键需要使用驼峰写法，如<code>style.backgroundColor</code></li>
+<li>使用getPropertyValue()方法不必以驼峰书写形式，例如：<code>style.getPropertyValue(‘border-top-color’)</code></li>
+</ul>
+</li>
+<li>伪元素默认是<code>display: inline</code>。如果没有定义display属性，即使在css中显示设置了width的属性值为固定的大小如“100px”,但是最后获取的width值仍为”quto“。这是因为行内元素不能自定义设置宽度。解决办法是给伪元素修改display属性为”block”,”inline-block”或其它。</li>
+</ol>
+</blockquote>
+<h2 id="更改伪元素的格式"><a href="#更改伪元素的格式" class="headerlink" title="更改伪元素的格式"></a>更改伪元素的格式</h2><ol>
+<li><p>更换class来实现伪元素属性的更改</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">// CSS代码</div><div class="line">.red::before &#123; </div><div class="line">    content: "red"; </div><div class="line">    color: red; </div><div class="line">&#125;</div><div class="line">.green::before &#123; </div><div class="line">    content: "green"; </div><div class="line">    color: green;</div><div class="line">&#125;</div><div class="line">// HTML代码</div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"red"</span>&gt;</span>内容内容内容内容<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">// jQuery代码</div><div class="line">$(".red").removeClass('red').addClass('green');</div></pre></td></tr></table></figure>
+</li>
+<li><p>使用CSSStyleSheet的insertRule来为伪元素修改样式：<br><code>document.styleSheets[0].addRule(‘.red::before’, ‘color: green’);  //支持IE </code></p>
+</li>
+<li><p>在<head>标签中插入的内部样式：</head></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> style = <span class="built_in">document</span>.createElement(<span class="string">"style"</span>); </div><div class="line"><span class="built_in">document</span>.head.appendChild(style); </div><div class="line">sheet = style.sheet; </div><div class="line">sheet.addRule(<span class="string">'.red::before'</span>,<span class="string">'color: green'</span>); <span class="comment">// 兼容IE浏览器</span></div><div class="line">sheet.insertRule(<span class="string">'.red::before &#123; color: green &#125;'</span>, <span class="number">0</span>); <span class="comment">// 支持非IE的现代浏览器</span></div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="修改伪元素的content的属性值"><a href="#修改伪元素的content的属性值" class="headerlink" title="修改伪元素的content的属性值"></a>修改伪元素的content的属性值</h2><ol>
+<li><p>使用CSSStyleSheet的insertRule来为伪元素修改样式</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> latestContent = <span class="string">"修改过的内容"</span>;</div><div class="line"><span class="keyword">var</span> formerContent = <span class="built_in">window</span>.getComputedStyle($(<span class="string">'.red'</span>), <span class="string">'::before'</span>).getPropertyValue(<span class="string">'content'</span>); </div><div class="line"><span class="built_in">document</span>.styleSheets[<span class="number">0</span>].addRule(<span class="string">'.red::before'</span>,<span class="string">'content: "'</span> + latestContent + <span class="string">'"'</span>); </div><div class="line"><span class="built_in">document</span>.styleSheets[<span class="number">0</span>].insertRule(<span class="string">'.red::before &#123; content: "'</span> + latestContent + <span class="string">'" &#125;'</span>, <span class="number">0</span>);</div></pre></td></tr></table></figure>
+</li>
+<li><p>使用DOM元素的data-*属性来更改content的值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">// CSS代码</div><div class="line">.red::before &#123;</div><div class="line">content: attr(data-attr);</div><div class="line">color: red;</div><div class="line">&#125;</div><div class="line">// HTML代码</div><div class="line">&lt;div class=&quot;red&quot; data-attr=&quot;red&quot;&gt;内容内容内容内容&lt;/div&gt;</div><div class="line">// JacaScript代码</div><div class="line">$(&apos;.red&apos;).attr(&apos;data-attr&apos;, &apos;green&apos;);</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="before和-after伪元素的常用用法总结"><a href="#before和-after伪元素的常用用法总结" class="headerlink" title="::before和::after伪元素的常用用法总结"></a>::before和::after伪元素的常用用法总结</h2><ol>
+<li><p>添加字符串：<br>使用引号包括一段字符串，将会向元素内容中添加字符串。<br><code>a:after { content: “after content”; }</code></p>
+</li>
+<li><p>使用attr()方法，调用当前元素的属性的值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">a:after &#123; content: attr(href); &#125;</div><div class="line">a:after &#123; content: attr(data-attr); &#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>使用url方法，引用多媒体文件：<br><code>a::before { content: url(logo.png); }</code></p>
+</li>
+<li><p>清除浮动</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">.clear-fix &#123; *overflow: hidden; *zoom: 1; &#125;</div><div class="line">.clear-fix:after &#123; display: table; content: &quot;&quot;; width: 0; clear: both; &#125;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote class=&quot;blockquote-center&quot;&gt;&lt;p&gt;javascript控制伪元素的方法汇总&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="JavaScript" scheme="https://muleimulei.github.io/categories/JavaScript/"/>
+    
+    
+      <category term="JavaScript" scheme="https://muleimulei.github.io/tags/JavaScript/"/>
+    
+  </entry>
   
   <entry>
     <title>什么是机器学习</title>
@@ -1091,9 +1169,9 @@ ON &lt;表名&gt;(&lt;列名&gt; [&lt;次序&gt;] [,&lt;列名&gt; [&lt;次序&g
       <category term="JavaScript" scheme="https://muleimulei.github.io/categories/JavaScript/"/>
     
     
-      <category term="JavaScript" scheme="https://muleimulei.github.io/tags/JavaScript/"/>
-    
       <category term="HTML5" scheme="https://muleimulei.github.io/tags/HTML5/"/>
+    
+      <category term="JavaScript" scheme="https://muleimulei.github.io/tags/JavaScript/"/>
     
   </entry>
   
@@ -1409,42 +1487,6 @@ ON &lt;表名&gt;(&lt;列名&gt; [&lt;次序&gt;] [,&lt;列名&gt; [&lt;次序&g
     
       <category term="Vue" scheme="https://muleimulei.github.io/categories/Vue/"/>
     
-    
-  </entry>
-  
-  <entry>
-    <title>javaScript获取css样式</title>
-    <link href="https://muleimulei.github.io/2017/07/17/JavaScript/javaScript%E8%8E%B7%E5%8F%96css%E6%A0%B7%E5%BC%8F/"/>
-    <id>https://muleimulei.github.io/2017/07/17/JavaScript/javaScript获取css样式/</id>
-    <published>2017-07-17T09:19:31.150Z</published>
-    <updated>2017-07-17T09:49:27.471Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote class="blockquote-center"><p>javaScript获取css样式</p>
-</blockquote>
-<a id="more"></a>
-<h2 id="css样式分为行内样式与外部样式"><a href="#css样式分为行内样式与外部样式" class="headerlink" title="css样式分为行内样式与外部样式"></a>css样式分为行内样式与外部样式</h2><ol>
-<li>javaScript获得行内样式<br> 可以使用<code>ele.style.属性名称</code>(如果遇到属性名称带有‘-’，需要使用驼峰方法，例如background-color改为backgroundColor)；</li>
-<li>javaScript获得外部样式(getComputedStyle可以获得style的值也可以获得外部样式表的css)<br> 获得外部样式可以使用浏览器提供的<code>window.getComputedStyle(ele,null)</code>，这里的ele就是需要操作的对象，第二个参数是指定一个伪元素匹配，常规的元素用不上，直接使用null。但这个getComputedStyle并不支持IE9以下的浏览器，但是ie有它自己支持的方法：ele.currentStyle;</li>
-<li>ele.style.属性名和ele.cssText以及getComputedStyle(obj,null)有什么区别？<ul>
-<li>ele.style.属性名：这里获得的style可以获得属性值，也可以进行修改</li>
-<li>ele.cssText: 其实跟style差不多，只不过它是获得多个css样式，也是生成在行内样式中。</li>
-<li>getComputedStyle(obj,null)： 只能获取不能修改，并且返回的css是一个CSSStyleDecoration对象集合。</li>
-</ul>
-</li>
-</ol>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;blockquote class=&quot;blockquote-center&quot;&gt;&lt;p&gt;javaScript获取css样式&lt;/p&gt;
-&lt;/blockquote&gt;
-    
-    </summary>
-    
-      <category term="JavaScript" scheme="https://muleimulei.github.io/categories/JavaScript/"/>
-    
-    
-      <category term="JavaScript" scheme="https://muleimulei.github.io/tags/JavaScript/"/>
     
   </entry>
   
