@@ -113,16 +113,16 @@
 
 
 
-<meta name="description" content="使用Docker">
+<meta name="description" content="CSS3的display:table">
 <meta property="og:type" content="article">
-<meta property="og:title" content="使用Docker">
-<meta property="og:url" content="https://muleimulei.github.io/2017/05/04/docker/使用Docker/index.html">
+<meta property="og:title" content="CSS3的display:table">
+<meta property="og:url" content="https://muleimulei.github.io/2017/08/20/CSS3/css的display为table/index.html">
 <meta property="og:site_name" content="风的影子">
-<meta property="og:description" content="使用Docker">
-<meta property="og:updated_time" content="2017-05-04T09:13:28.618Z">
+<meta property="og:description" content="CSS3的display:table">
+<meta property="og:updated_time" content="2017-08-20T14:51:12.082Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="使用Docker">
-<meta name="twitter:description" content="使用Docker">
+<meta name="twitter:title" content="CSS3的display:table">
+<meta name="twitter:description" content="CSS3的display:table">
 
 
 
@@ -150,13 +150,13 @@
 
 
 
-  <link rel="canonical" href="https://muleimulei.github.io/2017/05/04/docker/使用Docker/"/>
+  <link rel="canonical" href="https://muleimulei.github.io/2017/08/20/CSS3/css的display为table/"/>
 
 
 
 
 
-  <title> 使用Docker | 风的影子 </title>
+  <title> CSS3的display:table | 风的影子 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -349,7 +349,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://muleimulei.github.io/2017/05/04/docker/使用Docker/">
+    <link itemprop="mainEntityOfPage" href="https://muleimulei.github.io/2017/08/20/CSS3/css的display为table/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="穆蕾">
@@ -370,7 +370,7 @@
             
             
               
-                使用Docker
+                CSS3的display:table
               
             
           </h1>
@@ -385,8 +385,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-04T17:08:44+08:00">
-                2017-05-04
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-20T14:37:56+08:00">
+                2017-08-20
               </time>
             
 
@@ -408,8 +408,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/docker/" itemprop="url" rel="index">
-                    <span itemprop="name">docker</span>
+                  <a href="/categories/CSS3/" itemprop="url" rel="index">
+                    <span itemprop="name">CSS3</span>
                   </a>
                 </span>
 
@@ -448,10 +448,240 @@
       
 
       
-        <blockquote class="blockquote-center"><p>使用Docker</p>
+        <blockquote class="blockquote-center"><p>CSS3的display:table</p>
 </blockquote>
 <a id="more"></a>
-<h2 id="使用Docker"><a href="#使用Docker" class="headerlink" title="使用Docker"></a>使用Docker</h2>
+<h2 id="两种类型的表格布局"><a href="#两种类型的表格布局" class="headerlink" title="两种类型的表格布局"></a>两种类型的表格布局</h2><ol>
+<li><p>HTML Table:HTML Table是指使用原生的table标签。</p>
+</li>
+<li><p>CSS Table:CSS Table是指用CSS属性模仿HTML 表格的模型。</p>
+</li>
+</ol>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">table &#123; display: table &#125;</div><div class="line">tr &#123; display: table-row &#125;</div><div class="line">thead &#123; display: table-header-group &#125;</div><div class="line">tbody &#123; display: table-row-group &#125;</div><div class="line">tfoot &#123; display: table-footer-group &#125;</div><div class="line">col &#123; display: table-column &#125;</div><div class="line">colgroup &#123; display: table-column-group &#125;</div><div class="line">td, th &#123; display: table-cell &#125;</div><div class="line">caption &#123; display: table-caption &#125;</div></pre></td></tr></table></figure>
+<p>显而易见HTML Table使用标签table，tr、td等标签，就是使用CSS Table的相关属性来实现的。</p>
+<p>table：指定对象作为块元素级的表格。</p>
+<p>inline-table：指定对象作为内联元素级的表格。</p>
+<p>table-caption：指定对象作为表格标题。</p>
+<p>table-cell：指定对象作为表格单元格。</p>
+<p>table-row：指定对象作为表格行。</p>
+<p>table-row-group：指定对象作为表格行组。</p>
+<p>table-column：指定对象作为表格列。</p>
+<p>table-column-group：指定对象作为表格列组显示。</p>
+<p>table-header-group：指定对象作为表格标题组。</p>
+<p>table-footer-group：指定对象作为表格脚注组。</p>
+<h2 id="动态垂直居中对齐"><a href="#动态垂直居中对齐" class="headerlink" title="动态垂直居中对齐"></a>动态垂直居中对齐</h2><div class="wrapper"><br>    <button>添加</button><br>    <div class="box"><br>        <p>Hello World</p><br>        <p>Hello World</p><br>    </div><br></div>
+
+<style>
+    .wrapper{
+        height: 300px;
+        width: 100%;
+        background: #105B63;
+        display: table;
+        position: relative;
+        color: white;
+    }
+    .wrapper > button{
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        padding: 5px 10px;
+        display: inline-block;
+        background: #BD4932;
+        outline: none;
+        border: 2px solid #db9e36;
+        color: #FFD34E;
+        border-radius: 10px;
+        box-shadow: 0 2px 3px rgba(0, 0, 0, .5);
+        cursor: pointer;
+    }
+    .wrapper > button:active{
+        border-color: #FFFAD5;
+        color: #FFFAD5;
+    }
+    .wrapper  div.box{
+        display: table-cell;
+        text-align: center;
+        vertical-align: middle;
+    }
+</style>
+
+<h2 id="动态水平居中对齐"><a href="#动态水平居中对齐" class="headerlink" title="动态水平居中对齐"></a>动态水平居中对齐</h2><p>为了让元素动态水平居中对齐，可以设置元素为<code>display: inline-block</code>。然后在该元素的外面包裹层设置<code>text-align: center</code>。这里的文本对齐缺点是有副作用的。外层包裹层的所有子元素继承了<code>text-align: center</code>，造成潜在的覆盖。</p>
+<div id="wrapper2"><br>    <h1>动态水平居中对齐</h1><br>    <h2>使用<span class="orange">display: table</span></h2><br>    <nav role="navigation" class="nav-table"><br>        <ul><li><a href="#">Home</a></li><li><a href="#">About</a></li><li><a href="#">Client</a></li><li><a href="#">Contact Us</a></li></ul><br>    </nav><br>    <h2>使用 <span class="orange">display: inline-block</span></h2><br>    <nav role="navigation" class="nav-inline-block"><br>      <ul><li><a href="#">Home</a></li><li><a href="#">About</a></li><li><a href="#">Clients</a></li><li><a href="#">Contact Us</a></li></ul><br>    </nav><br></div>
+
+<style>
+    #wrapper2{
+        width: 100%;
+        text-align: center;
+        color: #FFFAD5;
+        background: #FFD34E;
+        text-shadow: 0 1px 1px rgba(0, 0, 0, .2);
+    }
+    #wrapper2 .orange{
+        color: #BD4932;
+    }
+    #wrapper2 .nav-table{
+        display: table;
+        margin: auto;
+    }
+    #wrapper2 .nav-inline-block{
+        display: inline-block;
+    }
+    #wrapper2 ul{
+        margin: 0;
+        padding: 0;
+    }
+    #wrapper2 ul li{
+        float: left;
+        background: #bd4932;
+        list-style: none;
+    }
+    #wrapper2 ul li a{
+        display: block;
+        padding: .5em 1em;
+        color: #FFFAD5;
+    }
+</style>
+
+
+<h2 id="响应式布局"><a href="#响应式布局" class="headerlink" title="响应式布局"></a>响应式布局</h2><p>css Table布局可以让一个元素表现上不像一个表格。只要将元素的display属性从table-cell切换到block，我们就能够将元素堆叠起来，你可以根据屏幕的可视区域改变元素的堆叠的顺序。</p>
+<div id="wrapper3"><div class="box box1"></div><div class="box box2"></div><div class="box box3"></div></div>
+
+<style>
+    #wrapper3{
+        width: 100%;
+        display: table;
+        min-height: 300px;
+    }
+    #wrapper3 .box{
+        display: table-cell;
+        text-align: center;
+        vertical-align:middle;
+        line-height: 13em;
+    }
+    #wrapper3 .box1{
+        background: #BD4932;
+    }
+    #wrapper3 .box2{
+        background: #105B63;
+    }
+    #wrapper3 .box3{
+        background: #FFFAD5;
+    }
+</style>
+
+<h2 id="动态高度的页脚贴在页面底部"><a href="#动态高度的页脚贴在页面底部" class="headerlink" title="动态高度的页脚贴在页面底部"></a>动态高度的页脚贴在页面底部</h2><p>页脚动态贴在底部需要满足以下两个条件：</p>
+<ul>
+<li>当主体的内容高度不超过可视区域高度的时候，页脚贴在页面底部。</li>
+<li>当主体的内容高度超过可视区域高度的时候，页脚将按正常布局。</li>
+</ul>
+<div id="wrapper4"><button class="btn1">添加内容到主体区域</button><button class="btn2">添加内容到底部</button><div class="maincontent">这里是主体区域</div><div class="foot">这里是底部</div></div>
+
+<style>
+    #wrapper4{
+        width: 100%;
+        height: 400px;
+        background: #FFFAD5;
+        display: table;
+        color: #BD4932;
+        position: relative;
+    }
+    #wrapper4 .maincontent{
+        height: 100%;
+        text-align: center;
+    }
+    #wrapper4 button{
+        position: absolute;
+        padding: 5px 10px;
+        display: inline-block;
+        background: #BD4932;
+        outline: none;
+        border: 2px solid #db9e36;
+        color: #FFD34E;
+        border-radius: 10px;
+        box-shadow: 0 2px 3px rgba(0, 0, 0, .5);
+        cursor: pointer;
+    }
+    #wrapper4 button:active{
+        border-color: #FFFAD5;
+        color: #FFFAD5;
+    }
+    #wrapper4 .btn2{
+        top: 60px;
+    }
+    #wrapper4 .foot{
+        height: 1px;
+        display: table-row;
+        background: #105B63;
+        color: #FFFAD5;
+    }
+</style>
+
+<script>
+    document.querySelector("#wrapper4 .btn1").addEventListener("click", function(){
+    var element = document.createElement("div");
+    element.innerHTML = "<p>额外添加的行</p><p>额外添加的行</p><p>额外添加的行</p>";
+  document.querySelector(".maincontent").appendChild(element);
+});
+
+document.querySelector("#wrapper4 .btn2").addEventListener("click", function(){
+    var element = document.createElement("div");
+    element.innerHTML = "<p>额外添加到底部的行</p><p>额外添加到底部的行</p><p>额外添加到底部的行</p>";
+  document.querySelector(".foot").appendChild(element);
+});
+</script>
+
+<h2 id="圣杯布局"><a href="#圣杯布局" class="headerlink" title="圣杯布局"></a>圣杯布局</h2><ul>
+<li>具有中心内容主体和固定宽度的侧边栏</li>
+<li>在源代码中，允许中心内容主体列出现在第一个节点位置</li>
+<li>允许任何一列的高度最高</li>
+</ul>
+<div id="wrapper5"><div class="header">头部</div><div class="maincontent"><div class="box sidebarr">左边栏</div><div class="box content">主体内容</div><div class="box sidebarr">右侧栏</div></div><div class="foot">页脚底部</div></div>
+
+<style>
+    #wrapper5{
+        width: 100%;
+        height: 300px;
+        background: #FFFAD5;
+        display: table;
+        text-align: center;
+        position: relative;
+    }
+    #wrapper5 button{
+        position: absolute;
+        padding: 5px 10px;
+        display: inline-block;
+        background: #BD4932;
+        outline: none;
+        border: 2px solid #db9e36;
+        color: #FFD34E;
+        border-radius: 10px;
+        box-shadow: 0 2px 3px rgba(0, 0, 0, .5);
+        cursor: pointer;
+    }
+    #wrapper5 .header{
+        display: table-row;
+        height: 2px;
+        background: #FFD34E;
+    }
+    #wrapper5 .maincontent{
+        display: table;
+        height: 100%;
+        width: 100%;
+    }
+    #wrapper5 .maincontent .box{
+        display: table-cell;
+    }
+    #wrapper5 .maincontent .sidebarr{
+        width: 100px;
+        background: #BD4932;
+    }
+    #wrapper5 .foot{
+        display: table-row;
+        height: 1px;
+        background: #105B63;
+        color: #FFFAD5;
+    }
+</style>
       
     </div>
 
@@ -487,8 +717,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/05/03/docker/docker简介/" rel="next" title="docker简介">
-                <i class="fa fa-chevron-left"></i> docker简介
+              <a href="/2017/08/15/JavaScript/JavaScript控制伪元素的方法汇总/" rel="next" title="javascript控制伪元素的方法汇总">
+                <i class="fa fa-chevron-left"></i> javascript控制伪元素的方法汇总
               </a>
             
           </div>
@@ -496,10 +726,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/06/27/DataStructure/常用内排序/" rel="prev" title="数据结构常用内排序">
-                数据结构常用内排序 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -731,7 +957,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#使用Docker"><span class="nav-number">1.</span> <span class="nav-text">使用Docker</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#两种类型的表格布局"><span class="nav-number">1.</span> <span class="nav-text">两种类型的表格布局</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#动态垂直居中对齐"><span class="nav-number">2.</span> <span class="nav-text">动态垂直居中对齐</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#动态水平居中对齐"><span class="nav-number">3.</span> <span class="nav-text">动态水平居中对齐</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number"></span> <span class="nav-text">动态水平居中对齐</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">使用display: table</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">使用 display: inline-block</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#响应式布局"><span class="nav-number">3.</span> <span class="nav-text">响应式布局</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#动态高度的页脚贴在页面底部"><span class="nav-number">4.</span> <span class="nav-text">动态高度的页脚贴在页面底部</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#圣杯布局"><span class="nav-number">5.</span> <span class="nav-text">圣杯布局</span></a></li></ol></div>
             
 
           </div>
