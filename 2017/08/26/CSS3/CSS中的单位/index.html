@@ -95,7 +95,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="JavaScript,function," />
+  <meta name="keywords" content="程序员，web开发" />
 
 
 
@@ -113,16 +113,16 @@
 
 
 
-<meta name="description" content="这篇文章将介绍几个关于JavaScript内置函数的简单算法">
+<meta name="description" content="CSS中的单位">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JavaScript内置函数">
-<meta property="og:url" content="https://muleimulei.github.io/2017/01/05/JavaScript/JavaScript内置函数解析/index.html">
+<meta property="og:title" content="CSS中的单位">
+<meta property="og:url" content="https://muleimulei.github.io/2017/08/26/CSS3/CSS中的单位/index.html">
 <meta property="og:site_name" content="风的影子">
-<meta property="og:description" content="这篇文章将介绍几个关于JavaScript内置函数的简单算法">
-<meta property="og:updated_time" content="2017-04-07T08:15:36.150Z">
+<meta property="og:description" content="CSS中的单位">
+<meta property="og:updated_time" content="2017-08-26T14:59:44.640Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JavaScript内置函数">
-<meta name="twitter:description" content="这篇文章将介绍几个关于JavaScript内置函数的简单算法">
+<meta name="twitter:title" content="CSS中的单位">
+<meta name="twitter:description" content="CSS中的单位">
 
 
 
@@ -150,13 +150,13 @@
 
 
 
-  <link rel="canonical" href="https://muleimulei.github.io/2017/01/05/JavaScript/JavaScript内置函数解析/"/>
+  <link rel="canonical" href="https://muleimulei.github.io/2017/08/26/CSS3/CSS中的单位/"/>
 
 
 
 
 
-  <title> JavaScript内置函数 | 风的影子 </title>
+  <title> CSS中的单位 | 风的影子 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -349,7 +349,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://muleimulei.github.io/2017/01/05/JavaScript/JavaScript内置函数解析/">
+    <link itemprop="mainEntityOfPage" href="https://muleimulei.github.io/2017/08/26/CSS3/CSS中的单位/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="穆蕾">
@@ -370,7 +370,7 @@
             
             
               
-                JavaScript内置函数
+                CSS中的单位
               
             
           </h1>
@@ -385,8 +385,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-01-05T00:00:00+08:00">
-                2017-01-05
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-26T20:31:04+08:00">
+                2017-08-26
               </time>
             
 
@@ -408,8 +408,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JavaScript/" itemprop="url" rel="index">
-                    <span itemprop="name">JavaScript</span>
+                  <a href="/categories/CSS3/" itemprop="url" rel="index">
+                    <span itemprop="name">CSS3</span>
                   </a>
                 </span>
 
@@ -448,20 +448,27 @@
       
 
       
-        <blockquote class="blockquote-center"><p>这篇文章将介绍几个关于JavaScript内置函数的简单算法</p>
+        <blockquote class="blockquote-center"><p>CSS中的单位</p>
 </blockquote>
 <a id="more"></a>
-<h2 id="将字符串重复一定次数"><a href="#将字符串重复一定次数" class="headerlink" title="将字符串重复一定次数"></a>将字符串重复一定次数</h2><h3 id="使用while循环"><a href="#使用while循环" class="headerlink" title="使用while循环"></a>使用while循环</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">repeat</span>(<span class="params">num,str</span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> repeatStr = <span class="string">''</span>;</div><div class="line">    <span class="keyword">while</span>(num--)&#123;</div><div class="line">        repeatStr+=str;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> repeatStr;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="使用递归"><a href="#使用递归" class="headerlink" title="使用递归"></a>使用递归</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">repeatStringNumTimes</span>(<span class="params">str,times</span>)</span>&#123;</div><div class="line">    <span class="keyword">if</span>(times&lt;<span class="number">0</span>)&#123;</div><div class="line">        <span class="keyword">return</span> <span class="string">''</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span>(times===<span class="number">1</span>)&#123;</div><div class="line">        <span class="keyword">return</span> str;</div><div class="line">    &#125;<span class="keyword">else</span>&#123;</div><div class="line">        <span class="keyword">return</span> str + repeatStringNumTimes(str,times<span class="number">-1</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="使用es6的repeat"><a href="#使用es6的repeat" class="headerlink" title="使用es6的repeat"></a>使用es6的repeat</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">repeatStringNumTimes</span>(<span class="params">str,times</span>)</span>&#123;</div><div class="line">    <span class="keyword">return</span> times&lt;<span class="number">0</span>?<span class="string">''</span>:str.repeat(times);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="检查某一字符串是否已特定字符串结束"><a href="#检查某一字符串是否已特定字符串结束" class="headerlink" title="检查某一字符串是否已特定字符串结束"></a>检查某一字符串是否已特定字符串结束</h2><h3 id="利用substr函数"><a href="#利用substr函数" class="headerlink" title="利用substr函数"></a>利用substr函数</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">confirmEnding</span>(<span class="params">str,target</span>)</span>&#123;</div><div class="line">    <span class="keyword">return</span> str.substr(-target.length)===target? <span class="literal">true</span>:<span class="literal">false</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="使用内置函数"><a href="#使用内置函数" class="headerlink" title="使用内置函数"></a>使用内置函数</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">confirmEnding</span>(<span class="params">str,target</span>)</span>&#123;</div><div class="line">    <span class="keyword">return</span> str.endsWith(target);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="翻转字符串"><a href="#翻转字符串" class="headerlink" title="翻转字符串"></a>翻转字符串</h2><h3 id="使用split-reverse-join"><a href="#使用split-reverse-join" class="headerlink" title="使用split(),reverse(),join()"></a>使用split(),reverse(),join()</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">reverseStr</span>(<span class="params">str</span>)</span>&#123;</div><div class="line">    <span class="keyword">return</span> str.split(<span class="string">''</span>).reserve().join(<span class="string">''</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="使用for循环"><a href="#使用for循环" class="headerlink" title="使用for循环"></a>使用for循环</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">reverseStr</span>(<span class="params">str</span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> newStr = <span class="string">''</span>;</div><div class="line">    <span class="keyword">var</span> len = str.length;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i = len<span class="number">-1</span>;i&gt;=<span class="number">0</span>;i--)&#123;</div><div class="line">        newStr+=str[i];</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> newStr;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="使用递归-1"><a href="#使用递归-1" class="headerlink" title="使用递归"></a>使用递归</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">reverseStr</span>(<span class="params">str</span>)</span>&#123;</div><div class="line">    <span class="keyword">if</span>(str===<span class="string">''</span>)&#123;</div><div class="line">        <span class="keyword">return</span> <span class="string">''</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> str.charAt(<span class="number">0</span>)+reverseStr(str.substr(<span class="number">1</span>));</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="将一个句子的每个单词首字母大写，其余小写"><a href="#将一个句子的每个单词首字母大写，其余小写" class="headerlink" title="将一个句子的每个单词首字母大写，其余小写"></a>将一个句子的每个单词首字母大写，其余小写</h2><h3 id="使用for循环-1"><a href="#使用for循环-1" class="headerlink" title="使用for循环"></a>使用for循环</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">titleCase</span>(<span class="params">str</span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> list = str.toLowerCase().split(<span class="string">' '</span>);</div><div class="line">    <span class="keyword">var</span> len = list.length;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span> ;i&lt;len;i++)&#123;</div><div class="line">        list[i] = list[i].charAt(<span class="number">0</span>).toUpperCase() + list[i].substr(<span class="number">1</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> list.join(<span class="string">' '</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="使用map方法"><a href="#使用map方法" class="headerlink" title="使用map方法"></a>使用map方法</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">titleCase</span>(<span class="params">str</span>)</span>&#123;</div><div class="line">    <span class="keyword">return</span> str.toLowerCase().split(<span class="string">' '</span>).map(<span class="function"><span class="keyword">function</span>(<span class="params">word</span>)</span>&#123;</div><div class="line">        <span class="keyword">return</span> word.charAt(<span class="number">0</span>).toUpperCase()+ word.slice(<span class="number">1</span>);</div><div class="line">    &#125;).join(<span class="string">''</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="使用replace方法"><a href="#使用replace方法" class="headerlink" title="使用replace方法"></a>使用replace方法</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">titleCase</span>(<span class="params">str</span>)</span>&#123;</div><div class="line">    <span class="keyword">return</span> str.toLowerCase().split(<span class="string">' '</span>).map(<span class="function"><span class="keyword">function</span>(<span class="params">word</span>)</span>&#123;</div><div class="line">        <span class="keyword">return</span> word.replace(word[<span class="number">0</span>],word[<span class="number">0</span>].toUpperCase());</div><div class="line">    &#125;).join(<span class="string">''</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="em"><a href="#em" class="headerlink" title="em"></a>em</h2><p>em被定义为相对于当前对象内文本的字体大小。如果你给body元素设置了一个字体大小，那么body的任何子元素的em值都等于body设置的font-size。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"test"</span>&gt;</span>Test<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line">body &#123;</div><div class="line">    font-size: 14px;</div><div class="line">&#125;</div><div class="line">div &#123;</div><div class="line">    font-size: 1.2em; // calculated at 14px * 1.2, or 16.8px</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>div中的字体大小是1.2em，也就是div从父类元素继承的字体大小的1.2倍。在这里，body的字体是14px，那么div的字体大小是1.2*14 = 16.8px</p>
+<p>但是，如果你用em一层一层级联地定义嵌套元素的字体大小又会发生什么事情呢？<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span></div><div class="line">        Test <span class="comment">&lt;!-- 14 * 1.2 = 16.8px --&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">div</span>&gt;</span></div><div class="line">            Test <span class="comment">&lt;!-- 16.8 * 1.2 = 20.16px --&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">div</span>&gt;</span></div><div class="line">                Test <span class="comment">&lt;!-- 20.16 * 1.2 = 24.192px --&gt;</span></div><div class="line">            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>虽然在某些地方这正是我们想要的，但是通常情况下我们还是希望就依赖单一的相对度量单位就好。这时，就因该用rem了，rem中的r代表根元素，它的值就是根元素设置的字体大小。在大多数情况下根元素就是html了。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">html &#123;</div><div class="line">    font-size: 14px;</div><div class="line">&#125;</div><div class="line">div &#123;</div><div class="line">    font-size: 1.2rem;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这样在上面的那三个嵌套的div的字体大小都是1.2 * 14px = 16.8px了。</p>
+<h2 id="适用于网格布局"><a href="#适用于网格布局" class="headerlink" title="适用于网格布局"></a>适用于网格布局</h2><p>rem不仅适用于字体大小，也用于网格布局。例如，你可以用基于HTML根元素字体大小的rem作为整个网络布局或者UI库的大小单位，然后在其它特定的地方用em单位。这样将会给你带来更多的字体大小和伸缩的可控性。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">.container &#123;</div><div class="line">    width: 70rem;   //  70 * 14px = 980px</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="vh和vw"><a href="#vh和vw" class="headerlink" title="vh和vw"></a>vh和vw</h2><p>响应式web设计对百分比规则有很大的依赖性。然而，对于每一个问题，css百分比并不是最好的解决方案。CSS宽度是相对于包含它的最近的父元素的宽度的。如果你想使用的是视口的高度与宽度，而不是父元素的，那么vh和vw就能满足需求了。</p>
+<p>1vh等于1%的视口高度。例如，浏览器高度是900px，那么1vh = 900* 1% = 9px，同理，若视口宽度是750px，则1vw是7.5px。<br>它的用途很广泛。比如，我们用很简单的方法只用一行css代码就实现同屏幕等高的框。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">.slide&#123;</div><div class="line">    height: 100vh;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>假如你要来一个和屏幕同宽的标题，你只要设置这个标题的font-size的单位为vw，那标题的字体大小就会自动根据浏览器的宽度进行缩放，以达到字体和viewport大小同步的效果。</p>
+<h2 id="vmin和vmax"><a href="#vmin和vmax" class="headerlink" title="vmin和vmax"></a>vmin和vmax</h2><p>vh和vw是相对于视口的宽度和高度，而vmin和vmax则关于视口高度和宽度两者的最小或者最大值。例如，如果浏览器的高宽分别为700px和1100px，则1vmin=7px, 1vmax=11px；如果高宽分别是1080px和800px，则1vmin=8px，1vmax = 10.8px。</p>
+<p>那么什么时候需要这些值呢？<br>假设有一个元素，你需要让他始终在屏幕上可见。只要对其高度和宽度使用vmin单位，并赋予其低于100的值就可以做到。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.box</span> &#123;</div><div class="line">    <span class="attribute">height</span>: <span class="number">100vmin</span>;</div><div class="line">    <span class="attribute">width</span>: <span class="number">100vmin</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>如果你要让这个方框始终铺满整个视口的可见区域（四边始终触摸到屏幕的四边）：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.box</span>&#123;</div><div class="line">    <span class="attribute">height</span>: <span class="number">100vmax</span>;</div><div class="line">    <span class="attribute">width</span>: <span class="number">100vmax</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
       
     </div>
 
@@ -488,14 +495,6 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
-          
-            <a href="/tags/function/" rel="tag"># function</a>
-          
-        </div>
-      
 
       
         
@@ -505,15 +504,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2017/08/26/JavaScript/JavaScript工作机制2/" rel="next" title="JavaScript工作机制（二）">
+                <i class="fa fa-chevron-left"></i> JavaScript工作机制（二）
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/03/22/JavaScript/函数柯里化/" rel="prev" title="JavaScript函数柯里化">
-                JavaScript函数柯里化 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -745,7 +744,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#将字符串重复一定次数"><span class="nav-number">1.</span> <span class="nav-text">将字符串重复一定次数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用while循环"><span class="nav-number">1.1.</span> <span class="nav-text">使用while循环</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用递归"><span class="nav-number">1.2.</span> <span class="nav-text">使用递归</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用es6的repeat"><span class="nav-number">1.3.</span> <span class="nav-text">使用es6的repeat</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#检查某一字符串是否已特定字符串结束"><span class="nav-number">2.</span> <span class="nav-text">检查某一字符串是否已特定字符串结束</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#利用substr函数"><span class="nav-number">2.1.</span> <span class="nav-text">利用substr函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用内置函数"><span class="nav-number">2.2.</span> <span class="nav-text">使用内置函数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#翻转字符串"><span class="nav-number">3.</span> <span class="nav-text">翻转字符串</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用split-reverse-join"><span class="nav-number">3.1.</span> <span class="nav-text">使用split(),reverse(),join()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用for循环"><span class="nav-number">3.2.</span> <span class="nav-text">使用for循环</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用递归-1"><span class="nav-number">3.3.</span> <span class="nav-text">使用递归</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#将一个句子的每个单词首字母大写，其余小写"><span class="nav-number">4.</span> <span class="nav-text">将一个句子的每个单词首字母大写，其余小写</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用for循环-1"><span class="nav-number">4.1.</span> <span class="nav-text">使用for循环</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用map方法"><span class="nav-number">4.2.</span> <span class="nav-text">使用map方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用replace方法"><span class="nav-number">4.3.</span> <span class="nav-text">使用replace方法</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#em"><span class="nav-number">1.</span> <span class="nav-text">em</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#适用于网格布局"><span class="nav-number">2.</span> <span class="nav-text">适用于网格布局</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vh和vw"><span class="nav-number">3.</span> <span class="nav-text">vh和vw</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vmin和vmax"><span class="nav-number">4.</span> <span class="nav-text">vmin和vmax</span></a></li></ol></div>
             
 
           </div>

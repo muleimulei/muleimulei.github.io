@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://muleimulei.github.io/"/>
-  <updated>2017-08-26T12:22:43.385Z</updated>
+  <updated>2017-08-26T14:59:44.640Z</updated>
   <id>https://muleimulei.github.io/</id>
   
   <author>
@@ -14,6 +14,47 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>CSS中的单位</title>
+    <link href="https://muleimulei.github.io/2017/08/26/CSS3/CSS%E4%B8%AD%E7%9A%84%E5%8D%95%E4%BD%8D/"/>
+    <id>https://muleimulei.github.io/2017/08/26/CSS3/CSS中的单位/</id>
+    <published>2017-08-26T12:31:04.181Z</published>
+    <updated>2017-08-26T14:59:44.640Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote class="blockquote-center"><p>CSS中的单位</p>
+</blockquote>
+<a id="more"></a>
+<h2 id="em"><a href="#em" class="headerlink" title="em"></a>em</h2><p>em被定义为相对于当前对象内文本的字体大小。如果你给body元素设置了一个字体大小，那么body的任何子元素的em值都等于body设置的font-size。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"test"</span>&gt;</span>Test<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line">body &#123;</div><div class="line">    font-size: 14px;</div><div class="line">&#125;</div><div class="line">div &#123;</div><div class="line">    font-size: 1.2em; // calculated at 14px * 1.2, or 16.8px</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>div中的字体大小是1.2em，也就是div从父类元素继承的字体大小的1.2倍。在这里，body的字体是14px，那么div的字体大小是1.2*14 = 16.8px</p>
+<p>但是，如果你用em一层一层级联地定义嵌套元素的字体大小又会发生什么事情呢？<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span></div><div class="line">        Test <span class="comment">&lt;!-- 14 * 1.2 = 16.8px --&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">div</span>&gt;</span></div><div class="line">            Test <span class="comment">&lt;!-- 16.8 * 1.2 = 20.16px --&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">div</span>&gt;</span></div><div class="line">                Test <span class="comment">&lt;!-- 20.16 * 1.2 = 24.192px --&gt;</span></div><div class="line">            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>虽然在某些地方这正是我们想要的，但是通常情况下我们还是希望就依赖单一的相对度量单位就好。这时，就因该用rem了，rem中的r代表根元素，它的值就是根元素设置的字体大小。在大多数情况下根元素就是html了。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">html &#123;</div><div class="line">    font-size: 14px;</div><div class="line">&#125;</div><div class="line">div &#123;</div><div class="line">    font-size: 1.2rem;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这样在上面的那三个嵌套的div的字体大小都是1.2 * 14px = 16.8px了。</p>
+<h2 id="适用于网格布局"><a href="#适用于网格布局" class="headerlink" title="适用于网格布局"></a>适用于网格布局</h2><p>rem不仅适用于字体大小，也用于网格布局。例如，你可以用基于HTML根元素字体大小的rem作为整个网络布局或者UI库的大小单位，然后在其它特定的地方用em单位。这样将会给你带来更多的字体大小和伸缩的可控性。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">.container &#123;</div><div class="line">    width: 70rem;   //  70 * 14px = 980px</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="vh和vw"><a href="#vh和vw" class="headerlink" title="vh和vw"></a>vh和vw</h2><p>响应式web设计对百分比规则有很大的依赖性。然而，对于每一个问题，css百分比并不是最好的解决方案。CSS宽度是相对于包含它的最近的父元素的宽度的。如果你想使用的是视口的高度与宽度，而不是父元素的，那么vh和vw就能满足需求了。</p>
+<p>1vh等于1%的视口高度。例如，浏览器高度是900px，那么1vh = 900* 1% = 9px，同理，若视口宽度是750px，则1vw是7.5px。<br>它的用途很广泛。比如，我们用很简单的方法只用一行css代码就实现同屏幕等高的框。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">.slide&#123;</div><div class="line">    height: 100vh;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>假如你要来一个和屏幕同宽的标题，你只要设置这个标题的font-size的单位为vw，那标题的字体大小就会自动根据浏览器的宽度进行缩放，以达到字体和viewport大小同步的效果。</p>
+<h2 id="vmin和vmax"><a href="#vmin和vmax" class="headerlink" title="vmin和vmax"></a>vmin和vmax</h2><p>vh和vw是相对于视口的宽度和高度，而vmin和vmax则关于视口高度和宽度两者的最小或者最大值。例如，如果浏览器的高宽分别为700px和1100px，则1vmin=7px, 1vmax=11px；如果高宽分别是1080px和800px，则1vmin=8px，1vmax = 10.8px。</p>
+<p>那么什么时候需要这些值呢？<br>假设有一个元素，你需要让他始终在屏幕上可见。只要对其高度和宽度使用vmin单位，并赋予其低于100的值就可以做到。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.box</span> &#123;</div><div class="line">    <span class="attribute">height</span>: <span class="number">100vmin</span>;</div><div class="line">    <span class="attribute">width</span>: <span class="number">100vmin</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>如果你要让这个方框始终铺满整个视口的可见区域（四边始终触摸到屏幕的四边）：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.box</span>&#123;</div><div class="line">    <span class="attribute">height</span>: <span class="number">100vmax</span>;</div><div class="line">    <span class="attribute">width</span>: <span class="number">100vmax</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote class=&quot;blockquote-center&quot;&gt;&lt;p&gt;CSS中的单位&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="CSS3" scheme="https://muleimulei.github.io/categories/CSS3/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>JavaScript工作机制（二）</title>
@@ -1391,39 +1432,6 @@ document.querySelector("#wrapper4 .btn2").addEventListener("click", function(){
     
     
       <category term="string与stringstream" scheme="https://muleimulei.github.io/tags/string%E4%B8%8Estringstream/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>C++的find函数</title>
-    <link href="https://muleimulei.github.io/2017/08/05/c%E4%B8%8Ec++/C++%E7%9A%84find/"/>
-    <id>https://muleimulei.github.io/2017/08/05/c与c++/C++的find/</id>
-    <published>2017-08-05T07:43:47.952Z</published>
-    <updated>2017-08-05T08:04:50.759Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote class="blockquote-center"><p>C++的find函数</p>
-</blockquote>
-<a id="more"></a>
-<h1 id="头文件"><a href="#头文件" class="headerlink" title="头文件"></a>头文件</h1><p>#include<algorithm></algorithm></p>
-<p>函数实现<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">template</span> &lt;<span class="keyword">class</span> InputIterator, <span class="keyword">class</span> T&gt;</div><div class="line"><span class="function">InputIterator <span class="title">find</span> <span class="params">(InputIterator first, InputIterator last, <span class="keyword">const</span> T&amp;val)</span></span>&#123;</div><div class="line">    <span class="keyword">while</span> (first!=last)&#123;</div><div class="line">        <span class="keyword">if</span>(*first==val) <span class="keyword">return</span> first;</div><div class="line">        ++first;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> last;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>例1<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; m;</div><div class="line">    m.push_back(<span class="string">"hello"</span>);</div><div class="line">    m.push_back(<span class="string">"hello2"</span>);</div><div class="line">    m.push_back(<span class="string">"hello3"</span>);</div><div class="line">    <span class="keyword">if</span> (find(m.begin(), m.end(), <span class="string">"hello"</span>) == m.end())</div><div class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"no"</span> &lt;&lt; <span class="built_in">endl</span>;</div><div class="line">    <span class="keyword">else</span></div><div class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"yes"</span> &lt;&lt; <span class="built_in">endl</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>例2<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;set&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">    <span class="built_in">set</span>&lt;<span class="built_in">string</span>&gt; m;</div><div class="line">    m.insert(<span class="string">"hello"</span>);</div><div class="line">    m.insert(<span class="string">"hello2"</span>);</div><div class="line">    m.insert(<span class="string">"hello3"</span>);</div><div class="line">    <span class="keyword">if</span> (find(m.begin(), m.end(), <span class="string">"hello"</span>) == m.end())</div><div class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"no"</span> &lt;&lt; <span class="built_in">endl</span>;</div><div class="line">    <span class="keyword">else</span></div><div class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"yes"</span> &lt;&lt; <span class="built_in">endl</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<blockquote>
-<p>set，string自身有个find()函数</p>
-</blockquote>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;set&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">    <span class="built_in">set</span>&lt;<span class="built_in">string</span>&gt; m;</div><div class="line">    m.insert(<span class="string">"hello"</span>);</div><div class="line">    m.insert(<span class="string">"hello2"</span>);</div><div class="line">    m.insert(<span class="string">"hello3"</span>);</div><div class="line">    <span class="keyword">if</span> (find(m.begin(), m.end(), <span class="string">"hello"</span>) == m.end())</div><div class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"no"</span> &lt;&lt; <span class="built_in">endl</span>;</div><div class="line">    <span class="keyword">else</span></div><div class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"yes"</span> &lt;&lt; <span class="built_in">endl</span>;</div><div class="line"></div><div class="line">    <span class="comment">//find函数返回类型 size_type</span></div><div class="line">    <span class="function"><span class="built_in">string</span> <span class="title">s</span><span class="params">(<span class="string">"1a2b3c4d5e6f7g8h9i1a2b3c4d5e6f7g8ha9i"</span>)</span></span>;  </div><div class="line">    <span class="built_in">string</span> flag;</div><div class="line">    <span class="built_in">string</span>::size_type position;</div><div class="line">    <span class="comment">//find 函数 返回jk 在s 中的下标位置   </span></div><div class="line">    position = s.find(<span class="string">"jk"</span>);  </div><div class="line">    <span class="keyword">if</span> (position != s.npos)  <span class="comment">//如果没找到，返回一个特别的标志c++中用npos表示，我这里npos取值是4294967295，  </span></div><div class="line">     &#123;  </div><div class="line">      <span class="built_in">cout</span> &lt;&lt; <span class="string">"position is : "</span> &lt;&lt; position &lt;&lt; <span class="built_in">endl</span>;  </div><div class="line">     &#125;  </div><div class="line">    <span class="keyword">else</span>  </div><div class="line">     &#123;  </div><div class="line">      <span class="built_in">cout</span> &lt;&lt; <span class="string">"Not found the flag"</span> + flag;  </div><div class="line">     &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;blockquote class=&quot;blockquote-center&quot;&gt;&lt;p&gt;C++的find函数&lt;/p&gt;
-&lt;/blockquote&gt;
-    
-    </summary>
-    
-      <category term="C++" scheme="https://muleimulei.github.io/categories/C/"/>
-    
-    
-      <category term="C++的find函数" scheme="https://muleimulei.github.io/tags/C-%E7%9A%84find%E5%87%BD%E6%95%B0/"/>
     
   </entry>
   
