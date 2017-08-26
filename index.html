@@ -352,6 +352,352 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://muleimulei.github.io/2017/08/26/JavaScript/JavaScript工作机制2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="穆蕾">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="风的影子">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/08/26/JavaScript/JavaScript工作机制2/" itemprop="url">
+                  JavaScript工作机制（二）
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-26T09:35:13+08:00">
+                2017-08-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaScript/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaScript</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote class="blockquote-center"><p>JavaScript工作机制（二）</p>
+</blockquote>
+<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>JavaScript引擎是一个执行JavaScript代码的程序或解释器。JavaScript引擎可以被实现为标准解释器，或者实现为以某种形式将JavaScript编译为字节码的即时编译器。</p>
+<p>下面是实现了JavaScript引擎的一个热门项目列表：</p>
+<blockquote>
+<p>V8 — 开源，由Google开发，用C++编写的<br>Rhino — 由Mozilla基金所管理，开源，完全用Java开发<br>SpiderMonkey —第一个JavaScript引擎，最早用在Netscape Navigator上，现在用在Firefox上。<br>JavaScriptCore — 开源，以Nitro销售，由苹果公司为Safari开发<br>KJS —KDE的引擎最初由Harri Porten开发，用于KDE项目的Konqueror浏览器<br>Chakra (JScript9) — Internet Explorer<br>Chakra (JavaScript) — Microsoft Edge<br>Nashorn— 开源为OpenJDK的一部分，由Oracle的Java语言和工具组开发<br>JerryScript —  是用于物联网的轻量级引擎</p>
+</blockquote>
+<h2 id="创建V8引擎的由来"><a href="#创建V8引擎的由来" class="headerlink" title="创建V8引擎的由来"></a>创建V8引擎的由来</h2><p>Google构建的V8引擎是开源的，是用C++编写的。该引擎被用在Google Chrome中。不过，与其它引擎不同的是，V8还被用作Node.js的运行时。V8最初是设计用来提升Web浏览器中JavaScript执行的性能。为了获得速度，V8将JavaScript代码转化为更高效的机器码，而不是使用解释器。它通过实现像很多现代JavaScript引擎（spiderMonkey或Rhino）所用的JIT编译器，从而将JavaScript代码编译成机器码。<strong>这里主要区别在于V8不会产生字节码或任何中间代码</strong></p>
+<h2 id="V8曾经有两个编译器"><a href="#V8曾经有两个编译器" class="headerlink" title="V8曾经有两个编译器"></a>V8曾经有两个编译器</h2><p>在V8的5.9版出现之前，V8引擎用了两个编译器：</p>
+<ul>
+<li>full-codegen：一个简单而超快的编译器，可以生成简单而相对较慢的机器码</li>
+<li>Crankshaft：一个更复杂（即时）的优化的编译器，可以生成高度优化的代码</li>
+</ul>
+<p>V8引擎还在内部使用多个线程：</p>
+<ul>
+<li>主线程执行我们想让他干的活：获取代码，编译然后执行它</li>
+<li>还有一个单独的线程用于编译，这样在主线程继续执行的同时，单独的线程能同时在优化代码</li>
+<li>一个Profiler线程，用于让运行时知道哪些方法花了大量时间，这样Crankshaft就可以对它进行优化</li>
+<li>几个线程用于处理垃圾收集器扫描</li>
+</ul>
+<p>第一次执行JavaScript代码时，V8会利用<strong>full-codegen</strong>直接将解析的JavaScript翻译为机器码，而无需任何转换。这就让它能非常快的开始执行机器码。<strong>请注意，由于V8不会使用中间字节码表示，这就无需解释器。</strong></p>
+<p>代码运行了一段时间后，Profiler线程已经收集了足够多的数据来判断应该优化哪个方法。</p>
+<p>接下来，Crankshaft优化从另一个线程开始。它将JavaScript抽象语法树翻译为称为<strong>Hydrogen</strong>的高级静态单赋值（SSA）表示，并尝试优化Hydrogen图。大多数优化都在这一级完成的。</p>
+<h2 id="内联"><a href="#内联" class="headerlink" title="内联"></a>内联</h2><p>第一个优化是提前内联尽可能多的代码。内联是被调用的函数体替换调用位置（调用函数所在的代码行）的过程。这个简单的步骤让以下优化变得更有意义。</p>
+<img src="/assets/segment/JavaScript引擎2.jpg">
+<h2 id="隐藏类"><a href="#隐藏类" class="headerlink" title="隐藏类"></a>隐藏类</h2><p>JavaScript是一种基于原型的语言：它没有类，对象是用一种克隆过程创建的。<br>JavaScript也是一种动态编程语言，就是说在对象实例化之后，可以随意给对象添加或删除属性。</p>
+<p>大多数JavaScript解释器都使用类似字典的结构（基于哈希函数），将对象属性值的位置存储在内存中。这种结构使得在JavaScript中获取属性的值比在Java或C#这样的非动态编程语言中更昂贵。在Java中，所有对象属性都是由编译前的固定对象布局确定的，并且不能在运行时动态添加或删除。因此，属性的值（或指向这些属性的指针）可以在内存中存为连续缓冲区，每个缓冲区之间有固定偏移量。偏移量的长度可以很容易根据属性类型来确定。而在JavaScript中，这是不可能的，因为属性类型可能会在运行期间发生变化。</p>
+<p>由于用字典来查找内存中对象属性的位置是非常低效的，所以V8使用了不同的方法来替代：<strong>隐藏类</strong>。隐藏类的工作机制类似于像Java这样的语言中使用的固定对象布局（类），只不过隐藏类是在运行时创建的。</p>
+<p>例子：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Point</span>(<span class="params">x, y</span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.x = x;</div><div class="line">    <span class="keyword">this</span>.y = y;</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> p1 = <span class="keyword">new</span> Point(<span class="number">1</span>, <span class="number">2</span>)</div></pre></td></tr></table></figure></p>
+<p>一旦<code>new Point(1, 2)</code>调用发生了，V8就会创建一个称为C0的隐藏类。</p>
+<img src="/assets/segment/JavaScript引擎3.jpg">
+<p>因为还没有给Point定义属性，所以CO为空。</p>
+<p>一旦执行了第一条语句<code>this.x = x </code>(在Point函数中)，V8就会创建一个基于C0的第二个隐藏类C1。C1描述了内存中的位置（相对于对象指针），属性X在这个位置可以找到。此时，x存储在偏移0处，就是说，当将内存中的point对象作为连续缓存器来查看时，第一个偏移就对应属性x。V8也会用“类转换”来更新C0，指出如果将一个属性X添加到点对象，那么隐藏类应该从C0切换到C1。下面的point对象的隐藏类现在是C1</p>
+<img src="/assets/segment/JavaScript引擎4.jpg">
+<p>每当向对象添加一个新属性时，旧的隐藏类就被用一个转换路径更新为新的隐藏类。隐藏类转换很重要，因为它们可以让隐藏类在以相同方式创建的对象之间共享。如果两个对象共享一个隐藏类，并且将相同的属性添加到这两个对象中，那么转换会确保两个对象都收到相同的新隐藏类和它附带的所以优化过的代码。</p>
+<p>当执行语句this.y = y时，会重复此过程。<br>这时，又创建一个名为C2的新隐藏类，类转换被添加到C1，表示如果将属性y添加到Point对象（已包含属性x）,那么隐藏类应更改为C2，同时point对象的隐藏类被更新为C2。</p>
+<img src="/assets/segment/JavaScript引擎5.jpg">
+<p>隐藏类转化取决于将属性添加到对象的顺序。如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Point</span> (<span class="params">x, y</span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.x = x;</div><div class="line">    <span class="keyword">this</span>.y = y;</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> p1 = <span class="keyword">new</span> Point(<span class="number">1</span>, <span class="number">2</span>);</div><div class="line">p1.a = <span class="number">5</span>;</div><div class="line">p1.b = <span class="number">6</span>;</div><div class="line"></div><div class="line"><span class="keyword">var</span> p2 = <span class="keyword">new</span> Point(<span class="number">3</span>, <span class="number">4</span>);</div><div class="line">p2.a = <span class="number">7</span>;</div><div class="line">p2.b = <span class="number">8</span>;</div></pre></td></tr></table></figure>
+<p>现在，你可能会认为p1和p2会使用相同的隐藏类和转换。但这是错的。对于p1，首先是添加属性a，然后是属性b。不过，对于p2，先是给b赋值，然后才是a。因此，由于转换路径不同，p1和p2最终会有不同的隐藏类。在这种情况下，以相同的顺序初始化动态属性要更好，这样隐藏类才可以被重用。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://muleimulei.github.io/2017/08/26/JavaScript/JavaScript工作机制/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="穆蕾">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="风的影子">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/08/26/JavaScript/JavaScript工作机制/" itemprop="url">
+                  JavaScript工作机制（一）
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-26T08:52:35+08:00">
+                2017-08-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaScript/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaScript</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote class="blockquote-center"><p>JavaScript工作机制（一）</p>
+</blockquote>
+<blockquote>
+<p>本文转载:<a href="http://www.zcfy.cc/article/3965" target="_blank" rel="external">原文链接：http://www.zcfy.cc/article/3965</a></p>
+</blockquote>
+<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>几乎所有人都已经听说过V8引擎的概念，大多数人都知道JavaScript是单线程的，或者是使用回调队列。<br>在这篇文章中，我们将详细介绍这些概念，并解释JavaScript的工作机制。通过了解这些细节，您将能正确利用提供的API，编写更好的非阻塞应用程序。</p>
+<h2 id="JavaScript引擎"><a href="#JavaScript引擎" class="headerlink" title="JavaScript引擎"></a>JavaScript引擎</h2><p>JavaScript引擎的一个流行示例是Google的V8引擎。例如，V8引擎在Chrome和Node.js中使用。如下所示：</p>
+<img src="/assets/segment/JavaScript引擎.jpg">
+<p>引擎由两个主要部分组成：</p>
+<ul>
+<li>内存堆：这是内存分配发生的地方</li>
+<li>调用栈：代码执行所在的栈帧</li>
+</ul>
+<h2 id="运行时"><a href="#运行时" class="headerlink" title="运行时"></a>运行时</h2><p>浏览器中已经有几个巨虎JavaScript开发人员都会使用的API（比如：<code>setTimeout</code>）。不过，这些API不是由引擎提供的。<br>事实证明，现实有点复杂：</p>
+<img src="/assets/segment/JavaScript引擎1.jpg">
+<p>所以，除了引擎以外，实际上还有更多东西。有一些由浏览器提供的，称为Web API的东西，比如DOM，Ajax，setTimeout等等。还有<strong>事件循环</strong>和<strong>回调队列</strong></p>
+<h2 id="调用栈"><a href="#调用栈" class="headerlink" title="调用栈"></a>调用栈</h2><p>JavaScript是一种单线程编程语言，这意味着他只有一个调用栈。因此，它一次只能做一个事。</p>
+<p>调用栈是一种数据结构，它基本上记录了我们处于程序中哪个地方。如果单步执行一个函数，就把该函数放到栈顶如果从函数返回，就把它从栈顶弹出。这就是栈所做的事情。</p>
+<h2 id="并发和事件循环"><a href="#并发和事件循环" class="headerlink" title="并发和事件循环"></a>并发和事件循环</h2><p>当在调用栈中有函数调用需要大量时间才能处理完时，会发生什么？例如，假如想在浏览器中使用JavaScript进行一些复杂的图像转换。</p>
+<p>你可能会问-这怎么就成了一个问题呢？原因是，在调用堆有函数要执行的同时，浏览器实际上不能做任何事情–他被阻塞了。这意味着浏览器无法渲染，他不能运行任何其它代码，它只是卡住了。如果想在应用中有流畅的UI，则会出现问题。</p>
+<p>而这不是唯一的问题。一旦浏览器开始处理调用栈中的许多任务，他可能会停止响应很长时间。</p>
+<p>那么，如何执行繁重的代码，而不阻塞UI并且不会使浏览器无响应呢？解决的方案是<strong>异步回调</strong></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="https://muleimulei.github.io/2017/08/24/JavaScript/JavaScript里的深拷贝与浅拷贝/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -785,302 +1131,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://muleimulei.github.io/2017/08/23/JavaScript/getBoundingClientRect用法/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="穆蕾">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="风的影子">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/08/23/JavaScript/getBoundingClientRect用法/" itemprop="url">
-                  getBoundingClientRect用法
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-23T15:38:27+08:00">
-                2017-08-23
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JavaScript/" itemprop="url" rel="index">
-                    <span itemprop="name">JavaScript</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <blockquote class="blockquote-center"><p>getBoundingClientRect用法</p>
-</blockquote>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/08/23/JavaScript/getBoundingClientRect用法/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://muleimulei.github.io/2017/08/20/CSS3/css的display为table/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="穆蕾">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="风的影子">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/08/20/CSS3/css的display为table/" itemprop="url">
-                  CSS3的display:table
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-20T14:37:56+08:00">
-                2017-08-20
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/CSS3/" itemprop="url" rel="index">
-                    <span itemprop="name">CSS3</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <blockquote class="blockquote-center"><p>CSS3的display:table</p>
-</blockquote>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/08/20/CSS3/css的display为table/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1133,7 +1183,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">52</span>
+                <span class="site-state-item-count">54</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

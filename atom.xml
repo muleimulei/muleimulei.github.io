@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://muleimulei.github.io/"/>
-  <updated>2017-08-24T08:31:59.275Z</updated>
+  <updated>2017-08-26T04:35:12.564Z</updated>
   <id>https://muleimulei.github.io/</id>
   
   <author>
@@ -14,6 +14,117 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>JavaScript工作机制（二）</title>
+    <link href="https://muleimulei.github.io/2017/08/26/JavaScript/JavaScript%E5%B7%A5%E4%BD%9C%E6%9C%BA%E5%88%B62/"/>
+    <id>https://muleimulei.github.io/2017/08/26/JavaScript/JavaScript工作机制2/</id>
+    <published>2017-08-26T01:35:13.391Z</published>
+    <updated>2017-08-26T04:35:12.564Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote class="blockquote-center"><p>JavaScript工作机制（二）</p>
+</blockquote>
+<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>JavaScript引擎是一个执行JavaScript代码的程序或解释器。JavaScript引擎可以被实现为标准解释器，或者实现为以某种形式将JavaScript编译为字节码的即时编译器。</p>
+<p>下面是实现了JavaScript引擎的一个热门项目列表：</p>
+<blockquote>
+<p>V8 — 开源，由Google开发，用C++编写的<br>Rhino — 由Mozilla基金所管理，开源，完全用Java开发<br>SpiderMonkey —第一个JavaScript引擎，最早用在Netscape Navigator上，现在用在Firefox上。<br>JavaScriptCore — 开源，以Nitro销售，由苹果公司为Safari开发<br>KJS —KDE的引擎最初由Harri Porten开发，用于KDE项目的Konqueror浏览器<br>Chakra (JScript9) — Internet Explorer<br>Chakra (JavaScript) — Microsoft Edge<br>Nashorn— 开源为OpenJDK的一部分，由Oracle的Java语言和工具组开发<br>JerryScript —  是用于物联网的轻量级引擎</p>
+</blockquote>
+<h2 id="创建V8引擎的由来"><a href="#创建V8引擎的由来" class="headerlink" title="创建V8引擎的由来"></a>创建V8引擎的由来</h2><p>Google构建的V8引擎是开源的，是用C++编写的。该引擎被用在Google Chrome中。不过，与其它引擎不同的是，V8还被用作Node.js的运行时。V8最初是设计用来提升Web浏览器中JavaScript执行的性能。为了获得速度，V8将JavaScript代码转化为更高效的机器码，而不是使用解释器。它通过实现像很多现代JavaScript引擎（spiderMonkey或Rhino）所用的JIT编译器，从而将JavaScript代码编译成机器码。<strong>这里主要区别在于V8不会产生字节码或任何中间代码</strong></p>
+<h2 id="V8曾经有两个编译器"><a href="#V8曾经有两个编译器" class="headerlink" title="V8曾经有两个编译器"></a>V8曾经有两个编译器</h2><p>在V8的5.9版出现之前，V8引擎用了两个编译器：</p>
+<ul>
+<li>full-codegen：一个简单而超快的编译器，可以生成简单而相对较慢的机器码</li>
+<li>Crankshaft：一个更复杂（即时）的优化的编译器，可以生成高度优化的代码</li>
+</ul>
+<p>V8引擎还在内部使用多个线程：</p>
+<ul>
+<li>主线程执行我们想让他干的活：获取代码，编译然后执行它</li>
+<li>还有一个单独的线程用于编译，这样在主线程继续执行的同时，单独的线程能同时在优化代码</li>
+<li>一个Profiler线程，用于让运行时知道哪些方法花了大量时间，这样Crankshaft就可以对它进行优化</li>
+<li>几个线程用于处理垃圾收集器扫描</li>
+</ul>
+<p>第一次执行JavaScript代码时，V8会利用<strong>full-codegen</strong>直接将解析的JavaScript翻译为机器码，而无需任何转换。这就让它能非常快的开始执行机器码。<strong>请注意，由于V8不会使用中间字节码表示，这就无需解释器。</strong></p>
+<p>代码运行了一段时间后，Profiler线程已经收集了足够多的数据来判断应该优化哪个方法。</p>
+<p>接下来，Crankshaft优化从另一个线程开始。它将JavaScript抽象语法树翻译为称为<strong>Hydrogen</strong>的高级静态单赋值（SSA）表示，并尝试优化Hydrogen图。大多数优化都在这一级完成的。</p>
+<h2 id="内联"><a href="#内联" class="headerlink" title="内联"></a>内联</h2><p>第一个优化是提前内联尽可能多的代码。内联是被调用的函数体替换调用位置（调用函数所在的代码行）的过程。这个简单的步骤让以下优化变得更有意义。</p>
+<img src="/assets/segment/JavaScript引擎2.jpg">
+<h2 id="隐藏类"><a href="#隐藏类" class="headerlink" title="隐藏类"></a>隐藏类</h2><p>JavaScript是一种基于原型的语言：它没有类，对象是用一种克隆过程创建的。<br>JavaScript也是一种动态编程语言，就是说在对象实例化之后，可以随意给对象添加或删除属性。</p>
+<p>大多数JavaScript解释器都使用类似字典的结构（基于哈希函数），将对象属性值的位置存储在内存中。这种结构使得在JavaScript中获取属性的值比在Java或C#这样的非动态编程语言中更昂贵。在Java中，所有对象属性都是由编译前的固定对象布局确定的，并且不能在运行时动态添加或删除。因此，属性的值（或指向这些属性的指针）可以在内存中存为连续缓冲区，每个缓冲区之间有固定偏移量。偏移量的长度可以很容易根据属性类型来确定。而在JavaScript中，这是不可能的，因为属性类型可能会在运行期间发生变化。</p>
+<p>由于用字典来查找内存中对象属性的位置是非常低效的，所以V8使用了不同的方法来替代：<strong>隐藏类</strong>。隐藏类的工作机制类似于像Java这样的语言中使用的固定对象布局（类），只不过隐藏类是在运行时创建的。</p>
+<p>例子：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Point</span>(<span class="params">x, y</span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.x = x;</div><div class="line">    <span class="keyword">this</span>.y = y;</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> p1 = <span class="keyword">new</span> Point(<span class="number">1</span>, <span class="number">2</span>)</div></pre></td></tr></table></figure></p>
+<p>一旦<code>new Point(1, 2)</code>调用发生了，V8就会创建一个称为C0的隐藏类。</p>
+<img src="/assets/segment/JavaScript引擎3.jpg">
+<p>因为还没有给Point定义属性，所以CO为空。</p>
+<p>一旦执行了第一条语句<code>this.x = x </code>(在Point函数中)，V8就会创建一个基于C0的第二个隐藏类C1。C1描述了内存中的位置（相对于对象指针），属性X在这个位置可以找到。此时，x存储在偏移0处，就是说，当将内存中的point对象作为连续缓存器来查看时，第一个偏移就对应属性x。V8也会用“类转换”来更新C0，指出如果将一个属性X添加到点对象，那么隐藏类应该从C0切换到C1。下面的point对象的隐藏类现在是C1</p>
+<img src="/assets/segment/JavaScript引擎4.jpg">
+<p>每当向对象添加一个新属性时，旧的隐藏类就被用一个转换路径更新为新的隐藏类。隐藏类转换很重要，因为它们可以让隐藏类在以相同方式创建的对象之间共享。如果两个对象共享一个隐藏类，并且将相同的属性添加到这两个对象中，那么转换会确保两个对象都收到相同的新隐藏类和它附带的所以优化过的代码。</p>
+<p>当执行语句this.y = y时，会重复此过程。<br>这时，又创建一个名为C2的新隐藏类，类转换被添加到C1，表示如果将属性y添加到Point对象（已包含属性x）,那么隐藏类应更改为C2，同时point对象的隐藏类被更新为C2。</p>
+<img src="/assets/segment/JavaScript引擎5.jpg">
+<p>隐藏类转化取决于将属性添加到对象的顺序。如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Point</span> (<span class="params">x, y</span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.x = x;</div><div class="line">    <span class="keyword">this</span>.y = y;</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> p1 = <span class="keyword">new</span> Point(<span class="number">1</span>, <span class="number">2</span>);</div><div class="line">p1.a = <span class="number">5</span>;</div><div class="line">p1.b = <span class="number">6</span>;</div><div class="line"></div><div class="line"><span class="keyword">var</span> p2 = <span class="keyword">new</span> Point(<span class="number">3</span>, <span class="number">4</span>);</div><div class="line">p2.a = <span class="number">7</span>;</div><div class="line">p2.b = <span class="number">8</span>;</div></pre></td></tr></table></figure>
+<p>现在，你可能会认为p1和p2会使用相同的隐藏类和转换。但这是错的。对于p1，首先是添加属性a，然后是属性b。不过，对于p2，先是给b赋值，然后才是a。因此，由于转换路径不同，p1和p2最终会有不同的隐藏类。在这种情况下，以相同的顺序初始化动态属性要更好，这样隐藏类才可以被重用。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote class=&quot;blockquote-center&quot;&gt;&lt;p&gt;JavaScript工作机制（二）&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&quot;概述&quot;&gt;&lt;a href=&quot;#概述&quot; class=&quot;headerlink&quot; title=&quot;概述&quot;&gt;&lt;/a&gt;概述&lt;
+    
+    </summary>
+    
+      <category term="JavaScript" scheme="https://muleimulei.github.io/categories/JavaScript/"/>
+    
+    
+      <category term="JavaScript" scheme="https://muleimulei.github.io/tags/JavaScript/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>JavaScript工作机制（一）</title>
+    <link href="https://muleimulei.github.io/2017/08/26/JavaScript/JavaScript%E5%B7%A5%E4%BD%9C%E6%9C%BA%E5%88%B6/"/>
+    <id>https://muleimulei.github.io/2017/08/26/JavaScript/JavaScript工作机制/</id>
+    <published>2017-08-26T00:52:35.369Z</published>
+    <updated>2017-08-26T01:31:57.996Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote class="blockquote-center"><p>JavaScript工作机制（一）</p>
+</blockquote>
+<blockquote>
+<p>本文转载:<a href="http://www.zcfy.cc/article/3965" target="_blank" rel="external">原文链接：http://www.zcfy.cc/article/3965</a></p>
+</blockquote>
+<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>几乎所有人都已经听说过V8引擎的概念，大多数人都知道JavaScript是单线程的，或者是使用回调队列。<br>在这篇文章中，我们将详细介绍这些概念，并解释JavaScript的工作机制。通过了解这些细节，您将能正确利用提供的API，编写更好的非阻塞应用程序。</p>
+<h2 id="JavaScript引擎"><a href="#JavaScript引擎" class="headerlink" title="JavaScript引擎"></a>JavaScript引擎</h2><p>JavaScript引擎的一个流行示例是Google的V8引擎。例如，V8引擎在Chrome和Node.js中使用。如下所示：</p>
+<img src="/assets/segment/JavaScript引擎.jpg">
+<p>引擎由两个主要部分组成：</p>
+<ul>
+<li>内存堆：这是内存分配发生的地方</li>
+<li>调用栈：代码执行所在的栈帧</li>
+</ul>
+<h2 id="运行时"><a href="#运行时" class="headerlink" title="运行时"></a>运行时</h2><p>浏览器中已经有几个巨虎JavaScript开发人员都会使用的API（比如：<code>setTimeout</code>）。不过，这些API不是由引擎提供的。<br>事实证明，现实有点复杂：</p>
+<img src="/assets/segment/JavaScript引擎1.jpg">
+<p>所以，除了引擎以外，实际上还有更多东西。有一些由浏览器提供的，称为Web API的东西，比如DOM，Ajax，setTimeout等等。还有<strong>事件循环</strong>和<strong>回调队列</strong></p>
+<h2 id="调用栈"><a href="#调用栈" class="headerlink" title="调用栈"></a>调用栈</h2><p>JavaScript是一种单线程编程语言，这意味着他只有一个调用栈。因此，它一次只能做一个事。</p>
+<p>调用栈是一种数据结构，它基本上记录了我们处于程序中哪个地方。如果单步执行一个函数，就把该函数放到栈顶如果从函数返回，就把它从栈顶弹出。这就是栈所做的事情。</p>
+<h2 id="并发和事件循环"><a href="#并发和事件循环" class="headerlink" title="并发和事件循环"></a>并发和事件循环</h2><p>当在调用栈中有函数调用需要大量时间才能处理完时，会发生什么？例如，假如想在浏览器中使用JavaScript进行一些复杂的图像转换。</p>
+<p>你可能会问-这怎么就成了一个问题呢？原因是，在调用堆有函数要执行的同时，浏览器实际上不能做任何事情–他被阻塞了。这意味着浏览器无法渲染，他不能运行任何其它代码，它只是卡住了。如果想在应用中有流畅的UI，则会出现问题。</p>
+<p>而这不是唯一的问题。一旦浏览器开始处理调用栈中的许多任务，他可能会停止响应很长时间。</p>
+<p>那么，如何执行繁重的代码，而不阻塞UI并且不会使浏览器无响应呢？解决的方案是<strong>异步回调</strong></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote class=&quot;blockquote-center&quot;&gt;&lt;p&gt;JavaScript工作机制（一）&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;本文转载:&lt;a href=&quot;http://www.zcfy.cc/article/3965&quot; 
+    
+    </summary>
+    
+      <category term="JavaScript" scheme="https://muleimulei.github.io/categories/JavaScript/"/>
+    
+    
+      <category term="JavaScript" scheme="https://muleimulei.github.io/tags/JavaScript/"/>
+    
+  </entry>
   
   <entry>
     <title>JavaScript的深拷贝与浅拷贝</title>
@@ -1298,189 +1409,6 @@ document.querySelector("#wrapper4 .btn2").addEventListener("click", function(){
     
     
       <category term="C++的find函数" scheme="https://muleimulei.github.io/tags/C-%E7%9A%84find%E5%87%BD%E6%95%B0/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>SQL数据定义语句</title>
-    <link href="https://muleimulei.github.io/2017/08/04/DataBase/sql%E6%95%B0%E6%8D%AE%E5%AE%9A%E4%B9%89%E8%AF%AD%E5%8F%A5/"/>
-    <id>https://muleimulei.github.io/2017/08/04/DataBase/sql数据定义语句/</id>
-    <published>2017-08-04T10:35:17.613Z</published>
-    <updated>2017-08-04T12:30:03.354Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote class="blockquote-center"><p>SQL数据定义语句</p>
-</blockquote>
-<a id="more"></a>
-<p>关系数据库系统支持三级模式结构，其模式，外模式和内模式中的基本对象有模式，视图和索引等。因此SQL的数据定义功能包括模式定义，表定义，视图和索引的定义。</p>
-<h2 id="sql的数据定义语句"><a href="#sql的数据定义语句" class="headerlink" title="sql的数据定义语句"></a>sql的数据定义语句</h2><ol>
-<li>模式<ul>
-<li>创建：<code>CREATE SCHEMA</code></li>
-<li>删除：<code>DROP SCHEMA</code></li>
-</ul>
-</li>
-<li>表<ul>
-<li>创建：<code>CREATE TABLE</code></li>
-<li>删除：<code>DROP TABLE</code></li>
-<li>修改：<code>ALTER TABLE</code></li>
-</ul>
-</li>
-<li>视图<ul>
-<li>创建：<code>CREATE VIEW</code></li>
-<li>删除：<code>DROP VIEW</code></li>
-</ul>
-</li>
-<li>索引<ul>
-<li>创建：<code>CREATE INDEX</code></li>
-<li>删除：<code>DROP INDEX</code></li>
-<li>修改：<code>ALTER INDEX</code></li>
-</ul>
-</li>
-</ol>
-<p><strong>一个关系数据库管理系统的实例中可以建立多个数据库，一个数据库中可以建立多个模式，一个模式下通常包括多个表，视图和索引等数据库对象。</strong></p>
-<h1 id="模式的定义与删除"><a href="#模式的定义与删除" class="headerlink" title="模式的定义与删除"></a>模式的定义与删除</h1><ol>
-<li><p>定义模式<br> <code>CREATE SCHEMA &lt;模式名&gt; AUTHORIZATION &lt;用户名&gt;<code>，如果没有指定&lt;模式名&gt;，那么&lt;模式名&gt;隐含为&lt;用户名&gt;。要创建模式，调用该命令的用户必须拥有数据库管理员权限，或者获得了数据库管理员授予的<code>CREATE SCHEMA<code>的权限。目前，在<code>CREATE SCHEMA<code>中可以接受<code>CREATE TABLE<code>，<code>CREATE VIEW<code>和<code>GRANT<code>，也就是说用户可以在创建模式的同时在这个模式定义中进一步创建基本表，视图，定义授权。即：<code>CREATE SCHEMA &lt;模式名&gt; AUTHORIZATION &lt;用户名&gt; [ &lt;表定义子句&gt;|&lt;视图定义子句&gt;|&lt;授权定义子句&gt; ]<code>;</code></code></code></code></code></code></code></code></code></code></code></code></code></code></p>
-</li>
-<li><p>删除模式<br> <code>DROP SCHEMA &lt;模式名&gt; <cascade |="" rrestrict=""></cascade></code>，其中cascade和restrict两者必选其一。选择了cascade（级联），表示在删除模式的同时把该模式中所有的数据库对象全部删除；选择了restrict（限制），表示如果该模式中已经定义了下属的数据库对象（如表，视图等），则拒绝该删除语句的执行。只有当该模式中没有任何下属的对象时才能执行drop schema语句。</p>
-</li>
-</ol>
-<h1 id="基本表的定义，删除与修改"><a href="#基本表的定义，删除与修改" class="headerlink" title="基本表的定义，删除与修改"></a>基本表的定义，删除与修改</h1><ol>
-<li><p>定义基本表<br> 创建了一个模式就建立了一个数据库的命名空间，一个框架。在这个空间中首先要定义的是该模式包含的数据库基本表。SQL语句使用<code>CREATE TABLE</code>语句定义基本表，其基本格式为：</p>
-<p> <code></code></p>
-<pre><code>CREATE TABLE &lt;表名&gt; (&lt;列名&gt;&lt;数据类型&gt; [列级完整性约束条件]
-                    [,&lt;列名&gt;&lt;数据类型&gt;[列级完整性约束条件]])
-                    ...........
-                    [,&lt;表级完整性约束条件&gt;]
-</code></pre><p> </p>
-<p> 建表的同时通常还可以定义与该表有关的完整性约束条件，这些完整性约束条件被存入系统的数据字典中，当用户操作表中数据时由关系数据库管理系统自动检查该操作是否违背这些完整性约束条件。<strong> 如果完整性约束条件涉及该表的多个属性列，则必须定义在表级上，否则既可以定义在列级也可以定义在表级 </strong></p>
-<p> <code></code></p>
-<pre><code>CREATE TABLE SC
-(
-    Sno CHAR(9),
-    Cno CHAR(4),
-    Grade SMALLINT,
-    PRIMARY KEY (Sno, Cno),  /* 主码由两个属性构成，必须作为表级完整性进行定义 */
-    FOREIGN KEY (Sno) REFERENCES Student (Sno), /* 表级完整性约束条件，Sno是外码，被参照表是Student */
-    FOREIGN KEY (Cno) REFERENCES Course (Cno) /* 表级完整性约束条件，Cno是外码，被参照表是Course */
-)
-</code></pre><p> </p>
-</li>
-<li><p>数据类型</p>
-<ul>
-<li>CHAR(N)，CHARACTER(N)：长度为n的定长字符串</li>
-<li>VARCHAR(N)：最大长度为n的变长字符串</li>
-<li>CLOB：字符串大对象</li>
-<li>BLOB：二进制大对象</li>
-<li>INT，INTEGER：长整数（4字节）</li>
-<li>SMALLINT：短整形（2字节）</li>
-<li>BIGINT：大整形(8整数)</li>
-<li>NUMERIC(p,d)：定点数，由p位数字（不包括符号，小数点）组成，小数点后面有d位数字</li>
-<li>DECIMAL(p,d)：同NUMERIC</li>
-<li>REAL：取决于机器精度的单精度浮点数</li>
-<li>DOUBLE PRECISION：取决于机器精度的双精度浮点数</li>
-<li>FLOAT(n)：可选精度的浮点数，精度至少为n位数字</li>
-<li>BOOLEAN：逻辑布尔值</li>
-<li>DATE：日期，包含年，月，日，格式为yyyy-mm-dd</li>
-<li>TIME：时间，包含一日的时，分，秒，格式为HH:MM:SS</li>
-<li>TIMESTAMP：时间戳类型</li>
-<li>INTERVAL：时间间隔类型</li>
-</ul>
-</li>
-<li><p>修改基本表<br> <code></code></p>
-<pre><code>ALTER TABLE &lt;表名&gt;
-[ADD [COLUMN] &lt;新列名&gt; &lt;数据类型&gt; [完整性约束]]
-[ADD &lt;表级完整性约束&gt;]
-[DROP [COLUMN] &lt;列名&gt; [CASCADE | RESTRICT]]
-[DROP CONSTRAINT &lt;完整性约束名&gt; [RESTRICT|CASCADE]]
-[ALTER COLUMN &lt;列名&gt;&lt;数据类型&gt;]
-</code></pre><p> </p>
-</li>
-<li><p>删除基本表<br> <code>DROP TABLE &lt;表名&gt; [RESTRICT|CASCADE]</code>。</p>
-</li>
-</ol>
-<h1 id="索引的建立与删除"><a href="#索引的建立与删除" class="headerlink" title="索引的建立与删除"></a>索引的建立与删除</h1><ol>
-<li><p>建立索引<br> <code></code></p>
-<pre><code>CREATE [UNIQUE] [CLUSTER] INDEX &lt;索引名&gt;
-ON &lt;表名&gt;(&lt;列名&gt; [&lt;次序&gt;] [,&lt;列名&gt; [&lt;次序&gt;]] ...)
-</code></pre><p> </p>
-<ul>
-<li>UNIQUE：表明此索引的每一个索引值只对应唯一的数据记录</li>
-<li>CLUSTER：表示要建立的索引是聚簇索引</li>
-</ul>
-</li>
-<li><p>修改索引<br> <code> ALTER INDEX &lt;旧索引名&gt; RENAME TO &lt;新索引名&gt;</code></p>
-</li>
-<li><p>删除索引<br> <code>DROP INDEX &lt;索引名&gt;</code></p>
-</li>
-</ol>
-<h1 id="数据查询"><a href="#数据查询" class="headerlink" title="数据查询"></a>数据查询</h1><p><code><br>    SELECT [ALL|DISTINCT] &lt;目标列表达式&gt; [, &lt;目标列表达式&gt;] …<br>    FROM &lt;表名或视图名&gt; [,&lt;表名或视图名&gt;] | (<select 语句="">) [AS] &lt;别名&gt;<br>    [WHERE &lt;条件表达式&gt;]<br>    [GROUP BY &lt;列名 1&gt; [HAVING &lt;条件表达式&gt;]]<br>    [ORDER BY &lt;列名 2&gt; [ASC|DESC]]<br></select></code></p>
-<blockquote>
-<p>%（百分号）：代表任意长度（长度可以为0）的字符串。<br>_(下横线)：代表任意单个字符</p>
-</blockquote>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;blockquote class=&quot;blockquote-center&quot;&gt;&lt;p&gt;SQL数据定义语句&lt;/p&gt;
-&lt;/blockquote&gt;
-    
-    </summary>
-    
-      <category term="DataBase" scheme="https://muleimulei.github.io/categories/DataBase/"/>
-    
-    
-      <category term="SQL数据定义语句" scheme="https://muleimulei.github.io/tags/SQL%E6%95%B0%E6%8D%AE%E5%AE%9A%E4%B9%89%E8%AF%AD%E5%8F%A5/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>关系的完整性</title>
-    <link href="https://muleimulei.github.io/2017/08/03/DataBase/%E5%85%B3%E7%B3%BB%E7%9A%84%E5%AE%8C%E6%95%B4%E6%80%A7/"/>
-    <id>https://muleimulei.github.io/2017/08/03/DataBase/关系的完整性/</id>
-    <published>2017-08-03T07:11:26.020Z</published>
-    <updated>2017-08-03T08:07:16.765Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote class="blockquote-center"><p>关系的完整性</p>
-</blockquote>
-<a id="more"></a>
-<p>关系模型的完整性规则是对关系的某种约束条件。也就是说关系的值随着时间变化时因该满足一些约束条件。这些约束条件实际上是现实世界的要求。任何关系在任何时刻都要满足这些语义约束。</p>
-<p><strong> 关系模型中有三类完整性约束：实体完整性，参照完整性和用户定义的完整性 </strong>。其中实体完整性和参照完整性是关系模型必须满足的完整性约束条件，被称为关系的两个不变性，应该由关系系统自动支持。用户定义的完整性是应用领域需要遵循的约束条件，体现了具体领域中的语义约束。</p>
-<ol>
-<li><p>实体完整性<br>实体完整性规则：若属性（指一个或一组属性）A是基本关系R的主属性，则A不能取空值（null value）。所谓空值就是“不知道”或“不存在”或“无意义”的值。</p>
-<p>实体完整性规则说明如下：</p>
-<ol>
-<li>实体完整性规则是针对基本关系而言的。一个基本表通常对应现实世界的一个实体集。</li>
-<li>现实世界中的实体是可区分的，即他们具有某种唯一性标识。</li>
-<li>相应的，关系模型中以主码作为唯一性标识。</li>
-<li>主码中的属性即主属性不能取空值。如果主属性取空值，就说明存在某个不可标识的主体，即存在不可区分的实体，这与第2点相矛盾，因此这个规则称为实体完整性。</li>
-</ol>
-</li>
-</ol>
-<blockquote>
-<p>设F是基本关系R的一个或一组属性，但不是关系R的码，Ks是基本关系S的主码。如果F与Ks相对应，则称F是R的外码，并称基本关系R为参照关系，基本关系S为被参照关系或目标关系。关系R和S不一定是不同的关系。</p>
-</blockquote>
-<ol>
-<li>参照完整性<br>若属性（属性组）F是基本关系R的外码，它与基本关系S的主码Ks相对应（基本关系R与S不一定是不同的关系），则对于R中的每个元组在F上的值必须：<ul>
-<li>或者取空值（F的每个属性值均为空值）</li>
-<li>或者等于S中某个元组的主码值。</li>
-</ul>
-</li>
-</ol>
-<ol>
-<li>用户定义的完整性<br> 任何关系数据库系统都应该支持实体完整性和参照完整性。这是关系模型所要求的。除此之外，不同的关系数据库系统根据其应用环境的不同，往往还需要一些特殊的约束条件。用户定义的完整性就是针对某一具体关系数据库的约束条件，它反应某一具体应用所涉及的数据必须满足的语义要求。<strong> 关系模型应提供定义和检验这类完整性的机制，以便用统一的系统的方法处理它们，而不需要由应用程序承担这一功能 </strong></li>
-</ol>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;blockquote class=&quot;blockquote-center&quot;&gt;&lt;p&gt;关系的完整性&lt;/p&gt;
-&lt;/blockquote&gt;
-    
-    </summary>
-    
-      <category term="DataBase" scheme="https://muleimulei.github.io/categories/DataBase/"/>
-    
-    
-      <category term="关系的完整性" scheme="https://muleimulei.github.io/tags/%E5%85%B3%E7%B3%BB%E7%9A%84%E5%AE%8C%E6%95%B4%E6%80%A7/"/>
     
   </entry>
   
