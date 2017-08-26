@@ -133,7 +133,7 @@ V8 — 开源，由Google开发，用C++编写的Rhino — 由Mozilla基
 <meta property="og:image" content="https://muleimulei.github.io/assets/segment/JavaScript引擎3.jpg">
 <meta property="og:image" content="https://muleimulei.github.io/assets/segment/JavaScript引擎4.jpg">
 <meta property="og:image" content="https://muleimulei.github.io/assets/segment/JavaScript引擎5.jpg">
-<meta property="og:updated_time" content="2017-08-26T04:35:12.564Z">
+<meta property="og:updated_time" content="2017-08-26T07:08:13.355Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript工作机制（二）">
 <meta name="twitter:description" content="JavaScript工作机制（二）
@@ -508,6 +508,11 @@ V8 — 开源，由Google开发，用C++编写的Rhino — 由Mozilla基
 <p>隐藏类转化取决于将属性添加到对象的顺序。如下：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Point</span> (<span class="params">x, y</span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.x = x;</div><div class="line">    <span class="keyword">this</span>.y = y;</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> p1 = <span class="keyword">new</span> Point(<span class="number">1</span>, <span class="number">2</span>);</div><div class="line">p1.a = <span class="number">5</span>;</div><div class="line">p1.b = <span class="number">6</span>;</div><div class="line"></div><div class="line"><span class="keyword">var</span> p2 = <span class="keyword">new</span> Point(<span class="number">3</span>, <span class="number">4</span>);</div><div class="line">p2.a = <span class="number">7</span>;</div><div class="line">p2.b = <span class="number">8</span>;</div></pre></td></tr></table></figure>
 <p>现在，你可能会认为p1和p2会使用相同的隐藏类和转换。但这是错的。对于p1，首先是添加属性a，然后是属性b。不过，对于p2，先是给b赋值，然后才是a。因此，由于转换路径不同，p1和p2最终会有不同的隐藏类。在这种情况下，以相同的顺序初始化动态属性要更好，这样隐藏类才可以被重用。</p>
+<h2 id="内联缓存"><a href="#内联缓存" class="headerlink" title="内联缓存"></a>内联缓存</h2><p>V8利用另一种称为内联缓存的技术来优化动态类型语言。内联缓存来自于观察的结果：<strong>对同一方法的重复调用往往发生在同一类型的对象上。</strong></p>
+<p>下面我们打算谈谈内联缓存的一般概念:</p>
+<p>V8维护在最近的方法调用中作为参数传递的对象类型的缓存，并使用该信息对将来作为参数传递的对象类型做出假设。如果V8能够对传递给方法的对象类型做出一个很好的假设，那么它可以绕过算出如何访问对象的属性的过程，转而使用先前查找对象的隐藏类时所存储的信息。</p>
+<p>那么隐藏类和内联缓存的概念是如何关联的呢？无论何时在特定对象上调用方法，V8引擎必须对该对象的隐藏类执行查找，以确定访问特定属性的偏移量。在对同一个隐藏类的同一方法进行了两次成功的调用之后，V8就省略掉了隐藏类的查找，只将属性的偏移量添加到对象指针本身上。对于所以将来对该方法的调用，V8引擎都会假设隐藏类没有改变，并使用先前查找中存储的偏移量直接转到特定属性的内存地址。这会大大提高执行速度。</p>
+<p>内联缓存也是为什么同一类型的对象共享隐藏类非常重要的原因。如果您创建相同类型的两个对象，但是用的是不同的隐藏类，那么V8将无法使用内联缓存，因为即使两个对象的类型相同，但是它们的对应隐藏类也会为其属性分配不同的偏移量。</p>
 
       
     </div>
@@ -790,7 +795,7 @@ V8 — 开源，由Google开发，用C++编写的Rhino — 由Mozilla基
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#概述"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建V8引擎的由来"><span class="nav-number">2.</span> <span class="nav-text">创建V8引擎的由来</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#V8曾经有两个编译器"><span class="nav-number">3.</span> <span class="nav-text">V8曾经有两个编译器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#内联"><span class="nav-number">4.</span> <span class="nav-text">内联</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#隐藏类"><span class="nav-number">5.</span> <span class="nav-text">隐藏类</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#概述"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建V8引擎的由来"><span class="nav-number">2.</span> <span class="nav-text">创建V8引擎的由来</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#V8曾经有两个编译器"><span class="nav-number">3.</span> <span class="nav-text">V8曾经有两个编译器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#内联"><span class="nav-number">4.</span> <span class="nav-text">内联</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#隐藏类"><span class="nav-number">5.</span> <span class="nav-text">隐藏类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#内联缓存"><span class="nav-number">6.</span> <span class="nav-text">内联缓存</span></a></li></ol></div>
             
 
           </div>
