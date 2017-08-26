@@ -133,7 +133,7 @@ V8 — 开源，由Google开发，用C++编写的Rhino — 由Mozilla基
 <meta property="og:image" content="https://muleimulei.github.io/assets/segment/JavaScript引擎3.jpg">
 <meta property="og:image" content="https://muleimulei.github.io/assets/segment/JavaScript引擎4.jpg">
 <meta property="og:image" content="https://muleimulei.github.io/assets/segment/JavaScript引擎5.jpg">
-<meta property="og:updated_time" content="2017-08-26T07:08:13.355Z">
+<meta property="og:updated_time" content="2017-08-26T12:22:43.385Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript工作机制（二）">
 <meta name="twitter:description" content="JavaScript工作机制（二）
@@ -513,6 +513,16 @@ V8 — 开源，由Google开发，用C++编写的Rhino — 由Mozilla基
 <p>V8维护在最近的方法调用中作为参数传递的对象类型的缓存，并使用该信息对将来作为参数传递的对象类型做出假设。如果V8能够对传递给方法的对象类型做出一个很好的假设，那么它可以绕过算出如何访问对象的属性的过程，转而使用先前查找对象的隐藏类时所存储的信息。</p>
 <p>那么隐藏类和内联缓存的概念是如何关联的呢？无论何时在特定对象上调用方法，V8引擎必须对该对象的隐藏类执行查找，以确定访问特定属性的偏移量。在对同一个隐藏类的同一方法进行了两次成功的调用之后，V8就省略掉了隐藏类的查找，只将属性的偏移量添加到对象指针本身上。对于所以将来对该方法的调用，V8引擎都会假设隐藏类没有改变，并使用先前查找中存储的偏移量直接转到特定属性的内存地址。这会大大提高执行速度。</p>
 <p>内联缓存也是为什么同一类型的对象共享隐藏类非常重要的原因。如果您创建相同类型的两个对象，但是用的是不同的隐藏类，那么V8将无法使用内联缓存，因为即使两个对象的类型相同，但是它们的对应隐藏类也会为其属性分配不同的偏移量。</p>
+<h2 id="编译到机器码"><a href="#编译到机器码" class="headerlink" title="编译到机器码"></a>编译到机器码</h2><p>一旦Hydrogen图被优化，Crankshaft将其降低到一个称为Lithium的较低级别表示。大多数Lithium实现都是针对架构的。寄存器分配发生在这一级。</p>
+<p>最后，Lithium被编译成机器码。然后其它事情，也就是OSR发生了。在我们开始编译和优化一个明显要长期运行的方法之前，我们可能会运行它。V8不会蠢到忘记它刚刚慢慢执行的代码，所以它不会再用优化版本又执行一遍，而是将转换所有已有的上下文（栈，寄存器），以便我们可以在执行过程中间就切换到优化版本。这是一个非常复杂的任务，请记住，除了其它优化之外，V8最开始时已经内联了代码。V8并非唯一能做到这一点的引擎。<br>有一种称为去优化的保护措施，会做出相反的转换，并恢复为非优化的代码，以防止引擎的假设不在成立。</p>
+<h2 id="垃圾回收"><a href="#垃圾回收" class="headerlink" title="垃圾回收"></a>垃圾回收</h2><p>对于垃圾回收来说，V8采用的是标记，清扫这种传统方式来清除旧一代。标记阶段应该停止执行JavaScript。为了控制GC成本，并使执行更加稳定，V8使用增量式标记：不是遍历整个堆，尝试标记每一个可能的对象，而是只遍历一部分堆，然后恢复正常执行。下一个GC停止会从之前的堆遍历停止的地方继续。这就允许在正常执行期间有非常短的暂停。如前所述，清扫阶段是由单独的线程处理。</p>
+<h2 id="如何编写优化的JavaScript"><a href="#如何编写优化的JavaScript" class="headerlink" title="如何编写优化的JavaScript"></a>如何编写优化的JavaScript</h2><ol>
+<li><strong>对象属性的顺序</strong>：始终以相同的顺序实例化对象属性，以便可以共享隐藏类和随后的优化的代码。</li>
+<li><strong>动态属性</strong>：在实例化后向对象添加属性会强制修改隐藏类，减慢为之前的隐藏类优化了的方法。所以应该在构造函数中指定对象的所以属性。</li>
+<li><strong>方法</strong>：重复执行相同方法的代码将比只执行一次的代码（由于内联缓存）运行的快。</li>
+<li><strong>数组</strong>：避免键不是增量数字的稀疏数组。元素不全的稀疏数组是一个<strong>哈希表</strong>，而访问这种数组中的元素更昂贵。另外，尽量避免预分配大数组。最好随着发展而增长。最后，不要删除数组中的元素。它会让键变得稀疏。</li>
+<li><strong>标记值</strong>：V8用32位表示对象和数字。它用一位来判断是对象（flag=1）还是整数（flag=0）。然后，如果一个数值大于31位，V8将会对数字装箱，将其转化为double，并创建为一个新对象将该数字放到里面。所以要尽可能使用31有符号数字，从而避免昂贵的转化为js对象的装箱操作。</li>
+</ol>
 
       
     </div>
@@ -795,7 +805,7 @@ V8 — 开源，由Google开发，用C++编写的Rhino — 由Mozilla基
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#概述"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建V8引擎的由来"><span class="nav-number">2.</span> <span class="nav-text">创建V8引擎的由来</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#V8曾经有两个编译器"><span class="nav-number">3.</span> <span class="nav-text">V8曾经有两个编译器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#内联"><span class="nav-number">4.</span> <span class="nav-text">内联</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#隐藏类"><span class="nav-number">5.</span> <span class="nav-text">隐藏类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#内联缓存"><span class="nav-number">6.</span> <span class="nav-text">内联缓存</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#概述"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建V8引擎的由来"><span class="nav-number">2.</span> <span class="nav-text">创建V8引擎的由来</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#V8曾经有两个编译器"><span class="nav-number">3.</span> <span class="nav-text">V8曾经有两个编译器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#内联"><span class="nav-number">4.</span> <span class="nav-text">内联</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#隐藏类"><span class="nav-number">5.</span> <span class="nav-text">隐藏类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#内联缓存"><span class="nav-number">6.</span> <span class="nav-text">内联缓存</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#编译到机器码"><span class="nav-number">7.</span> <span class="nav-text">编译到机器码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#垃圾回收"><span class="nav-number">8.</span> <span class="nav-text">垃圾回收</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何编写优化的JavaScript"><span class="nav-number">9.</span> <span class="nav-text">如何编写优化的JavaScript</span></a></li></ol></div>
             
 
           </div>
