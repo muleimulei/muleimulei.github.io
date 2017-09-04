@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://muleimulei.github.io/"/>
-  <updated>2017-08-26T14:59:44.640Z</updated>
+  <updated>2017-09-04T15:11:33.926Z</updated>
   <id>https://muleimulei.github.io/</id>
   
   <author>
@@ -14,6 +14,28 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>CSS实现滚动的球</title>
+    <link href="https://muleimulei.github.io/2017/09/04/CSS3/%E6%BB%9A%E5%8A%A8%E7%9A%84%E7%90%83/"/>
+    <id>https://muleimulei.github.io/2017/09/04/CSS3/滚动的球/</id>
+    <published>2017-09-04T14:46:38.933Z</published>
+    <updated>2017-09-04T15:11:33.926Z</updated>
+    
+    <content type="html"><![CDATA[<iframe src="/assets/ball.html" width="600px" height="600px" frameborder="0" allowfullscreen></iframe>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="css"></span></div><div class="line">    <span class="selector-class">.wrapper</span>&#123;</div><div class="line">        <span class="attribute">border</span>: <span class="number">1px</span> solid black;</div><div class="line">        <span class="attribute">width</span>: <span class="number">300px</span>;</div><div class="line">        <span class="attribute">height</span>: <span class="number">300px</span>;</div><div class="line">        <span class="attribute">border-radius</span>: <span class="number">50%</span>;</div><div class="line">        <span class="attribute">margin</span>: <span class="number">90px</span> auto;</div><div class="line">        <span class="comment">/* animation: ballRotate 2s linear 0s infinite; */</span></div><div class="line">        <span class="attribute">perspective</span>: <span class="number">3000px</span>;</div><div class="line">        <span class="attribute">transform-style</span>: preserve-<span class="number">3</span>d;</div><div class="line">        <span class="attribute">position</span>: relative;</div><div class="line">        <span class="attribute">transform</span>: <span class="built_in">rotateX</span>(-30deg) <span class="built_in">rotateZ</span>(-30deg);</div><div class="line">        <span class="attribute">background</span>: chocolate;</div><div class="line">    &#125;</div><div class="line">    <span class="selector-class">.wrapper</span><span class="selector-pseudo">::after</span>&#123;</div><div class="line">        <span class="attribute">content</span>: <span class="string">''</span>;</div><div class="line">        <span class="attribute">position</span>: absolute;</div><div class="line">        <span class="attribute">width</span>: <span class="number">2px</span>;</div><div class="line">        <span class="attribute">height</span>: <span class="number">500px</span>;</div><div class="line">        <span class="attribute">left</span>: <span class="number">149px</span>;</div><div class="line">        <span class="attribute">background</span>: <span class="number">#a94c4c</span>;</div><div class="line">        <span class="attribute">top</span>: -<span class="number">100px</span>;</div><div class="line">        <span class="attribute">border-radius</span>: <span class="number">5px</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="selector-class">.inner1</span>&#123;</div><div class="line">        <span class="attribute">width</span>: <span class="number">300px</span>;</div><div class="line">        <span class="attribute">height</span>: <span class="number">300px</span>;</div><div class="line">        <span class="attribute">border</span>: <span class="number">1px</span> solid red;</div><div class="line">        <span class="attribute">border-radius</span>: <span class="number">50%</span>;</div><div class="line">        <span class="attribute">transform</span>: <span class="built_in">rotateY</span>(36deg);</div><div class="line">        <span class="attribute">position</span>: absolute;</div><div class="line">        <span class="attribute">top</span>: <span class="number">0</span>;</div><div class="line">        <span class="attribute">left</span>: <span class="number">0</span>;</div><div class="line">        <span class="attribute">background</span>: antiquewhite;</div><div class="line">    &#125;</div><div class="line">    <span class="selector-class">.f1</span>&#123;</div><div class="line">         <span class="attribute">border</span>: <span class="number">1px</span> solid blue;</div><div class="line">         <span class="attribute">transform</span>: <span class="built_in">rotateY</span>(72deg);</div><div class="line">         <span class="attribute">background</span>: aqua;</div><div class="line">    &#125;</div><div class="line">    <span class="selector-class">.f2</span>&#123;</div><div class="line">        <span class="attribute">border</span>: <span class="number">1px</span> solid green;</div><div class="line">        <span class="attribute">transform</span>: <span class="built_in">rotateY</span>(108deg);</div><div class="line">        <span class="attribute">background</span>: brown;</div><div class="line">    &#125;</div><div class="line">    <span class="selector-class">.f3</span>&#123;</div><div class="line">        <span class="attribute">border</span>: <span class="number">1px</span> solid <span class="number">#464646</span>;</div><div class="line">        <span class="attribute">transform</span>: <span class="built_in">rotateY</span>(144deg);</div><div class="line">        <span class="attribute">background</span>: blueviolet;</div><div class="line">    &#125;</div><div class="line">    @<span class="keyword">keyframes</span> ballRotate&#123;</div><div class="line">        <span class="selector-tag">from</span> &#123;</div><div class="line">            <span class="attribute">transform</span>: <span class="built_in">rotateX</span>(-30deg) <span class="built_in">rotateZ</span>(-30deg) <span class="built_in">rotateY</span>(0);</div><div class="line">        &#125;</div><div class="line">        <span class="selector-tag">to</span>&#123;</div><div class="line">            <span class="attribute">transform</span>: <span class="built_in">rotateX</span>(-30deg) <span class="built_in">rotateZ</span>(-30deg) <span class="built_in">rotateY</span>(360deg);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"wrapper"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"inner1"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"inner1 f1"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"inner1 f2"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"inner1 f3"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;iframe src=&quot;/assets/ball.html&quot; width=&quot;600px&quot; height=&quot;600px&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;
+&lt;figure class=&quot;highlight html&quot;&gt;&lt;table
+    
+    </summary>
+    
+      <category term="CSS3" scheme="https://muleimulei.github.io/categories/CSS3/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>CSS中的单位</title>
@@ -325,7 +347,7 @@
     <link href="https://muleimulei.github.io/2017/08/20/CSS3/css%E7%9A%84display%E4%B8%BAtable/"/>
     <id>https://muleimulei.github.io/2017/08/20/CSS3/css的display为table/</id>
     <published>2017-08-20T06:37:56.681Z</published>
-    <updated>2017-08-20T14:51:12.082Z</updated>
+    <updated>2017-09-04T14:53:07.170Z</updated>
     
     <content type="html"><![CDATA[<blockquote class="blockquote-center"><p>CSS3的display:table</p>
 </blockquote>
@@ -560,7 +582,8 @@ document.querySelector("#wrapper4 .btn2").addEventListener("click", function(){
         background: #105B63;
         color: #FFFAD5;
     }
-</style>]]></content>
+</style>
+]]></content>
     
     <summary type="html">
     
@@ -1367,71 +1390,6 @@ document.querySelector("#wrapper4 .btn2").addEventListener("click", function(){
     
     
       <category term="数据库视图" scheme="https://muleimulei.github.io/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%A7%86%E5%9B%BE/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>string与stringstream</title>
-    <link href="https://muleimulei.github.io/2017/08/05/c%E4%B8%8Ec++/string%E4%B8%8Estringstream/"/>
-    <id>https://muleimulei.github.io/2017/08/05/c与c++/string与stringstream/</id>
-    <published>2017-08-05T08:05:11.302Z</published>
-    <updated>2017-08-05T09:40:56.344Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote class="blockquote-center"><p>string与stringstream</p>
-</blockquote>
-<a id="more"></a>
-<h2 id="string"><a href="#string" class="headerlink" title="string"></a>string</h2><p>string是c++提供的字符串型，和c的字符串相比，除了有不限长度的优点外，还有其它许多方便的功能。</p>
-<p>首先加入<code>#include\<string\> </string\></code>，声明变量可以写成<code>string s;s=”hello”</code>，也可以直接设置其值<code>string s = “TCGS”</code>，如果要取得其中一个字符，和传统的c语言一样是用s[i]取得。比较不一样的是如果s有三个字符，传统c的字符s[3]是0字元，但是c++的string则是只到s[2]这个字符而已。</p>
-<p>操作：</p>
-<pre><code>- 声明：
-    + string：string s
-    + 字符阵列：char s[100]
-- 取得第i个字符
-    + string：s[i]
-    + 字符阵列：s[i]
-- 字符串长度
-    + string：s.length()
-    + 字符阵列：strlen(s)
-- 读取一行
-    + string：getline(cin, s)
-    + 字符阵列：gets(s)
-- 设成某字符串
-    + string：s=&quot;TSS&quot;
-    + 字符阵列：strcpy(s, &apos;TSS&apos;)
-- 字符串相加
-    + string：s = s + &apos;TSS&apos;
-    + 字符阵列：strcat(s, &apos;TSS&apos;)
-- 字符比较
-    + string：s==&apos;TSS&apos;
-    + 字符阵列：strcmp(s, &apos;TSS&apos;)
-</code></pre><h2 id="stringstream"><a href="#stringstream" class="headerlink" title="stringstream"></a>stringstream</h2><p>stringstream是c++提供的另一个字符串型的串流物件，要使用stringstream，必须先加入这一行：<code>#include<sstream></sstream></code>，stringstream主要是用在将一个字符串分割，可以先用clear()以及str()将指定字符串设定成一开始的内容，再用&gt;&gt;把个别的资料输出，例如：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">string</span> s;</div><div class="line"><span class="built_in">stringstream</span> ss;</div><div class="line"><span class="keyword">int</span> a,b,c;</div><div class="line">getline(<span class="built_in">cin</span>, s);</div><div class="line">ss.clear();</div><div class="line">ss.str(s);</div><div class="line">ss&gt;&gt;a&gt;&gt;b&gt;&gt;c;</div></pre></td></tr></table></figure>
-<p>题目：输入的第一行有一个数字N代表接下来N行资料，每一行资料里有不固定个数的整数（最多20个，每行最大200个字符），请你写一个算法将每行的总和打印出来<br>輸入：</p>
-<p>3<br>1 2 3<br>20 17 23 54 77 60<br>111 222 333 444 555 666 777 888 999</p>
-<p>輸出：</p>
-<p>6<br>251<br>4995</p>
-<p>程序：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">string</span> s;</div><div class="line"><span class="built_in">stringstream</span> ss;</div><div class="line"><span class="keyword">int</span> n, i, sum, a;</div><div class="line"><span class="built_in">cin</span> &gt;&gt; n;</div><div class="line">getline(<span class="built_in">cin</span>, s); <span class="comment">// 讀取換行</span></div><div class="line"><span class="keyword">for</span> (i=<span class="number">0</span>; i&lt;n; i++)</div><div class="line">&#123;</div><div class="line">    getline(<span class="built_in">cin</span>, s);</div><div class="line">    ss.clear();</div><div class="line">    ss.str(s);</div><div class="line">    sum=<span class="number">0</span>;</div><div class="line">    <span class="keyword">while</span> (<span class="number">1</span>)</div><div class="line">    &#123;</div><div class="line">        ss &gt;&gt; a;</div><div class="line">        <span class="keyword">if</span> ( ss.fail() ) <span class="keyword">break</span>;</div><div class="line">        sum+=a;</div><div class="line">    &#125;</div><div class="line">    <span class="built_in">cout</span> &lt;&lt; sum &lt;&lt; <span class="built_in">endl</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">string</span>常用的方法有size()，find()，substr()方法：</div><div class="line"><span class="built_in">string</span> str = <span class="string">"yutyuyuyussdfas"</span>;</div><div class="line"><span class="keyword">size_t</span> pos = str.find(<span class="string">"ssdf"</span>, <span class="number">3</span>);   <span class="comment">//用if(pos==string::npos)用来判断是否找到字符串</span></div><div class="line"><span class="built_in">string</span> str2 = str.substr(pos, <span class="number">5</span>);</div><div class="line"></div><div class="line"><span class="comment">//find函数从str的第三个位置查起，找到sddf这个字符串后，返回字符串的位置。而substr函数从pos位置开始，截取5个字符，赋给str2</span></div></pre></td></tr></table></figure>
-<p>stringstream是字符串流，可以用来数据切分或者类型转化。<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="built_in">string</span> <span class="title">i2s</span> <span class="params">(<span class="keyword">int</span> i, <span class="keyword">int</span> len = <span class="number">0</span>)</span></span>&#123;</div><div class="line">    <span class="built_in">stringstream</span> ss;</div><div class="line">    ss &lt;&lt; setw(len) &lt;&lt; setfill(<span class="string">'0'</span>) &lt;&lt; i;</div><div class="line">    <span class="keyword">return</span> ss.str();</div><div class="line">&#125;</div><div class="line"><span class="comment">//以i2s(7, 3)形式调用这个函数，返回的结果是字符串007</span></div></pre></td></tr></table></figure></p>
-<p>string到int的转换<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">string</span> res = <span class="string">"1000"</span>;</div><div class="line"><span class="keyword">int</span> n = <span class="number">0</span>;</div><div class="line">stream&lt;&lt;result;</div><div class="line">stream&gt;&gt;n;</div></pre></td></tr></table></figure></p>
-<p>在类型转化中使用模板。to_string()函数将t转化为字符串并写入result中。使用str()成员函数来获取流内部缓存的一份拷贝：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">template</span> &lt;<span class="keyword">class</span> T&gt;</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">to_string</span><span class="params">(<span class="built_in">string</span> &amp;result, <span class="keyword">const</span> T &amp;l)</span></span>&#123;</div><div class="line">    <span class="built_in">ostringstream</span> oss; <span class="comment">//创建一个流</span></div><div class="line">    oss&lt;&lt;t; <span class="comment">//把值传递到流中</span></div><div class="line">    result = oss.str(); <span class="comment">//获取转换后的字符并将其写入result</span></div><div class="line">&#125;</div><div class="line"></div><div class="line">to_string(s1, <span class="number">10.5</span>); <span class="comment">//double到string</span></div><div class="line">to_string(s1, <span class="number">123</span>); <span class="comment">//int到string</span></div></pre></td></tr></table></figure>
-<p>可以更进一步定义一个通用的转化模板，用于任意类型之间的转换。函数模板convert()含有两个模板参数out_type和in_type，功能是将in_value值转换成out_type类型：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">template</span> &lt;<span class="keyword">class</span> out_type, <span class="keyword">class</span> in_value&gt;</div><div class="line"><span class="function">out_type <span class="title">convert</span> <span class="params">(<span class="keyword">const</span> in_value &amp;t)</span></span>&#123;</div><div class="line">    <span class="built_in">stringstream</span> stream;</div><div class="line">    stream &lt;&lt; t; <span class="comment">//向流中传值</span></div><div class="line">    out_type result; <span class="comment">//这里存储转换结果</span></div><div class="line">    stream&gt;&gt;result; <span class="comment">//向result中写入值</span></div><div class="line">    <span class="keyword">return</span> result;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">double</span> d;</div><div class="line"><span class="built_in">string</span> salary;</div><div class="line"><span class="built_in">string</span> s = <span class="string">"23.323"</span>;</div><div class="line">s = convert&lt;<span class="keyword">double</span>&gt;(s);</div><div class="line">salary = convert&lt;<span class="built_in">string</span>&gt;(<span class="number">9000.0</span>);</div></pre></td></tr></table></figure>
-<p>在进行多次转换的时候，必须调用stringstream的成员函数clear()函数<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sstream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">    <span class="built_in">std</span>::<span class="built_in">stringstream</span> stream;</div><div class="line">    <span class="keyword">int</span> first, second;</div><div class="line">    stream&lt;&lt; <span class="string">"456"</span>; <span class="comment">//插入字符串</span></div><div class="line">    stream &gt;&gt; first; <span class="comment">//转换成int</span></div><div class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; first &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</div><div class="line">    stream.clear(); <span class="comment">//在进行多次转换前，必须清除stream</span></div><div class="line">    stream &lt;&lt; <span class="literal">true</span>; <span class="comment">//插入bool值</span></div><div class="line">    stream &gt;&gt; second; <span class="comment">//提取出int</span></div><div class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; second &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;blockquote class=&quot;blockquote-center&quot;&gt;&lt;p&gt;string与stringstream&lt;/p&gt;
-&lt;/blockquote&gt;
-    
-    </summary>
-    
-      <category term="C++" scheme="https://muleimulei.github.io/categories/C/"/>
-    
-    
-      <category term="string与stringstream" scheme="https://muleimulei.github.io/tags/string%E4%B8%8Estringstream/"/>
     
   </entry>
   

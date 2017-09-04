@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<style>
+    .wrapper{
+        border: 1px solid black;
+        width: 300px;
+        height: 300px;
+        border-radius: 50%;
+        margin: 90px auto;
+        animation: ballRotate 2s linear 0s infinite;
+        perspective: 3000px;
+        transform-style: preserve-3d;
+        position: relative;
+        transform: rotateX(-30deg) rotateZ(-30deg);
+        background: chocolate;
+    }
+    .wrapper::after{
+        content: '';
+        position: absolute;
+        width: 2px;
+        height: 500px;
+        left: 149px;
+        background: #a94c4c;
+        top: -100px;
+        border-radius: 5px;
+    }
+    .inner1{
+        width: 300px;
+        height: 300px;
+        border: 1px solid red;
+        border-radius: 50%;
+        transform: rotateY(36deg);
+        position: absolute;
+        top: 0;
+        left: 0;
+        background: antiquewhite;
+    }
+    .f1{
+         border: 1px solid blue;
+         transform: rotateY(72deg);
+         background: aqua;
+    }
+    .f2{
+        border: 1px solid green;
+        transform: rotateY(108deg);
+        background: brown;
+    }
+    .f3{
+        border: 1px solid #464646;
+        transform: rotateY(144deg);
+        background: blueviolet;
+    }
+    @keyframes ballRotate{
+        from {
+            transform: rotateX(-30deg) rotateZ(-30deg) rotateY(0);
+        }
+        to{
+            transform: rotateX(-30deg) rotateZ(-30deg) rotateY(360deg);
+        }
+    }
+</style>
+<body>
+    <div class="wrapper">
+        <div class="inner1"></div>
+        <div class="inner1 f1"></div>
+        <div class="inner1 f2"></div>
+        <div class="inner1 f3"></div>
+    </div>
+</body>
+</html>
