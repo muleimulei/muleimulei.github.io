@@ -352,6 +352,205 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://muleimulei.github.io/2017/07/31/JavaScript/module的加载实现/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="穆蕾">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="风的影子">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/07/31/JavaScript/module的加载实现/" itemprop="url">
+                  module的加载实现
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-31T15:37:28+08:00">
+                2017-07-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaScript/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaScript</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote class="blockquote-center"><p>module的加载实现</p>
+</blockquote>
+<h2 id="浏览器加载"><a href="#浏览器加载" class="headerlink" title="浏览器加载"></a>浏览器加载</h2><ol>
+<li>传统方法</li>
+</ol>
+<p>在HTML网页中，浏览器通过<code>script</code>标签加载JavaScript脚本<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- 页面内嵌的脚本 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"application/javascript"</span>&gt;</span><span class="javascript"></span></div><div class="line">    <span class="comment">//module code</span></div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"></div><div class="line"><span class="comment">&lt;!-- 外部脚本 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"application/JavaScript"</span> <span class="attr">src</span>=<span class="string">"path/to/Module.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>上面代码中，由于浏览器的脚本的默认语言是JavaScript，因此<code> type=”application/javascript” </code>可以省略。</p>
+<p>默认情况下，浏览器同步加载JavaScript脚本，即渲染引擎遇到script标签就会停下来，等到执行完脚本，再继续向下渲染。如果是外部脚本，还必须加入脚本下载的时间。</p>
+<p>下面有两种异步加载的方法</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&lt;script src=<span class="string">"mymodule.js"</span> defer&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></div><div class="line">&lt;script src=<span class="string">"mymodule.js"</span> <span class="keyword">async</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></div></pre></td></tr></table></figure>
+<p>上面代码中，script标签打开defer或async属性，脚本就会异步加载。渲染引擎遇到这一命令，就会开始下载外部脚本，但不会等他下载和执行，而是直接执行后面的命令。</p>
+<blockquote>
+<p>defer与async的区别是：前者要等到整个页面正常渲染结束，才会执行；后者一旦下载完，渲染引擎就会中断渲染，执行这个脚本以后，再继续渲染。另外，如果有多个defer脚本，会按照它们在页面出现的顺序加载，而多个async脚本是不能保证加载顺序的。</p>
+</blockquote>
+<ol>
+<li>加载规则</li>
+</ol>
+<p>浏览器加载ES6模块，也使用script标签，但要加入type=”module”属性。<br><code> <script type="module" src="foo.js"></script> </code>上面代码在网页插入foo.js，由于type属性设为module，所以浏览器知道这是一个ES6模块。</p>
+<p>浏览器对于带有type=”module”的script，都是异步加载，不会造成堵塞浏览器，即等到整个页面渲染完，在执行模块脚本，等同于打开了script标签的defer属性。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;script type=<span class="string">"module"</span> src=<span class="string">"foo.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></div><div class="line">&lt;!-- 等同于 --&gt;</div><div class="line"><span class="xml"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"module"</span> <span class="attr">src</span>=<span class="string">"foo.js"</span> <span class="attr">defer</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></div></pre></td></tr></table></figure>
+<p>script标签的async属性也可以打开，这时只要加载完成，渲染引擎就会中断渲染立即执行。执行完成后，在恢复渲染。<br><code> <script type="module" src="foo.js" async></script> </code><br>ES6模块也允许内嵌在网页中，语法行为与加载外部脚本完全一致。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;script type=<span class="string">"module"</span>&gt;</div><div class="line">    <span class="keyword">import</span> utils <span class="keyword">from</span> <span class="string">'./util.js'</span></div><div class="line">    <span class="comment">// other code</span></div><div class="line">&lt;<span class="regexp">/script&gt;</span></div></pre></td></tr></table></figure>
+<p>对于外部的模块的脚本，有几点注意。</p>
+<blockquote>
+<ol>
+<li>代码是在模块作用域之中运行，而不是在全局作用域运行。模块内部的顶层变量，外部不可见。</li>
+<li>模块脚本自动采用严格模式，不管有没有声明<code>use strict</code></li>
+<li>模块之中，可以使用import命令加载其它模块(<strong> .js后缀不可省略，需要提供绝对url与相对url </strong>)，也可以使用export命令输出绝对接口。</li>
+<li>模块之中，顶层的this关键字返回undefined，而不是window。也就是说，在模块顶层使用this关键字，是无意义的。</li>
+<li>同一个模块如果加载多次，将只执行一次</li>
+</ol>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> utils <span class="keyword">from</span> <span class="string">'https://example.com/js/utils.js'</span>;</div><div class="line"></div><div class="line"><span class="keyword">const</span> x = <span class="number">1</span>;</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(x === <span class="built_in">window</span>.x); <span class="comment">//false</span></div><div class="line"><span class="built_in">console</span>.log(<span class="keyword">this</span> === <span class="literal">undefined</span>); <span class="comment">// true</span></div><div class="line"></div><div class="line"><span class="keyword">delete</span> x; <span class="comment">// 句法错误，严格模式禁止删除变量</span></div></pre></td></tr></table></figure>
+<p><strong> 利用顶层的this等于undefined这个语法点，可以侦测当前代码是否在es6模块之中 </strong></p>
+<p><code>const isNotModuleScript = this !== undefined</code></p>
+<ol>
+<li>ES6模块与CommonJs模块的差异</li>
+</ol>
+<p>它们有两个重大差异</p>
+<ul>
+<li>CommonJs 模块输出的是一个值的拷贝，ES6模块输出的是一个值的引用。</li>
+<li>CommonJs 模块是运行时加载，ES6模块是编译时输出接口</li>
+</ul>
+<p>第二个差异是因为CommonJs加载的是一个对象（即module.exports属性），该对象只有在脚本运行完才会生成。而ES6模块不是对象，它的对外接口只是一种静态定义，在代码静态解析阶段就会生成。</p>
+<p>下面重点解释第一个差异。</p>
+<p>CommonJS 模块输出的是值的拷贝，也就是说，一旦输出一个值，模块内部的变化就影响不到这个值。请看下面这个模块文件lib.js的例子。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// lib.js</span></div><div class="line"><span class="keyword">var</span> counter = <span class="number">3</span>;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">incCounter</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  counter++;</div><div class="line">&#125;</div><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">  <span class="attr">counter</span>: counter,</div><div class="line">  <span class="attr">incCounter</span>: incCounter,</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p>上面代码输出内部变量counter和改写这个变量的内部方法incCounter。然后，在main.js里面加载这个模块。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// main.js</span></div><div class="line"><span class="keyword">var</span> mod = <span class="built_in">require</span>(<span class="string">'./lib'</span>);</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(mod.counter);  <span class="comment">// 3</span></div><div class="line">mod.incCounter();</div><div class="line"><span class="built_in">console</span>.log(mod.counter); <span class="comment">// 3</span></div><div class="line">上面代码说明，lib.js模块加载以后，它的内部变化就影响不到输出的mod.counter了。这是因为mod.counter是一个原始类型的值，会被缓存。除非写成一个函数，才能得到内部变动后的值。</div><div class="line"></div><div class="line"><span class="comment">// lib.js</span></div><div class="line"><span class="keyword">var</span> counter = <span class="number">3</span>;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">incCounter</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  counter++;</div><div class="line">&#125;</div><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">  get counter() &#123;</div><div class="line">    <span class="keyword">return</span> counter</div><div class="line">  &#125;,</div><div class="line">  <span class="attr">incCounter</span>: incCounter,</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>上面代码中，输出的counter属性实际上是一个取值器函数。现在再执行main.js，就可以正确读取内部变量counter的变动了。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ node main.js</div><div class="line"><span class="number">3</span></div><div class="line"><span class="number">4</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>ES6 模块的运行机制与 CommonJS 不一样。JS 引擎对脚本静态分析的时候，遇到模块加载命令import，就会生成一个只读引用。等到脚本真正执行时，再根据这个只读引用，到被加载的那个模块里面去取值。换句话说，ES6 的import有点像 Unix 系统的“符号连接”，原始值变了，import加载的值也会跟着变。因此，ES6 模块是动态引用，并且不会缓存值，模块里面的变量绑定其所在的模块。</p>
+</blockquote>
+<p>export通过接口，输出的是同一个值。不同的脚本加载这个接口，得到的都是同样的实例。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// mod.js</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">C</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">this</span>.sum = <span class="number">0</span>;</div><div class="line">  <span class="keyword">this</span>.add = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.sum += <span class="number">1</span>;</div><div class="line">  &#125;;</div><div class="line">  <span class="keyword">this</span>.show = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.sum);</div><div class="line">  &#125;;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">let</span> c = <span class="keyword">new</span> C();</div></pre></td></tr></table></figure></p>
+<p>上面的脚本mod.js，输出的是一个C的实例。不同的脚本加载这个模块，得到的都是同一个实例。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">// x.js</div><div class="line">import &#123;c&#125; from &apos;./mod&apos;;</div><div class="line">c.add();</div><div class="line"></div><div class="line">// y.js</div><div class="line">import &#123;c&#125; from &apos;./mod&apos;;</div><div class="line">c.show();</div><div class="line"></div><div class="line">// main.js</div><div class="line">import &apos;./x&apos;;</div><div class="line">import &apos;./y&apos;;</div><div class="line">现在执行main.js，输出的是1。</div><div class="line"></div><div class="line">$ babel-node main.js</div><div class="line">1</div></pre></td></tr></table></figure>
+<p>这就证明了x.js和y.js加载的都是C的同一个实例。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="https://muleimulei.github.io/2017/07/30/Vue/非父子组件通信/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -935,154 +1134,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://muleimulei.github.io/2017/07/17/JavaScript/javaScript获取css样式/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="穆蕾">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="风的影子">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/07/17/JavaScript/javaScript获取css样式/" itemprop="url">
-                  javaScript获取css样式
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-17T17:19:31+08:00">
-                2017-07-17
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JavaScript/" itemprop="url" rel="index">
-                    <span itemprop="name">JavaScript</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <blockquote class="blockquote-center"><p>javaScript获取css样式</p>
-</blockquote>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/07/17/JavaScript/javaScript获取css样式/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1135,7 +1186,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">56</span>
+                <span class="site-state-item-count">57</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1157,7 +1208,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">24</span>
+                <span class="site-state-item-count">25</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
